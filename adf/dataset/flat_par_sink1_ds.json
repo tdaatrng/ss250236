@@ -1,0 +1,45 @@
+{
+	"name": "flat_par_sink1_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "output1",
+				"fileSystem": "hg250013"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "FlightNo",
+				"type": "UTF8"
+			},
+			{
+				"name": "Origin",
+				"type": "UTF8"
+			},
+			{
+				"name": "Dest",
+				"type": "UTF8"
+			},
+			{
+				"name": "FlightDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "NoSalesReason",
+				"type": "UTF8"
+			},
+			{
+				"name": "TransmittingFlightAttd",
+				"type": "UTF8"
+			}
+		]
+	}
+}
