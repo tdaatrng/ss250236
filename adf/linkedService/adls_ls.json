@@ -1,0 +1,10 @@
+{
+	"name": "adls_ls",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://tdaastrgdls.dfs.core.windows.net/"
+		}
+	}
+}
