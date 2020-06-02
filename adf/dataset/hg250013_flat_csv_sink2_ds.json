@@ -1,5 +1,5 @@
 {
-	"name": "flat_csv_sink2_ds",
+	"name": "hg250013_flat_csv_sink2_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
