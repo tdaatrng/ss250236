@@ -1,5 +1,5 @@
 {
-	"name": "flat_par_sink1_ds",
+	"name": "hg250013_flat_par_sink1_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",

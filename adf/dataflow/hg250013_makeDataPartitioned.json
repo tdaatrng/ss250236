@@ -1,12 +1,12 @@
 {
-	"name": "makeDataPartitioned",
+	"name": "hg250013_makeDataPartitioned",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					},
 					"name": "FlatSource"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "csv_partitioned_ds",
+						"referenceName": "hg250013_csv_partitioned_ds",
 						"type": "DatasetReference"
 					},
 					"name": "sink4"

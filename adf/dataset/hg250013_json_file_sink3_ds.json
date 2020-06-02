@@ -1,5 +1,5 @@
 {
-	"name": "json_file_sink3_ds",
+	"name": "hg250013_json_file_sink3_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",

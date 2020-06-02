@@ -1,5 +1,5 @@
 {
-	"name": "flat_file_source_ds",
+	"name": "hg250013_flat_file_source_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
