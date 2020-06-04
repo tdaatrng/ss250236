@@ -1,18 +1,23 @@
 {
-	"name": "json_file_sink3_ds",
+	"name": "hg250013_csv_partitioned_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "Json",
+		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output3",
+				"folderPath": "output4",
 				"fileSystem": "hg250013"
-			}
-		}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
 	}
 }

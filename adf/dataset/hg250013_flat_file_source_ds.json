@@ -1,44 +1,48 @@
 {
-	"name": "flat_par_sink1_ds",
+	"name": "hg250013_flat_file_source_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "Parquet",
+		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output1",
+				"fileName": "nosales.txt",
+				"folderPath": "input",
 				"fileSystem": "hg250013"
 			},
-			"compressionCodec": "snappy"
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
 		},
 		"schema": [
 			{
-				"name": "FlightNo",
-				"type": "UTF8"
+				"name": "Flight#",
+				"type": "String"
 			},
 			{
 				"name": "Origin",
-				"type": "UTF8"
+				"type": "String"
 			},
 			{
 				"name": "Dest",
-				"type": "UTF8"
+				"type": "String"
 			},
 			{
 				"name": "FlightDate",
-				"type": "UTF8"
+				"type": "String"
 			},
 			{
 				"name": "NoSalesReason",
-				"type": "UTF8"
+				"type": "String"
 			},
 			{
 				"name": "TransmittingFlightAttd",
-				"type": "UTF8"
+				"type": "String"
 			}
 		]
 	}

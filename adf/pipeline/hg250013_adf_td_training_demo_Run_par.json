@@ -1,5 +1,5 @@
 {
-	"name": "adf_td_training_demo_Run_par",
+	"name": "hg250013_adf_td_training_demo_Run_par",
 	"properties": {
 		"activities": [
 			{
@@ -100,13 +100,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "flat_par_sink1_ds",
+						"referenceName": "hg250013_flat_par_sink1_ds",
 						"type": "DatasetReference"
 					}
 				]
@@ -197,13 +197,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "flat_csv_sink2_ds",
+						"referenceName": "hg250013_flat_csv_sink2_ds",
 						"type": "DatasetReference"
 					}
 				]
@@ -222,7 +222,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "makeDataPartitioned",
+						"referenceName": "hg250013_makeDataPartitioned",
 						"type": "DataFlowReference"
 					},
 					"compute": {
@@ -385,13 +385,13 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "flat_file_source_ds",
+									"referenceName": "hg250013_flat_file_source_ds",
 									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "json_file_sink3_ds",
+									"referenceName": "hg250013_json_file_sink3_ds",
 									"type": "DatasetReference"
 								}
 							]
