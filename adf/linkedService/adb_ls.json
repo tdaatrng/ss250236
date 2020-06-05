@@ -1,0 +1,19 @@
+{
+	"name": "adb_ls",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-4747255312543413.13.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "key_vault_ls",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "td-aa-trng-adb-tkn-secret"
+			},
+			"existingClusterId": "0604-175127-mulch547"
+		}
+	}
+}
