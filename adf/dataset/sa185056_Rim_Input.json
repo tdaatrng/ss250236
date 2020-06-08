@@ -11,8 +11,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "RIM_V1.2_HistoryData.csv",
-				"folderPath": "input",
-				"fileSystem": "sa185056"
+				"folderPath": "RIM",
+				"fileSystem": "common"
 			},
 			"columnDelimiter": "^",
 			"escapeChar": "\\",
