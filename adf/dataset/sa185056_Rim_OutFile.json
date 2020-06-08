@@ -11,9 +11,9 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": "output",
-				"fileSystem": "sa185056"
+				"fileSystem": "sa185057"
 			},
-			"columnDelimiter": "^",
+			"columnDelimiter": "~",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
