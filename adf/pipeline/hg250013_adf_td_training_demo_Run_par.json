@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "FullParCopy",
+				"name": "FullParquetCopy",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -236,7 +236,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "FullParCopy",
+						"activity": "FullParquetCopy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
