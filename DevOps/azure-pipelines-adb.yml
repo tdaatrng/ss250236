@@ -9,14 +9,13 @@ trigger:
       - adb/*
 
 pool:
-  name: Azure Pipelines
-  demands:
-    - Agent.OS -equals Windows_NT
+    vmImage: 'windows-latest' 
+  
 
 steps:
 - script: |
     mkdir -p $(Build.ArtifactStagingDirectory)\adb
-    xcopy "$(Build.SourcesDirectory)\notebooks\adb" "$(Build.ArtifactStagingDirectory)\adb" /s /e /y
+    xcopy "$(Build.SourcesDirectory)\adb" "$(Build.ArtifactStagingDirectory)\adb" /s /e /y
   workingDirectory: $(Build.ArtifactStagingDirectory)
   displayName: 'Prepare Notebook Build Artifacts adb'
 
