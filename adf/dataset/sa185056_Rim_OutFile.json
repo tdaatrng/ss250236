@@ -13,7 +13,7 @@
 				"folderPath": "output",
 				"fileSystem": "sa185056"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
