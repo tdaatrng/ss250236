@@ -10,8 +10,6 @@ trigger:
 
 pool:
   name: Azure Pipelines
-  demands:
-    - Agent.OS -equals Windows_NT
 
 steps:
 - script: |
