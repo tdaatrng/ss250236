@@ -1,0 +1,50 @@
+{
+	"name": "SourceDataset_t9l",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "RIM_V1.2_HistoryData.csv",
+				"folderPath": "RIM",
+				"fileSystem": "common"
+			},
+			"columnDelimiter": "^",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "1000",
+				"type": "String"
+			},
+			{
+				"name": "Lot",
+				"type": "String"
+			},
+			{
+				"name": "Lancaster",
+				"type": "String"
+			},
+			{
+				"name": "10/01/2017",
+				"type": "String"
+			},
+			{
+				"name": "a nunc. In at pede. Cras vulputate velit eu sem.",
+				"type": "String"
+			},
+			{
+				"name": "16831110 ,1904",
+				"type": "String"
+			}
+		]
+	}
+}
