@@ -9,7 +9,8 @@ trigger:
       - adb/*
 
 pool:
-  name: Azure Pipelines
+    vmImage: 'windows-latest' 
+  
 
 steps:
 - script: |
