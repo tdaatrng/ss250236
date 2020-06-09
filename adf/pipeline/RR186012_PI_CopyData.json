@@ -40,13 +40,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "hg250013_flat_file_source_ds",
+						"referenceName": "RR_DS_HistoryData_CSV",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "hg250013_flat_csv_sink2_ds",
+						"referenceName": "RR186012_DS_Output",
 						"type": "DatasetReference"
 					}
 				]
