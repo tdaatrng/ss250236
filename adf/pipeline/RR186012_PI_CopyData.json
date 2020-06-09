@@ -33,7 +33,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ""
 						}
 					},
 					"enableStaging": false
@@ -46,7 +46,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "RR186012_DS_Output",
+						"referenceName": "RR186012_DS_Work",
 						"type": "DatasetReference"
 					}
 				]
