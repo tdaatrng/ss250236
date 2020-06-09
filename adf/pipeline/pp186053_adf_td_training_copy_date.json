@@ -46,7 +46,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "PrasTarget_test1",
+						"referenceName": "pp186053_flat_csv_target_test1",
 						"type": "DatasetReference"
 					}
 				]
