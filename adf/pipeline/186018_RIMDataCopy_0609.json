@@ -1,0 +1,26 @@
+{
+	"name": "186018_RIMDataCopy_0609",
+	"properties": {
+		"description": "Data file copy demo 06/09/2020",
+		"activities": [
+			{
+				"name": "ReadData",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
+				}
+			}
+		],
+		"concurrency": 1,
+		"annotations": []
+	}
+}
