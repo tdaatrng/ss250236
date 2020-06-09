@@ -2,6 +2,25 @@
 	"name": "my186015_adf_rim_hist_copy",
 	"properties": {
 		"description": "Copy RIm istory file form one location to other",
+		"activities": [
+			{
+				"name": "RIM_HIST_COPY",
+				"description": "Copy Rim data from Input to Output",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
+				}
+			}
+		],
 		"annotations": []
 	}
 }
