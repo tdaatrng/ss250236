@@ -17,8 +17,24 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
