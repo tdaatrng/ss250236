@@ -15,7 +15,7 @@
 				"fileSystem": "my186015"
 			},
 			"columnDelimiter": "^",
-			"rowDelimiter": "\n",
+			"rowDelimiter": "\r\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
