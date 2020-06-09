@@ -1,5 +1,5 @@
 {
-	"name": "pras_ds_test1",
+	"name": "pp186053_flat_csv_source_test1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",

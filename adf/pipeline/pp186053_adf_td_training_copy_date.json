@@ -40,7 +40,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "pras_ds_test1",
+						"referenceName": "pp186053_flat_csv_source_test1",
 						"type": "DatasetReference"
 					}
 				],
