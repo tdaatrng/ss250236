@@ -1,5 +1,5 @@
 {
-	"name": "my186015_csv_rim_hist_ds",
+	"name": "my186015_csv_rim_hist_target_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
@@ -10,21 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "RIM_V1.2_HistoryData.csv",
-				"folderPath": "Input",
+				"folderPath": "Output",
 				"fileSystem": "my186015"
 			},
-			"columnDelimiter": "^",
-			"rowDelimiter": "\n",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
-			"quoteChar": ""
+			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
