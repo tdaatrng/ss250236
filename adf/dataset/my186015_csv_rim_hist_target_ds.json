@@ -14,6 +14,7 @@
 				"fileSystem": "my186015"
 			},
 			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
