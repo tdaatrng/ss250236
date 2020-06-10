@@ -13,7 +13,7 @@
 				"folderPath": "work",
 				"fileSystem": "rr186012"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "~",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
