@@ -59,16 +59,15 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": {
-								"value": "@pipeline().TriggerTime",
-								"type": "Expression"
-							}
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ""
+							"fileExtension": {
+								"value": "@pipeline().TriggerTime",
+								"type": "Expression"
+							}
 						}
 					},
 					"enableStaging": false,
