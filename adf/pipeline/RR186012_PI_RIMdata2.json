@@ -38,6 +38,13 @@
 									"value": "@pipeline().parameters.Executor",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "DervTestColumn",
+								"value": {
+									"value": "@concat('Origin','Dest',pipeline().parameters.Executor,' Ran ','pipeline().TriggerType')",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -64,7 +71,102 @@
 							"fileExtension": ""
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Flight#",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "Origin",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "Dest",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "FlightDate",
+									"type": "String"
+								},
+								"sink": {
+									"type": "DateTime",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "NoSalesReason",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "TransmittingFlightAttd",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "NameOfPipeline",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"name": "TriggerTimeofPipeline",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"name": "ExecutorName",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 9
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
