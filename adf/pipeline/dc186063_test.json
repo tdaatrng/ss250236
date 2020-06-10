@@ -107,7 +107,12 @@
 								}
 							},
 							{
+								"source": {
+									"name": "filePath",
+									"type": "String"
+								},
 								"sink": {
+									"type": "String",
 									"ordinal": 7
 								}
 							}
