@@ -46,6 +46,221 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Txt_To_Partial",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Txt_To_Parq",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Flight#",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Flight#",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Origin",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Origin",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Dest",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Dest",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FlightDate",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InputPartial",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "PartialDataset",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Txt_To_Json",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Txt_To_Partial",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Flight#",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Flight#']"
+								}
+							},
+							{
+								"source": {
+									"name": "Origin",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Origin']"
+								}
+							},
+							{
+								"source": {
+									"name": "Dest",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Dest']"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightDate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['FlightDate']"
+								}
+							},
+							{
+								"source": {
+									"name": "NoSalesReason",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['NoSalesReason']"
+								}
+							},
+							{
+								"source": {
+									"name": "TransmittingFlightAttd",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['TransmittingFlightAttd']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InputJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
