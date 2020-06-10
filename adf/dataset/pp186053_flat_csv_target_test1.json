@@ -5,11 +5,20 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"targetfilename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().targetfilename",
+					"type": "Expression"
+				},
 				"folderPath": "output",
 				"fileSystem": "pp186053"
 			},
