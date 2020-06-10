@@ -79,10 +79,10 @@
 							{
 								"source": {
 									"name": "FlightDate",
-									"type": "String"
+									"type": "DateTime"
 								},
 								"sink": {
-									"type": "String",
+									"type": "DateTime",
 									"ordinal": 4
 								}
 							},
