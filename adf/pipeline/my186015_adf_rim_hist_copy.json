@@ -136,7 +136,20 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "FILEPATH",
+						"value": "/my86015/Output"
+					},
+					{
+						"name": "Source",
+						"value": "my186015/Output/RIM_V1.2_HistoryData_cpy.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "my186015/Output/RIM_V1.2_HistoryData_addcol.csv"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -164,7 +177,8 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "addDynamicContent"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -182,7 +196,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "Flight#"
+									"name": "Flight#",
+									"type": "String"
 								}
 							},
 							{
@@ -191,7 +206,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "Origin"
+									"name": "Origin",
+									"type": "String"
 								}
 							},
 							{
@@ -200,7 +216,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "Dest"
+									"name": "Dest",
+									"type": "String"
 								}
 							},
 							{
@@ -209,7 +226,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "FlightDate"
+									"name": "FlightDate",
+									"type": "String"
 								}
 							},
 							{
@@ -218,7 +236,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "NoSalesReason"
+									"name": "NoSalesReason",
+									"type": "String"
 								}
 							},
 							{
@@ -227,7 +246,28 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "TransmittingFlightAttd"
+									"name": "TransmittingFlightAttd",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PipelineName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FlowName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FilePath",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FileLocation",
+									"type": "String"
 								}
 							}
 						]
