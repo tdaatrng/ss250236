@@ -140,6 +140,19 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "FilePath",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "PipelineName",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
@@ -215,15 +228,6 @@
 								},
 								"sink": {
 									"name": "TransmittingFlightAttd"
-								}
-							},
-							{
-								"source": {
-									"name": "NewCol",
-									"type": "Int16"
-								},
-								"sink": {
-									"name": "RowNum"
 								}
 							}
 						]
