@@ -1,0 +1,20 @@
+{
+	"name": "TXT_TO_PARQ",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Work",
+				"fileSystem": "pt186024"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
