@@ -17,12 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"name": "UserName",
-								"value": "Pankil"
-							}
-						],
+						"additionalColumns": {
+							"type": "Expression",
+							"value": "@pipeline().parameters.User_Name"
+						},
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
@@ -133,6 +131,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"User_Name": {
+				"type": "object",
+				"defaultValue": "Pankil"
+			}
+		},
 		"annotations": []
 	}
 }
