@@ -111,7 +111,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"type": "DateTime",
+									"type": "String",
 									"ordinal": 4
 								}
 							},
@@ -163,6 +163,26 @@
 								"sink": {
 									"type": "String",
 									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"name": "DervTestColumn",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"name": "DervTestColumn",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 11
 								}
 							}
 						]
