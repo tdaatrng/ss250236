@@ -19,12 +19,8 @@
 						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
-								"name": "FileName",
+								"name": "filePath",
 								"value": "$$FILEPATH"
-							},
-							{
-								"name": "PipelineName",
-								"value": "@pipeline.Pipeline()"
 							}
 						],
 						"storeSettings": {
