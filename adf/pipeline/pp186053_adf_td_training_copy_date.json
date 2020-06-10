@@ -41,13 +41,19 @@
 				"inputs": [
 					{
 						"referenceName": "pp186053_flat_csv_source_test1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "RIM_V1.3_HistoryData.csv"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "pp186053_flat_csv_target_test1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"targetfilename": "pras2.csv"
+						}
 					}
 				]
 			}
