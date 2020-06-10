@@ -82,7 +82,8 @@
 							},
 							{
 								"source": {
-									"name": "NoSalesReason"
+									"name": "NoSalesReason",
+									"type": "String"
 								},
 								"sink": {
 									"name": "NoSalesReason",
@@ -91,7 +92,8 @@
 							},
 							{
 								"source": {
-									"name": "TransmittingFlightAttd"
+									"name": "TransmittingFlightAttd",
+									"type": "String"
 								},
 								"sink": {
 									"name": "TransmittingFlightAttd",
