@@ -159,7 +159,75 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Flight#",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Flight#"
+								}
+							},
+							{
+								"source": {
+									"name": "Origin",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Origin"
+								}
+							},
+							{
+								"source": {
+									"name": "Dest",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Dest"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "FlightDate"
+								}
+							},
+							{
+								"source": {
+									"name": "NoSalesReason",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NoSalesReason"
+								}
+							},
+							{
+								"source": {
+									"name": "TransmittingFlightAttd\r",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TransmittingFlightAttd"
+								}
+							},
+							{
+								"source": {
+									"name": "NewCol",
+									"type": "Int16"
+								},
+								"sink": {
+									"name": "RowNum"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
