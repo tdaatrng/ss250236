@@ -42,61 +42,11 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Flight#",
+									"name": "Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd",
 									"type": "String"
 								},
 								"sink": {
-									"name": "FlightNo",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Origin",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Origin",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Dest",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Destination",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "FilghtDate",
-									"type": "String"
-								},
-								"sink": {
-									"name": "FilghtDate",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NoSalesReason",
-									"type": "String"
-								},
-								"sink": {
-									"name": "NoSalesReason",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "TransmittingFlightAttd",
-									"type": "String"
-								},
-								"sink": {
-									"name": "TransmittingFlightAttd",
+									"name": "Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd",
 									"type": "String"
 								}
 							}
