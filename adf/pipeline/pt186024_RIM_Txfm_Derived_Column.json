@@ -1,7 +1,7 @@
 {
-	"name": "pt186024_RIM_Txfm",
+	"name": "pt186024_RIM_Txfm_Derived_Column",
 	"properties": {
-		"description": "pt186024_RIM_Txfm",
+		"description": "pt186024_RIM_Txfm_Derived_Column",
 		"activities": [
 			{
 				"name": "dataflow2",
