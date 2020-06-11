@@ -106,7 +106,10 @@
 				"inputs": [
 					{
 						"referenceName": "Rim_par_test",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "In"
+						}
 					}
 				],
 				"outputs": [
