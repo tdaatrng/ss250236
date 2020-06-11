@@ -34,7 +34,7 @@
 					"type": "Expression"
 				}
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "\u0001",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
