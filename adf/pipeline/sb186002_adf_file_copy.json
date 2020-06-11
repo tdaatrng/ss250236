@@ -1,6 +1,67 @@
 {
 	"name": "sb186002_adf_file_copy",
 	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "sb186002_csv_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileSystem": "sb186002",
+							"Directory": "input",
+							"Filename": "RIM_V1.2_HistoryData.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sb186002_csv_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileSystem": "sb186002",
+							"Directory": "output",
+							"Filename": "RIM_V1.2_HistoryData_output.csv"
+						}
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }
