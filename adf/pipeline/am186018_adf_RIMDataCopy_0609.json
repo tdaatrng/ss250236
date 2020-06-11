@@ -4,7 +4,7 @@
 		"description": "Data file copy demo 06/09/2020",
 		"activities": [
 			{
-				"name": "ReadData",
+				"name": "CpyData_Input_Struct",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -113,7 +113,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "am186018_RIMHistoryDataSet_Wrk",
+						"referenceName": "am186018_RIMHistoryDataSet_Tgt",
 						"type": "DatasetReference"
 					}
 				]
