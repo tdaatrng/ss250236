@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "mj185030_RIMDataflow_output",
 				"folderPath": "output",
 				"fileSystem": "mj185030"
 			},
