@@ -17,6 +17,12 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "UserName",
+								"value": "Pankil"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
@@ -98,6 +104,16 @@
 								"sink": {
 									"type": "String",
 									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "UserName",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 7
 								}
 							}
 						]
