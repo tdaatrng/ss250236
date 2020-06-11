@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "jp186004RIMTarget.csv",
 				"folderPath": "output",
 				"fileSystem": "jp186004"
 			},
