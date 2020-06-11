@@ -14,7 +14,7 @@
 				"folderPath": "input",
 				"fileSystem": "nj186007"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ",^",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
