@@ -12,13 +12,24 @@
 					"name": "MoviesDB"
 				}
 			],
-			"sinks": [],
-			"transformations": [
+			"sinks": [
 				{
-					"name": "Filter1"
+					"dataset": {
+						"referenceName": "am186018_MoviesAvgRatingTrans_Tgt",
+						"type": "DatasetReference"
+					},
+					"name": "DataOutput"
 				}
 			],
-			"script": "source(output(\n\t\tmovie as string,\n\t\ttitle as string,\n\t\tgenres as string,\n\t\tyear as string,\n\t\tRating as string,\n\t\t{Rotton Tomato} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> MoviesDB\nMoviesDB filter(ERROR_FUNCTION('')) ~> Filter1"
+			"transformations": [
+				{
+					"name": "FilterYear"
+				},
+				{
+					"name": "AverageComedyRating"
+				}
+			],
+			"script": "source(output(\n\t\tmovie as string,\n\t\ttitle as string,\n\t\tgenres as string,\n\t\tyear as string,\n\t\tRating as string,\n\t\t{Rotton Tomato} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> MoviesDB\nMoviesDB filter(toInteger(year) >= 1910 && toInteger(year) <= 2000 && rlike(genres,'Comedy')) ~> FilterYear\nFilterYear aggregate(groupBy(year),\n\tAvgComedyRating = avg(toInteger(Rating))) ~> AverageComedyRating\nAverageComedyRating sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['MoviesAvgRating.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> DataOutput"
 		}
 	}
 }
