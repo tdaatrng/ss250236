@@ -306,6 +306,7 @@
 									"path": "$['Data']['ProductList'][0]['ProductName']"
 								},
 								"sink": {
+									"type": "String",
 									"ordinal": 1
 								}
 							},
@@ -314,6 +315,7 @@
 									"path": "$['Data']['ProductList'][0]['ProductCode']"
 								},
 								"sink": {
+									"type": "String",
 									"ordinal": 2
 								}
 							},
@@ -322,6 +324,7 @@
 									"path": "$['Data']['ProductList'][0]['ProductCategoryCode']"
 								},
 								"sink": {
+									"type": "String",
 									"ordinal": 3
 								}
 							},
@@ -330,6 +333,7 @@
 									"path": "$['Data']['ProductList'][0]['CategoryAccountCode']"
 								},
 								"sink": {
+									"type": "String",
 									"ordinal": 4
 								}
 							},
@@ -338,6 +342,7 @@
 									"path": "$['Data']['ProductList'][0]['IsDutyFree']"
 								},
 								"sink": {
+									"type": "String",
 									"ordinal": 5
 								}
 							}
