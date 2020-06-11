@@ -1,0 +1,39 @@
+{
+	"name": "Src_Param",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Src_Dir": {
+				"type": "string",
+				"defaultValue": "ss250236 / IN/"
+			},
+			"Src_FileNm": {
+				"type": "string",
+				"defaultValue": "RIM_V1.2_HistoryData.csv"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Src_FileNm",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Src_Dir",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": []
+	}
+}
