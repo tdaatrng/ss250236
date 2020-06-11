@@ -1,0 +1,12 @@
+{
+	"name": "my186015_GenerateCol_mapping",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"script": ""
+		}
+	}
+}
