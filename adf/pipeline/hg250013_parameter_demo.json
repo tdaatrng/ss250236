@@ -28,7 +28,8 @@
 					"dataset": {
 						"referenceName": "hg250013_parameter_ds",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -135,10 +136,11 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"columnCount"
+						"exists"
 					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
