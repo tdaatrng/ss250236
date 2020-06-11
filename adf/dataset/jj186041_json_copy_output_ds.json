@@ -1,0 +1,41 @@
+{
+	"name": "jj186041_json_copy_output_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "person_output.csv",
+				"folderPath": "output",
+				"fileSystem": "jj186041"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "city",
+				"type": "String"
+			},
+			{
+				"name": "items",
+				"type": "String"
+			},
+			{
+				"name": "job",
+				"type": "String"
+			}
+		]
+	}
+}

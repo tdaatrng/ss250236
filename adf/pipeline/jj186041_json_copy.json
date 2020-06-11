@@ -28,7 +28,8 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -45,8 +46,7 @@
 									"path": "$['name']"
 								},
 								"sink": {
-									"name": "name",
-									"type": "String"
+									"name": "name"
 								}
 							},
 							{
@@ -54,17 +54,7 @@
 									"path": "$['city']"
 								},
 								"sink": {
-									"name": "city",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['cars']"
-								},
-								"sink": {
-									"name": "items",
-									"type": "String"
+									"name": "city"
 								}
 							},
 							{
@@ -72,22 +62,23 @@
 									"path": "$['job']"
 								},
 								"sink": {
-									"name": "job",
-									"type": "String"
+									"name": "job"
 								}
 							}
-						]
+						],
+						"collectionReference": "$['cars']",
+						"mapComplexValuesToString": true
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "jj186041_person_json_input_ds",
+						"referenceName": "jj186041_adf_person_input_json_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "jj186041_person_output_ds",
+						"referenceName": "jj186041_json_copy_output_ds",
 						"type": "DatasetReference"
 					}
 				]
