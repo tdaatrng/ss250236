@@ -312,7 +312,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductName']"
+									"path": "$['Messages'][0]['Level']"
 								},
 								"sink": {
 									"type": "String",
@@ -321,7 +321,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductNameHTML']"
+									"path": "$['Messages'][0]['Message']"
 								},
 								"sink": {
 									"type": "String",
@@ -330,7 +330,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductCode']"
+									"path": "$['Data']['ProductList'][0]['ProductName']"
 								},
 								"sink": {
 									"type": "String",
@@ -339,7 +339,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductCategoryCode']"
+									"path": "$['Data']['ProductList'][0]['ProductCode']"
 								},
 								"sink": {
 									"type": "String",
@@ -355,7 +355,8 @@
 									"ordinal": 6
 								}
 							}
-						]
+						],
+						"collectionReference": ""
 					}
 				},
 				"inputs": [
