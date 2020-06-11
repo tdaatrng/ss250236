@@ -52,7 +52,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Txt_To_Parq",
+						"activity": "Txt_To_Json",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -68,13 +68,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -94,42 +94,34 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Flight#",
-									"type": "String"
+									"path": "$['Flight#']"
 								},
 								"sink": {
-									"name": "Flight#",
-									"type": "String"
+									"name": "Flight#"
 								}
 							},
 							{
 								"source": {
-									"name": "Origin",
-									"type": "String"
+									"path": "$['Origin']"
 								},
 								"sink": {
-									"name": "Origin",
-									"type": "String"
+									"name": "Origin"
 								}
 							},
 							{
 								"source": {
-									"name": "Dest",
-									"type": "String"
+									"path": "$['Dest']"
 								},
 								"sink": {
-									"name": "Dest",
-									"type": "String"
+									"name": "Dest"
 								}
 							},
 							{
 								"source": {
-									"name": "FlightDate",
-									"type": "String"
+									"path": "$['FlightDate']"
 								},
 								"sink": {
-									"name": "FlightDate",
-									"type": "String"
+									"name": "FlightDate"
 								}
 							}
 						]
@@ -137,7 +129,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "InputPartial",
+						"referenceName": "Json2",
 						"type": "DatasetReference"
 					}
 				],
@@ -153,7 +145,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Txt_To_Partial",
+						"activity": "Txt_To_Parq",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -267,7 +259,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Txt_To_Json",
+						"activity": "Txt_To_Partial",
 						"dependencyConditions": [
 							"Succeeded"
 						]
