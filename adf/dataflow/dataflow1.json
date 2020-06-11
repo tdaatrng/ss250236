@@ -1,0 +1,32 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "jj186041_rim_csv_ds",
+						"type": "DatasetReference"
+					},
+					"name": "RIMinput"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "jj186041_transform_csv",
+						"type": "DatasetReference"
+					},
+					"name": "RIMSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "IsGenerericReason"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMinput\nRIMinput derive(GenericReason = locate(NoSalesReason,'Other')) ~> IsGenerericReason\nIsGenerericReason sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMSink"
+		}
+	}
+}
