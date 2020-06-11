@@ -3,19 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "ss250236_adf_rim_uc",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"Src_FileSys": "ss250236",
-					"Src_Dir": "IN",
-					"Src_FileNm": "RIM_V1.2_HistoryData.csv"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
