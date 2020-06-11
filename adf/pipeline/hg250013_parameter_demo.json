@@ -62,16 +62,21 @@
 						}
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "hg250013_flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds_for_parameter_demo",
 						"type": "DatasetReference",
 						"parameters": {
 							"containerName": {
@@ -83,7 +88,7 @@
 								"type": "Expression"
 							},
 							"fileName": {
-								"value": "@activity('getParameterFromConfigFolder').output.fristRow.sourceFileName",
+								"value": "@activity('getParameterFromConfigFolder').output.firstRow.sourceFileName",
 								"type": "Expression"
 							}
 						}
@@ -91,22 +96,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "hg250013_flat_par_sink1_ds",
-						"type": "DatasetReference",
-						"parameters": {
-							"destContainer": {
-								"value": "@activity('getParameterFromConfigFolder').output.firstRow.destContainer",
-								"type": "Expression"
-							},
-							"destDirectory": {
-								"value": "@activity('getParameterFromConfigFolder').output.firstRow.destDirectory",
-								"type": "Expression"
-							},
-							"destFileName": {
-								"value": "@activity('getParameterFromConfigFolder').output.firstRow.destFileName",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "hg250013_flat_file_source_ds_for_parameter_demo",
+						"type": "DatasetReference"
 					}
 				]
 			}
