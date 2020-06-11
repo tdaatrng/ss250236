@@ -1,6 +1,25 @@
 {
 	"name": "JA186007_adf_rim_hist_copy",
 	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"description": "RIM data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
+				}
+			}
+		],
 		"annotations": []
 	}
 }
