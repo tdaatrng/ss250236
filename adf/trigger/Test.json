@@ -3,7 +3,14 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "hg250013_adf_td_training_demo",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
