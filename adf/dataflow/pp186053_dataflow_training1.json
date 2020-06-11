@@ -12,9 +12,21 @@
 					"name": "sourcedf1"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> sourcedf1"
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Destinsink1",
+						"type": "DatasetReference"
+					},
+					"name": "sinkdf1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "pp186053dctraining1"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> sourcedf1\nsourcedf1 derive(validate_Other = locate(NoSalesReason, 'Other')) ~> pp186053dctraining1\npp186053dctraining1 sink(input(\n\t\t{Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sinkdf1"
 		}
 	}
 }
