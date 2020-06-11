@@ -42,7 +42,7 @@
 							{
 								"name": "DervTestColumn",
 								"value": {
-									"value": "@concat('Origin','Dest',pipeline().parameters.Executor,' Ran ','pipeline().TriggerType')",
+									"value": "@concat(pipeline().parameters.Executor,' ran this job')",
 									"type": "Expression"
 								}
 							}
@@ -59,7 +59,11 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": {
+								"value": "@concat(pipeline().parameters.Filename,utcnow(),'.txt')",
+								"type": "Expression"
+							}
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -183,7 +187,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@pipeline().parameters.Filename",
+								"value": "@concat(pipeline().parameters.Filename,'.csv')",
 								"type": "Expression"
 							}
 						}
