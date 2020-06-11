@@ -21,6 +21,21 @@
 		"schema": [
 			{
 				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
 			}
 		]
 	}
