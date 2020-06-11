@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "gb250038_adls_output_dataset",
+						"type": "DatasetReference"
+					},
 					"name": "gb250038outstream"
 				}
 			],
@@ -22,7 +26,7 @@
 					"name": "AddReasonFlagCol"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> gb250038rimstream\ngb250038rimstream derive(ReasonFlag = case(NoSalesReason == 'Other', 1, 0)) ~> AddReasonFlagCol\nAddReasonFlagCol sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> gb250038outstream"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> gb250038rimstream\ngb250038rimstream derive(ReasonFlag = case(NoSalesReason == 'Other', 1, 0)) ~> AddReasonFlagCol\nAddReasonFlagCol sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> gb250038outstream"
 		}
 	}
 }
