@@ -15,10 +15,10 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "Flag"
+					"name": "Transformation"
 				}
 			],
-			"script": "source(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive() ~> Flag"
+			"script": "source(output(\n\t\t{Flight#} as short,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as date,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive({} = ERROR_FUNCTION(''),\n\t\t{} = ERROR_FUNCTION('')) ~> Transformation"
 		}
 	}
 }
