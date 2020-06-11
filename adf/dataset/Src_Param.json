@@ -8,11 +8,15 @@
 		"parameters": {
 			"Src_Dir": {
 				"type": "string",
-				"defaultValue": "ss250236 / IN/"
+				"defaultValue": "IN"
 			},
 			"Src_FileNm": {
 				"type": "string",
 				"defaultValue": "RIM_V1.2_HistoryData.csv"
+			},
+			"Src_FileSys": {
+				"type": "string",
+				"defaultValue": "ss250236"
 			}
 		},
 		"annotations": [],
@@ -24,8 +28,12 @@
 					"value": "@dataset().Src_FileNm",
 					"type": "Expression"
 				},
-				"fileSystem": {
+				"folderPath": {
 					"value": "@dataset().Src_Dir",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Src_FileSys",
 					"type": "Expression"
 				}
 			},
