@@ -9,12 +9,12 @@
 						"referenceName": "jp186004_rim_input",
 						"type": "DatasetReference"
 					},
-					"name": "jp186004RIMSource"
+					"name": "jp186004"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004RIMSource"
+			"script": "source(output(\n\t\t{Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004"
 		}
 	}
 }
