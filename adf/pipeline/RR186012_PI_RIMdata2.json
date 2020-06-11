@@ -180,7 +180,13 @@
 				"inputs": [
 					{
 						"referenceName": "RR186012_DS_INPUT_Gen",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
