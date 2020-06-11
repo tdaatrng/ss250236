@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "RIMFileOutput",
 				"folderPath": "output",
 				"fileSystem": "as186113"
 			},
