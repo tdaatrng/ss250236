@@ -12,13 +12,21 @@
 					"name": "jp186004RIMSource"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "jp186004RIMTarget",
+						"type": "DatasetReference"
+					},
+					"name": "jp186004RIMTarget"
+				}
+			],
 			"transformations": [
 				{
 					"name": "DerivedColumn1"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004RIMSource\njp186004RIMSource derive(NoSalesReason = like(Other)) ~> DerivedColumn1"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004RIMSource\njp186004RIMSource derive(NoSalesReason = like('Other')) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> jp186004RIMTarget"
 		}
 	}
 }
