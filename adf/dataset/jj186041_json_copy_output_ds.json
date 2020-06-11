@@ -29,10 +29,6 @@
 				"type": "String"
 			},
 			{
-				"name": "items",
-				"type": "String"
-			},
-			{
 				"name": "job",
 				"type": "String"
 			}

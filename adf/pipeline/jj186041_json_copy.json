@@ -46,7 +46,8 @@
 									"path": "$['name']"
 								},
 								"sink": {
-									"name": "name"
+									"name": "name",
+									"type": "String"
 								}
 							},
 							{
@@ -54,7 +55,17 @@
 									"path": "$['city']"
 								},
 								"sink": {
-									"name": "city"
+									"name": "city",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cars']"
+								},
+								"sink": {
+									"name": "cars",
+									"type": "String"
 								}
 							},
 							{
@@ -62,11 +73,12 @@
 									"path": "$['job']"
 								},
 								"sink": {
-									"name": "job"
+									"name": "job",
+									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['cars']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
