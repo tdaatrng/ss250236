@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ADF_parameters.json",
+				"fileName": "ADF_parameters_2.json",
 				"folderPath": "config",
 				"fileSystem": "hg250013"
 			}
