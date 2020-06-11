@@ -133,13 +133,16 @@
 		],
 		"parameters": {
 			"Src_FileSys": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "ss250236"
 			},
 			"Src_Dir": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "IN"
 			},
 			"Src_FileNm": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "RIM_V1.2_HistoryData.csv"
 			}
 		},
 		"annotations": []
