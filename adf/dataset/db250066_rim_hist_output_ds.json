@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "db250066_rim_hist_output.csv",
 				"folderPath": "output",
 				"fileSystem": "db250066"
 			},
