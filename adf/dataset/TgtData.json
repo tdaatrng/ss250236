@@ -13,7 +13,7 @@
 				"folderPath": "WORK",
 				"fileSystem": "ss250236"
 			},
-			"columnDelimiter": "^",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
