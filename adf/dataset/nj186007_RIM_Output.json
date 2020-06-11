@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "NJ186007_Output.csv",
 				"folderPath": "output",
 				"fileSystem": "nj186007"
 			},
