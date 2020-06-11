@@ -18,7 +18,7 @@
 					"name": "prasdc1"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> prassource1\nprassource1 derive(abc = ERROR_FUNCTION('')) ~> prasdc1"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> prassource1\nprassource1 derive({} = ERROR_FUNCTION('')) ~> prasdc1"
 		}
 	}
 }
