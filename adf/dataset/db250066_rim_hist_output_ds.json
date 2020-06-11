@@ -13,7 +13,7 @@
 				"folderPath": "output",
 				"fileSystem": "db250066"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
