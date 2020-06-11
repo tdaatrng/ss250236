@@ -1,0 +1,30 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ss250236_adf_rim_uc",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Src_FileSys": "ss250236",
+					"Src_Dir": "IN",
+					"Src_FileNm": "RIM_V1.2_HistoryData.csv"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-06-11T10:43:00.000Z",
+				"endTime": "2020-06-12T10:40:00.000Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
