@@ -1,0 +1,19 @@
+{
+	"name": "my186015_lookup_config",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "config.json",
+				"folderPath": "Work",
+				"fileSystem": "my186015"
+			}
+		}
+	}
+}
