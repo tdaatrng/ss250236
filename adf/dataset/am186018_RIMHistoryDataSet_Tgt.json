@@ -1,5 +1,5 @@
 {
-	"name": "am186018_RIMHistoryDataSet_Wrk",
+	"name": "am186018_RIMHistoryDataSet_Tgt",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "work",
+				"folderPath": "struct",
 				"fileSystem": "am186018"
 			},
 			"columnDelimiter": ",",
