@@ -1,5 +1,5 @@
 {
-	"name": "prassource2",
+	"name": "pp186053_source_dataflow",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
