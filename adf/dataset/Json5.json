@@ -1,0 +1,111 @@
+{
+	"name": "Json5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "UC_RIM_0.json",
+				"folderPath": "Input",
+				"fileSystem": "pt186024"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Messages": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Type": {
+								"type": "string"
+							},
+							"Level": {
+								"type": "string"
+							},
+							"Message": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Data": {
+					"type": "object",
+					"properties": {
+						"ProductList": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"ProductName": {
+										"type": "string"
+									},
+									"ProductNameHTML": {
+										"type": "null"
+									},
+									"ProductCode": {
+										"type": "string"
+									},
+									"ProductCategoryCode": {
+										"type": "null"
+									},
+									"CategoryAccountCode": {
+										"type": "null"
+									},
+									"IsDutyFree": {
+										"type": "boolean"
+									},
+									"vPosEnabled": {
+										"type": "boolean"
+									},
+									"vPOSProductDescription": {
+										"type": "string"
+									},
+									"vPOSDateStart": {
+										"type": "string"
+									},
+									"vPOSDateEnd": {
+										"type": "null"
+									},
+									"vPackEnabled": {
+										"type": "boolean"
+									},
+									"IsRefundable": {
+										"type": "boolean"
+									},
+									"IsStaffDiscount": {
+										"type": "boolean"
+									},
+									"IsPreorder": {
+										"type": "boolean"
+									},
+									"LastModifiedDate": {
+										"type": "string"
+									},
+									"IsSpecialDiscount": {
+										"type": "boolean"
+									},
+									"DWProductCategoryCode": {
+										"type": "null"
+									},
+									"vOrder": {
+										"type": "boolean"
+									},
+									"ProductTypeId": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
