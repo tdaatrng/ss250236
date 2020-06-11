@@ -134,7 +134,9 @@
 						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"columnCount"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings"
 					},
