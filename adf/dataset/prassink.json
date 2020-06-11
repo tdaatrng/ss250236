@@ -13,8 +13,9 @@
 				"folderPath": "output",
 				"fileSystem": "pp186053"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
