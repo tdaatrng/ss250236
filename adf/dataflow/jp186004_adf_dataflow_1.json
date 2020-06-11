@@ -9,12 +9,16 @@
 						"referenceName": "jp186004_rim_input",
 						"type": "DatasetReference"
 					},
-					"name": "jp186004"
+					"name": "jp186004RIMSource"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004"
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004RIMSource\njp186004RIMSource derive(NoSalesReason = like(Other)) ~> DerivedColumn1"
 		}
 	}
 }
