@@ -12,13 +12,17 @@
 					"name": "RimInputSource"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "RimOutputTarget"
+				}
+			],
 			"transformations": [
 				{
 					"name": "RimTransform"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RimInputSource\nRimInputSource derive(GenericReasonFlag = locate(NoSalesReason, 'Other')) ~> RimTransform"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RimInputSource\nRimInputSource derive(GenericReasonFlag = locate(NoSalesReason, 'Other')) ~> RimTransform\nRimTransform sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RimOutputTarget"
 		}
 	}
 }
