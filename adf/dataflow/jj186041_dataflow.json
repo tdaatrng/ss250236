@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText3",
+						"referenceName": "jj186041_rim_transform_sink_ds",
 						"type": "DatasetReference"
 					},
 					"name": "RIMSink"
