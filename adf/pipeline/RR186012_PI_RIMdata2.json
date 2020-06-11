@@ -195,6 +195,9 @@
 			"Executor": {
 				"type": "string",
 				"defaultValue": "Rhutubh"
+			},
+			"Filename": {
+				"type": "string"
 			}
 		},
 		"annotations": []
