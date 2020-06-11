@@ -1,5 +1,5 @@
 {
-	"name": "db250066_rim_hist_output",
+	"name": "db250066_rim_hist_output_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
