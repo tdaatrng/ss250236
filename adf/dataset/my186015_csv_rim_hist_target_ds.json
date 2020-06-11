@@ -13,7 +13,7 @@
 				"folderPath": "Output",
 				"fileSystem": "my186015"
 			},
-			"columnDelimiter": ";",
+			"columnDelimiter": "^",
 			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
