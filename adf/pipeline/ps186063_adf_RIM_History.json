@@ -122,13 +122,19 @@
 				"inputs": [
 					{
 						"referenceName": "ps186063_adf_RIM_History",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Input_File_Name": "RIM_V1.2_HistoryData.txt"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "ps186063_adf_RIM_HistoryData_Target",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Output_File_Name": "Pankil1"
+						}
 					}
 				]
 			}
