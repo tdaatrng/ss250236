@@ -1,5 +1,5 @@
 {
-	"name": "Destinsink1",
+	"name": "pp186053_sink_dataflow",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
