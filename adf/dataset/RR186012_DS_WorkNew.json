@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "@concat(pipeline().parameters.Filename,utcnow(),'.txt')",
 				"folderPath": "work",
 				"fileSystem": "rr186012"
 			},
