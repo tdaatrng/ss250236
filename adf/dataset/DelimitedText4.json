@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "mk186012_withDerivedCol",
 				"folderPath": "output",
 				"fileSystem": "mk186012"
 			},
