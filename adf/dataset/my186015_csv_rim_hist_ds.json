@@ -10,14 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@{activity('Lookup1').output.firstRow.FileName}",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@{activity('Lookup1').output.firstRow.SourceLocation}",
-					"type": "Expression"
-				},
+				"folderPath": "Input",
 				"fileSystem": "my186015"
 			},
 			"columnDelimiter": "^",
