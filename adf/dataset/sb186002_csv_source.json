@@ -34,11 +34,29 @@
 					"type": "Expression"
 				}
 			},
-			"columnDelimiter": "\u0001",
+			"columnDelimiter": {
+				"value": "^",
+				"type": "Expression"
+			},
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
 		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
 			{
 				"type": "String"
 			}
