@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "RIM_V1.2_HistoryData_cpy.csv",
 				"folderPath": "Output",
 				"fileSystem": "my186015"
 			},
