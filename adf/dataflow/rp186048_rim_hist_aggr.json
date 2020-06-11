@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "hg250013_flat_csv_sink2_ds",
+						"referenceName": "RIM_csv_Output",
 						"type": "DatasetReference"
 					},
 					"name": "RIMOutput"
@@ -26,7 +26,7 @@
 					"name": "ReasonCodeDerivation"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(ReasonCd = locate(NoSalesReason,'Other')) ~> ReasonCodeDerivation\nReasonCodeDerivation sink(input(\n\t\tFlight as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMOutput"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(ReasonCd = locate(NoSalesReason,'Other')) ~> ReasonCodeDerivation\nReasonCodeDerivation sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMOutput"
 		}
 	}
 }
