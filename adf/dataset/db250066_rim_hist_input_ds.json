@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "db250066_rim_hist_input_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
