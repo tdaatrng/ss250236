@@ -13,7 +13,7 @@
 				"folderPath": "output",
 				"fileSystem": "jp186004"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
