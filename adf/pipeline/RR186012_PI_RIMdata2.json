@@ -68,10 +68,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": {
-								"value": "@pipeline().TriggerTime",
-								"type": "Expression"
-							}
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
