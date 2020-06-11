@@ -303,7 +303,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductName']"
+									"path": "$['Messages'][0]['Type']"
 								},
 								"sink": {
 									"type": "String",
@@ -312,7 +312,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductCode']"
+									"path": "$['Data']['ProductList'][0]['ProductName']"
 								},
 								"sink": {
 									"type": "String",
@@ -321,7 +321,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductCategoryCode']"
+									"path": "$['Data']['ProductList'][0]['ProductNameHTML']"
 								},
 								"sink": {
 									"type": "String",
@@ -330,7 +330,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['CategoryAccountCode']"
+									"path": "$['Data']['ProductList'][0]['ProductCode']"
 								},
 								"sink": {
 									"type": "String",
@@ -339,11 +339,20 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['IsDutyFree']"
+									"path": "$['Data']['ProductList'][0]['ProductCategoryCode']"
 								},
 								"sink": {
 									"type": "String",
 									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"path": "$['Data']['ProductList'][0]['ProductTypeId']"
+								},
+								"sink": {
+									"type": "Int16",
+									"ordinal": 6
 								}
 							}
 						]
@@ -351,13 +360,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Json4",
+						"referenceName": "Json5",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText6",
+						"referenceName": "DelimitedText7",
 						"type": "DatasetReference"
 					}
 				]
