@@ -1,0 +1,47 @@
+{
+	"name": "jj186041_sample_json_input_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "SampleNames.json",
+				"folderPath": "input",
+				"fileSystem": "jj186041"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"users": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"userId": {
+								"type": "integer"
+							},
+							"firstName": {
+								"type": "string"
+							},
+							"lastName": {
+								"type": "string"
+							},
+							"phoneNumber": {
+								"type": "string"
+							},
+							"emailAddress": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

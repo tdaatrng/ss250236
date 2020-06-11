@@ -17,6 +17,12 @@
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "loadTimestamp",
+								"value": "utcNow()"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
@@ -43,37 +49,55 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['name']"
+									"path": "$['users'][0]['userId']"
 								},
 								"sink": {
-									"name": "name",
+									"name": "userId",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['city']"
+									"path": "$['users'][0]['firstName']"
 								},
 								"sink": {
-									"name": "city",
+									"name": "firstName",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['cars']"
+									"path": "$['users'][0]['lastName']"
 								},
 								"sink": {
-									"name": "cars",
+									"name": "lastName",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['job']"
+									"path": "$['users'][0]['phoneNumber']"
 								},
 								"sink": {
-									"name": "job",
+									"name": "phoneNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['users'][0]['emailAddress']"
+								},
+								"sink": {
+									"name": "emailAddress",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['loadTimestamp']"
+								},
+								"sink": {
+									"name": "loadTimestamp",
 									"type": "String"
 								}
 							}
@@ -84,13 +108,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "jj186041_adf_person_input_json_ds",
+						"referenceName": "jj186041_sample_json_input_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "jj186041_json_copy_output_ds",
+						"referenceName": "jj186041_sample_output_json_ds",
 						"type": "DatasetReference"
 					}
 				]
