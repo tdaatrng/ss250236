@@ -307,7 +307,7 @@
 				"userProperties": [
 					{
 						"name": "RowCount",
-						"value": "@activity('Lookup1').output"
+						"value": "@{activity('Lookup1').output.firstRow}"
 					}
 				],
 				"typeProperties": {
