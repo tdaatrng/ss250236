@@ -61,7 +61,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings",
 							"copyBehavior": {
-								"value": "@concat(pipeline().parameters.Filename,utcnow('yyyyMMddHH:mm:ss'),'.txt')",
+								"value": "@concat(pipeline().parameters.Filename,utcnow('yyyymmddhhmmss'),'.txt')",
 								"type": "Expression"
 							}
 						},
