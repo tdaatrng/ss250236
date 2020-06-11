@@ -13,8 +13,12 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> gb250038rimstream"
+			"transformations": [
+				{
+					"name": "ReasonFlag"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> gb250038rimstream\ngb250038rimstream derive(ReasonFlag = case(NoSalesReason == 'Other', 1, 0)) ~> ReasonFlag"
 		}
 	}
 }
