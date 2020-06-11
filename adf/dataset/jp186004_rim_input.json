@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "jp186004_rim_input",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
