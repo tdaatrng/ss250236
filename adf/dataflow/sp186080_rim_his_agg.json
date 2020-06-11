@@ -1,0 +1,12 @@
+{
+	"name": "sp186080_rim_his_agg",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"script": ""
+		}
+	}
+}
