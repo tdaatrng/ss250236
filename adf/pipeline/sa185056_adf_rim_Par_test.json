@@ -108,7 +108,10 @@
 						"referenceName": "Rim_par_test",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "In"
+							"FileName": {
+								"value": "@pipeline().parameters.FileName",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -121,7 +124,7 @@
 			}
 		],
 		"parameters": {
-			"InputFileName": {
+			"FileName": {
 				"type": "string"
 			}
 		},
