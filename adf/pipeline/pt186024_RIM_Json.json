@@ -356,7 +356,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['Data']['ProductList']"
+						"collectionReference": "$['Data']['ProductList']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
