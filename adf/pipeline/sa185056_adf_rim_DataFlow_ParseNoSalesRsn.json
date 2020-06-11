@@ -1,6 +1,31 @@
 {
 	"name": "sa185056_adf_rim_DataFlow_ParseNoSalesRsn",
 	"properties": {
+		"activities": [
+			{
+				"name": "sa185056_RimHistXfm",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "sa185056_RimHistXfm",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					}
+				}
+			}
+		],
 		"annotations": []
 	}
 }
