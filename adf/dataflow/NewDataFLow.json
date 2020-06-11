@@ -18,7 +18,7 @@
 						"referenceName": "DelimitedText4",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "targetDataSet"
 				}
 			],
 			"transformations": [
@@ -26,7 +26,7 @@
 					"name": "DerivedColumn1"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RimDataset\nRimDataset derive(CountNoValidReason = locate(NoSalesReason,'Other')) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RimDataset\nRimDataset derive(CountNoValidReason = locate(NoSalesReason,'Other')) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['WithDerivedColumn'],\n\ttruncate: true,\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> targetDataSet"
 		}
 	}
 }
