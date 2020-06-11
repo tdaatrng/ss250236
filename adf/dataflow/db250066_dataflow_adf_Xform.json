@@ -1,0 +1,12 @@
+{
+	"name": "db250066_dataflow_adf_Xform",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"script": ""
+		}
+	}
+}
