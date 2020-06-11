@@ -105,13 +105,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "jj186041_rim_csv",
+						"referenceName": "jj186041_rim_csv_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "jj186041_rim_output",
+						"referenceName": "jj186041_rim_output_ds",
 						"type": "DatasetReference"
 					}
 				]

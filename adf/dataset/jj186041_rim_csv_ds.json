@@ -1,5 +1,5 @@
 {
-	"name": "jj186041_rim_csv",
+	"name": "jj186041_rim_csv_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",

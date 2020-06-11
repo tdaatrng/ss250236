@@ -1,5 +1,5 @@
 {
-	"name": "jj186041_rim_output",
+	"name": "jj186041_rim_output_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
