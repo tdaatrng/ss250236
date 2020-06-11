@@ -330,7 +330,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductName']"
+									"path": "['ProductName']"
 								},
 								"sink": {
 									"type": "String",
@@ -339,7 +339,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductCode']"
+									"path": "['ProductCode']"
 								},
 								"sink": {
 									"type": "String",
@@ -348,7 +348,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Data']['ProductList'][0]['ProductTypeId']"
+									"path": "['ProductTypeId']"
 								},
 								"sink": {
 									"type": "Int16",
@@ -356,7 +356,7 @@
 								}
 							}
 						],
-						"collectionReference": ""
+						"collectionReference": "$['Data']['ProductList']"
 					}
 				},
 				"inputs": [
