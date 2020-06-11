@@ -23,10 +23,10 @@
 			],
 			"transformations": [
 				{
-					"name": "DerivedColumn1"
+					"name": "DerivedColumn"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004RIMSource\njp186004RIMSource derive(NoSalesReason = like('Other')) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> jp186004RIMTarget"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> jp186004RIMSource\njp186004RIMSource derive(NoSalesReason = locate(NoSalesReason,'Other')) ~> DerivedColumn\nDerivedColumn sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> jp186004RIMTarget"
 		}
 	}
 }
