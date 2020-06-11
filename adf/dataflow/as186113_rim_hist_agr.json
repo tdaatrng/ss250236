@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "RIMFileOutput",
+						"referenceName": "RimFileOp1",
 						"type": "DatasetReference"
 					},
 					"name": "RIMDataFlowOutput"
