@@ -49,7 +49,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['users'][0]['userId']"
+									"path": "['userId']"
 								},
 								"sink": {
 									"name": "userId",
@@ -58,7 +58,7 @@
 							},
 							{
 								"source": {
-									"path": "$['users'][0]['firstName']"
+									"path": "['firstName']"
 								},
 								"sink": {
 									"name": "firstName",
@@ -67,7 +67,7 @@
 							},
 							{
 								"source": {
-									"path": "$['users'][0]['lastName']"
+									"path": "['lastName']"
 								},
 								"sink": {
 									"name": "lastName",
@@ -76,7 +76,7 @@
 							},
 							{
 								"source": {
-									"path": "$['users'][0]['phoneNumber']"
+									"path": "['phoneNumber']"
 								},
 								"sink": {
 									"name": "phoneNumber",
@@ -85,7 +85,7 @@
 							},
 							{
 								"source": {
-									"path": "$['users'][0]['emailAddress']"
+									"path": "['emailAddress']"
 								},
 								"sink": {
 									"name": "emailAddress",
@@ -102,7 +102,7 @@
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['users']",
 						"mapComplexValuesToString": true
 					}
 				},
