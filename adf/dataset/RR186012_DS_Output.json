@@ -13,8 +13,9 @@
 				"folderPath": "output",
 				"fileSystem": "rr186012"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []
