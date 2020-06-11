@@ -9,12 +9,20 @@
 						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "datasettest1"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1"
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedcolumntest1"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> datasettest1\ndatasettest1 derive({Flight#} = ERROR_FUNCTION(''),\n\t\tOrigin = ERROR_FUNCTION(''),\n\t\tDest = ERROR_FUNCTION(''),\n\t\tFlightDate = ERROR_FUNCTION(''),\n\t\tNoSalesReason = ERROR_FUNCTION(''),\n\t\tTransmittingFlightAttd = ERROR_FUNCTION('')) ~> derivedcolumntest1\nderivedcolumntest1 sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
