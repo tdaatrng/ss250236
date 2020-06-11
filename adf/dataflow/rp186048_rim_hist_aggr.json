@@ -1,0 +1,24 @@
+{
+	"name": "rp186048_rim_hist_aggr",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "hg250013_flat_file_source_ds",
+						"type": "DatasetReference"
+					},
+					"name": "RIMSource"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "ReasonCodeDerivation"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(ReasonCd = locate(NoSalesReason,'Other')) ~> ReasonCodeDerivation"
+		}
+	}
+}
