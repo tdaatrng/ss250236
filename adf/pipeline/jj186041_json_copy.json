@@ -17,12 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
-						"additionalColumns": [
-							{
-								"name": "loadTimestamp",
-								"value": "utcNow()"
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
@@ -89,15 +83,6 @@
 								},
 								"sink": {
 									"name": "emailAddress",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['loadTimestamp']"
-								},
-								"sink": {
-									"name": "loadTimestamp",
 									"type": "String"
 								}
 							}
