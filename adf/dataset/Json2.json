@@ -1,0 +1,42 @@
+{
+	"name": "Json2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "adf.json",
+				"folderPath": "Work",
+				"fileSystem": "pt186024"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Flight#": {
+					"type": "string"
+				},
+				"Origin": {
+					"type": "string"
+				},
+				"Dest": {
+					"type": "string"
+				},
+				"FlightDate": {
+					"type": "string"
+				},
+				"NoSalesReason": {
+					"type": "string"
+				},
+				"TransmittingFlightAttd": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
