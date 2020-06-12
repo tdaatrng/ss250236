@@ -5,12 +5,21 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SourceFileName": {
+				"type": "string",
+				"defaultValue": "RIM_V1.2_HistoryData.csv"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "RIM_V1.2_HistoryData.csv",
+				"fileName": {
+					"value": "@dataset().SourceFileName",
+					"type": "Expression"
+				},
 				"folderPath": "Input",
 				"fileSystem": "pt186024"
 			},
