@@ -5,11 +5,20 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"TgtFileNm": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().TgtFileNm,'-',utcnow(),'csv')",
+					"type": "Expression"
+				},
 				"folderPath": "WORK",
 				"fileSystem": "ss250236"
 			},
