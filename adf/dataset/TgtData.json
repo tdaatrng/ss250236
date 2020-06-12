@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat(dataset().TgtFileNm,'-',utcnow(),'csv')",
+					"value": "@dataset().TgtFileNm",
 					"type": "Expression"
 				},
 				"folderPath": "WORK",
