@@ -131,7 +131,10 @@
 						"referenceName": "Tgt_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"File_Name_Tgt": "RIM_Renamed"
+							"File_Name_Tgt": {
+								"value": "@pipeline().parameters.File_Name_Tgt",
+								"type": "Expression"
+							}
 						}
 					}
 				]
@@ -223,6 +226,10 @@
 			"File_Name": {
 				"type": "string",
 				"defaultValue": "RIM_V1.2_HistoryData.csv"
+			},
+			"File_Name_Tgt": {
+				"type": "string",
+				"defaultValue": "RIM_Renamed"
 			}
 		},
 		"annotations": []
