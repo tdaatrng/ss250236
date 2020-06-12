@@ -111,7 +111,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "nj186007_rim_hist_copy",
+						"referenceName": "Nj186007_rim_copy_output",
 						"type": "DatasetReference"
 					}
 				]
