@@ -19,12 +19,10 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.Dir",
+							"fileListPath": {
+								"value": "@concat(pipeline().parameters.FileSys,'/',pipeline().parameters.Dir,'/')",
 								"type": "Expression"
 							},
-							"wildcardFileName": "RIM*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -151,6 +149,10 @@
 			"TgtFileNm": {
 				"type": "string",
 				"defaultValue": "TGT"
+			},
+			"SrcFileNm": {
+				"type": "string",
+				"defaultValue": "RIM"
 			}
 		},
 		"annotations": []
