@@ -148,10 +148,6 @@
 				"type": "string",
 				"defaultValue": "IN"
 			},
-			"FileNm": {
-				"type": "string",
-				"defaultValue": "RIM_V1.2_HistoryData.csv"
-			},
 			"TgtFileNm": {
 				"type": "string",
 				"defaultValue": "TGT"
