@@ -1,0 +1,29 @@
+{
+	"name": "Event",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ss250236_adf_rim_uc",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Src_FileSys": "ss250236",
+					"Src_Dir": "IN",
+					"Src_FileNm": "RIM*"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/ss250236/blobs/IN/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgdls",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
