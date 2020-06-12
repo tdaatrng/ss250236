@@ -100,9 +100,18 @@
 						"referenceName": "Src_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": "sj186068",
-							"directory": "input",
-							"file_name": "RIM_V1.2_HistoryData.csv"
+							"container": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"file_name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -156,9 +165,18 @@
 						"referenceName": "Src_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": "sj186068",
-							"directory": "input",
-							"file_name": "RIM_V1.2_HistoryData.csv"
+							"container": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"file_name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							}
 						}
 					}
 				],
