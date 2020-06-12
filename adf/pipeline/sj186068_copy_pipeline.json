@@ -13,6 +13,17 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [
+					null,
+					{
+						"name": "Source",
+						"value": "@{pipeline().parameters.Container}/@{pipeline().parameters.Directory}/@{pipeline().parameters.File_Name}"
+					},
+					{
+						"name": "Destination",
+						"value": "sj186068/output/"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -140,7 +151,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "@{pipeline().parameters.Container}/@{pipeline().parameters.Directory}/@{pipeline().parameters.File_Name}"
+					},
+					{
+						"name": "Destination",
+						"value": "sj186068/output/"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
