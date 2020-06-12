@@ -57,7 +57,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"TargetFileName": {
-								"value": "@pipeline().parameters.TargetFileName",
+								"value": "@concat(pipeline().parameters.TargetFileName,'-',utcnow(),'.csv')",
 								"type": "Expression"
 							}
 						}
