@@ -141,8 +141,11 @@
 				"defaultValue": "IN"
 			},
 			"FileNm": {
-				"type": "string",
-				"defaultValue": "RIM_V1.2_HistoryData.csv"
+				"type": "securestring",
+				"defaultValue": {
+					"type": "SecureString",
+					"value": "**********"
+				}
 			}
 		},
 		"annotations": []
