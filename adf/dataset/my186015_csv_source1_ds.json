@@ -1,0 +1,49 @@
+{
+	"name": "my186015_csv_source1_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "RIM_V1.3_HistoryData.csv",
+				"folderPath": "input",
+				"fileSystem": "my186015"
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Flight#",
+				"type": "String"
+			},
+			{
+				"name": "Origin",
+				"type": "String"
+			},
+			{
+				"name": "Dest",
+				"type": "String"
+			},
+			{
+				"name": "FlightDate",
+				"type": "String"
+			},
+			{
+				"name": "NoSalesReason",
+				"type": "String"
+			},
+			{
+				"name": "TransmittingFlightAttd",
+				"type": "String"
+			}
+		]
+	}
+}
