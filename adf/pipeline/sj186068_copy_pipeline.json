@@ -219,6 +219,13 @@
 			"File_Name": {
 				"type": "string",
 				"defaultValue": "RIM_V1.2_HistoryData.csv"
+			},
+			"ddfdfd": {
+				"type": "securestring",
+				"defaultValue": {
+					"type": "SecureString",
+					"value": "**********"
+				}
 			}
 		},
 		"annotations": []
