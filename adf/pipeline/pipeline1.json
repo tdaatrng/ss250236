@@ -130,7 +130,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"TgtFileNm": {
-								"value": "@concat(pipeline().parameters.TgtFileNm,'-',utcnow(),'csv')",
+								"value": "@concat(pipeline().parameters.TgtFileNm,'-',utcnow(),'.csv')",
 								"type": "Expression"
 							}
 						}
