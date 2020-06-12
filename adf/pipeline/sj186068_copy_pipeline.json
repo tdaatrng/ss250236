@@ -13,7 +13,6 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -35,12 +34,76 @@
 							"quoteAllText": true
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Flight#",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Flight#']"
+								}
+							},
+							{
+								"source": {
+									"name": "Origin",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Origin']"
+								}
+							},
+							{
+								"source": {
+									"name": "Dest",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Dest']"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightDate",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['FlightDate']"
+								}
+							},
+							{
+								"source": {
+									"name": "NoSalesReason",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['NoSalesReason']"
+								}
+							},
+							{
+								"source": {
+									"name": "TransmittingFlightAttd",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['TransmittingFlightAttd']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
-						"referenceName": "RIM_Source",
-						"type": "DatasetReference"
+						"referenceName": "Src_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "sj186068",
+							"directory": "input",
+							"file_name": "RIM_V1.2_HistoryData.csv"
+						}
 					}
 				],
 				"outputs": [
@@ -90,8 +153,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "RIM_Source",
-						"type": "DatasetReference"
+						"referenceName": "Src_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "sj186068",
+							"directory": "input",
+							"file_name": "RIM_V1.2_HistoryData.csv"
+						}
 					}
 				],
 				"outputs": [
