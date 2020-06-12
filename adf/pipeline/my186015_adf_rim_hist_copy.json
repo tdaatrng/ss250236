@@ -35,7 +35,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -113,7 +113,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "my186015_csv_rim_hist_target_ds",
+						"referenceName": "my186015_csv_copy_sink",
 						"type": "DatasetReference"
 					}
 				]
