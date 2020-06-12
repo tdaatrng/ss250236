@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "rimsales.csv",
 				"folderPath": "input",
 				"fileSystem": "my186015"
 			},
