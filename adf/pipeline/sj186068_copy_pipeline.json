@@ -170,6 +170,20 @@
 				]
 			}
 		],
+		"parameters": {
+			"Container": {
+				"type": "string",
+				"defaultValue": "SJ186068"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "input"
+			},
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "RIM_V1.2_HistoryData.csv"
+			}
+		},
 		"annotations": []
 	}
 }
