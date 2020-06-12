@@ -46,7 +46,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "FlightNo"
+									"name": "FlightNo",
+									"type": "String"
 								}
 							},
 							{
