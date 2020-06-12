@@ -191,7 +191,7 @@
 		"parameters": {
 			"Container": {
 				"type": "string",
-				"defaultValue": "SJ186068"
+				"defaultValue": "sj186068"
 			},
 			"Directory": {
 				"type": "string",
