@@ -1,0 +1,20 @@
+{
+	"name": "SS186225_Copy_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Output",
+				"fileSystem": "ss186225"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
