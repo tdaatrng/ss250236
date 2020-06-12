@@ -35,13 +35,14 @@
 						}
 					},
 					"sink": {
-						"type": "JsonSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -54,7 +55,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['Flight#']"
+									"ordinal": 1
 								}
 							},
 							{
@@ -63,7 +64,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['Origin']"
+									"ordinal": 2
 								}
 							},
 							{
@@ -72,7 +73,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['Dest']"
+									"ordinal": 3
 								}
 							},
 							{
@@ -81,7 +82,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['FlightDate']"
+									"ordinal": 4
 								}
 							},
 							{
@@ -90,7 +91,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['NoSalesReason']"
+									"ordinal": 5
 								}
 							},
 							{
@@ -99,7 +100,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['TransmittingFlightAttd']"
+									"ordinal": 6
 								}
 							}
 						]
@@ -127,8 +128,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Json1",
-						"type": "DatasetReference"
+						"referenceName": "Tgt_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"File_Name_Tgt": "RIM_Renamed"
+						}
 					}
 				]
 			},
@@ -219,13 +223,6 @@
 			"File_Name": {
 				"type": "string",
 				"defaultValue": "RIM_V1.2_HistoryData.csv"
-			},
-			"ddfdfd": {
-				"type": "securestring",
-				"defaultValue": {
-					"type": "SecureString",
-					"value": "**********"
-				}
 			}
 		},
 		"annotations": []
