@@ -14,7 +14,6 @@
 					"secureInput": false
 				},
 				"userProperties": [
-					null,
 					{
 						"name": "Source",
 						"value": "@{pipeline().parameters.Container}/@{pipeline().parameters.Directory}/@{pipeline().parameters.File_Name}"
