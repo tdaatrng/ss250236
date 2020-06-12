@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "my186015_csv_generateCol_sink",
+						"referenceName": "sink2",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
