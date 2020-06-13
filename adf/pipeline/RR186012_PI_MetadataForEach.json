@@ -85,6 +85,16 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
 								"sink": {
 									"type": "DelimitedTextSink",
 									"storeSettings": {
@@ -98,9 +108,15 @@
 								},
 								"enableStaging": false
 							},
-							"outputs": [
+							"inputs": [
 								{
 									"referenceName": "RR186012_DS_Output",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "RR186012_DS_Dump",
 									"type": "DatasetReference"
 								}
 							]
