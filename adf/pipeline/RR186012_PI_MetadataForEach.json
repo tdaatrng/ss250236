@@ -89,7 +89,12 @@
 									"type": "DelimitedTextSource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
-										"recursive": true
+										"recursive": true,
+										"wildcardFileName": {
+											"value": "@item()",
+											"type": "Expression"
+										},
+										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
 										"type": "DelimitedTextReadSettings"
@@ -111,13 +116,7 @@
 							"inputs": [
 								{
 									"referenceName": "RR186012_DS_Output",
-									"type": "DatasetReference",
-									"parameters": {
-										"FileName": {
-											"value": "@item()",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
