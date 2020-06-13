@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output/movies",
+				"folderPath": "output/movies/run2",
 				"fileSystem": "dc186053"
 			},
 			"columnDelimiter": ",",
