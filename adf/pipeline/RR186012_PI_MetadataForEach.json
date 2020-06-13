@@ -20,11 +20,11 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"exists",
 						"childItems"
 					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
@@ -46,6 +46,10 @@
 				"typeProperties": {
 					"items": {
 						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(item().name,'RIM')",
 						"type": "Expression"
 					}
 				}
