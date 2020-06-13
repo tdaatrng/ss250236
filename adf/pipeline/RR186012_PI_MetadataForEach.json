@@ -111,7 +111,13 @@
 							"inputs": [
 								{
 									"referenceName": "RR186012_DS_Output",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
