@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "186004_op.txt",
+				"fileName": "186004_op.csv",
 				"folderPath": "output",
 				"fileSystem": "sp186004"
 			},
