@@ -13,8 +13,9 @@
 				"folderPath": "output",
 				"fileSystem": "ma186006"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
