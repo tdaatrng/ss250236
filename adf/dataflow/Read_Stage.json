@@ -12,9 +12,21 @@
 					"name": "ReadRIMData"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> ReadRIMData"
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "cr186030_Output",
+						"type": "DatasetReference"
+					},
+					"name": "RIM_Hist_NoSale"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedCount"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> ReadRIMData\nReadRIMData derive(Other_Sales_Reason_Ind = locate(NoSalesReason, 'Other')) ~> DerivedCount\nDerivedCount sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIM_Hist_NoSale"
 		}
 	}
 }
