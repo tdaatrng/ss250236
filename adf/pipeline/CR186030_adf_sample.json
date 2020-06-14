@@ -49,8 +49,7 @@
 									"name": "Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd",
 									"type": "String"
 								}
-							},
-							null
+							}
 						]
 					}
 				},
