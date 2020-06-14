@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "dataflow1",
+				"name": "RIM_Read_Xfm",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
