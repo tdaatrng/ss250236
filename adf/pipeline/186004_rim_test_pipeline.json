@@ -29,7 +29,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "186004_rim_input",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				]
