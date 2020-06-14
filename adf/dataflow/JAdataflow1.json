@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "JA186007_Output",
+						"referenceName": "JA186007_OP1_ds",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
