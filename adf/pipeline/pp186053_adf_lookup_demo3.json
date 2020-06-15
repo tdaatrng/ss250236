@@ -66,7 +66,15 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"SinkContainer": {
-								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.sourceContainer",
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.destContainer",
+								"type": "Expression"
+							},
+							"SinkDirectory": {
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.destDirectory",
+								"type": "Expression"
+							},
+							"SinkFileName": {
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.destFileName",
 								"type": "Expression"
 							}
 						}
