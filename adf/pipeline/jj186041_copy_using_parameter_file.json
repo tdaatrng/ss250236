@@ -34,14 +34,7 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Lookup1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -77,41 +70,13 @@
 				"inputs": [
 					{
 						"referenceName": "jj186041_rim_input_param_ds",
-						"type": "DatasetReference",
-						"parameters": {
-							"sourceDirectory": {
-								"value": "@activity('Lookup1').output.firstRow.sourceDirectory",
-								"type": "Expression"
-							},
-							"sourceContainer": {
-								"value": "@activity('Lookup1').output.firstRow.sourceContainer",
-								"type": "Expression"
-							},
-							"sourceFileName": {
-								"value": "@activity('Lookup1').output.firstRow.sourceFileName",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "jj186041_copy_output_param_ds",
-						"type": "DatasetReference",
-						"parameters": {
-							"destFileName": {
-								"value": "@activity('Lookup1').output.firstRow.destFileName",
-								"type": "Expression"
-							},
-							"destDirectory": {
-								"value": "@.activity('Lookup1').output.firstRow.destDirectory",
-								"type": "Expression"
-							},
-							"destContainer": {
-								"value": "@.activity('Lookup1').output.firstRow.destContainer",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
