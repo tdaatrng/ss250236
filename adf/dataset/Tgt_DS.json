@@ -8,6 +8,12 @@
 		"parameters": {
 			"File_Name_Tgt": {
 				"type": "string"
+			},
+			"Cotainer_Name_Tgt": {
+				"type": "string"
+			},
+			"Directory_Name_Tgt": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -19,8 +25,14 @@
 					"value": "@concat(dataset().File_Name_Tgt,'_',utcnow(),'.csv')",
 					"type": "Expression"
 				},
-				"folderPath": "output",
-				"fileSystem": "sj186068"
+				"folderPath": {
+					"value": "@dataset().Directory_Name_Tgt",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Cotainer_Name_Tgt",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
