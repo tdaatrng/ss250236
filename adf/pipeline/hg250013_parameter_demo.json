@@ -155,6 +155,9 @@
 				"defaultValue": "nosales.txt"
 			}
 		},
+		"folder": {
+			"name": "ADF_Demo"
+		},
 		"annotations": []
 	}
 }

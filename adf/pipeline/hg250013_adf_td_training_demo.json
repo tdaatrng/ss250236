@@ -354,6 +354,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "ADF_Demo"
+		},
 		"annotations": []
 	}
 }
