@@ -6,13 +6,13 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"DestContainer": {
+			"destContainer": {
 				"type": "string"
 			},
-			"DestDir": {
+			"destDirectory": {
 				"type": "string"
 			},
-			"DestOutputFile": {
+			"destFileName": {
 				"type": "string"
 			}
 		},
