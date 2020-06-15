@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "RIMSOURCE",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					},
 					"name": "RIMSource"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "RIMSOURCE",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					},
 					"name": "RIMDataFlowOutput"
@@ -26,7 +26,7 @@
 					"name": "GenericResearch"
 				}
 			],
-			"script": "source(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(NewColumn = locate(NoSalesReason, 'Other')) ~> GenericResearch\nGenericResearch sink(input(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMDataFlowOutput"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(NewColumn = locate(NoSalesReason, 'Other')) ~> GenericResearch\nGenericResearch sink(input(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMDataFlowOutput"
 		}
 	}
 }
