@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "hg250013_flat_file_source_ds",
+						"referenceName": "JA186007_Demo_dataset",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
