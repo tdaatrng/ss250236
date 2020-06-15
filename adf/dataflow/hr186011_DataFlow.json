@@ -6,15 +6,27 @@
 			"sources": [
 				{
 					"dataset": {
+						"referenceName": "hg250013_flat_file_source_ds",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
 						"referenceName": "DelimitedText2",
 						"type": "DatasetReference"
 					},
-					"name": "RIMSource"
+					"name": "RIMDataFlowOutput"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource"
+			"transformations": [
+				{
+					"name": "GenericResearch"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source2\nsource2 derive(NewColumn = locate(NoSalesReason, 'Other')) ~> GenericResearch\nGenericResearch sink(input(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMDataFlowOutput"
 		}
 	}
 }
