@@ -140,7 +140,9 @@
 						"referenceName": "DelimitedText12",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"itemName"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings"
 					},
