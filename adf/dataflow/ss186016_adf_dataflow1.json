@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "ss186016_Output_adf",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -22,7 +26,7 @@
 					"name": "AdditonalColumn"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> SourceRead\nSourceRead derive(AddCol = locate(NoSalesReason, 'Other')) ~> AdditonalColumn\nAdditonalColumn sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> SourceRead\nSourceRead derive(AddCol = locate(NoSalesReason, 'Other')) ~> AdditonalColumn\nAdditonalColumn sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
