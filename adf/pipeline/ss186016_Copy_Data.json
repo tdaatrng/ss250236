@@ -17,10 +17,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": {
-							"type": "Expression",
-							"value": "@utcnow()"
-						},
+						"additionalColumns": [
+							{
+								"name": "Load_Dt",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
