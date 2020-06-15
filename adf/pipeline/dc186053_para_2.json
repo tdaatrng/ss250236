@@ -89,7 +89,21 @@
 							"inputs": [
 								{
 									"referenceName": "dc186053_para_2_source_1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"sourceContainer": {
+											"value": "@item().sourceContainer",
+											"type": "Expression"
+										},
+										"sourceDirectory": {
+											"value": "@item().sourceDirectory",
+											"type": "Expression"
+										},
+										"sourceFileName": {
+											"value": "@item().sourceFileName",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
