@@ -77,11 +77,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "parameterDemoSource",
 						"type": "DatasetReference",
 						"parameters": {
 							"sourceFileName": {
-								"value": "@activity('fetch_parameter').output.FirstRow,sourceFileName",
+								"value": "@activity('fetch_parameter').output.firstRow.sourceFileName",
 								"type": "Expression"
 							},
 							"sourceDirectory": {
