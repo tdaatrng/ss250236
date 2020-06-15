@@ -6,18 +6,14 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "RIMSOURCE",
 						"type": "DatasetReference"
 					},
-					"name": "source2"
+					"name": "RIMSource"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText2",
-						"type": "DatasetReference"
-					},
 					"name": "RIMDataFlowOutput"
 				}
 			],
@@ -26,7 +22,7 @@
 					"name": "GenericResearch"
 				}
 			],
-			"script": "source(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source2\nsource2 derive(NewColumn = locate(NoSalesReason, 'Other')) ~> GenericResearch\nGenericResearch sink(input(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMDataFlowOutput"
+			"script": "source(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(NewColumn = locate(NoSalesReason, 'Other')) ~> GenericResearch\nGenericResearch sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMDataFlowOutput"
 		}
 	}
 }
