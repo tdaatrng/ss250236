@@ -32,8 +32,8 @@
 				}
 			},
 			{
-				"name": "Filter1",
-				"type": "Filter",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "Get Metadata1",
@@ -48,10 +48,58 @@
 						"value": "@activity('Get Metadata1').output.childItems",
 						"type": "Expression"
 					},
-					"condition": {
-						"value": "@startswith(item().name,'RIM')",
-						"type": "Expression"
-					}
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RR186012_DS_Output_BinarySrc",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "RR186012_DS_Dump_Binary",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
 				}
 			}
 		],
