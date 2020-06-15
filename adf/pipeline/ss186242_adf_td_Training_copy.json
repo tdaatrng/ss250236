@@ -1,6 +1,31 @@
 {
 	"name": "ss186242_adf_td_Training_copy",
 	"properties": {
+		"activities": [
+			{
+				"name": "ss186242_adf_td_training",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "ss186242_adf_td_training",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					}
+				}
+			}
+		],
 		"annotations": []
 	}
 }
