@@ -28,7 +28,8 @@
 					"dataset": {
 						"referenceName": "sj186068_Config_Json",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
