@@ -1,0 +1,19 @@
+{
+	"name": "SourceDataset_juf",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "RIM_V1.2_HistoryData.csv",
+				"folderPath": "input",
+				"fileSystem": "hj186008"
+			}
+		}
+	}
+}
