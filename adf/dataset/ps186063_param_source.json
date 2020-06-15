@@ -1,0 +1,31 @@
+{
+	"name": "ps186063_param_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourceFileName": {
+				"type": "string"
+			},
+			"sourceDirectory": {
+				"type": "string"
+			},
+			"sourceContainer": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
