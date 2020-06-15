@@ -109,7 +109,21 @@
 							"outputs": [
 								{
 									"referenceName": "dc186053_para_2_sink_ds",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"destContainer": {
+											"value": "@item().destContainer",
+											"type": "Expression"
+										},
+										"destDirectory": {
+											"value": "@item().destDirectory",
+											"type": "Expression"
+										},
+										"destFileName": {
+											"value": "@item().destFileName",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
