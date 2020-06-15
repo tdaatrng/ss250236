@@ -34,7 +34,14 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -54,11 +61,37 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "ps186063_param_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceFileName": {
+								"value": "@activity('Lookup1').output.firstRow.sourceFileName",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@activity('Lookup1').output.firstRow.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceContainer": {
+								"value": "@activity('Lookup1').output.firstRow.sourceContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ps186063_param_sink",
 						"type": "DatasetReference"
 					}
 				]
