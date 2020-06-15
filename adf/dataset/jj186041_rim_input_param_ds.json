@@ -21,20 +21,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().sourceFileName",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@dataset().sourceDirectory",
-					"type": "Expression"
-				},
-				"fileSystem": {
-					"value": "@dataset().sourceContainer",
-					"type": "Expression"
-				}
+				"fileName": "ADF_parameters_2.json",
+				"folderPath": "config",
+				"fileSystem": "jj186041"
 			},
-			"columnDelimiter": "^",
+			"columnDelimiter": "",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
