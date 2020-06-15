@@ -5,11 +5,6 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"TgtFileNm": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
