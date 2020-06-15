@@ -5,11 +5,34 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SinkContainer": {
+				"type": "string"
+			},
+			"SinkDirectory": {
+				"type": "string"
+			},
+			"SinkFileName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().SinkFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().SinkDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().SinkContainer",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},
