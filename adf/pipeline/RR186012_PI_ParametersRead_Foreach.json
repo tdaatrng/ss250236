@@ -46,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LookupParameterFile').output",
+						"value": "@activity('LookupParameterFile').output.take",
 						"type": "Expression"
 					},
 					"activities": [
