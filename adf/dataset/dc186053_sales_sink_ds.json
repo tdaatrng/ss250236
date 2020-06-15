@@ -20,7 +20,15 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().destDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().destContainer",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
