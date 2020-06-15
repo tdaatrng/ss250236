@@ -13,7 +13,7 @@
 				"folderPath": "output",
 				"fileSystem": "gb250038"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
