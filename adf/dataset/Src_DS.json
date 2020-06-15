@@ -6,15 +6,15 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"container": {
+			"sourceContainer": {
 				"type": "string",
 				"defaultValue": "sj186068"
 			},
-			"directory": {
+			"sourceDirectory": {
 				"type": "string",
 				"defaultValue": "input"
 			},
-			"file_name": {
+			"sourceFileName": {
 				"type": "string",
 				"defaultValue": "RIM_V1.2_HistoryData.csv"
 			}
@@ -25,15 +25,15 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().file_name",
+					"value": "@dataset().sourceFileName",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().directory",
+					"value": "@dataset().sourceDirectory",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().container",
+					"value": "@dataset().sourceContainer",
 					"type": "Expression"
 				}
 			},
