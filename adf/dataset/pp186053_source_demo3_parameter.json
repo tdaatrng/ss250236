@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "pp186053_source_demo3_parameter",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
