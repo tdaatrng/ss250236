@@ -5,12 +5,20 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "@concat(pipeline().parameters.Filename,utcnow(),'.txt')",
+				"fileName": {
+					"value": "@concat(dataset().FileName,utcnow(),'.txt')",
+					"type": "Expression"
+				},
 				"folderPath": "work",
 				"fileSystem": "rr186012"
 			},
