@@ -55,11 +55,11 @@
 								"type": "Expression"
 							},
 							"sourceDirectory": {
-								"value": "@activity('Lookup1').output.sourceDirectory",
+								"value": "@activity('Lookup1').output.firstRow.sourceDirectory",
 								"type": "Expression"
 							},
 							"sourceFileName": {
-								"value": "@activity('Lookup1').output.sourceFileName",
+								"value": "@activity('Lookup1').output.firstRow.sourceFileName",
 								"type": "Expression"
 							}
 						}
