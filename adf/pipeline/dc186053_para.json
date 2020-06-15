@@ -5,7 +5,14 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -41,13 +48,41 @@
 				"inputs": [
 					{
 						"referenceName": "dc186052_sales_source_ds",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@activity('Lookup1').output.firstRow.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@activity('Lookup1').output.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@activity('Lookup1').output.sourceFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "dc186053_sales_sink_ds",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"destContainer": {
+								"value": "@activity('Lookup1').output.firstRow.destContainer",
+								"type": "Expression"
+							},
+							"destDirectory": {
+								"value": "@activity('Lookup1').output.firstRow.destDirectory",
+								"type": "Expression"
+							},
+							"destFileName": {
+								"value": "@activity('Lookup1').output.firstRow.destFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
