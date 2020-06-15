@@ -192,7 +192,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@concat(pipeline().parameters.Filename,utcnow(),'.txt')",
+								"value": "@concat(pipeline().parameters.Filename,utcnow('yyyyMMddHH:mss'),'.txt')",
 								"type": "Expression"
 							}
 						}
