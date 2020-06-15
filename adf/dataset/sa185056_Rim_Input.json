@@ -5,14 +5,34 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SourceContainer": {
+				"type": "string"
+			},
+			"SourceDir": {
+				"type": "string"
+			},
+			"SourceInputFile": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "RIM_V1.2_HistoryData.csv",
-				"folderPath": "input",
-				"fileSystem": "sa185056"
+				"fileName": {
+					"value": "@dataset().SourceInputFile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().SourceDir",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().SourceContainer",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": "^",
 			"escapeChar": "\\",
