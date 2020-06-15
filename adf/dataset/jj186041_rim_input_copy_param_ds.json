@@ -1,0 +1,41 @@
+{
+	"name": "jj186041_rim_input_copy_param_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourceFileName": {
+				"type": "string"
+			},
+			"sourceDirectory": {
+				"type": "string"
+			},
+			"sourceContainer": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sourceFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sourceDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sourceContainer",
+					"type": "Expression"
+				}
+			},
+			"firstRowAsHeader": false
+		},
+		"schema": []
+	}
+}
