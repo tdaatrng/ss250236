@@ -15,10 +15,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().TgtFileNm",
-					"type": "Expression"
-				},
 				"folderPath": "WORK",
 				"fileSystem": "ss250236"
 			},
