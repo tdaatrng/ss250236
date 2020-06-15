@@ -1,5 +1,5 @@
 {
-	"name": "SS186016_Dataflow",
+	"name": "ss186016_adf_dataflow1",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
