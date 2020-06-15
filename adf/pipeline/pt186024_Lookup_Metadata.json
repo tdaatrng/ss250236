@@ -1,0 +1,106 @@
+{
+	"name": "pt186024_Lookup_Metadata",
+	"properties": {
+		"description": "pt186024_Lookup_Metadata",
+		"activities": [
+			{
+				"name": "Lookup_Parameter",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText10",
+						"type": "DatasetReference",
+						"parameters": {
+							"SourceContainer": {
+								"value": "@activity('Lookup_Parameter').output.firstrow.SourceContainer",
+								"type": "Expression"
+							},
+							"SourceDirectory": {
+								"value": "@activity('Lookup_Parameter').output.firstrow.SourceDirectory",
+								"type": "Expression"
+							},
+							"SourceFileName": {
+								"value": "@activity('Lookup_Parameter').output.firstrow.SourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText11",
+						"type": "DatasetReference",
+						"parameters": {
+							"DestContainer": {
+								"value": "@activity('Lookup_Parameter').output.firstrow.DestContainer",
+								"type": "Expression"
+							},
+							"DestDirectory": {
+								"value": "@activity('Lookup_Parameter').output.firstrow.DestDirectory",
+								"type": "Expression"
+							},
+							"DestFileName": {
+								"value": "@activity('Lookup_Parameter').output.firstrow.DestFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
