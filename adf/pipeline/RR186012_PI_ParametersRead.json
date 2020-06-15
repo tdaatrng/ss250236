@@ -79,7 +79,7 @@
 								"type": "Expression"
 							},
 							"sourceDirectory": {
-								"value": "@activity('LookupParameterFile').output.firstrow.pipeline().parameters.sourceDirectory",
+								"value": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
 								"type": "Expression"
 							},
 							"sourceFileName": {
@@ -111,26 +111,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"sourceContainer": {
-				"type": "string"
-			},
-			"sourceDirectory": {
-				"type": "string"
-			},
-			"sourceFileName": {
-				"type": "string"
-			},
-			"destContainer": {
-				"type": "string"
-			},
-			"destDirectory": {
-				"type": "string"
-			},
-			"destFileName": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
