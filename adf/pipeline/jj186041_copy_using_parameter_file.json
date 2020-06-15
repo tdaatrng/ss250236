@@ -22,6 +22,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
@@ -35,6 +45,26 @@
 					},
 					"enableStaging": false
 				},
+				"inputs": [
+					{
+						"referenceName": "j186041_test_input_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceFileName": {
+								"value": "@activity('Lookup1').output.firstRow.sourceFileName",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@activity('Lookup1').output.firstRow.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceContainer": {
+								"value": "@activity('Lookup1').output.firstRow.sourceContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				],
 				"outputs": [
 					{
 						"referenceName": "jj186041_copy_output_param_ds",
