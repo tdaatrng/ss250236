@@ -87,15 +87,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"sourceContainer": {
-											"value": "@activity('LookupParameterFile').output.firstrow.sourceContainer",
+											"value": "@item().sourceContainer",
 											"type": "Expression"
 										},
 										"sourceDirectory": {
-											"value": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
+											"value": "@item().sourceDirectory",
 											"type": "Expression"
 										},
 										"sourceFileName": {
-											"value": "@activity('LookupParameterFile').output.firstrow.sourceFileName",
+											"value": "@item().sourceFileName",
 											"type": "Expression"
 										}
 									}
@@ -107,15 +107,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"destContainer": {
-											"value": "@activity('LookupParameterFile').output.firstrow.destContainer",
+											"value": "@item().destContainer",
 											"type": "Expression"
 										},
 										"destDirectory": {
-											"value": "@activity('LookupParameterFile').output.firstrow.destDirectory",
+											"value": "@item().destDirectory",
 											"type": "Expression"
 										},
 										"destFileName": {
-											"value": "@activity('LookupParameterFile').output.firstrow.destFileName",
+											"value": "@item().destFileName",
 											"type": "Expression"
 										}
 									}
