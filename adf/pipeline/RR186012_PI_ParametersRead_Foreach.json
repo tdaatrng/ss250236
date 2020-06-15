@@ -32,8 +32,8 @@
 				}
 			},
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "LookupParameterFile",
@@ -42,73 +42,24 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
+					"items": {
+						"value": "@activity('LookupParameterFile').output",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "RR186012_DS_ParamDemoSrc",
-						"type": "DatasetReference",
-						"parameters": {
-							"sourceContainer": {
-								"value": "@activity('LookupParameterFile').output.firstrow.sourceContainer",
-								"type": "Expression"
-							},
-							"sourceDirectory": {
-								"value": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
-								"type": "Expression"
-							},
-							"sourceFileName": {
-								"value": "@activity('LookupParameterFile').output.firstrow.sourceFileName",
-								"type": "Expression"
+					"activities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
 							}
 						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "RR186012_ParmDemoSink_Parq",
-						"type": "DatasetReference",
-						"parameters": {
-							"destContainer": {
-								"value": "@activity('LookupParameterFile').output.firstrow.destContainer",
-								"type": "Expression"
-							},
-							"destDirectory": {
-								"value": "@activity('LookupParameterFile').output.firstrow.destDirectory",
-								"type": "Expression"
-							},
-							"destFileName": {
-								"value": "@activity('LookupParameterFile').output.firstrow.destFileName",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+					]
+				}
 			}
 		],
 		"annotations": []
