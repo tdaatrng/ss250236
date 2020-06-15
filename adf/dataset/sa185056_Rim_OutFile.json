@@ -5,6 +5,17 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"DestContainer": {
+				"type": "string"
+			},
+			"DestDir": {
+				"type": "string"
+			},
+			"DestOutputFile": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
