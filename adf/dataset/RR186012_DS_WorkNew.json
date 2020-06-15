@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat(dataset().FileName,utcnow(),'.txt')",
+					"value": "@dataset().FileName",
 					"type": "Expression"
 				},
 				"folderPath": "work",
