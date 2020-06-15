@@ -6,13 +6,13 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"File_Name_Tgt": {
+			"destFileName": {
 				"type": "string"
 			},
-			"Cotainer_Name_Tgt": {
+			"destDirectory": {
 				"type": "string"
 			},
-			"Directory_Name_Tgt": {
+			"destContainer": {
 				"type": "string"
 			}
 		},
@@ -22,15 +22,15 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat(dataset().File_Name_Tgt,'_',utcnow(),'.csv')",
+					"value": "@dataset().destFileName",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().Directory_Name_Tgt",
+					"value": "@dataset().destDirectory",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().Cotainer_Name_Tgt",
+					"value": "@dataset().destContainer",
 					"type": "Expression"
 				}
 			},
