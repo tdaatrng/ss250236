@@ -9,7 +9,9 @@
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Dump",
+				"fileSystem": "rr186012"
 			}
 		}
 	}
