@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ss186016_Copy_Data",
+				"name": "ss186016_Copy_Data_AddField",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
