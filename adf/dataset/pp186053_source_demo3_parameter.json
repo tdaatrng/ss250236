@@ -34,8 +34,7 @@
 					"type": "Expression"
 				}
 			},
-			"columnDelimiter": ",",
-			"rowDelimiter": "^",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
