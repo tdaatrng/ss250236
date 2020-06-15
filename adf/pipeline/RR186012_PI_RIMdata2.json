@@ -59,11 +59,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": {
-								"value": "@concat(pipeline().parameters.Filename,utcnow('yyyymmddhhmmss'),'.txt')",
-								"type": "Expression"
-							}
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -193,7 +189,13 @@
 				"outputs": [
 					{
 						"referenceName": "RR186012_DS_WorkNew",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@concat(pipeline().parameters.Filename,utcnow(),'.txt')",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
