@@ -18,7 +18,7 @@
 						"referenceName": "DelimitedText3",
 						"type": "DatasetReference"
 					},
-					"name": "MyOutout"
+					"name": "MyOutput"
 				}
 			],
 			"transformations": [
@@ -26,7 +26,7 @@
 					"name": "Transformation"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as short,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as date,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(NoSalesReason = locate(NoSalesReason,'Other'),\n\tpartitionBy('hash', 1)) ~> Transformation\nTransformation sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> MyOutout"
+			"script": "source(output(\n\t\t{Flight#} as short,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as date,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource\nRIMSource derive(NoSalesReason = locate(NoSalesReason,'Other'),\n\tpartitionBy('hash', 1)) ~> Transformation\nTransformation sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> MyOutput"
 		}
 	}
 }
