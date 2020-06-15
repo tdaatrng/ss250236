@@ -43,13 +43,33 @@
 				"inputs": [
 					{
 						"referenceName": "pp186053_source_demo3_parameter",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"ContainerName": {
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.sourceContainer",
+								"type": "Expression"
+							},
+							"DirectoryName": {
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.sourceDirectory",
+								"type": "Expression"
+							},
+							"FileName": {
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.sourceFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "pp186053_sink_demo3_parquet",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SinkContainer": {
+								"value": "@activity('pp186053_lookup_demo3_src').output.FirstRow.sourceContainer",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
