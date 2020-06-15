@@ -108,6 +108,16 @@
 									"name": "TransmittingFlightAttd",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"name": "Load_Dt",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Load_Dt",
+									"type": "DateTime"
+								}
 							}
 						]
 					}
