@@ -1,0 +1,116 @@
+{
+	"name": "RR186012_PI_ParametersRead_Foreach",
+	"properties": {
+		"activities": [
+			{
+				"name": "LookupParameterFile",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "RR186012_DS_Config_ParamJSON",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "LookupParameterFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "RR186012_DS_ParamDemoSrc",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@activity('LookupParameterFile').output.firstrow.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@activity('LookupParameterFile').output.firstrow.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "RR186012_ParmDemoSink_Parq",
+						"type": "DatasetReference",
+						"parameters": {
+							"destContainer": {
+								"value": "@activity('LookupParameterFile').output.firstrow.destContainer",
+								"type": "Expression"
+							},
+							"destDirectory": {
+								"value": "@activity('LookupParameterFile').output.firstrow.destDirectory",
+								"type": "Expression"
+							},
+							"destFileName": {
+								"value": "@activity('LookupParameterFile').output.firstrow.destFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
