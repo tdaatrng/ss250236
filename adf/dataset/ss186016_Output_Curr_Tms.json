@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "ss186016_Output_Curr_Tms",
 				"folderPath": "output",
 				"fileSystem": "ss186016"
 			},
