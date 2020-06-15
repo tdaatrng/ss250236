@@ -1,0 +1,48 @@
+{
+	"name": "LookupParameter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ADF_parameters_2.json",
+				"folderPath": "Config",
+				"fileSystem": "pt186024"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"emailURL": {
+					"type": "string"
+				},
+				"EmailId": {
+					"type": "string"
+				},
+				"SourceFileName": {
+					"type": "string"
+				},
+				"SourceDirectory": {
+					"type": "string"
+				},
+				"SourceContainer": {
+					"type": "string"
+				},
+				"DestFileName": {
+					"type": "string"
+				},
+				"DestDirectory": {
+					"type": "string"
+				},
+				"DestContainer": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
