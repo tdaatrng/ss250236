@@ -61,6 +61,17 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
@@ -78,6 +89,26 @@
 							},
 							"sourcefile": {
 								"value": "@activity('Lookup1').output.FirstRow.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "my186015_csv_param_sink_demo_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"targetcontainer": {
+								"value": "@activity('Lookup1').output.firstRow.destContainer",
+								"type": "Expression"
+							},
+							"targetdirect": {
+								"value": "@activity('Lookup1').output.firstRow.destDirectory",
+								"type": "Expression"
+							},
+							"targetfile": {
+								"value": "@activity('Lookup1').output.firstRow.destFileName",
 								"type": "Expression"
 							}
 						}
