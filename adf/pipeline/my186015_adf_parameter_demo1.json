@@ -34,7 +34,14 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -44,8 +51,38 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "my186015_csv_param_source_demo_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourcecontainer": {
+								"value": "@activity('Lookup1').output.FirstRow.sourceContainer",
+								"type": "Expression"
+							},
+							"sourcedirect": {
+								"value": "@activity('Lookup1').output.FirstRow.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourcefile": {
+								"value": "@activity('Lookup1').output.FirstRow.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"annotations": []

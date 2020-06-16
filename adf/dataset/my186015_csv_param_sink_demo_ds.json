@@ -1,0 +1,44 @@
+{
+	"name": "my186015_csv_param_sink_demo_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"targetcontainer": {
+				"type": "string"
+			},
+			"targetdirect": {
+				"type": "string"
+			},
+			"targetfile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().targetfile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().targetdirect",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().targetcontainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
