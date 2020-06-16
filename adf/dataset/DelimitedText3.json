@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "HostFileOutput",
 				"folderPath": "output2",
 				"fileSystem": "hj186008"
 			},
