@@ -1,5 +1,5 @@
 {
-	"name": "raw_json_rest_ds",
+	"name": "hg250013_raw_json_rest_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
