@@ -1,0 +1,44 @@
+{
+	"name": "my186015_csv_param_source_demo_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourcecontainer": {
+				"type": "string"
+			},
+			"sourcedirect": {
+				"type": "string"
+			},
+			"sourcefile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sourcefile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sourcedirect",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sourcecontainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": []
+	}
+}
