@@ -1,5 +1,5 @@
 {
-	"name": "Rest_api_ds",
+	"name": "hg250013_Rest_api_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "rest_api_ls",
