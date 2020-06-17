@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "ParameterLookup1",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -32,11 +32,11 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "ParameterCopydata1",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "ParameterLookup1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
