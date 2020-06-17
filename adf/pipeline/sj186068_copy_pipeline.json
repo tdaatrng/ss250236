@@ -111,31 +111,16 @@
 						"referenceName": "Src_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": {
-								"value": "@pipeline().parameters.Container",
-								"type": "Expression"
-							},
-							"directory": {
-								"value": "@pipeline().parameters.Directory",
-								"type": "Expression"
-							},
-							"file_name": {
-								"value": "@pipeline().parameters.File_Name",
-								"type": "Expression"
-							}
+							"sourceContainer": "sj186068",
+							"sourceDirectory": "input",
+							"sourceFileName": "RIM_V1.2_HistoryData.csv"
 						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "Tgt_DS",
-						"type": "DatasetReference",
-						"parameters": {
-							"File_Name_Tgt": {
-								"value": "@pipeline().parameters.File_Name_Tgt",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				]
 			},
@@ -191,18 +176,9 @@
 						"referenceName": "Src_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": {
-								"value": "@pipeline().parameters.Container",
-								"type": "Expression"
-							},
-							"directory": {
-								"value": "@pipeline().parameters.Directory",
-								"type": "Expression"
-							},
-							"file_name": {
-								"value": "@pipeline().parameters.File_Name",
-								"type": "Expression"
-							}
+							"sourceContainer": "sj186068",
+							"sourceDirectory": "input",
+							"sourceFileName": "RIM_V1.2_HistoryData.csv"
 						}
 					}
 				],
