@@ -13,7 +13,7 @@
 				"folderPath": "output1",
 				"fileSystem": "sj186068"
 			},
-			"compressionCodec": "snappy"
+			"compressionCodec": "none"
 		},
 		"schema": []
 	}
