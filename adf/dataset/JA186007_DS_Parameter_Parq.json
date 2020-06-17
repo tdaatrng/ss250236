@@ -1,0 +1,29 @@
+{
+	"name": "JA186007_DS_Parameter_Parq",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"destContainer": {
+				"type": "string"
+			},
+			"destDirectory": {
+				"type": "string"
+			},
+			"destFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
