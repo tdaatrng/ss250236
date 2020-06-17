@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "RIM_V1.2_HistoryData.csv",
-				"folderPath": "input",
+				"fileName": "FileCopy_Test",
+				"folderPath": "output",
 				"fileSystem": "mk186012"
 			},
 			"columnDelimiter": "^",
