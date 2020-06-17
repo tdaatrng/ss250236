@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "copy_as_pqt",
 				"folderPath": "output1",
 				"fileSystem": "mk186012"
 			},
