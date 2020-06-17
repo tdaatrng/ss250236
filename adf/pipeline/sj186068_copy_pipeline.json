@@ -120,7 +120,11 @@
 				"outputs": [
 					{
 						"referenceName": "Tgt_DS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"destDirectory": "output",
+							"destContainer": "sj186068"
+						}
 					}
 				]
 			},
