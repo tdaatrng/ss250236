@@ -69,14 +69,9 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false
@@ -84,12 +79,18 @@
 				"inputs": [
 					{
 						"referenceName": "JA186007_DS_InputDS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@activity('ParameterLookup1').output",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "JA186007_DS_Parameter_output",
+						"referenceName": "JA186007_DS_Parameter_Parq",
 						"type": "DatasetReference"
 					}
 				]
