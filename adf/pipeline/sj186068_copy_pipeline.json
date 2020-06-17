@@ -122,6 +122,7 @@
 						"referenceName": "Tgt_DS",
 						"type": "DatasetReference",
 						"parameters": {
+							"destFileName": "\"\"",
 							"destDirectory": "output",
 							"destContainer": "sj186068"
 						}
