@@ -10,9 +10,15 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "@activity('LookupParameterFile').output.firstrow.sourceFileName",
-				"folderPath": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
-				"fileSystem": "@activity('LookupParameterFile').output.firstrow.sourceContainer"
+				"fileName": {
+					"value": "@activity('LookupParameterFile').output.firstrow.sourceFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": "@dataset().sourceContainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
