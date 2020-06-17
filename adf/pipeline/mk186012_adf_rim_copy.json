@@ -37,6 +37,7 @@
 						}
 					},
 					"enableStaging": false,
+					"parallelCopies": 8,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -146,6 +147,7 @@
 						}
 					},
 					"enableStaging": false,
+					"parallelCopies": 8,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
