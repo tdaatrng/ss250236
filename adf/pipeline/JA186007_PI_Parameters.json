@@ -82,7 +82,15 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"sourceContainer": {
-								"value": "@activity('ParameterLookup1').output",
+								"value": "@activity('ParameterLookup1').output.firstrow.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@activity('ParameterLookup1').output.firstrow.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@activity('ParameterLookup1').output.firstrow.sourceFileName",
 								"type": "Expression"
 							}
 						}
@@ -91,7 +99,21 @@
 				"outputs": [
 					{
 						"referenceName": "JA186007_DS_Parameter_Parq",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"destContainer": {
+								"value": "@activity('ParameterLookup1').output.firstrow.destContainer",
+								"type": "Expression"
+							},
+							"destDirectory": {
+								"value": "@activity('ParameterLookup1').output.firstrow.destDirectory",
+								"type": "Expression"
+							},
+							"destFileName": {
+								"value": "@activity('ParameterLookup1').output.firstrow.destFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
