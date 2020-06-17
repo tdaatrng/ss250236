@@ -10,7 +10,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "ja186007"
+				"fileName": "@activity('LookupParameterFile').output.firstrow.sourceFileName",
+				"folderPath": "@activity('LookupParameterFile').output.firstrow.sourceDirectory",
+				"fileSystem": "@activity('LookupParameterFile').output.firstrow.sourceContainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
