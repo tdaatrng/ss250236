@@ -1,0 +1,41 @@
+{
+	"name": "jp186004_parguetOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"destContainer": {
+				"type": "string"
+			},
+			"destDirectorydestDirectory": {
+				"type": "string"
+			},
+			"destFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().destFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().destDirectorydestDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().destContainer",
+					"type": "Expression"
+				}
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
