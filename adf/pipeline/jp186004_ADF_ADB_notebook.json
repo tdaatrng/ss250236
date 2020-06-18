@@ -1,5 +1,5 @@
 {
-	"name": "jp186004_adf_adb_notebook",
+	"name": "jp186004_ADF_ADB_notebook",
 	"properties": {
 		"activities": [
 			{
@@ -15,8 +15,36 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "RestAPIgetData",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "JasonFileOutput",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
