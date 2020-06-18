@@ -1,0 +1,12 @@
+{
+	"name": "rest_sj186068_ls",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
