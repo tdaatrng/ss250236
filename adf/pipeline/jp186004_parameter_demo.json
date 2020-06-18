@@ -167,6 +167,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "HandsON"
+		},
 		"annotations": []
 	}
 }
