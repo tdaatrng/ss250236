@@ -47,8 +47,8 @@
 				]
 			},
 			{
-				"name": "Python1",
-				"type": "DatabricksSparkPython",
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
 						"activity": "Get_Data_From_Rest_Api",
@@ -64,7 +64,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sumit.jain@qateradatacloud.com/UseCase_Demo_session_2"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
