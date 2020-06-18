@@ -1,0 +1,11 @@
+{
+	"name": "RestAPIgetData",
+	"properties": {
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150"
+		},
+		"schema": []
+	}
+}
