@@ -41,7 +41,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "hg250013_raw_json_rest_ds",
+						"referenceName": "RR186012_raw_json_Qoutes",
 						"type": "DatasetReference"
 					}
 				]
@@ -66,7 +66,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/harshit.goyal@qateradatacloud.com/UseCase_Demo_session_2"
+					"notebookPath": "/Users/rhutubh.ranade@qateradatacloud.com/rr186012/RR186012_RIMUseCase"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",

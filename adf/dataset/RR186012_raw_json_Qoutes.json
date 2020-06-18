@@ -1,0 +1,18 @@
+{
+	"name": "RR186012_raw_json_Qoutes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw",
+				"fileSystem": "rr186012"
+			}
+		}
+	}
+}
