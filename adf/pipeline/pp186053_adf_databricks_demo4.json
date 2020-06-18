@@ -31,7 +31,7 @@
 				]
 			},
 			{
-				"name": "Notebook1",
+				"name": "notebook_pp186053",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -48,7 +48,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/prasanna.priyadarshi@qateradatacloud.com/pp186053_1/UseCase_Demo_session_2"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
