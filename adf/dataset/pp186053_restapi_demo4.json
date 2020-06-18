@@ -1,0 +1,12 @@
+{
+	"name": "pp186053_restapi_demo4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "restls_pp186053",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
