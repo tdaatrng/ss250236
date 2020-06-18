@@ -63,14 +63,9 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false
@@ -97,19 +92,19 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText2",
+						"referenceName": "jp186004_parguetOutput",
 						"type": "DatasetReference",
 						"parameters": {
-							"destFileName": {
-								"value": "@activity('fetch_parameter').output.firstRow.destFileName",
+							"destContainer": {
+								"value": "@activity('fetch_parameter').output.firstRow.destContainer",
 								"type": "Expression"
 							},
-							"destDirectory": {
+							"destDirectorydestDirectory": {
 								"value": "@activity('fetch_parameter').output.firstRow.destDirectory",
 								"type": "Expression"
 							},
-							"destContainer": {
-								"value": "@activity('fetch_parameter').output.FirstRow.destContainer",
+							"destFileName": {
+								"value": "@activity('fetch_parameter').output.firstRow.destFileName",
 								"type": "Expression"
 							}
 						}
