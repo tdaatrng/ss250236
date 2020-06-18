@@ -1,26 +1,30 @@
 {
-	"name": "flat_csv_sink2_ds",
+	"name": "hg250013_flat_file_source_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output2",
+				"fileName": "nosales.txt",
+				"folderPath": "input",
 				"fileSystem": "hg250013"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
-				"name": "Flight",
+				"name": "Flight#",
 				"type": "String"
 			},
 			{

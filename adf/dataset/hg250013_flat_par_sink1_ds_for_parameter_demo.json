@@ -1,17 +1,41 @@
 {
-	"name": "flat_par_sink1_ds",
+	"name": "hg250013_flat_par_sink1_ds_for_parameter_demo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"destContainer": {
+				"type": "string"
+			},
+			"destDirectory": {
+				"type": "string"
+			},
+			"destFileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output1",
-				"fileSystem": "hg250013"
+				"fileName": {
+					"value": "@dataset().destFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().destDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().destContainer",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},

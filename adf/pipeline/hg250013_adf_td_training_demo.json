@@ -1,9 +1,9 @@
 {
-	"name": "adf_td_training_demo",
+	"name": "hg250013_adf_td_training_demo",
 	"properties": {
 		"activities": [
 			{
-				"name": "FullParCopy1",
+				"name": "FullParquetCopy",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -28,7 +28,8 @@
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
 						}
 					},
 					"enableStaging": false,
@@ -100,13 +101,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "flat_par_sink1_ds",
+						"referenceName": "hg250013_flat_par_sink1_ds",
 						"type": "DatasetReference"
 					}
 				]
@@ -214,13 +215,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "json_file_sink3_ds",
+						"referenceName": "hg250013_json_file_sink3_ds",
 						"type": "DatasetReference"
 					}
 				]
@@ -230,7 +231,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "FullParCopy1",
+						"activity": "FullParquetCopy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -311,13 +312,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "flat_file_source_ds",
+						"referenceName": "hg250013_flat_file_source_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "flat_csv_sink2_ds",
+						"referenceName": "hg250013_flat_csv_sink2_ds",
 						"type": "DatasetReference"
 					}
 				]
@@ -343,7 +344,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "makeDataPartitioned",
+						"referenceName": "hg250013_makeDataPartitioned",
 						"type": "DataFlowReference"
 					},
 					"compute": {
@@ -353,6 +354,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "ADF_Demo"
+		},
 		"annotations": []
 	}
 }

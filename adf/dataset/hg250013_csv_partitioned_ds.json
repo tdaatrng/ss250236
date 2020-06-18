@@ -1,9 +1,12 @@
 {
-	"name": "csv_partitioned_ds",
+	"name": "hg250013_csv_partitioned_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
