@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetDatafromSource",
+				"name": "GetDataRestAPI",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -19,6 +19,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "HandsON"
+		},
 		"annotations": []
 	}
 }
