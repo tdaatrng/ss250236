@@ -26,6 +26,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "HandsON"
+		},
 		"annotations": []
 	}
 }
