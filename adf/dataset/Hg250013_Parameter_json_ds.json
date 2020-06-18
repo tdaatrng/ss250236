@@ -1,5 +1,5 @@
 {
-	"name": "hg250013_parameter_ds",
+	"name": "Hg250013_Parameter_json_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
@@ -21,22 +21,28 @@
 		"schema": {
 			"type": "object",
 			"properties": {
-				"sourceDataBase": {
+				"emailURL": {
 					"type": "string"
 				},
-				"sourceTable": {
+				"EmailId": {
 					"type": "string"
 				},
-				"targetDataBase": {
+				"sourceFileName": {
 					"type": "string"
 				},
-				"targetTable": {
+				"sourceDirectory": {
 					"type": "string"
 				},
-				"partitionCol": {
+				"sourceContainer": {
 					"type": "string"
 				},
-				"columns": {
+				"destFileName": {
+					"type": "string"
+				},
+				"destDirectory": {
+					"type": "string"
+				},
+				"destContainer": {
 					"type": "string"
 				}
 			}

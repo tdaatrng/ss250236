@@ -1,18 +1,18 @@
 {
-	"name": "hg250013_flat_par_sink1_ds_for_parameter_demo",
+	"name": "hg250013_parameter_sink_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"destContainer": {
+			"destFileName": {
 				"type": "string"
 			},
 			"destDirectory": {
 				"type": "string"
 			},
-			"destFileName": {
+			"destContainer": {
 				"type": "string"
 			}
 		},
@@ -39,31 +39,6 @@
 			},
 			"compressionCodec": "snappy"
 		},
-		"schema": [
-			{
-				"name": "FlightNo",
-				"type": "UTF8"
-			},
-			{
-				"name": "Origin",
-				"type": "UTF8"
-			},
-			{
-				"name": "Dest",
-				"type": "UTF8"
-			},
-			{
-				"name": "FlightDate",
-				"type": "UTF8"
-			},
-			{
-				"name": "NoSalesReason",
-				"type": "UTF8"
-			},
-			{
-				"name": "TransmittingFlightAttd",
-				"type": "UTF8"
-			}
-		]
+		"schema": []
 	}
 }

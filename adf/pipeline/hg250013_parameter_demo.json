@@ -136,7 +136,8 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"exists"
+						"itemName",
+						"columnCount"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
@@ -148,6 +149,15 @@
 				}
 			}
 		],
+		"parameters": {
+			"sourceFileName": {
+				"type": "string",
+				"defaultValue": "nosales.txt"
+			}
+		},
+		"folder": {
+			"name": "ADF_Demo"
+		},
 		"annotations": []
 	}
 }

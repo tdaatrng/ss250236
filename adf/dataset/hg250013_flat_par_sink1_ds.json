@@ -5,6 +5,9 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "ADF_Demo_DS"
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {

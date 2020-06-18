@@ -408,6 +408,9 @@
 				"type": "Boolean"
 			}
 		},
+		"folder": {
+			"name": "ADF_Demo"
+		},
 		"annotations": []
 	}
 }
