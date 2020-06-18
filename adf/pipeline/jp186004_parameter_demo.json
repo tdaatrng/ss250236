@@ -132,22 +132,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DelimitedText2",
-						"type": "DatasetReference",
-						"parameters": {
-							"destFileName": {
-								"value": "@activity('Copy data1').output.destFileName",
-								"type": "Expression"
-							},
-							"destDirectory": {
-								"value": "@activity('Copy data1').output.destDirectory",
-								"type": "Expression"
-							},
-							"destContainer": {
-								"value": "@activity('Copy data1').output.destContainer",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "jp186004_getMetadataOutput",
+						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"exists"
