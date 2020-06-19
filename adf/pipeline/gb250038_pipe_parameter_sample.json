@@ -97,7 +97,21 @@
 				"outputs": [
 					{
 						"referenceName": "gb250038_adls_output_parasample",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"destContainer": {
+								"value": "@activity('gb2500_lookup_parafile').output.firstRow.destContainer",
+								"type": "Expression"
+							},
+							"destDirectory": {
+								"value": "@activity('gb2500_lookup_parafile').output.firstRow.destDirectory",
+								"type": "Expression"
+							},
+							"destFileName": {
+								"value": "@activity('gb2500_lookup_parafile').output.destFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
