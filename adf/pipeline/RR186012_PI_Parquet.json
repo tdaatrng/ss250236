@@ -102,10 +102,7 @@
 				"outputs": [
 					{
 						"referenceName": "RR186012_DS_People_Json",
-						"type": "DatasetReference",
-						"parameters": {
-							"Filename": "people.json"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
