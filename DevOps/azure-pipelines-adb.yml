@@ -1,0 +1,26 @@
+#Build notebooks pipeline
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - adb/*
+
+pool:
+    vmImage: 'windows-latest' 
+  
+
+steps:
+- script: |
+    mkdir -p $(Build.ArtifactStagingDirectory)\adb
+    xcopy "$(Build.SourcesDirectory)\adb" "$(Build.ArtifactStagingDirectory)\adb" /s /e /y
+  workingDirectory: $(Build.ArtifactStagingDirectory)
+  displayName: 'Prepare Notebook Build Artifacts adb'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish adb Notebook Artifacts
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)\adb'
+    artifactName: adb-notebooks

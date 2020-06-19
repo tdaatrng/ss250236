@@ -1,9 +1,20 @@
 {
-	"name": "hg250013_flat_file_source_ds",
+	"name": "hg250013_flat_file_source_ds_for_parameter_demo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"containerName": {
+				"type": "string"
+			},
+			"directoryName": {
+				"type": "string"
+			},
+			"fileName": {
+				"type": "string"
+			}
 		},
 		"folder": {
 			"name": "ADF_Demo_DS"
@@ -13,9 +24,18 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "nosales.txt",
-				"folderPath": "input",
-				"fileSystem": "hg250013"
+				"fileName": {
+					"value": "@dataset().fileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().directoryName",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().containerName",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": "^",
 			"escapeChar": "\\",

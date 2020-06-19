@@ -1,6 +1,9 @@
 {
 	"name": "hg250013_makeDataPartitioned",
 	"properties": {
+		"folder": {
+			"name": "ADF_Demo_DF"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
