@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "people.json",
 				"folderPath": "output2",
 				"fileSystem": "rr186012"
 			}
