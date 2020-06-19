@@ -26,14 +26,9 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -111,7 +106,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Nj186007_rim_copy_output",
+						"referenceName": "nj186007_Parquet1",
 						"type": "DatasetReference"
 					}
 				]
