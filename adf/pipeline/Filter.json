@@ -50,6 +50,10 @@
 					6,
 					7
 				]
+			},
+			"Output": {
+				"type": "array",
+				"defaultValue": "[op1,0p2,op3]"
 			}
 		},
 		"annotations": []
