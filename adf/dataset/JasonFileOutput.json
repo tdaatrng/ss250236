@@ -9,7 +9,9 @@
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw",
+				"fileSystem": "jp186004"
 			}
 		}
 	}
