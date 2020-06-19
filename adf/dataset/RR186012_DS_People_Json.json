@@ -1,0 +1,23 @@
+{
+	"name": "RR186012_DS_People_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "output2",
+				"fileSystem": "rr186012"
+			}
+		}
+	}
+}
