@@ -9,9 +9,12 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": "nosales.txt",
+				"folderPath": "input",
+				"fileSystem": "jp186004"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ",^",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
