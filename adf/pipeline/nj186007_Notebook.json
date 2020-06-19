@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/neha.jain@qateradatacloud.com/nj186007/DDLs"
+					"notebookPath": "/Users/neha.jain@qateradatacloud.com/nj186007/DDLs1"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
