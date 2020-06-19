@@ -1,6 +1,10 @@
 {
 	"name": "RestAPIgetData",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rest_api_ls",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
