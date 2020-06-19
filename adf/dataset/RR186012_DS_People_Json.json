@@ -5,20 +5,12 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"Filename": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().Filename",
-					"type": "Expression"
-				},
+				"fileName": "people.json",
 				"folderPath": "output2",
 				"fileSystem": "rr186012"
 			}
