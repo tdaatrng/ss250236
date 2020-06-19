@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=100000",
+			"url": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=10000",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
