@@ -66,7 +66,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/rhutubh.ranade@qateradatacloud.com/RR186012_RIMUseCase"
+					"notebookPath": "/Users/rhutubh.ranade@qateradatacloud.com/rr186012/RR186012_RIMUseCase"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
