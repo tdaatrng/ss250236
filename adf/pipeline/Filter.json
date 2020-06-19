@@ -174,7 +174,7 @@
 			},
 			"Output": {
 				"type": "array",
-				"defaultValue": "[op1,0p2,op3]"
+				"defaultValue": "[op1,op2,op3]"
 			}
 		},
 		"annotations": []
