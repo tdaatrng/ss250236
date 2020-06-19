@@ -53,7 +53,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "RR186012_DS_Output",
+						"referenceName": "RR186012_DS_People_CSV",
 						"type": "DatasetReference"
 					}
 				]
