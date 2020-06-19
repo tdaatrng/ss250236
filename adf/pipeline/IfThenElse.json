@@ -1,6 +1,28 @@
 {
 	"name": "IfThenElse",
 	"properties": {
+		"activities": [
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
+		"parameters": {
+			"IN_To_OUT": {
+				"type": "string",
+				"defaultValue": "true"
+			},
+			"OutDir": {
+				"type": "string",
+				"defaultValue": "OUT"
+			},
+			"WrkDir": {
+				"type": "string",
+				"defaultValue": "WORK"
+			}
+		},
 		"annotations": []
 	}
 }
