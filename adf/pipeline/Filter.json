@@ -1,6 +1,20 @@
 {
 	"name": "Filter",
 	"properties": {
+		"parameters": {
+			"ListofArray": {
+				"type": "array",
+				"defaultValue": [
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7
+				]
+			}
+		},
 		"annotations": []
 	}
 }
