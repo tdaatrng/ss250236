@@ -21,6 +21,16 @@
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "GET"
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
@@ -28,7 +38,37 @@
 						"referenceName": "RestResource1",
 						"type": "DatasetReference"
 					}
+				],
+				"outputs": [
+					{
+						"referenceName": "nj186007_adb_json",
+						"type": "DatasetReference"
+					}
 				]
+			},
+			{
+				"name": "Json_NB",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Rest_ap1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
