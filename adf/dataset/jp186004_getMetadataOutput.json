@@ -12,7 +12,7 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": "nosales.txt",
 				"folderPath": "input",
-				"fileSystem": "jp186004"
+				"fileSystem": "hg250013"
 			},
 			"columnDelimiter": "^",
 			"escapeChar": "\\",
