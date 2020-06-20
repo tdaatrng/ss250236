@@ -14,24 +14,11 @@
 					},
 					"activities": [
 						{
-							"name": "GetMetadata",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "GetMetadata",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true
-							}
-						},
-						{
 							"name": "If Condition1",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "GetMetadata",
+									"activity": "Get Metadata1",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -66,6 +53,34 @@
 										}
 									}
 								]
+							}
+						},
+						{
+							"name": "Get Metadata1",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "GetMetaData",
+									"type": "DatasetReference"
+								},
+								"fieldList": [
+									"exists"
+								],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
 							}
 						}
 					],
