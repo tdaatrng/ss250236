@@ -23,7 +23,8 @@
 						"lastModified",
 						"size",
 						"structure",
-						"columnCount"
+						"columnCount",
+						"exists"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings"
