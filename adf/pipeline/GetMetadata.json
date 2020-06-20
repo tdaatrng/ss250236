@@ -20,10 +20,6 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"lastModified",
-						"size",
-						"structure",
-						"columnCount",
 						"exists"
 					],
 					"storeSettings": {
