@@ -27,7 +27,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@bool(activity('GetMetadata').output)",
+									"value": "@bool(activity('Get Metadata').output)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
