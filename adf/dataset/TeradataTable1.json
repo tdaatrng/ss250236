@@ -1,0 +1,8 @@
+{
+	"name": "TeradataTable1",
+	"properties": {
+		"annotations": [],
+		"type": "TeradataTable",
+		"schema": []
+	}
+}
