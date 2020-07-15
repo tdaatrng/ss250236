@@ -1,0 +1,16 @@
+{
+	"name": "SrcTableTranscend",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Transcend_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "TeradataTable",
+		"schema": [],
+		"typeProperties": {
+			"database": "PT186024",
+			"table": "Insurance"
+		}
+	}
+}
