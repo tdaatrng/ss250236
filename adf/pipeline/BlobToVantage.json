@@ -1,0 +1,491 @@
+{
+	"name": "BlobToVantage",
+	"properties": {
+		"description": "Blob To Vantage",
+		"activities": [
+			{
+				"name": "Copy data from Blob To Transcend",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "OdbcSink",
+						"writeBatchSize": 0
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "months_as_customer",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "months_as_customer",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "age",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "age",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "policy_number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "policy_number",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "policy_bind_date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "policy_bind_date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "policy_state",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "policy_state",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "policy_csl",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "policy_csl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "policy_deductable",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "policy_deductable",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "policy_annual_premium",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "policy_annual_premium",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "umbrella_limit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "umbrella_limit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "insured_zip",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "insured_zip",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "insured_sex",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "insured_sex",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "insured_education_level",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "insured_education_level",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "insured_occupation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "insured_occupation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "insured_hobbies",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "insured_hobbies",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "insured_relationship",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "insured_relationship",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "capital-gains",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "capital_gains",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "capital-loss",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "capital_loss",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_type",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "collision_type",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "collision_type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_severity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_severity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "authorities_contacted",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "authorities_contacted",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_state",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_state",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_city",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_city",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_location",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_location",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "incident_hour_of_the_day",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "incident_hour_of_the_day",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "number_of_vehicles_involved",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "number_of_vehicles_involved",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "property_damage",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "property_damage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "bodily_injuries",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "bodily_injuries",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "witnesses",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "witnesses",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "police_report_available",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "police_report_available",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "total_claim_amount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "total_claim_amount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "injury_claim",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "injury_claim",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "property_claim",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "property_claim",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "vehicle_claim",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "vehicle_claim",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "auto_make",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "auto_make",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "auto_model",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "auto_model",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "auto_year",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "auto_year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "fraud_reported",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "fraud_reported",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SrcTranscend",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TgtTableTranscend",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
