@@ -1,0 +1,15 @@
+{
+	"name": "TgtTableTranscend",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "odbc_vantage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"pt186024\".\"Insurance\""
+		}
+	}
+}
