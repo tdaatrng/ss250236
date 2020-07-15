@@ -10,10 +10,13 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "Insurance.csv",
 				"folderPath": "vantage/input",
 				"fileSystem": "pt186024"
 			},
 			"columnDelimiter": "|",
+			"compressionCodec": "gzip",
+			"compressionLevel": "Fastest",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
