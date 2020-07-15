@@ -1,0 +1,893 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "td-aa-trng-adf"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/hg250013_makeDataPartitioned')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"folder": {
+					"name": "ADF_Demo_DF"
+				},
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "hg250013_flat_file_source_ds",
+								"type": "DatasetReference"
+							},
+							"name": "FlatSource"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "hg250013_csv_partitioned_ds",
+								"type": "DatasetReference"
+							},
+							"name": "sink4"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\twildcardPaths:['input/*']) ~> FlatSource\nFlatSource sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionBy('key',\n\t\t0,\n\t\tFlightDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink4"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hg250013_adf_td_training_demo')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "FullParquetCopy",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Flight#",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FlightNo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Origin",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Origin",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Dest",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Dest",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FlightDate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FlightDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NoSalesReason",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NoSalesReason",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TransmittingFlightAttd",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TransmittingFlightAttd",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "hg250013_flat_file_source_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "hg250013_flat_par_sink1_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "flatToJsonCopy3",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "partialflatfile2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Flight#",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['FlightNo']"
+										}
+									},
+									{
+										"source": {
+											"name": "Origin",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['Origin']"
+										}
+									},
+									{
+										"source": {
+											"name": "Dest",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['Dest']"
+										}
+									},
+									{
+										"source": {
+											"name": "FlightDate",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['FlightDate']"
+										}
+									},
+									{
+										"source": {
+											"name": "NoSalesReason",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['noSalesReason']"
+										}
+									},
+									{
+										"source": {
+											"name": "TransmittingFlightAttd",
+											"type": "String"
+										},
+										"sink": {
+											"path": "$['TransmittingFlightAttd']"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "hg250013_flat_file_source_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "hg250013_json_file_sink3_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "partialflatfile2",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "FullParquetCopy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Flight#",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Flight"
+										}
+									},
+									{
+										"source": {
+											"name": "Origin",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Origin"
+										}
+									},
+									{
+										"source": {
+											"name": "Dest",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Dest"
+										}
+									},
+									{
+										"source": {
+											"name": "FlightDate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FlightDate"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "hg250013_flat_file_source_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "hg250013_flat_csv_sink2_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "makeDataPartitioned",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "flatToJsonCopy3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "hg250013_makeDataPartitioned",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"FlatSource": {},
+									"sink4": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "ADF_Demo"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/hg250013_makeDataPartitioned')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hg250013_adf_td_training_demo_Run_par')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "FullParquetCopy",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Flight#",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FlightNo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Origin",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Origin",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Dest",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Dest",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "FlightDate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FlightDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NoSalesReason",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NoSalesReason",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TransmittingFlightAttd",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TransmittingFlightAttd",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "hg250013_flat_file_source_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "hg250013_flat_par_sink1_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "partialflatfile",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "If Condition1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Flight#",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Flight"
+										}
+									},
+									{
+										"source": {
+											"name": "Origin",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Origin"
+										}
+									},
+									{
+										"source": {
+											"name": "Dest",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Dest"
+										}
+									},
+									{
+										"source": {
+											"name": "FlightDate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FlightDate"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "hg250013_flat_file_source_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "hg250013_flat_csv_sink2_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "makeDataPartitioned",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "hg250013_makeDataPartitioned",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"FlatSource": {},
+									"sink4": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Set variable FullParCopy",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "FullParquetCopy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "FullParCopy",
+							"value": true
+						}
+					},
+					{
+						"name": "Set variable partialflatFile check",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "makeDataPartitioned",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "PartialFlatFile",
+							"value": true
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Set variable FullParCopy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Set variable partialflatFile check",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@and(equals(variables('FullParCopy'),true),equals(variables('PartialFlatFile'),true))",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "flatToJsonCopy3",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobFSReadSettings",
+												"recursive": true
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "JsonSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "JsonWriteSettings",
+												"quoteAllText": true
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"name": "Flight#",
+														"type": "String"
+													},
+													"sink": {
+														"path": "$['FlightNo']"
+													}
+												},
+												{
+													"source": {
+														"name": "Origin",
+														"type": "String"
+													},
+													"sink": {
+														"path": "$['Origin']"
+													}
+												},
+												{
+													"source": {
+														"name": "Dest",
+														"type": "String"
+													},
+													"sink": {
+														"path": "$['Dest']"
+													}
+												},
+												{
+													"source": {
+														"name": "FlightDate",
+														"type": "String"
+													},
+													"sink": {
+														"path": "$['FlightDate']"
+													}
+												},
+												{
+													"source": {
+														"name": "NoSalesReason",
+														"type": "String"
+													},
+													"sink": {
+														"path": "$['noSalesReason']"
+													}
+												},
+												{
+													"source": {
+														"name": "TransmittingFlightAttd",
+														"type": "String"
+													},
+													"sink": {
+														"path": "$['TransmittingFlightAttd']"
+													}
+												}
+											]
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "hg250013_flat_file_source_ds",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "hg250013_json_file_sink3_ds",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"variables": {
+					"FullParCopy": {
+						"type": "Boolean"
+					},
+					"PartialFlatFile": {
+						"type": "Boolean"
+					}
+				},
+				"folder": {
+					"name": "ADF_Demo"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/hg250013_makeDataPartitioned')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Test')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "hg250013_adf_td_training_demo",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 60,
+						"startTime": "2020-06-11T10:13:00.000Z",
+						"endTime": "2020-06-13T10:13:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/hg250013_adf_td_training_demo')]"
+			]
+		}
+	]
+}

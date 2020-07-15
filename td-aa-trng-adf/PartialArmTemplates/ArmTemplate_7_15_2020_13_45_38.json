@@ -6,18 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "td-aa-trng-adf"
-		},
-		"adls_ls_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://tdaastrgdls.dfs.core.windows.net/"
-		},
-		"key_vault_ls_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://td-aa-trng-kv.vault.azure.net/"
-		},
-		"rest_api_ls_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150"
 		}
 	},
 	"variables": {
@@ -64,15 +52,13 @@
 						"inputs": [
 							{
 								"referenceName": "hg250013_Rest_api_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "hg250013_raw_json_rest_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -257,15 +243,13 @@
 						"inputs": [
 							{
 								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "hg250013_flat_par_sink1_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -373,15 +357,13 @@
 						"inputs": [
 							{
 								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "hg250013_json_file_sink3_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -472,15 +454,13 @@
 						"inputs": [
 							{
 								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "hg250013_flat_csv_sink2_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -506,14 +486,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "hg250013_makeDataPartitioned",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"FlatSource": {},
-									"sink4": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -639,15 +613,13 @@
 						"inputs": [
 							{
 								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "hg250013_flat_par_sink1_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -738,15 +710,13 @@
 						"inputs": [
 							{
 								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "hg250013_flat_csv_sink2_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -765,14 +735,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "hg250013_makeDataPartitioned",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"FlatSource": {},
-									"sink4": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -934,15 +898,13 @@
 									"inputs": [
 										{
 											"referenceName": "hg250013_flat_file_source_ds",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									],
 									"outputs": [
 										{
 											"referenceName": "hg250013_json_file_sink3_ds",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									]
 								}
@@ -1002,8 +964,7 @@
 							},
 							"dataset": {
 								"referenceName": "hg250013_parameter_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							},
 							"firstRowOnly": true
 						}
@@ -1109,8 +1070,7 @@
 						"typeProperties": {
 							"dataset": {
 								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							},
 							"fieldList": [
 								"itemName",
@@ -1196,9 +1156,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Hg250013_parameter_source_ds')]",
@@ -1235,9 +1193,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_Rest_api_ds')]",
@@ -1250,7 +1206,6 @@
 				},
 				"annotations": [],
 				"type": "RestResource",
-				"typeProperties": {},
 				"schema": []
 			},
 			"dependsOn": [
@@ -1284,9 +1239,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_flat_csv_sink2_ds')]",
@@ -1340,9 +1293,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_flat_file_source_ds')]",
@@ -1397,9 +1348,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_flat_file_source_ds_for_parameter_demo')]",
@@ -1474,9 +1423,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_flat_par_sink1_ds')]",
@@ -1528,9 +1475,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_flat_par_sink1_ds_for_parameter_demo')]",
@@ -1602,9 +1547,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_json_file_sink3_ds')]",
@@ -1626,12 +1569,9 @@
 						"folderPath": "output3",
 						"fileSystem": "hg250013"
 					}
-				},
-				"schema": {}
+				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_parameter_ds')]",
@@ -1679,9 +1619,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_parameter_sink_ds')]",
@@ -1728,9 +1666,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_raw_json_rest_ds')]",
@@ -1749,12 +1685,9 @@
 						"folderPath": "raw",
 						"fileSystem": "hg250013"
 					}
-				},
-				"schema": {}
+				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_ls')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/adb_ls')]",
@@ -1781,19 +1714,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/adls_ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('adls_ls_properties_typeProperties_url')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/key_vault_ls')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1801,7 +1721,7 @@
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
-					"baseUrl": "[parameters('key_vault_ls_properties_typeProperties_baseUrl')]"
+					"baseUrl": "https://td-aa-trng-kv.vault.azure.net/"
 				}
 			},
 			"dependsOn": []
@@ -1814,7 +1734,7 @@
 				"annotations": [],
 				"type": "RestService",
 				"typeProperties": {
-					"url": "[parameters('rest_api_ls_properties_typeProperties_url')]",
+					"url": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
@@ -1833,8 +1753,7 @@
 						"pipelineReference": {
 							"referenceName": "hg250013_adf_td_training_demo",
 							"type": "PipelineReference"
-						},
-						"parameters": {}
+						}
 					}
 				],
 				"type": "ScheduleTrigger",

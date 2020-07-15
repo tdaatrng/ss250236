@@ -11,6 +11,14 @@
 			"type": "string",
 			"defaultValue": "https://tdaastrgdls.dfs.core.windows.net/"
 		},
+		"key_vault_ls_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://td-aa-trng-kv.vault.azure.net/"
+		},
+		"rest_api_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -40,10 +48,36 @@
 					},
 					"adls_ls_properties_typeProperties_url": {
 						"value": "[parameters('adls_ls_properties_typeProperties_url')]"
+					},
+					"key_vault_ls_properties_typeProperties_baseUrl": {
+						"value": "[parameters('key_vault_ls_properties_typeProperties_baseUrl')]"
+					},
+					"rest_api_ls_properties_typeProperties_url": {
+						"value": "[parameters('rest_api_ls_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+			]
 		}
 	]
 }

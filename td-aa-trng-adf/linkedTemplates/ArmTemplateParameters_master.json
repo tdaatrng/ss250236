@@ -8,6 +8,12 @@
 		"adls_ls_properties_typeProperties_url": {
 			"value": "https://tdaastrgdls.dfs.core.windows.net/"
 		},
+		"key_vault_ls_properties_typeProperties_baseUrl": {
+			"value": "https://td-aa-trng-kv.vault.azure.net/"
+		},
+		"rest_api_ls_properties_typeProperties_url": {
+			"value": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150"
+		},
 		"containerUri": {
 			"value": ""
 		},
