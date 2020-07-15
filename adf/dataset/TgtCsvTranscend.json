@@ -15,8 +15,6 @@
 				"fileSystem": "pt186024"
 			},
 			"columnDelimiter": "|",
-			"compressionCodec": "gzip",
-			"compressionLevel": "Fastest",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
