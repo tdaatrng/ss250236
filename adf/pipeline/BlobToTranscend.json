@@ -1,7 +1,7 @@
 {
-	"name": "BlobToVantage",
+	"name": "BlobToTranscend",
 	"properties": {
-		"description": "Blob To Vantage",
+		"description": "Blob To Transcend",
 		"activities": [
 			{
 				"name": "Copy data from Blob To Transcend",
