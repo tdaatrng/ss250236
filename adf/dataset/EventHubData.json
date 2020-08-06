@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "part-00000-0859c1bb-8852-49fe-8bd4-2d34a8b2436d.c000.snappy.parquet",
-				"folderPath": "raw/AEHMsgCreateDate=2020-08-06/AEHMsgCreateHr=08",
+				"fileName": "part-00000-9006486c-d76b-4b39-b621-20aea2596226.c000.snappy.parquet",
+				"folderPath": "raw/AEHMsgCreateDate=2020-08-06/AEHMsgCreateHr=09",
 				"fileSystem": "hg250013"
 			},
 			"compressionCodec": "snappy"
