@@ -21,7 +21,7 @@
 			"blobPathBeginsWith": "/source/blobs/Employee",
 			"blobPathEndsWith": ".csv",
 			"ignoreEmptyBlobs": false,
-			"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgpoc",
+			"scope": "/subscriptions/ee900dad-74fd-47bb-b12e-be9f0418e46a/resourceGroups/rg-poc/providers/Microsoft.Storage/storageAccounts/tdpocstrg",
 			"events": [
 				"Microsoft.Storage.BlobCreated"
 			]
