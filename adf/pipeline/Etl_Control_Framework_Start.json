@@ -333,6 +333,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "Audit Control Framework"
+		},
 		"annotations": []
 	}
 }

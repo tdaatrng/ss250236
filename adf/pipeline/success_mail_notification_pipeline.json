@@ -38,6 +38,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "Audit Control Framework"
+		},
 		"annotations": []
 	}
 }
