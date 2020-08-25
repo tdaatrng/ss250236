@@ -4,18 +4,7 @@
 		"description": "Trigger will work from file name as Employee*.csv in source container.",
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "Etl_Control_Framework_Start",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"file_name": "@trigger().outputs.body.fileName",
-					"folder_name": "@trigger().outputs.body.folderPath"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/source/blobs/Employee",
