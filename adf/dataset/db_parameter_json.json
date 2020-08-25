@@ -5,6 +5,9 @@
 			"referenceName": "blob_ls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Audit Control Framework Dataset"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
