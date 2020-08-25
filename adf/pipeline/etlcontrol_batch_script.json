@@ -80,7 +80,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "@concat('cmd /c sample_cmd_test.bat',' ',variables('DatabaseServer'),' ',variables('UserName'),' ',variables('Password'),' ',variables('Format_Date'),' ',variables('TFileName'))",
+						"value": "@concat('cmd /c audit_control_batch.bat',' ',variables('DatabaseServer'),' ',variables('UserName'),' ',variables('Password'),' ',variables('Format_Date'),' ',variables('TFileName'))",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
