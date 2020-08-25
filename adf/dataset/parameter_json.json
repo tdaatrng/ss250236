@@ -1,5 +1,5 @@
 {
-	"name": "db_parameter_json",
+	"name": "parameter_json",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "blob_ls",
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "ADF_parameters_2.json",
+				"fileName": "adf_paramset.json",
 				"container": "parameter"
 			}
 		},
