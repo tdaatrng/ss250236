@@ -7,6 +7,30 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "td-aa-trng-adf"
 		},
+		"adf_batch_ls_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'adf_batch_ls'"
+		},
+		"batch_blob_ln_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'batch_blob_ln'"
+		},
+		"blob_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blob_ls'"
+		},
+		"adf_batch_ls_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "tdaapocbatch"
+		},
+		"adf_batch_ls_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://tdaapocbatch.eastus.batch.azure.com"
+		},
+		"adf_batch_ls_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "td-aa-poc-pool-id"
+		},
 		"adls_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://tdaastrgdls.dfs.core.windows.net/"
@@ -15,9 +39,29 @@
 			"type": "string",
 			"defaultValue": "https://td-aa-trng-kv.vault.azure.net/"
 		},
-		"rest_api_ls_properties_typeProperties_url": {
+		"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
 			"type": "string",
-			"defaultValue": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150"
+			"defaultValue": "@trigger().outputs.body.fileName"
+		},
+		"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.folderPath"
+		},
+		"blob_employee_trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/ee900dad-74fd-47bb-b12e-be9f0418e46a/resourceGroups/rg-poc/providers/Microsoft.Storage/storageAccounts/tdpocstrg"
+		},
+		"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.fileName"
+		},
+		"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.folderPath"
+		},
+		"blob_insurance_trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/ee900dad-74fd-47bb-b12e-be9f0418e46a/resourceGroups/rg-poc/providers/Microsoft.Storage/storageAccounts/tdpocstrg"
 		},
 		"containerUri": {
 			"type": "string",
@@ -33,7 +77,7 @@
 	},
 	"resources": [
 		{
-			"name": "ArmTemplate_0",
+			"name": "td-aa-trng-adf_ArmTemplate_0",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2018-02-01",
 			"properties": {
@@ -46,21 +90,24 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"batch_blob_ln_connectionString": {
+						"value": "[parameters('batch_blob_ln_connectionString')]"
+					},
+					"blob_ls_connectionString": {
+						"value": "[parameters('blob_ls_connectionString')]"
+					},
 					"adls_ls_properties_typeProperties_url": {
 						"value": "[parameters('adls_ls_properties_typeProperties_url')]"
 					},
 					"key_vault_ls_properties_typeProperties_baseUrl": {
 						"value": "[parameters('key_vault_ls_properties_typeProperties_baseUrl')]"
-					},
-					"rest_api_ls_properties_typeProperties_url": {
-						"value": "[parameters('rest_api_ls_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "ArmTemplate_1",
+			"name": "td-aa-trng-adf_ArmTemplate_1",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2018-02-01",
 			"properties": {
@@ -72,11 +119,41 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"adf_batch_ls_accessKey": {
+						"value": "[parameters('adf_batch_ls_accessKey')]"
+					},
+					"adf_batch_ls_properties_typeProperties_accountName": {
+						"value": "[parameters('adf_batch_ls_properties_typeProperties_accountName')]"
+					},
+					"adf_batch_ls_properties_typeProperties_batchUri": {
+						"value": "[parameters('adf_batch_ls_properties_typeProperties_batchUri')]"
+					},
+					"adf_batch_ls_properties_typeProperties_poolName": {
+						"value": "[parameters('adf_batch_ls_properties_typeProperties_poolName')]"
+					},
+					"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
+						"value": "[parameters('blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name')]"
+					},
+					"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
+						"value": "[parameters('blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name')]"
+					},
+					"blob_employee_trigger_properties_typeProperties_scope": {
+						"value": "[parameters('blob_employee_trigger_properties_typeProperties_scope')]"
+					},
+					"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
+						"value": "[parameters('blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_file_name')]"
+					},
+					"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
+						"value": "[parameters('blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name')]"
+					},
+					"blob_insurance_trigger_properties_typeProperties_scope": {
+						"value": "[parameters('blob_insurance_trigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_0')]"
 			]
 		}
 	]

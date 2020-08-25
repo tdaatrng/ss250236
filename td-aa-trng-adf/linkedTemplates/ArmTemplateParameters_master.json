@@ -5,14 +5,47 @@
 		"factoryName": {
 			"value": "td-aa-trng-adf"
 		},
+		"adf_batch_ls_accessKey": {
+			"value": ""
+		},
+		"batch_blob_ln_connectionString": {
+			"value": ""
+		},
+		"blob_ls_connectionString": {
+			"value": ""
+		},
+		"adf_batch_ls_properties_typeProperties_accountName": {
+			"value": "tdaapocbatch"
+		},
+		"adf_batch_ls_properties_typeProperties_batchUri": {
+			"value": "https://tdaapocbatch.eastus.batch.azure.com"
+		},
+		"adf_batch_ls_properties_typeProperties_poolName": {
+			"value": "td-aa-poc-pool-id"
+		},
 		"adls_ls_properties_typeProperties_url": {
 			"value": "https://tdaastrgdls.dfs.core.windows.net/"
 		},
 		"key_vault_ls_properties_typeProperties_baseUrl": {
 			"value": "https://td-aa-trng-kv.vault.azure.net/"
 		},
-		"rest_api_ls_properties_typeProperties_url": {
-			"value": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=150"
+		"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
+			"value": "@trigger().outputs.body.fileName"
+		},
+		"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
+			"value": "@trigger().outputs.body.folderPath"
+		},
+		"blob_employee_trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/ee900dad-74fd-47bb-b12e-be9f0418e46a/resourceGroups/rg-poc/providers/Microsoft.Storage/storageAccounts/tdpocstrg"
+		},
+		"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
+			"value": "@trigger().outputs.body.fileName"
+		},
+		"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
+			"value": "@trigger().outputs.body.folderPath"
+		},
+		"blob_insurance_trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/ee900dad-74fd-47bb-b12e-be9f0418e46a/resourceGroups/rg-poc/providers/Microsoft.Storage/storageAccounts/tdpocstrg"
 		},
 		"containerUri": {
 			"value": ""
