@@ -204,7 +204,7 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "db_parameter_json",
+						"referenceName": "parameter_json",
 						"type": "DatasetReference"
 					}
 				}
