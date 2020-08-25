@@ -1,0 +1,49 @@
+{
+	"name": "error_mail_notification_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Send email on failure",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-90.eastus.logic.azure.com:443/workflows/19b0912b6bc24769bb219b4536da5255/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UKfpOsxAcEMFiqhKK_ZPoU-m_NkSC5PsN36W-kUkTQU",
+					"method": "POST",
+					"headers": {
+						"Content-type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\", \n\t\"Subject\" : \"An error has occured in the ',pipeline().parameters.Pipe_line_Name,'-pipeline for file-',pipeline().parameters.Source_File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\t\n\t\"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\", \n\t\"Activity\" : \"',pipeline().parameters.Activity,'\", \n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.Source_File_Name,'\"\n\t}') ",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"EmailTo": {
+				"type": "string"
+			},
+			"Activity": {
+				"type": "string"
+			},
+			"ErrorMessage": {
+				"type": "string"
+			},
+			"Pipe_line_Name": {
+				"type": "string"
+			},
+			"Source_File_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
