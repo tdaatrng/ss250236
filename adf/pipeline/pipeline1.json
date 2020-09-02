@@ -24,6 +24,10 @@
 						"linkedServices": [],
 						"datasets": []
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adf_batch_ls",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
