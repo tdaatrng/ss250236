@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "sj186068_batch_adls_pipeline",
 	"properties": {
 		"activities": [
 			{
