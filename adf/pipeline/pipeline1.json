@@ -17,9 +17,10 @@
 				"typeProperties": {
 					"command": "cmd /c tbuild_load.bat",
 					"resourceLinkedService": {
-						"referenceName": "blob_ls",
+						"referenceName": "batch_adls_ls",
 						"type": "LinkedServiceReference"
 					},
+					"folderPath": "sj186068/files",
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
