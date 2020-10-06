@@ -1,0 +1,32 @@
+{
+	"name": "as186113_rim_hist_agr",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "as186113_demo_file1",
+						"type": "DatasetReference"
+					},
+					"name": "RIMSource1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "RimFileOp1",
+						"type": "DatasetReference"
+					},
+					"name": "RIMDataFlowOutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "GenericReason"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> RIMSource1\nRIMSource1 derive(GenericReason = locate(NoSalesReason, 'Others')) ~> GenericReason\nGenericReason sink(input(\n\t\t{Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['RimOutputFile'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> RIMDataFlowOutput"
+		}
+	}
+}
