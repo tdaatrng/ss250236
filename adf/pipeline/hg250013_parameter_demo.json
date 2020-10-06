@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "getParameterFromConfigFolder",
+				"name": "getParameterFromConfigFolder11",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -37,7 +37,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "getParameterFromConfigFolder",
+						"activity": "getParameterFromConfigFolder11",
 						"dependencyConditions": [
 							"Succeeded"
 						]
