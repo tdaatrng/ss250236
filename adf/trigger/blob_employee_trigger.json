@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger will work from file name as Employee*.csv in source container.",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
