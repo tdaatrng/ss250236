@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "td-aa-trng-adf"
 		},
+		"batch_adls_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'batch_adls_ls'"
+		},
 		"batch_blob_ln_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'batch_blob_ln'"
@@ -145,6 +149,19 @@
 				"type": "AzureBlobFS",
 				"typeProperties": {
 					"url": "[parameters('adls_ls_properties_typeProperties_url')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/batch_adls_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('batch_adls_ls_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -638,50 +655,6 @@
 						"type": "AzureBlobStorageLocation",
 						"container": {
 							"value": "@dataset().sink_folder_name",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/blob_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gen_src_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "blob_ls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"file_name": {
-						"type": "string"
-					},
-					"folder_name": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Audit Control Framework Dataset"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().file_name",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().folder_name",
 							"type": "Expression"
 						}
 					},

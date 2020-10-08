@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'adf_batch_ls'"
 		},
+		"batch_adls_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'batch_adls_ls'"
+		},
 		"batch_blob_ln_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'batch_blob_ln'"
@@ -21,15 +25,15 @@
 		},
 		"adf_batch_ls_properties_typeProperties_accountName": {
 			"type": "string",
-			"defaultValue": "tdaapocbatch"
+			"defaultValue": "tdaabapoc"
 		},
 		"adf_batch_ls_properties_typeProperties_batchUri": {
 			"type": "string",
-			"defaultValue": "https://tdaapocbatch.eastus.batch.azure.com"
+			"defaultValue": "https://tdaabapoc.eastus.batch.azure.com"
 		},
 		"adf_batch_ls_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "td-aa-poc-pool-id"
+			"defaultValue": "tdaapid"
 		},
 		"adls_ls_properties_typeProperties_url": {
 			"type": "string",
@@ -93,6 +97,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"batch_adls_ls_connectionString": {
+						"value": "[parameters('batch_adls_ls_connectionString')]"
 					},
 					"batch_blob_ln_connectionString": {
 						"value": "[parameters('batch_blob_ln_connectionString')]"
