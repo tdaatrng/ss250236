@@ -5,10 +5,6 @@
 			"EmailTo": {
 				"type": "string",
 				"value": "sudipta.sarkar@teradata.com,sumit.jain@teradata.com"
-			},
-			"Env": {
-				"type": "string",
-				"value": "Dev"
 			}
 		}
 	},
