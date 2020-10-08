@@ -79,7 +79,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"file_name": "Employee.csv",
-							"folder_name": "source"
+							"folder_name": "reject"
 						}
 					}
 				],
