@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Component_stat_wrk.csv",
 				"folderPath": "input",
 				"container": "rm185104"
 			},
