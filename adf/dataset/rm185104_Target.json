@@ -1,0 +1,24 @@
+{
+	"name": "rm185104_Target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "batch_adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Target_CSV.csv",
+				"folderPath": "output",
+				"container": "rm185104"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": []
+	}
+}
