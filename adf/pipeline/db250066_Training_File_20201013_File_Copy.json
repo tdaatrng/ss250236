@@ -17,6 +17,28 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "SRC_SYS_ID",
+								"value": "EAS"
+							},
+							{
+								"name": "LOAD_ERR_FLG",
+								"value": "N"
+							},
+							{
+								"name": "DATA_ORIG_IND",
+								"value": "S"
+							},
+							{
+								"name": "CREATED_EW_DTTM",
+								"value": "2020-10-13 01:01:01"
+							},
+							{
+								"name": "LASTUPD_EW_DTTM",
+								"value": "2020-10-13 23:59:59"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
