@@ -10,11 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "FirstTrial.csv",
+				"fileName": "COMPNT_STATUS_WRK.csv",
 				"folderPath": "input",
 				"container": "rm185104"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
