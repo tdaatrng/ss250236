@@ -1,0 +1,166 @@
+{
+	"name": "component_status_wrk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "batch_adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Component_stat_wrk.csv",
+				"folderPath": "input",
+				"container": "rm185104"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": "?",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "LOAD_FILE_DATE",
+				"type": "String"
+			},
+			{
+				"name": "ME_PART_NUMBER1",
+				"type": "String"
+			},
+			{
+				"name": "SERIAL_NUMBER2",
+				"type": "String"
+			},
+			{
+				"name": "ORDER_SEQUENCE_BY_AIRCRAFT",
+				"type": "String"
+			},
+			{
+				"name": "LEVEL_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "PERFECT_IND",
+				"type": "String"
+			},
+			{
+				"name": "LOWER_LEVEL_COMPONENT_IND",
+				"type": "String"
+			},
+			{
+				"name": "MULTIPLE_QTY_IND",
+				"type": "String"
+			},
+			{
+				"name": "ALTERNATE_COMPONENT_IND",
+				"type": "String"
+			},
+			{
+				"name": "ORDER_SEQUENCE_OF_PERFECT",
+				"type": "String"
+			},
+			{
+				"name": "ORDER_SEQUENCE_PARENT",
+				"type": "String"
+			},
+			{
+				"name": "NHA2_ME_PART_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "NHA2_POSITION_CODE",
+				"type": "String"
+			},
+			{
+				"name": "NHA2_SERIAL_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "NHA_ME_PART_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "NHA_POSITION_CODE",
+				"type": "String"
+			},
+			{
+				"name": "NHA_SERIAL_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "ME_PART_NUMBER17",
+				"type": "String"
+			},
+			{
+				"name": "ALT_ME_PART_NUMBER",
+				"type": "String"
+			},
+			{
+				"name": "KEYWORD_DESCRIPTION",
+				"type": "String"
+			},
+			{
+				"name": "SERIAL_NUMBER20",
+				"type": "String"
+			},
+			{
+				"name": "STATUS_IND",
+				"type": "String"
+			},
+			{
+				"name": "UNIDIRECTIONAL_IND",
+				"type": "String"
+			},
+			{
+				"name": "DEPENDENT_COMPONENT_IND",
+				"type": "String"
+			},
+			{
+				"name": "COMPONENT_RULE",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_TIME_TO_OVERHAUL_L",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_LIFE_L",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_TIME_TO_OVERHAUL_I",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_LIFE_I",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_TIME_TO_OVERHAUL_S",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_LIFE_S",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_TIME_TO_OVERHAUL_T",
+				"type": "String"
+			},
+			{
+				"name": "ALLOWABLE_LIFE_T",
+				"type": "String"
+			},
+			{
+				"name": "QUANTITY_REQUIRED",
+				"type": "String"
+			},
+			{
+				"name": "POSITION_CODE",
+				"type": "String"
+			}
+		]
+	}
+}
