@@ -54,24 +54,24 @@
 							},
 							{
 								"source": {
-									"name": "ME_PART_NUMBER1",
+									"name": "ME_PART_NUMBER",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ME_PART_NUMBER1",
+									"name": "ME_PART_NUMBER",
 									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "SERIAL_NUMBER2",
+									"name": "SERIAL_NUMBER",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "SERIAL_NUMBER2",
+									"name": "SERIAL_NUMBER",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -114,30 +114,6 @@
 							},
 							{
 								"source": {
-									"name": "LOWER_LEVEL_COMPONENT_IND",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "LOWER_LEVEL_COMPONENT_IND",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "MULTIPLE_QTY_IND",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "MULTIPLE_QTY_IND",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "ALTERNATE_COMPONENT_IND",
 									"type": "String",
 									"physicalType": "String"
@@ -174,54 +150,6 @@
 							},
 							{
 								"source": {
-									"name": "NHA2_ME_PART_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NHA2_ME_PART_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NHA2_POSITION_CODE",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NHA2_POSITION_CODE",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NHA2_SERIAL_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NHA2_SERIAL_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NHA_ME_PART_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NHA_ME_PART_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "NHA_POSITION_CODE",
 									"type": "String",
 									"physicalType": "String"
@@ -246,72 +174,12 @@
 							},
 							{
 								"source": {
-									"name": "ME_PART_NUMBER17",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ME_PART_NUMBER17",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
 									"name": "ALT_ME_PART_NUMBER",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
 									"name": "ALT_ME_PART_NUMBER",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "KEYWORD_DESCRIPTION",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "KEYWORD_DESCRIPTION",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "SERIAL_NUMBER20",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "SERIAL_NUMBER20",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "STATUS_IND",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "STATUS_IND",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "UNIDIRECTIONAL_IND",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "UNIDIRECTIONAL_IND",
 									"type": "String",
 									"physicalType": "String"
 								}
@@ -360,66 +228,6 @@
 								},
 								"sink": {
 									"name": "ALLOWABLE_LIFE_L",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ALLOWABLE_TIME_TO_OVERHAUL_I",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ALLOWABLE_TIME_TO_OVERHAUL_I",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ALLOWABLE_LIFE_I",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ALLOWABLE_LIFE_I",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ALLOWABLE_TIME_TO_OVERHAUL_S",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ALLOWABLE_TIME_TO_OVERHAUL_S",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ALLOWABLE_LIFE_S",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ALLOWABLE_LIFE_S",
-									"type": "String",
-									"physicalType": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ALLOWABLE_TIME_TO_OVERHAUL_T",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ALLOWABLE_TIME_TO_OVERHAUL_T",
 									"type": "String",
 									"physicalType": "String"
 								}
