@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "df_v2_out",
 				"folderPath": "output2",
 				"fileSystem": "dc186053"
 			},
