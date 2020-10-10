@@ -107,7 +107,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "rm185104_Target",
+									"referenceName": "DynamicTarget",
 									"type": "DatasetReference"
 								}
 							]
