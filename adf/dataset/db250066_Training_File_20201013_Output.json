@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Training_File_20201013_Output.csv",
+				"fileName": "Training_File_20201013_Output_Derived.csv",
 				"folderPath": "output",
 				"fileSystem": "db250066"
 			},
