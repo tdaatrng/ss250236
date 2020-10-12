@@ -84,7 +84,37 @@
 					"expression": {
 						"value": "@equals(variables('File_Size'),'0')",
 						"type": "Expression"
-					}
+					},
+					"ifTrueActivities": [
+						{
+							"name": "If Zero Byte Check True",
+							"description": "If Zero Byte Validation True Then Execute",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "ETLControl_Start_2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"File_Name": {
+										"value": "@pipeline().parameters.File_Name",
+										"type": "Expression"
+									},
+									"Folder_Name": {
+										"value": "@pipeline().parameters.Folder_Name",
+										"type": "Expression"
+									},
+									"Container_Name": {
+										"value": "@pipeline().parameters.Container_Name",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
 				}
 			}
 		],
