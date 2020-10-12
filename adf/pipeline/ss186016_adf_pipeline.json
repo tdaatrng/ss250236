@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyCSVtoParaquet",
+				"name": "CopyCSVtoParquet",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
