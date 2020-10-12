@@ -68,45 +68,6 @@
 						}
 					}
 				}
-			},
-			{
-				"name": "Copy_Delete_CTL_File",
-				"description": "Copy File from Inbound to Reject due to Zero Byte Data File and then delete the Control file from Inbound directory",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Send_Email_Alert",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Copy_Delete_File",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"Container_Name": {
-							"value": "@pipeline().parameters.Container_Name",
-							"type": "Expression"
-						},
-						"Folder_Name": {
-							"value": "@pipeline().parameters.Folder_Name",
-							"type": "Expression"
-						},
-						"File_Name": {
-							"value": "@pipeline().parameters.Control_File_Name",
-							"type": "Expression"
-						},
-						"Reject_Folder": {
-							"value": "@pipeline().parameters.Reject_Folder",
-							"type": "Expression"
-						}
-					}
-				}
 			}
 		],
 		"parameters": {
