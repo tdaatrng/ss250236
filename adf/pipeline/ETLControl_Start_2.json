@@ -29,6 +29,45 @@
 						"Error_Message": "Zero Byte File Received"
 					}
 				}
+			},
+			{
+				"name": "Copy_Delete_Data_File",
+				"description": "Copy File from Inbound to Reject due to Zero Byte File and then delete the file from Inbound directory",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Send_Email_Alert",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Copy_Delete_File",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Container_Name": {
+							"value": "@pipeline().parameters.Container_Name",
+							"type": "Expression"
+						},
+						"Folder_Name": {
+							"value": "@pipeline().parameters.Folder_Name",
+							"type": "Expression"
+						},
+						"File_Name": {
+							"value": "@pipeline().parameters.File_Name",
+							"type": "Expression"
+						},
+						"Reject_Folder": {
+							"value": "@pipeline().parameters.Reject_Folder",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -39,6 +78,9 @@
 				"type": "String"
 			},
 			"Container_Name": {
+				"type": "String"
+			},
+			"Reject_Folder": {
 				"type": "String"
 			}
 		},
