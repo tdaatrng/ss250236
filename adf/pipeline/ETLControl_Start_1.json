@@ -61,7 +61,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "File_Size",
-					"value": ""
+					"value": {
+						"value": "@string(activity('Get File Details').output.size)",
+						"type": "Expression"
+					}
 				}
 			}
 		],
