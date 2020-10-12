@@ -97,7 +97,29 @@
 									"referenceName": "Email_Notification",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": {
+										"value": "@pipeline().parameters.EmailTo",
+										"type": "Expression"
+									},
+									"Pipe_Line_Name": {
+										"value": "@pipeline().parameters.Pipe_Line_Name",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									},
+									"Activity": {
+										"value": "@pipeline().parameters.Activity",
+										"type": "Expression"
+									},
+									"Error_Message": {
+										"value": "@pipeline().parameters.Error_Message",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					],
@@ -149,6 +171,21 @@
 				"type": "String"
 			},
 			"Reject_Folder": {
+				"type": "String"
+			},
+			"EmailTo": {
+				"type": "String"
+			},
+			"Pipe_Line_Name": {
+				"type": "String"
+			},
+			"Source_File_Name": {
+				"type": "String"
+			},
+			"Activity": {
+				"type": "String"
+			},
+			"Error_Message": {
 				"type": "String"
 			}
 		},
