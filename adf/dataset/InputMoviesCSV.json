@@ -1,0 +1,45 @@
+{
+	"name": "InputMoviesCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "batch_adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "movies.csv",
+				"folderPath": "input",
+				"container": "rm185104"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "movieID",
+				"type": "String"
+			},
+			{
+				"name": "title",
+				"type": "String"
+			},
+			{
+				"name": "releaseYear",
+				"type": "String"
+			},
+			{
+				"name": "url",
+				"type": "String"
+			},
+			{
+				"name": "directorID",
+				"type": "String"
+			}
+		]
+	}
+}
