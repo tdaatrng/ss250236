@@ -35,13 +35,33 @@
 							}
 						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"size"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings"
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
 					}
+				}
+			},
+			{
+				"name": "Check_FileSize",
+				"description": "Check the File Size for the files received in inbound directory",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get File Details",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "File_Size",
+					"value": ""
 				}
 			}
 		],
@@ -53,6 +73,11 @@
 				"type": "String"
 			},
 			"File_Name": {
+				"type": "String"
+			}
+		},
+		"variables": {
+			"File_Size": {
 				"type": "String"
 			}
 		},
