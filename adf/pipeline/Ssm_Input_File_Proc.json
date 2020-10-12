@@ -1,0 +1,7 @@
+{
+	"name": "Ssm_Input_File_Proc",
+	"properties": {
+		"description": "Validates the input files then triggers a ADB notebook",
+		"annotations": []
+	}
+}
