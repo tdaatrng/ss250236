@@ -1,0 +1,47 @@
+{
+	"name": "ETLControl_Start_2",
+	"properties": {
+		"description": "If Zero Byte Validation True",
+		"activities": [
+			{
+				"name": "Send_Email_Alert",
+				"description": "If Zero Byte File Validation True",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Email_Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "piyush.tanna@teradata.com",
+						"Pipe_Line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": {
+							"value": "@pipeline().parameters.File_Name",
+							"type": "Expression"
+						},
+						"Activity": "if activity",
+						"Error_Message": "Zero Byte File Received"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"File_Name": {
+				"type": "String"
+			},
+			"Folder_Name": {
+				"type": "String"
+			},
+			"Container_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
