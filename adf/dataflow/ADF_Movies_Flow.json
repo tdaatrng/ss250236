@@ -1,0 +1,20 @@
+{
+	"name": "ADF_Movies_Flow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "InputMoviesCSV",
+						"type": "DatasetReference"
+					},
+					"name": "SrcMovies"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\tmovieID as string,\n\t\ttitle as string,\n\t\treleaseYear as string,\n\t\turl as string,\n\t\tdirectorID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tlimit: 100) ~> SrcMovies"
+		}
+	}
+}
