@@ -110,6 +110,10 @@
 									"Container_Name": {
 										"value": "@pipeline().parameters.Container_Name",
 										"type": "Expression"
+									},
+									"Reject_Folder": {
+										"value": "@pipeline().parameters.Reject_Folder",
+										"type": "Expression"
 									}
 								}
 							}
@@ -126,6 +130,9 @@
 				"type": "String"
 			},
 			"File_Name": {
+				"type": "String"
+			},
+			"Reject_Folder": {
 				"type": "String"
 			}
 		},
