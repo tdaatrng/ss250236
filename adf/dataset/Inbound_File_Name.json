@@ -1,0 +1,81 @@
+{
+	"name": "Inbound_File_Name",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Container_Name": {
+				"type": "String"
+			},
+			"Folder_Name": {
+				"type": "String"
+			},
+			"File_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Folder_Name",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Container_Name",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "BOOKING_ID",
+				"type": "String"
+			},
+			{
+				"name": "BOOKING_DATE",
+				"type": "String"
+			},
+			{
+				"name": "DEPARTURE_DATE",
+				"type": "String"
+			},
+			{
+				"name": "OUTLET_ID",
+				"type": "String"
+			},
+			{
+				"name": "CUSTOMER_ID",
+				"type": "String"
+			},
+			{
+				"name": "AIR_AMT",
+				"type": "String"
+			},
+			{
+				"name": "AIR_TAX_AMT",
+				"type": "String"
+			},
+			{
+				"name": "AIR_REVENUE_AMT",
+				"type": "String"
+			},
+			{
+				"name": "BOOKING_TYPE",
+				"type": "String"
+			}
+		]
+	}
+}
