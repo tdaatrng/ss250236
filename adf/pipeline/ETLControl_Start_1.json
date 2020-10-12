@@ -66,6 +66,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "ZeroByte_File_Check_Validation",
+				"description": "Verify If Zero Byte File Received then Send Email Notification to team Else Move the File to Input Directory",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Check_FileSize",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('File_Size'),'0')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
