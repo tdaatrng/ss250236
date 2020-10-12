@@ -166,6 +166,52 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Delete_From_Inbound",
+							"description": "Delete the File From Inbound once file moved to Input",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "Inbound_To_Input",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "Inbound_File_Name",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_Name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Folder_Name": {
+											"value": "@pipeline().parameters.Folder_Name",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@pipeline().parameters.File_Name",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								}
+							}
 						}
 					],
 					"ifTrueActivities": [
