@@ -33,7 +33,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy data",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -66,6 +66,9 @@
 						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false
@@ -112,11 +115,11 @@
 				]
 			},
 			{
-				"name": "Get Metadata1",
+				"name": "Get Metadata",
 				"type": "GetMetadata",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "Copy data",
 						"dependencyConditions": [
 							"Succeeded"
 						]

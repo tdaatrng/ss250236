@@ -1,0 +1,30 @@
+{
+	"name": "blob_employee_trigger",
+	"properties": {
+		"description": "Trigger will work from file name as Employee*.csv in source container.",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Etl_Control_Framework_Start",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"file_name": "@trigger().outputs.body.fileName",
+					"folder_name": "@trigger().outputs.body.folderPath"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/source/blobs/Employee",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgpoc",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

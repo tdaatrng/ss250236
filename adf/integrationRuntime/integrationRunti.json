@@ -1,0 +1,6 @@
+{
+	"name": "integrationRunti",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
