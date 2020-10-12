@@ -85,6 +85,22 @@
 						"value": "@equals(variables('File_Size'),'0')",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Send_Email",
+							"description": "If Zero Byte Check False then Send Email",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Email_Notification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "If Zero Byte Check True",
