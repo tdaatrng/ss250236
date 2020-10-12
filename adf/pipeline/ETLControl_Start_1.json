@@ -1,0 +1,61 @@
+{
+	"name": "ETLControl_Start_1",
+	"properties": {
+		"description": "Read the File from Inbound & Verify Zero Byte Check",
+		"activities": [
+			{
+				"name": "Get File Details",
+				"description": "Read the File Details from the Inbound Directory",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "InboundFile",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Folder_Name": {
+								"value": "@pipeline().parameters.Folder_Name",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings"
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Container_Name": {
+				"type": "String"
+			},
+			"Folder_Name": {
+				"type": "String"
+			},
+			"File_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
