@@ -1,0 +1,108 @@
+{
+	"name": "Copy_Delete_File",
+	"properties": {
+		"description": "Copy the File from Inbound to Reject & then Delete from Inbound Directory",
+		"activities": [
+			{
+				"name": "Copy_File_Into_Reject",
+				"description": "Copy File From Inbound to Reject",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Inbound_File_Name",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Folder_Name": {
+								"value": "@pipeline().parameters.Folder_Name",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Reject_File_Name",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Reject_Folder_Name": {
+								"value": "@pipeline().parameters.Reject_Folder",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"Container_Name": {
+				"type": "String"
+			},
+			"Folder_Name": {
+				"type": "String"
+			},
+			"File_Name": {
+				"type": "String"
+			},
+			"Reject_Folder": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
