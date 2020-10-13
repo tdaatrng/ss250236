@@ -76,10 +76,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"EmailTo": {
-							"value": "@pipeline().globalParameters.EmailTo",
-							"type": "Expression"
-						},
+						"EmailTo": "deepak.biswal@teradata.com",
 						"Activity": "Lookup Activity",
 						"ErrorMessage": "CTL file is not received",
 						"Pipe_line_Name": {
@@ -91,6 +88,26 @@
 							"type": "Expression"
 						}
 					}
+				}
+			},
+			{
+				"name": "db250066_Trigger_Notebook",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "db250066_Trigger_Notebook",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
