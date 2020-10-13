@@ -2,7 +2,7 @@
 	"name": "gen_src_ds",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "blob_ls",
+			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -10,6 +10,9 @@
 				"type": "string"
 			},
 			"folder_name": {
+				"type": "string"
+			},
+			"sub_folder_name": {
 				"type": "string"
 			}
 		},
@@ -20,12 +23,8 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "@dataset().file_name",
-					"type": "Expression"
-				},
-				"container": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": {
 					"value": "@dataset().folder_name",
 					"type": "Expression"
 				}
