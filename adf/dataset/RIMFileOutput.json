@@ -1,26 +1,29 @@
 {
-	"name": "hg250013_csv_partitioned_ds",
+	"name": "RIMFileOutput",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output4",
-				"fileSystem": "hg250013"
+				"fileName": "RIMFileOutput",
+				"folderPath": "output",
+				"fileSystem": "as186113"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd",
+				"type": "String"
+			}
+		]
 	}
 }

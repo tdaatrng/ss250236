@@ -1,9 +1,20 @@
 {
-	"name": "hg250013_csv_partitioned_ds",
+	"name": "Hg250013_parameter_source_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourceDirectory": {
+				"type": "string"
+			},
+			"sourceContainer": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
+			}
 		},
 		"folder": {
 			"name": "ADF_Demo_DS"
@@ -12,13 +23,10 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"folderPath": "output4",
-				"fileSystem": "hg250013"
+				"type": "AzureBlobFSLocation"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []
