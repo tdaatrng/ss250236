@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "Demo_15102020",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Move file from inbound to input",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -18,7 +18,7 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
+							"type": "AzureBlobFSReadSettings",
 							"recursive": true
 						},
 						"formatSettings": {
@@ -48,17 +48,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "gen_src_ds",
-						"type": "DatasetReference",
-						"parameters": {
-							"file_name": "TrainingFile_20201014.csv",
-							"folder_name": "source"
-						}
+						"referenceName": "Zipped_Source",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Zipped_Source",
+						"referenceName": "Zipped_Input",
 						"type": "DatasetReference"
 					}
 				]
