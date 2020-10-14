@@ -3,9 +3,16 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Move file from inbound to input",
+				"name": "Copy file from inbound to input",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Create CTL file name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -72,6 +79,19 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Create CTL file name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CTL_File_Name",
+					"value": {
+						"value": "@concat(substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.')),'.ctl')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -90,6 +110,11 @@
 			"Folder_Name": {
 				"type": "string",
 				"defaultValue": "sj186068"
+			}
+		},
+		"variables": {
+			"CTL_File_Name": {
+				"type": "String"
 			}
 		},
 		"annotations": []
