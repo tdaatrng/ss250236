@@ -140,7 +140,7 @@
 			"Container_Name": {
 				"type": "String"
 			},
-			"Folder_Name": {
+			"Inbound_Folder": {
 				"type": "String"
 			},
 			"File_Name": {
