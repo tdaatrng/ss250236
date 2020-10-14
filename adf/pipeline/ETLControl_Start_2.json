@@ -54,8 +54,8 @@
 							"value": "@pipeline().parameters.Container_Name",
 							"type": "Expression"
 						},
-						"Folder_Name": {
-							"value": "@pipeline().parameters.Folder_Name",
+						"Inbound_Folder": {
+							"value": "@pipeline().parameters.Inbound_Folder",
 							"type": "Expression"
 						},
 						"File_Name": {
