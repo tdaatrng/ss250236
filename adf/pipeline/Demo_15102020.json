@@ -16,7 +16,7 @@
 				}
 			},
 			{
-				"name": "Create CTL file name Part2",
+				"name": "Create CTL file name",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -40,7 +40,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Create CTL file name Part2",
+						"activity": "Create CTL file name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
