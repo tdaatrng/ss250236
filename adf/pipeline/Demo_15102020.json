@@ -172,6 +172,42 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "error_mail_notification_pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Check if control file is present",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "error_mail_notification_pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "sumit.jain@teradata.com",
+						"Activity": "Lookup Activity",
+						"ErrorMessage": {
+							"value": "@concat('Control File -',variables('CTL_File_Name_Part2'),' not received.')",
+							"type": "Expression"
+						},
+						"Pipe_line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": {
+							"value": "@pipeline().parameters.Source_File_Name",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
