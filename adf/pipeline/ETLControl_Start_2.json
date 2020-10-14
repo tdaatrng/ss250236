@@ -71,7 +71,7 @@
 			}
 		],
 		"parameters": {
-			"File_Name": {
+			"Source_File_Name": {
 				"type": "String"
 			},
 			"Inbound_Folder": {
