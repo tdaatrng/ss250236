@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "TrainingFile_20201014.csv.gz",
 				"folderPath": "source",
 				"fileSystem": "sj186068"
 			},
