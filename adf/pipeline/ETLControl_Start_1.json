@@ -118,7 +118,7 @@
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
 										"quoteAllText": true,
-										"fileExtension": ".txt"
+										"fileExtension": ".csv"
 									}
 								},
 								"enableStaging": false,
@@ -160,7 +160,7 @@
 											"value": "@pipeline().parameters.Container_Name",
 											"type": "Expression"
 										},
-										"Input_Folder_Name": {
+										"Input_Folder": {
 											"value": "@pipeline().parameters.Input_Folder_Name",
 											"type": "Expression"
 										}
@@ -271,7 +271,7 @@
 											"value": "@pipeline().parameters.Container_Name",
 											"type": "Expression"
 										},
-										"Input_Folder_Name": {
+										"Input_Folder": {
 											"value": "@pipeline().parameters.Input_Folder_Name",
 											"type": "Expression"
 										}
