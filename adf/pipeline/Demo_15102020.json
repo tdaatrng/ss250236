@@ -208,6 +208,51 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Delete file from inbound",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Copy file from inbound to input",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Zipped_Source",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Inbound_Directory": {
+								"value": "@pipeline().parameters.Inbound_Directory",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.Source_File_Name",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
+					}
+				}
 			}
 		],
 		"parameters": {
