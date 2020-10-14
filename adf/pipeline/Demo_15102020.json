@@ -76,7 +76,17 @@
 				"outputs": [
 					{
 						"referenceName": "Zipped_Input",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Folder_Name": {
+								"value": "@pipeline().parameters.Folder_Name",
+								"type": "Expression"
+							},
+							"Input_Path": {
+								"value": "@pipeline().parameters.Input_Path",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
