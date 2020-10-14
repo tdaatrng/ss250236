@@ -74,16 +74,13 @@
 			"File_Name": {
 				"type": "String"
 			},
-			"Folder_Name": {
+			"Inbound_Folder": {
 				"type": "String"
 			},
 			"Container_Name": {
 				"type": "String"
 			},
 			"Reject_Folder": {
-				"type": "String"
-			},
-			"Control_File_Name": {
 				"type": "String"
 			}
 		},
