@@ -36,7 +36,7 @@
 			"Pipe_Line_Name": {
 				"type": "String"
 			},
-			"File_Name": {
+			"Source_File_Name": {
 				"type": "String"
 			},
 			"Activity": {
