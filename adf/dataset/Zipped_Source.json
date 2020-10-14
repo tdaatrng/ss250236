@@ -14,7 +14,7 @@
 				"fileSystem": "sj186068"
 			},
 			"columnDelimiter": ",",
-			"compressionCodec": "TarGZip",
+			"compressionCodec": "gzip",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
