@@ -47,7 +47,7 @@
 								},
 								"sink": {
 									"name": "WindowEnd",
-									"type": "DateTimeOffset"
+									"type": "String"
 								}
 							},
 							{
