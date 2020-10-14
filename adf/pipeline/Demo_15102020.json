@@ -107,7 +107,7 @@
 						"EmailTo": "sumit.jain@teradata.com",
 						"Activity": "Lookup Activity",
 						"ErrorMessage": {
-							"value": "@concat('Control File -',variables('CTL_File_Name_Part2'),' not received.')",
+							"value": "@concat('Control File -',variables('CTL_File_Name'),' not received.')",
 							"type": "Expression"
 						},
 						"Pipe_line_Name": {
