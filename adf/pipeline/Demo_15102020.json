@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Create CTL file name",
+						"activity": "Create CTL file name Part2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -91,14 +91,34 @@
 				]
 			},
 			{
-				"name": "Create CTL file name",
+				"name": "Create CTL file name Part1",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "CTL_File_Name",
+					"variableName": "CTL_File_Name_Part1",
 					"value": {
-						"value": "@concat(substring(substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.')),0,lastindexof(pipeline().parameters.Source_File_Name,'.')),'.ctl')",
+						"value": "@substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Create CTL file name Part2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Create CTL file name Part1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CTL_File_Name_Part2",
+					"value": {
+						"value": "@concat(substring(variables('CTL_File_Name_Part1'),0,lastindexof(variables('CTL_File_Name_Part1'),'.')),'.ctl')",
 						"type": "Expression"
 					}
 				}
@@ -123,7 +143,10 @@
 			}
 		},
 		"variables": {
-			"CTL_File_Name": {
+			"CTL_File_Name_Part1": {
+				"type": "String"
+			},
+			"CTL_File_Name_Part2": {
 				"type": "String"
 			}
 		},
