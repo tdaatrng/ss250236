@@ -26,11 +26,11 @@
 								"type": "Expression"
 							},
 							"Folder_Name": {
-								"value": "@pipeline().parameters.Folder_Name",
+								"value": "@pipeline().parameters.Inbound_Folder",
 								"type": "Expression"
 							},
 							"File_Name": {
-								"value": "@pipeline().parameters.File_Name",
+								"value": "@pipeline().parameters.Source_File_Name",
 								"type": "Expression"
 							}
 						}
@@ -396,10 +396,6 @@
 										"value": "@pipeline().parameters.File_Name",
 										"type": "Expression"
 									},
-									"Folder_Name": {
-										"value": "@pipeline().parameters.Folder_Name",
-										"type": "Expression"
-									},
 									"Container_Name": {
 										"value": "@pipeline().parameters.Container_Name",
 										"type": "Expression"
@@ -419,31 +415,16 @@
 			"Container_Name": {
 				"type": "String"
 			},
-			"Folder_Name": {
-				"type": "String"
-			},
-			"File_Name": {
+			"Inbound_Folder": {
 				"type": "String"
 			},
 			"Reject_Folder": {
 				"type": "String"
 			},
-			"EmailTo": {
-				"type": "String"
-			},
-			"Pipe_Line_Name": {
-				"type": "String"
-			},
 			"Source_File_Name": {
 				"type": "String"
 			},
-			"Activity": {
-				"type": "String"
-			},
-			"Error_Message": {
-				"type": "String"
-			},
-			"Input_Folder_Name": {
+			"Input_Folder": {
 				"type": "String"
 			},
 			"Archive_Folder": {
