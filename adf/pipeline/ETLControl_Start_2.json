@@ -21,7 +21,7 @@
 							"value": "@pipeline().Pipeline",
 							"type": "Expression"
 						},
-						"Source_File_Name": {
+						"File_Name": {
 							"value": "@pipeline().parameters.File_Name",
 							"type": "Expression"
 						},
