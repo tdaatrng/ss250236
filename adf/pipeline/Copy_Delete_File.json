@@ -143,7 +143,7 @@
 			"Inbound_Folder": {
 				"type": "String"
 			},
-			"File_Name": {
+			"Source_File_Name": {
 				"type": "String"
 			},
 			"Reject_Folder": {
