@@ -9,7 +9,7 @@
 			"Container_Name": {
 				"type": "String"
 			},
-			"Input_Folder_Name": {
+			"Input_Folder": {
 				"type": "String"
 			}
 		},
@@ -19,7 +19,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@dataset().Input_Folder_Name",
+					"value": "@dataset().Input_Folder",
 					"type": "Expression"
 				},
 				"fileSystem": {
