@@ -272,7 +272,7 @@
 											"type": "Expression"
 										},
 										"Input_Folder": {
-											"value": "@pipeline().parameters.Input_Folder_Name",
+											"value": "@pipeline().parameters.Input_Folder",
 											"type": "Expression"
 										}
 									}
