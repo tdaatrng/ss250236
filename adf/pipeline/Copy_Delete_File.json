@@ -35,7 +35,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
@@ -77,7 +77,7 @@
 								"value": "@pipeline().parameters.Container_Name",
 								"type": "Expression"
 							},
-							"Reject_Folder_Name": {
+							"Reject_Folder": {
 								"value": "@pipeline().parameters.Reject_Folder",
 								"type": "Expression"
 							},
