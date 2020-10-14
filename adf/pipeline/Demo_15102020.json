@@ -3,12 +3,12 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Create CTL file name Part1",
+				"name": "Create csv file name",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "CTL_File_Name_Part1",
+					"variableName": "CSV_File_Name",
 					"value": {
 						"value": "@substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.'))",
 						"type": "Expression"
@@ -20,7 +20,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Create CTL file name Part1",
+						"activity": "Create csv file name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -28,9 +28,9 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "CTL_File_Name_Part2",
+					"variableName": "CTL_File_Name",
 					"value": {
-						"value": "@concat(substring(variables('CTL_File_Name_Part1'),0,lastindexof(variables('CTL_File_Name_Part1'),'.')),'.ctl')",
+						"value": "@concat(substring(variables('CSV_File_Name'),0,lastindexof(variables('CSV_File_Name'),'.')),'.ctl')",
 						"type": "Expression"
 					}
 				}
@@ -74,7 +74,7 @@
 								"type": "Expression"
 							},
 							"Ctl_File_Name": {
-								"value": "@variables('CTL_File_Name_Part2')",
+								"value": "@variables('CTL_File_Name')",
 								"type": "Expression"
 							},
 							"Ctl_Directory_Name": {
@@ -335,7 +335,7 @@
 											"type": "Expression"
 										},
 										"File_Name": {
-											"value": "@variables('CTL_File_Name_Part1')",
+											"value": "@variables('CSV_File_Name')",
 											"type": "Expression"
 										}
 									}
@@ -343,7 +343,7 @@
 							]
 						},
 						{
-							"name": "Delete data file from inbound",
+							"name": "Delete zipped data file from inbound",
 							"type": "Delete",
 							"dependsOn": [
 								{
@@ -420,7 +420,7 @@
 											"type": "Expression"
 										},
 										"File_Name": {
-											"value": "@variables('CTL_File_Name_Part2')",
+											"value": "@variables('CTL_File_Name')",
 											"type": "Expression"
 										}
 									}
@@ -437,7 +437,7 @@
 							"type": "DatabricksNotebook",
 							"dependsOn": [
 								{
-									"activity": "Delete data file from inbound",
+									"activity": "Delete zipped data file from inbound",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -488,10 +488,10 @@
 			}
 		},
 		"variables": {
-			"CTL_File_Name_Part1": {
+			"CSV_File_Name": {
 				"type": "String"
 			},
-			"CTL_File_Name_Part2": {
+			"CTL_File_Name": {
 				"type": "String"
 			},
 			"Data_Count": {
