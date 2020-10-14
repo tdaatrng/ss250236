@@ -458,7 +458,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/db250066/PS_ASSET_OWN_TBL7_db250066_stg"
+								"notebookPath": "/sj186068/fileToTable"
 							},
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
