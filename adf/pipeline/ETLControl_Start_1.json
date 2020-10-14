@@ -197,7 +197,7 @@
 											"value": "@pipeline().parameters.Container_Name",
 											"type": "Expression"
 										},
-										"Folder_Name": {
+										"Inbound_Folder": {
 											"value": "@pipeline().parameters.Folder_Name",
 											"type": "Expression"
 										},
