@@ -368,6 +368,10 @@
 										"File_Name": {
 											"value": "@pipeline().parameters.File_Name",
 											"type": "Expression"
+										},
+										"Archive_Folder": {
+											"value": "@pipeline().parameters.Archive_Folder",
+											"type": "Expression"
 										}
 									}
 								}
@@ -440,6 +444,9 @@
 				"type": "String"
 			},
 			"Input_Folder_Name": {
+				"type": "String"
+			},
+			"Archive_Folder": {
 				"type": "String"
 			}
 		},
