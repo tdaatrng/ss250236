@@ -1,0 +1,30 @@
+{
+	"name": "StreamData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "0_38b29f8474df4dfc993ea17f6e6369a5_1.json",
+				"folderPath": "IN",
+				"fileSystem": "ss250236"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"WindowEnd": {
+					"type": "string"
+				},
+				"FraudulentCalls": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
