@@ -274,6 +274,10 @@
 										"Input_Folder": {
 											"value": "@pipeline().parameters.Input_Folder",
 											"type": "Expression"
+										},
+										"Source_File_Name": {
+											"value": "@pipeline().parameters.Source_File_Name",
+											"type": "Expression"
 										}
 									}
 								},
