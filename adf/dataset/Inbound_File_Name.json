@@ -9,7 +9,7 @@
 			"Container_Name": {
 				"type": "String"
 			},
-			"Folder_Name": {
+			"Inbound_Folder": {
 				"type": "String"
 			},
 			"File_Name": {
@@ -26,7 +26,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().Folder_Name",
+					"value": "@dataset().Inbound_Folder",
 					"type": "Expression"
 				},
 				"fileSystem": {
