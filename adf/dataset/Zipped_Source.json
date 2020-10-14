@@ -11,12 +11,13 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "TrainingFile_20201014.csv.gz",
-				"folderPath": "source",
+				"folderPath": "inbound",
 				"fileSystem": "sj186068"
 			},
 			"columnDelimiter": ",",
 			"compressionCodec": "gzip",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []
