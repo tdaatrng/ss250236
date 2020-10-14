@@ -46,7 +46,8 @@
 									"path": "$['WindowEnd']"
 								},
 								"sink": {
-									"name": "WindowEnd"
+									"name": "WindowEnd",
+									"type": "DateTimeOffset"
 								}
 							},
 							{
@@ -54,7 +55,8 @@
 									"path": "$['FraudulentCalls']"
 								},
 								"sink": {
-									"name": "FraudulentCalls"
+									"name": "FraudulentCalls",
+									"type": "Int64"
 								}
 							}
 						]
