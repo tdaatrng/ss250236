@@ -174,7 +174,7 @@
 							"type": "Delete",
 							"dependsOn": [
 								{
-									"activity": "Inbound_To_Input",
+									"activity": "Inbound_To_Archive",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -220,7 +220,7 @@
 							"type": "DatabricksNotebook",
 							"dependsOn": [
 								{
-									"activity": "Inbound_To_Input",
+									"activity": "Inbound_To_Archive",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -283,6 +283,95 @@
 									"recursive": true
 								}
 							}
+						},
+						{
+							"name": "Inbound_To_Archive",
+							"description": "Copy File from Inbound to Archive directory",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Inbound_To_Input",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".csv"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Inbound_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_Name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Folder_Name": {
+											"value": "@pipeline().parameters.Folder_Name",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@pipeline().parameters.File_Name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Archive_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_Name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@pipeline().parameters.File_Name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					],
 					"ifTrueActivities": [
