@@ -6,10 +6,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Folder_name": {
+			"Container_name": {
 				"type": "string"
 			},
-			"Inbound_Path": {
+			"Inbound_Directory": {
 				"type": "string"
 			},
 			"File_Name": {
@@ -26,11 +26,11 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().Inbound_Path",
+					"value": "@dataset().Inbound_Directory",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().Folder_name",
+					"value": "@dataset().Container_name",
 					"type": "Expression"
 				}
 			},
