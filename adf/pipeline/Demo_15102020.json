@@ -98,7 +98,7 @@
 				"typeProperties": {
 					"variableName": "CTL_File_Name",
 					"value": {
-						"value": "@concat(substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.')),'.ctl')",
+						"value": "@concat(substring(substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.')),0,lastindexof(pipeline().parameters.Source_File_Name,'.')),'.ctl')",
 						"type": "Expression"
 					}
 				}
