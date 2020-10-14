@@ -392,10 +392,6 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"File_Name": {
-										"value": "@pipeline().parameters.Source_File_Name",
-										"type": "Expression"
-									},
 									"Inbound_Folder": {
 										"value": "@pipeline().parameters.Inbound_Folder",
 										"type": "Expression"
