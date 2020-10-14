@@ -492,7 +492,7 @@
 		"parameters": {
 			"Source_File_Name": {
 				"type": "string",
-				"defaultValue": "TrainingFile_20201014.csv.gz"
+				"defaultValue": "Employee_20200809.csv.gz"
 			},
 			"Inbound_Directory": {
 				"type": "string",
