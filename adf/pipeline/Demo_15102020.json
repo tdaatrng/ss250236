@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Create CTL file name Part2",
+						"activity": "Check if control file is present",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -58,12 +58,12 @@
 						"referenceName": "Zipped_Source",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder_name": {
-								"value": "@pipeline().parameters.Folder_Name",
+							"Container_name": {
+								"value": "@pipeline().parameters.Container_Name",
 								"type": "Expression"
 							},
-							"Inbound_Path": {
-								"value": "@pipeline().parameters.Inbound_Path",
+							"Inbound_Directory": {
+								"value": "@pipeline().parameters.Inbound_Directory",
 								"type": "Expression"
 							},
 							"File_Name": {
@@ -78,12 +78,12 @@
 						"referenceName": "Zipped_Input",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder_Name": {
-								"value": "@pipeline().parameters.Folder_Name",
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
 								"type": "Expression"
 							},
-							"Input_Path": {
-								"value": "@pipeline().parameters.Input_Path",
+							"Input_Directory": {
+								"value": "@pipeline().parameters.Input_Directory",
 								"type": "Expression"
 							}
 						}
@@ -122,6 +122,56 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Check if control file is present",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Create CTL file name Part2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "CTL_File",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Ctl_File_Name": {
+								"value": "@variables('CTL_File_Name_Part2')",
+								"type": "Expression"
+							},
+							"Ctl_Directory_Name": {
+								"value": "@pipeline().parameters.Inbound_Directory",
+								"type": "Expression"
+							}
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -129,15 +179,15 @@
 				"type": "string",
 				"defaultValue": "TrainingFile_20201014.csv.gz"
 			},
-			"Inbound_Path": {
+			"Inbound_Directory": {
 				"type": "string",
 				"defaultValue": "inbound"
 			},
-			"Input_Path": {
+			"Input_Directory": {
 				"type": "string",
 				"defaultValue": "input"
 			},
-			"Folder_Name": {
+			"Container_Name": {
 				"type": "string",
 				"defaultValue": "sj186068"
 			}
