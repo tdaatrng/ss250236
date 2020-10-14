@@ -1,0 +1,34 @@
+{
+	"name": "ETL_Control_Piyush",
+	"properties": {
+		"description": "Verify whenever file is available in pt186024 container in Inbound directory the pipeline will be triggered.",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ETLControl_Start_1",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Container_Name": "pt186024",
+					"Inbound_Folder": "Inbound",
+					"Reject_Folder": "Reject",
+					"Source_File_Name": "Vacation_Data.csv",
+					"Input_Folder": "Input",
+					"Archive_Folder": "Archive"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/pt186024/blobs/Inbound/Vacation_Data",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgdls",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
