@@ -61,7 +61,7 @@
 								"value": "@pipeline().parameters.Inbound_Folder",
 								"type": "Expression"
 							},
-							"File_Name": {
+							"Source_File_Name": {
 								"value": "@pipeline().parameters.Source_File_Name",
 								"type": "Expression"
 							}
@@ -81,7 +81,7 @@
 								"value": "@pipeline().parameters.Reject_Folder",
 								"type": "Expression"
 							},
-							"File_Name": {
+							"Source_File_Name": {
 								"value": "@pipeline().parameters.Source_File_Name",
 								"type": "Expression"
 							}
@@ -122,7 +122,7 @@
 								"value": "@pipeline().parameters.Inbound_Folder",
 								"type": "Expression"
 							},
-							"File_Name": {
+							"Source_File_Name": {
 								"value": "@pipeline().parameters.Source_File_Name",
 								"type": "Expression"
 							}
