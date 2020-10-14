@@ -49,7 +49,21 @@
 				"inputs": [
 					{
 						"referenceName": "Zipped_Source",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Folder_name": {
+								"value": "@pipeline().parameters.Folder_Name",
+								"type": "Expression"
+							},
+							"Inbound_Path": {
+								"value": "@pipeline().parameters.Inbound_Path",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.Source_File_Name",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
