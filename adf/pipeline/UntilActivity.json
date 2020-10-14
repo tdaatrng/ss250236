@@ -76,7 +76,8 @@
 									"exists"
 								],
 								"storeSettings": {
-									"type": "AzureBlobFSReadSettings"
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
 								},
 								"formatSettings": {
 									"type": "DelimitedTextReadSettings"
