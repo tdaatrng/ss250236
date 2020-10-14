@@ -9,7 +9,7 @@
 			"Container_Name": {
 				"type": "String"
 			},
-			"File_Name": {
+			"Source_File_Name": {
 				"type": "String"
 			},
 			"Archive_Folder": {
