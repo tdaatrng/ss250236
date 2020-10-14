@@ -3,94 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy file from inbound to input",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Check if control file is present",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Zipped_Source",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container_name": {
-								"value": "@pipeline().parameters.Container_Name",
-								"type": "Expression"
-							},
-							"Inbound_Directory": {
-								"value": "@pipeline().parameters.Inbound_Directory",
-								"type": "Expression"
-							},
-							"File_Name": {
-								"value": "@pipeline().parameters.Source_File_Name",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Zipped_Input",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container_Name": {
-								"value": "@pipeline().parameters.Container_Name",
-								"type": "Expression"
-							},
-							"Input_Directory": {
-								"value": "@pipeline().parameters.Input_Directory",
-								"type": "Expression"
-							}
-						}
-					}
-				]
-			},
-			{
 				"name": "Create CTL file name Part1",
 				"type": "SetVariable",
 				"dependsOn": [],
@@ -210,96 +122,6 @@
 				}
 			},
 			{
-				"name": "Delete data file from inbound",
-				"type": "Delete",
-				"dependsOn": [
-					{
-						"activity": "Copy file from inbound to input",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Zipped_Source",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container_name": {
-								"value": "@pipeline().parameters.Container_Name",
-								"type": "Expression"
-							},
-							"Inbound_Directory": {
-								"value": "@pipeline().parameters.Inbound_Directory",
-								"type": "Expression"
-							},
-							"File_Name": {
-								"value": "@pipeline().parameters.Source_File_Name",
-								"type": "Expression"
-							}
-						}
-					},
-					"enableLogging": false,
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true
-					}
-				}
-			},
-			{
-				"name": "Delete ctl file from inbound",
-				"type": "Delete",
-				"dependsOn": [
-					{
-						"activity": "Copy file from inbound to input",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Zipped_Source",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container_name": {
-								"value": "@pipeline().parameters.Container_Name",
-								"type": "Expression"
-							},
-							"Inbound_Directory": {
-								"value": "@pipeline().parameters.Inbound_Directory",
-								"type": "Expression"
-							},
-							"File_Name": {
-								"value": "@variables('CTL_File_Name_Part2')",
-								"type": "Expression"
-							}
-						}
-					},
-					"enableLogging": false,
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true
-					}
-				}
-			},
-			{
 				"name": "Get record count from data file",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -361,6 +183,224 @@
 						"value": "@string(activity('Get record count from data file').output.count)",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Set CTL count variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Check if control file is present",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Ctl_Count",
+					"value": {
+						"value": "@string(activity('Check if control file is present').output.firstrow.Prop_0)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Count Match between CTL and Data File",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Set CTL count variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set data count variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('data_count'),variables('ctl_count'))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy file from inbound to input_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Zipped_Source",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Inbound_Directory": {
+											"value": "@pipeline().parameters.Inbound_Directory",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@pipeline().parameters.Source_File_Name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Zipped_Input",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_Name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Input_Directory": {
+											"value": "@pipeline().parameters.Input_Directory",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Delete data file from inbound_copy1",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "Copy file from inbound to input_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "Zipped_Source",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Inbound_Directory": {
+											"value": "@pipeline().parameters.Inbound_Directory",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@pipeline().parameters.Source_File_Name",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								}
+							}
+						},
+						{
+							"name": "Delete ctl file from inbound_copy1",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "Copy file from inbound to input_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "Zipped_Source",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Inbound_Directory": {
+											"value": "@pipeline().parameters.Inbound_Directory",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@variables('CTL_File_Name_Part2')",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								}
+							}
+						}
+					]
 				}
 			}
 		],
