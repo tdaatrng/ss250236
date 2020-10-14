@@ -22,7 +22,7 @@
 							"type": "Expression"
 						},
 						"File_Name": {
-							"value": "@pipeline().parameters.File_Name",
+							"value": "@pipeline().parameters.Source_File_Name",
 							"type": "Expression"
 						},
 						"Activity": "if activity",
@@ -59,7 +59,7 @@
 							"type": "Expression"
 						},
 						"File_Name": {
-							"value": "@pipeline().parameters.File_Name",
+							"value": "@pipeline().parameters.Source_File_Name",
 							"type": "Expression"
 						},
 						"Reject_Folder": {
