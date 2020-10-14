@@ -9,7 +9,7 @@
 			"Container_Name": {
 				"type": "String"
 			},
-			"Reject_Folder_Name": {
+			"Reject_Folder": {
 				"type": "String"
 			},
 			"File_Name": {
@@ -22,7 +22,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@dataset().Reject_Folder_Name",
+					"value": "@dataset().Reject_Folder",
 					"type": "Expression"
 				},
 				"fileSystem": {
