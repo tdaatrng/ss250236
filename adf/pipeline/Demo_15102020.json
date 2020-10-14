@@ -60,6 +60,24 @@
 				]
 			}
 		],
+		"parameters": {
+			"Source_File_Name": {
+				"type": "string",
+				"defaultValue": "TrainingFile_20201014.csv.gz"
+			},
+			"Inbound_Path": {
+				"type": "string",
+				"defaultValue": "inbound"
+			},
+			"Input_Path": {
+				"type": "string",
+				"defaultValue": "input"
+			},
+			"Folder_Name": {
+				"type": "string",
+				"defaultValue": "sj186068"
+			}
+		},
 		"annotations": []
 	}
 }
