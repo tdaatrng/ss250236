@@ -16,17 +16,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"fileListPath": {
-								"value": "@concat(pipeline().parameters.FileSys,'/',pipeline().parameters.Dir,'/')",
-								"type": "Expression"
-							},
-							"enablePartitionDiscovery": false
+							"recursive": true
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -47,62 +43,18 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Flight#",
-									"type": "String"
+									"path": "$['WindowEnd']"
 								},
 								"sink": {
-									"name": "Flight#",
-									"type": "String"
+									"name": "WindowEnd"
 								}
 							},
 							{
 								"source": {
-									"name": "Origin",
-									"type": "String"
+									"path": "$['FraudulentCalls']"
 								},
 								"sink": {
-									"name": "Origin",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Dest",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Dest",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "FlightDate",
-									"type": "String"
-								},
-								"sink": {
-									"name": "FlightDate",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "NoSalesReason",
-									"type": "String"
-								},
-								"sink": {
-									"name": "NoSalesReason",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "TransmittingFlightAttd",
-									"type": "String"
-								},
-								"sink": {
-									"name": "TransmittingFlightAttd",
-									"type": "String"
+									"name": "FraudulentCalls"
 								}
 							}
 						]
@@ -110,30 +62,14 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Src_Input",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileSys": {
-								"value": "@pipeline().parameters.FileSys",
-								"type": "Expression"
-							},
-							"Dir": {
-								"value": "@pipeline().parameters.Dir",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "StreamData",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "TgtData",
-						"type": "DatasetReference",
-						"parameters": {
-							"TgtFileNm": {
-								"value": "@concat(pipeline().parameters.TgtFileNm,'-',utcnow(),'.csv')",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
