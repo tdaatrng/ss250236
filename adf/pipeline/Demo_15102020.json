@@ -228,6 +228,34 @@
 						"value": "@equals(variables('data_count'),variables('ctl_count'))",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "mail notification for count mismatch",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "error_mail_notification_pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": "sumit.jain@teradata.com",
+									"Activity": "If Activity",
+									"ErrorMessage": "Count mismatch between Data and Ctl file",
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy file from inbound to input_copy1",
