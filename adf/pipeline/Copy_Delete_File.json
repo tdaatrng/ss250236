@@ -58,7 +58,7 @@
 								"type": "Expression"
 							},
 							"Inbound_Folder": {
-								"value": "@pipeline().parameters.Folder_Name",
+								"value": "@pipeline().parameters.Inbound_Folder",
 								"type": "Expression"
 							},
 							"File_Name": {
@@ -119,7 +119,7 @@
 								"type": "Expression"
 							},
 							"Inbound_Folder": {
-								"value": "@pipeline().parameters.Folder_Name",
+								"value": "@pipeline().parameters.Inbound_Folder",
 								"type": "Expression"
 							},
 							"File_Name": {
