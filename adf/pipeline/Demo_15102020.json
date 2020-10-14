@@ -258,7 +258,7 @@
 					],
 					"ifTrueActivities": [
 						{
-							"name": "Copy file from inbound to input_copy1",
+							"name": "Copy file from inbound to input",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -323,7 +323,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "Zipped_Input",
+									"referenceName": "Unzipped_Input",
 									"type": "DatasetReference",
 									"parameters": {
 										"Container_Name": {
@@ -333,17 +333,21 @@
 										"Input_Directory": {
 											"value": "@pipeline().parameters.Input_Directory",
 											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@variables('CTL_File_Name_Part1')",
+											"type": "Expression"
 										}
 									}
 								}
 							]
 						},
 						{
-							"name": "Delete data file from inbound_copy1",
+							"name": "Delete data file from inbound",
 							"type": "Delete",
 							"dependsOn": [
 								{
-									"activity": "Copy file from inbound to input_copy1",
+									"activity": "Copy file from inbound to input",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -384,11 +388,11 @@
 							}
 						},
 						{
-							"name": "Delete ctl file from inbound_copy1",
+							"name": "Delete ctl file from inbound",
 							"type": "Delete",
 							"dependsOn": [
 								{
-									"activity": "Copy file from inbound to input_copy1",
+									"activity": "Copy file from inbound to input",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -426,6 +430,39 @@
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true
 								}
+							}
+						},
+						{
+							"name": "Load file in staging table",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "Delete data file from inbound",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "Delete ctl file from inbound",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/db250066/PS_ASSET_OWN_TBL7_db250066_stg"
+							},
+							"linkedServiceName": {
+								"referenceName": "adb_ls",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
