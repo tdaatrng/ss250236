@@ -6,10 +6,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Folder_Name": {
+			"Container_Name": {
 				"type": "string"
 			},
-			"Input_Path": {
+			"Input_Directory": {
 				"type": "string"
 			}
 		},
@@ -19,11 +19,11 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@dataset().Input_Path",
+					"value": "@dataset().Input_Directory",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().Folder_Name",
+					"value": "@dataset().Container_Name",
 					"type": "Expression"
 				}
 			},
