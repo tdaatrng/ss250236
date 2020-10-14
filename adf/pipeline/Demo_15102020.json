@@ -464,6 +464,26 @@
 								"referenceName": "adb_ls",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "success_mail_notification_pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Load file in staging table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "success_mail_notification_pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
 						}
 					]
 				}
