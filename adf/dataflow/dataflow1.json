@@ -18,7 +18,7 @@
 					"name": "Select1"
 				}
 			],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\teach(match(movie),\n\t\t\tmovie = $$),\n\t\teach(match(title),\n\t\t\ttitle = $$),\n\t\teach(match(genres),\n\t\t\tgenres = $$),\n\t\teach(match(year),\n\t\t\tyear = $$),\n\t\teach(match(ERROR_FUNCTION('Rotton Tomato')),\n\t\t\tERROR_FUNCTION('Rotten Tomato') = $$)\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1"
 		}
 	}
 }
