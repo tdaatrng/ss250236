@@ -15,7 +15,8 @@
 				"defaultValue": "inbound"
 			},
 			"File_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "employee.txt"
 			}
 		},
 		"annotations": [],
