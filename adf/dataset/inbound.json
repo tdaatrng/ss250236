@@ -7,16 +7,13 @@
 		},
 		"parameters": {
 			"Container_Name": {
-				"type": "string",
-				"defaultValue": "dc186053"
+				"type": "string"
 			},
 			"Folder_Name": {
-				"type": "string",
-				"defaultValue": "inbound"
+				"type": "string"
 			},
 			"File_Name": {
-				"type": "string",
-				"defaultValue": "employee.txt"
+				"type": "string"
 			}
 		},
 		"annotations": [],
