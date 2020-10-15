@@ -3,10 +3,22 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Sink_Movies_pp186053",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
-			"script": ""
+			"transformations": [
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\teach(match(movie),\n\t\t\tmovie = $$),\n\t\teach(match(title),\n\t\t\ttitle = $$),\n\t\teach(match(genres),\n\t\t\tgenres = $$),\n\t\teach(match(year),\n\t\t\tyear = $$),\n\t\teach(match(ERROR_FUNCTION('Rotton Tomato')),\n\t\t\tERROR_FUNCTION('Rotten Tomato') = $$)\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1"
 		}
 	}
 }
