@@ -1,0 +1,14 @@
+{
+	"name": "SS186016_DATA_FLOW_INTEGRATED",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
+		"annotations": []
+	}
+}
