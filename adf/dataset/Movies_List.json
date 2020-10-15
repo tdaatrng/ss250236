@@ -1,0 +1,20 @@
+{
+	"name": "Movies_List",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "moviesDB.csv",
+				"folderPath": "input_demo1",
+				"fileSystem": "pp186053"
+			}
+		},
+		"schema": []
+	}
+}
