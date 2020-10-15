@@ -55,7 +55,14 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "File_Size",
+					"value": {
+						"value": "@activity('Get Metadata1').output.Size",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
