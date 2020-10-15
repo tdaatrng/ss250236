@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DS_Copy_From_HTTPS",
+				"name": "DS_Copy_From_Movie_List",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
