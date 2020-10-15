@@ -17,7 +17,21 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "inbound",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Folder_Name": {
+								"value": "@pipeline().parameters.Inbound_Folder",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.Source_File_Name",
+								"type": "Expression"
+							}
+						}
 					},
 					"fieldList": [
 						"size"
@@ -31,6 +45,28 @@
 				}
 			}
 		],
+		"parameters": {
+			"Container_Name": {
+				"type": "string",
+				"defaultValue": "dc186053"
+			},
+			"Inbound_Folder": {
+				"type": "string",
+				"defaultValue": "inbound"
+			},
+			"Reject_Folder": {
+				"type": "string",
+				"defaultValue": "reject"
+			},
+			"Source_File_Name": {
+				"type": "string",
+				"defaultValue": "employee.txt"
+			},
+			"Input_Folder": {
+				"type": "string",
+				"defaultValue": "input"
+			}
+		},
 		"annotations": []
 	}
 }
