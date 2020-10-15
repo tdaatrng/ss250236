@@ -1,0 +1,39 @@
+{
+	"name": "pp186053_scd_type2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "Customer_Dimension"
+				},
+				{
+					"name": "sourceMax_Key"
+				},
+				{
+					"name": "Input_Source"
+				}
+			],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Join1"
+				},
+				{
+					"name": "Lookup1"
+				},
+				{
+					"name": "ConditionalSplit1"
+				},
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> Customer_Dimension\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourceMax_Key\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> Input_Source\nInput_Source join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> Join1\nJoin1 lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> Lookup1\nLookup1 split(isNull(DimEmp_No),\n\tdisjoint: false) ~> ConditionalSplit1@(New, Exist)\nConditionalSplit1@New derive(isActiveInsert = 1) ~> DerivedColumn1\nDerivedColumn1 sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}
