@@ -43,6 +43,19 @@
 						"type": "DelimitedTextReadSettings"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"parameters": {
@@ -65,6 +78,11 @@
 			"Input_Folder": {
 				"type": "string",
 				"defaultValue": "input"
+			}
+		},
+		"variables": {
+			"File_Size": {
+				"type": "String"
 			}
 		},
 		"annotations": []
