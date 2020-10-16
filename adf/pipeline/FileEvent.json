@@ -461,7 +461,7 @@
 								"notebookPath": "/sj186068/FileNameCheck",
 								"baseParameters": {
 									"FileName": {
-										"value": "@pipeline().parameters.Source_File_Name",
+										"value": "@variables('CSV_File_Name')",
 										"type": "Expression"
 									}
 								}
