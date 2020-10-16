@@ -458,7 +458,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/sj186068/fileToTable"
+								"notebookPath": "/sj186068/FileNameCheck"
 							},
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
