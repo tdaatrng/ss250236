@@ -66,8 +66,14 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "CTL_File_Src",
-						"type": "DatasetReference"
+						"referenceName": "CTL_File",
+						"type": "DatasetReference",
+						"parameters": {
+							"CTL_File_Name": {
+								"value": "@variables('CTL_File_Name')",
+								"type": "Expression"
+							}
+						}
 					}
 				}
 			}
