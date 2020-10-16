@@ -19,9 +19,12 @@
 				},
 				{
 					"name": "Filter1"
+				},
+				{
+					"name": "SplittingMovieGenres"
 				}
 			],
-			"script": "source(output(\n\t\tmovie as string,\n\t\ttitle as string,\n\t\tgenres as string,\n\t\tyear as string,\n\t\tRating as string,\n\t\t{Rotton Tomato} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tMOVIE_ID = movie,\n\t\tMOVIE_NAME = title,\n\t\tMOVIE_GENRES = genres,\n\t\tYEAR_OF_RELEASE = year,\n\t\tROTTEN_TOMATO = {Rotton Tomato}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 filter(toInteger(ROTTEN_TOMATO)>80) ~> Filter1"
+			"script": "source(output(\n\t\tmovie as string,\n\t\ttitle as string,\n\t\tgenres as string,\n\t\tyear as string,\n\t\tRating as string,\n\t\t{Rotton Tomato} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tMOVIE_ID = movie,\n\t\tMOVIE_NAME = title,\n\t\tMOVIE_GENRES = genres,\n\t\tYEAR_OF_RELEASE = year,\n\t\tROTTEN_TOMATO = {Rotton Tomato}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 filter(toInteger(ROTTEN_TOMATO)>80) ~> Filter1\nFilter1 derive(MOVIE_GENRES = iif(locate(\"|\",MOVIE_GENRES) > 1,left(MOVIE_GENRES, locate(\"|\",MOVIE_GENRES)-1),MOVIE_GENRES)) ~> SplittingMovieGenres"
 		}
 	}
 }
