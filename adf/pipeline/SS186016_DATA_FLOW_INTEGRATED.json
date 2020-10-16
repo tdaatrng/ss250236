@@ -1,6 +1,21 @@
 {
 	"name": "SS186016_DATA_FLOW_INTEGRATED",
 	"properties": {
+		"activities": [
+			{
+				"name": "Extracting CSV FileName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CSV_File_Name",
+					"value": {
+						"value": "@substring(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
 		"parameters": {
 			"File_Name": {
 				"type": "string",
@@ -14,6 +29,11 @@
 			},
 			"Inbound_Directory": {
 				"type": "string"
+			}
+		},
+		"variables": {
+			"CSV_File_Name": {
+				"type": "String"
 			}
 		},
 		"annotations": []
