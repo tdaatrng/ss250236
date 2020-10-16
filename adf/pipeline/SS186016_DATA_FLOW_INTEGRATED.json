@@ -78,13 +78,13 @@
 				}
 			},
 			{
-				"name": "Web1",
-				"type": "WebActivity",
+				"name": "Load to Staging table",
+				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
 						"activity": "Check CTL File Exists",
 						"dependencyConditions": [
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
