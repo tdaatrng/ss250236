@@ -1,0 +1,31 @@
+{
+	"name": "ADB_audit",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/sj186068/FileNameCheck",
+					"baseParameters": {
+						"FileName": "Employee_20201010.csv"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
