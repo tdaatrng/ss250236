@@ -458,7 +458,13 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/sj186068/FileNameCheck"
+								"notebookPath": "/sj186068/FileNameCheck",
+								"baseParameters": {
+									"FileName": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									}
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
