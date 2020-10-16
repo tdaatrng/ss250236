@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output_demo1",
+				"fileName": "moviesDB.csv",
+				"folderPath": "input_demo1",
 				"fileSystem": "pp186053"
 			},
 			"columnDelimiter": ",",
