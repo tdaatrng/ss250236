@@ -12,7 +12,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "pp186053Sinkparquet",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "Select1"
@@ -28,9 +36,12 @@
 				},
 				{
 					"name": "AggregateRatings"
+				},
+				{
+					"name": "AlterRow1"
 				}
 			],
-			"script": "source(output(\n\t\tmovie as string,\n\t\ttitle as string,\n\t\tgenres as string,\n\t\tyear as string,\n\t\tRating as string,\n\t\t{Rotton Tomato} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tMOVIE_ID = movie,\n\t\tMOVIE_NAME = title,\n\t\tMOVIE_GENRES = genres,\n\t\tYEAR_OF_RELEASE = year,\n\t\tROTTEN_TOMATO = {Rotton Tomato}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 filter(toInteger(ROTTEN_TOMATO)>40) ~> Filter1\nFilter1 derive(PRIMARY_GENRE = iif(locate(\"|\",MOVIE_GENRES) > 1,left(MOVIE_GENRES, locate(\"|\",MOVIE_GENRES)-1),MOVIE_GENRES)) ~> SplittingMovieGenres\nSplittingMovieGenres window(over(PRIMARY_GENRE,\n\t\tYEAR_OF_RELEASE),\n\tdesc(ROTTEN_TOMATO, true),\n\tRatingsRank = rank()) ~> RankMovies\nRankMovies aggregate(groupBy(PRIMARY_GENRE,\n\t\tYEAR_OF_RELEASE),\n\tAverageRating = avg(toInteger(ROTTEN_TOMATO)),\n\t\t{Highest Rated} = first(MOVIE_NAME),\n\t\tLowestRated = last(MOVIE_NAME),\n\t\tNumberOfMovies = count()) ~> AggregateRatings"
+			"script": "source(output(\n\t\tmovie as string,\n\t\ttitle as string,\n\t\tgenres as string,\n\t\tyear as string,\n\t\tRating as string,\n\t\t{Rotton Tomato} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 select(mapColumn(\n\t\tMovie_ID = movie,\n\t\tMOVIE_NAME = title,\n\t\tMOVIE_GENRES = genres,\n\t\tYEAR_OF_RELEASE = year,\n\t\tROTTEN_TOMATO = {Rotton Tomato}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 filter(toInteger(ROTTEN_TOMATO)>40) ~> Filter1\nFilter1 derive(PRIMARY_GENRE = iif(locate(\"|\",MOVIE_GENRES) > 1,left(MOVIE_GENRES, locate(\"|\",MOVIE_GENRES)-1),MOVIE_GENRES)) ~> SplittingMovieGenres\nSplittingMovieGenres window(over(PRIMARY_GENRE,\n\t\tYEAR_OF_RELEASE),\n\tdesc(ROTTEN_TOMATO, true),\n\tRatingsRank = rank()) ~> RankMovies\nRankMovies aggregate(groupBy(PRIMARY_GENRE,\n\t\tYEAR_OF_RELEASE),\n\tAverageRating = avg(toInteger(ROTTEN_TOMATO)),\n\t\t{Highest Rated} = first(MOVIE_NAME),\n\t\tLowestRated = last(MOVIE_NAME),\n\t\tNumberOfMovies = count()) ~> AggregateRatings\nAggregateRatings alterRow(upsertIf(true())) ~> AlterRow1\nAlterRow1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
