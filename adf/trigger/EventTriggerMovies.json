@@ -7,7 +7,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "pp186053_Movies_Ratings",
+					"referenceName": "pp186053_COPY_1",
 					"type": "PipelineReference"
 				}
 			}
