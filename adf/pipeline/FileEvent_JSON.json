@@ -104,7 +104,10 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"EmailTo": "sumit.jain@teradata.com",
+						"EmailTo": {
+							"value": "@pipeline().parameters.Email_To",
+							"type": "Expression"
+						},
 						"Activity": "Lookup Activity",
 						"ErrorMessage": {
 							"value": "@concat('Control File -',variables('CTL_File_Name'),' not received.')",
@@ -629,7 +632,10 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"EmailTo": "sumit.jain@teradata.com",
+									"EmailTo": {
+										"value": "@pipeline().parameters.Email_To",
+										"type": "Expression"
+									},
 									"Activity": "Etlcontrol source's databricks notebook",
 									"ErrorMessage": "Databricks notebook failed with error",
 									"Pipe_line_Name": {
@@ -695,9 +701,109 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"EmailTo": "sumit.jain@teradata.com",
+									"EmailTo": {
+										"value": "@pipeline().parameters.Email_To",
+										"type": "Expression"
+									},
 									"Activity": "Staging's databricks notebook",
 									"ErrorMessage": "Databricks notebook failed with error",
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Insert Update in target table",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "loading source in staging table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/sj186068/UseCase/stg_to_tgt"
+							},
+							"linkedServiceName": {
+								"referenceName": "adb_ls",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "error mail notification pipeline for target table",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Insert Update in target table",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "error_mail_notification_pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": {
+										"value": "@pipeline().parameters.Email_To",
+										"type": "Expression"
+									},
+									"Activity": "Target's databricks notebook",
+									"ErrorMessage": "Databricks notebook failed with error",
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "success_mail_notification_pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Insert Update in target table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "success_mail_notification_pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": {
+										"value": "@pipeline().parameters.Email_To",
+										"type": "Expression"
+									},
 									"Pipe_line_Name": {
 										"value": "@pipeline().Pipeline",
 										"type": "Expression"
@@ -749,6 +855,10 @@
 			"Container_Name": {
 				"type": "string",
 				"defaultValue": "sj186068"
+			},
+			"Email_To": {
+				"type": "string",
+				"defaultValue": "sumit.jain@teradata.com"
 			}
 		},
 		"variables": {
