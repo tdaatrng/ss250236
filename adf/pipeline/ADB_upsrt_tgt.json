@@ -1,5 +1,5 @@
 {
-	"name": "ADB_ld_src_stg",
+	"name": "ADB_upsrt_tgt",
 	"properties": {
 		"activities": [
 			{
@@ -15,10 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/sj186068/UseCase/ld_source_stg",
-					"baseParameters": {
-						"CSV_FileName": "transaction_20201015.csv"
-					}
+					"notebookPath": "/sj186068/UseCase/stg_to_tgt"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
