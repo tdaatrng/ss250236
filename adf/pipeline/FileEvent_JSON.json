@@ -726,7 +726,7 @@
 							"type": "DatabricksNotebook",
 							"dependsOn": [
 								{
-									"activity": "loading source in staging table",
+									"activity": "Delete csv file generated in input",
 									"dependencyConditions": [
 										"Succeeded"
 									]
