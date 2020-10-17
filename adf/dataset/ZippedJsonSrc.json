@@ -5,13 +5,34 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Container_Name": {
+				"type": "string"
+			},
+			"Inbound_Directory": {
+				"type": "string"
+			},
+			"JSON_File_Name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "inbound",
-				"fileSystem": "sj186068"
+				"fileName": {
+					"value": "@dataset().JSON_File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Inbound_Directory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Container_Name",
+					"type": "Expression"
+				}
 			},
 			"compression": {
 				"type": "gzip"
