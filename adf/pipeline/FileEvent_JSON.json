@@ -307,7 +307,8 @@
 												"path": "$['transaction']['transaction_id']"
 											},
 											"sink": {
-												"name": "transaction_id"
+												"name": "transaction_id",
+												"type": "String"
 											}
 										},
 										{
@@ -315,7 +316,8 @@
 												"path": "$['transaction']['transaction_type']"
 											},
 											"sink": {
-												"name": "transaction_type"
+												"name": "transaction_type",
+												"type": "String"
 											}
 										},
 										{
@@ -323,7 +325,8 @@
 												"path": "$['transaction']['transaction_timestamp']"
 											},
 											"sink": {
-												"name": "transaction_timestamp"
+												"name": "transaction_timestamp",
+												"type": "String"
 											}
 										},
 										{
@@ -331,7 +334,8 @@
 												"path": "$['transaction']['cancellation_timestamp']"
 											},
 											"sink": {
-												"name": "cancellation_timestamp"
+												"name": "cancellation_timestamp",
+												"type": "String"
 											}
 										},
 										{
@@ -339,7 +343,8 @@
 												"path": "$['transaction']['aadvantage_num']"
 											},
 											"sink": {
-												"name": "aadvantage_num"
+												"name": "aadvantage_num",
+												"type": "String"
 											}
 										},
 										{
@@ -347,7 +352,8 @@
 												"path": "$['transaction']['offer_id']"
 											},
 											"sink": {
-												"name": "offer_id"
+												"name": "offer_id",
+												"type": "String"
 											}
 										},
 										{
@@ -355,7 +361,8 @@
 												"path": "$['transaction']['purchase_emp_id']"
 											},
 											"sink": {
-												"name": "purchase_emp_id"
+												"name": "purchase_emp_id",
+												"type": "String"
 											}
 										},
 										{
@@ -363,7 +370,8 @@
 												"path": "$['transaction']['cancellation_emp_id']"
 											},
 											"sink": {
-												"name": "cancellation_emp_id"
+												"name": "cancellation_emp_id",
+												"type": "String"
 											}
 										},
 										{
@@ -371,7 +379,8 @@
 												"path": "$['transaction']['tax']['gst']"
 											},
 											"sink": {
-												"name": "gst"
+												"name": "gst",
+												"type": "String"
 											}
 										},
 										{
@@ -379,7 +388,8 @@
 												"path": "$['transaction']['tax']['us1']"
 											},
 											"sink": {
-												"name": "us1"
+												"name": "us1",
+												"type": "String"
 											}
 										},
 										{
@@ -387,7 +397,8 @@
 												"path": "$['transaction']['payment_method']"
 											},
 											"sink": {
-												"name": "payment_method"
+												"name": "payment_method",
+												"type": "String"
 											}
 										},
 										{
@@ -395,7 +406,8 @@
 												"path": "$['transaction']['total_price']"
 											},
 											"sink": {
-												"name": "total_price"
+												"name": "total_price",
+												"type": "String"
 											}
 										},
 										{
@@ -403,7 +415,8 @@
 												"path": "$['transaction']['total_price_in_miles']"
 											},
 											"sink": {
-												"name": "total_price_in_miles"
+												"name": "total_price_in_miles",
+												"type": "String"
 											}
 										},
 										{
@@ -411,7 +424,8 @@
 												"path": "$['transaction']['sales_receipt_num']"
 											},
 											"sink": {
-												"name": "sales_receipt_num"
+												"name": "sales_receipt_num",
+												"type": "String"
 											}
 										},
 										{
@@ -419,7 +433,8 @@
 												"path": "$['transaction']['credit_card_info']['credit_card_type']"
 											},
 											"sink": {
-												"name": "credit_card_type"
+												"name": "credit_card_type",
+												"type": "String"
 											}
 										}
 									]
