@@ -45,7 +45,12 @@
 				"outputs": [
 					{
 						"referenceName": "ZippedJsonSrc",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": "sj186068",
+							"Inbound_Directory": "inbound",
+							"JSON_File_Name": "transaction_20201016.json.gz"
+						}
 					}
 				]
 			}
