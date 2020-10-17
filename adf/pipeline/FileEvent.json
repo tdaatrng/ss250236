@@ -458,7 +458,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/sj186068/FileNameCheck",
+								"notebookPath": "/sj186068/UseCase/FileNameCheck",
 								"baseParameters": {
 									"FileName": {
 										"value": "@variables('CSV_File_Name')",
