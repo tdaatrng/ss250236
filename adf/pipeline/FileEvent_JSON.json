@@ -662,6 +662,9 @@
 								"secureInput": false
 							},
 							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/sj186068/UseCase/ld_source_stg"
+							},
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
 								"type": "LinkedServiceReference"
