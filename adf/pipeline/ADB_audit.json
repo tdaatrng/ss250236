@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/sj186068/FileNameCheck",
+					"notebookPath": "/sj186068/UseCase/FileNameCheck",
 					"baseParameters": {
 						"FileName": "Employee_20201010.csv"
 					}
