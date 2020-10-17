@@ -821,6 +821,12 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								},
+								{
+									"activity": "File name and date check of previously loaded",
+									"dependencyConditions": [
+										"Failed"
+									]
 								}
 							],
 							"policy": {
