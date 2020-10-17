@@ -433,7 +433,7 @@
 							}
 						},
 						{
-							"name": "Load file in staging table",
+							"name": "File name and date check of previously loaded",
 							"type": "DatabricksNotebook",
 							"dependsOn": [
 								{
@@ -476,7 +476,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "Load file in staging table",
+									"activity": "File name and date check of previously loaded",
 									"dependencyConditions": [
 										"Succeeded"
 									]
