@@ -823,9 +823,9 @@
 									]
 								},
 								{
-									"activity": "File name and date check of previously loaded",
+									"activity": "error mail notification pipeline for etlcontrol",
 									"dependencyConditions": [
-										"Failed"
+										"Succeeded"
 									]
 								}
 							],
