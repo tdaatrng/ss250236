@@ -653,7 +653,7 @@
 		"parameters": {
 			"Source_File_Name": {
 				"type": "string",
-				"defaultValue": "Employee_20200809.csv.gz"
+				"defaultValue": "transaction_20201015.json.gz"
 			},
 			"Inbound_Directory": {
 				"type": "string",
