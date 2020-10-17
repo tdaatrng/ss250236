@@ -821,7 +821,46 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "Unzipped_Input",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container_Name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										},
+										"Input_Directory": {
+											"value": "@pipeline().parameters.Input_Directory",
+											"type": "Expression"
+										},
+										"File_Name": {
+											"value": "@variables('CSV_File_Name')",
+											"type": "Expression"
+										}
+									}
 								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								}
+							}
+						},
+						{
+							"name": "Delete csv file generated in input -copy",
+							"type": "Delete",
+							"dependsOn": [
 								{
 									"activity": "error mail notification pipeline for etlcontrol",
 									"dependencyConditions": [
