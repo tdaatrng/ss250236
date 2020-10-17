@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "transaction.json",
+				"fileName": "transaction_20201016.json",
 				"folderPath": "inbound",
 				"fileSystem": "sj186068"
 			}
