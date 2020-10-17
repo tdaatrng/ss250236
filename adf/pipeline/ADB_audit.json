@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"notebookPath": "/sj186068/FileNameCheck",
 					"baseParameters": {
-						"FileName": "Employeesss_20201011.csv"
+						"FileName": "Employee_20201010.csv"
 					}
 				},
 				"linkedServiceName": {
