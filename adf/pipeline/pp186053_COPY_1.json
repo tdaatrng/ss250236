@@ -109,7 +109,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/prasanna.priyadarshi@qateradatacloud.com/pp186053_1/Movie_Demo_1"
+					"notebookPath": "/Users/prasanna.priyadarshi@qateradatacloud.com/pp186053_1/Movie_Demo_2"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
