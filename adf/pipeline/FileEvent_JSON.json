@@ -663,11 +663,50 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/sj186068/UseCase/ld_source_stg"
+								"notebookPath": "/sj186068/UseCase/ld_source_stg",
+								"baseParameters": {
+									"CVS_File_Name": {
+										"value": "@variables('CSV_File_Name')",
+										"type": "Expression"
+									}
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
 								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "error mail notification pipeline for staging table",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "loading source in staging table",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "error_mail_notification_pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": "sumit.jain@teradata.com",
+									"Activity": "Staging's databricks notebook",
+									"ErrorMessage": "Databricks notebook failed with error",
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
