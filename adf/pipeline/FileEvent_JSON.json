@@ -30,7 +30,7 @@
 				"typeProperties": {
 					"variableName": "CTL_File_Name",
 					"value": {
-						"value": "@concat(substring(variables('CSV_File_Name'),0,lastindexof(variables('CSV_File_Name'),'.')),'.ctl')",
+						"value": "@concat(substring(variables('JSON_File_Name'),0,lastindexof(variables('JSON_File_Name'),'.')),'.ctl')",
 						"type": "Expression"
 					}
 				}
