@@ -597,7 +597,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/sj186068/FileNameCheck",
+								"notebookPath": "/sj186068/UseCase/FileNameCheck",
 								"baseParameters": {
 									"FileName": {
 										"value": "@variables('CSV_File_Name')",
@@ -608,37 +608,6 @@
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
 								"type": "LinkedServiceReference"
-							}
-						},
-						{
-							"name": "success_mail_notification_pipeline",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "File name and date check of previously loaded",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "success_mail_notification_pipeline",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"EmailTo": "sumit.jain@teradata.com",
-									"Pipe_line_Name": {
-										"value": "@pipeline().Pipeline",
-										"type": "Expression"
-									},
-									"Source_File_Name": {
-										"value": "@pipeline().parameters.Source_File_Name",
-										"type": "Expression"
-									}
-								}
 							}
 						},
 						{
@@ -672,6 +641,30 @@
 										"type": "Expression"
 									}
 								}
+							}
+						},
+						{
+							"name": "loading source in staging table",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "File name and date check of previously loaded",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"linkedServiceName": {
+								"referenceName": "adb_ls",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
