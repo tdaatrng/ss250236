@@ -251,7 +251,10 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"EmailTo": "sumit.jain@teradata.com",
+									"EmailTo": {
+										"value": "@pipeline().parameters.Email_To",
+										"type": "Expression"
+									},
 									"Activity": "If Activity",
 									"ErrorMessage": "Count mismatch between Data and Ctl file",
 									"Pipe_line_Name": {
