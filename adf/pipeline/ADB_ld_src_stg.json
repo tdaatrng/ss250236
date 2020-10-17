@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"notebookPath": "/sj186068/UseCase/ld_source_stg",
 					"baseParameters": {
-						"FileName": "Employee_20201010.csv"
+						"CSV_FileName": "transaction_20201015.csv"
 					}
 				},
 				"linkedServiceName": {
