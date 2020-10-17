@@ -819,7 +819,7 @@
 								{
 									"activity": "Insert Update in target table",
 									"dependencyConditions": [
-										"Succeeded"
+										"Completed"
 									]
 								}
 							],
