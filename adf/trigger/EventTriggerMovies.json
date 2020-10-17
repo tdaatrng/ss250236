@@ -1,0 +1,26 @@
+{
+	"name": "EventTriggerMovies",
+	"properties": {
+		"description": "This will trigger the pipeline whenever file will arrive",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pp186053_Movies_Ratings",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/pp186053/blobs/input_demo1/",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgdls",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
