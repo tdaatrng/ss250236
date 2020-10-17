@@ -1,5 +1,5 @@
 {
-	"name": "ADB_audit",
+	"name": "ADB_ld_src_stg",
 	"properties": {
 		"activities": [
 			{
@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/sj186068/UseCase/FileNameCheck",
+					"notebookPath": "/sj186068/UseCase/ld_source_stg",
 					"baseParameters": {
 						"FileName": "Employee_20201010.csv"
 					}
