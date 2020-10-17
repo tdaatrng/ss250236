@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "Movie.csv",
 				"folderPath": "output_demo2",
 				"fileSystem": "pp186053"
 			},
