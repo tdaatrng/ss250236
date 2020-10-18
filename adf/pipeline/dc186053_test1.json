@@ -33,7 +33,8 @@
 						"childItems"
 					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
@@ -113,7 +114,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Inbound_Dir": {
-											"value": "@pipeline().parameters.Input_Dir",
+											"value": "@pipeline().parameters.Inbound_Dir",
 											"type": "Expression"
 										},
 										"Container_Name": {
