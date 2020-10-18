@@ -76,7 +76,11 @@
 									"type": "DelimitedTextSource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
-										"recursive": true
+										"recursive": true,
+										"wildcardFileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
 									},
 									"formatSettings": {
 										"type": "DelimitedTextReadSettings"
@@ -109,7 +113,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Inbound_Dir": {
-											"value": "@pipeline().parameters.Inbound_Dir",
+											"value": "@pipeline().parameters.Input_Dir",
 											"type": "Expression"
 										},
 										"Container_Name": {
