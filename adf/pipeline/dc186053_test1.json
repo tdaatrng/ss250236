@@ -192,13 +192,16 @@
 		],
 		"parameters": {
 			"Inbound_Dir": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "inbound"
 			},
 			"Container_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dc186053"
 			},
 			"Input_Dir": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "input1"
 			}
 		},
 		"annotations": []
