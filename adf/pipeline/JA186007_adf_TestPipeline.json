@@ -14,6 +14,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Extract CTL FileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Extract CSV FileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CTL_File_Name",
+					"value": {
+						"value": "@concat(substring(variables('CSV_File_Name'),0,lastindexof(variables('CSV_File_Name'),'.')),'.ctl')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -33,6 +53,9 @@
 		},
 		"variables": {
 			"CSV_File_Name": {
+				"type": "String"
+			},
+			"CTL_File_Name": {
 				"type": "String"
 			}
 		},
