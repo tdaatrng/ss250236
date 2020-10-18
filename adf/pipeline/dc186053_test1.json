@@ -247,7 +247,7 @@
 										"Container_Name": "@pipeline().parameters.Container_Name"
 									}
 								},
-								"enableLogging": true,
+								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
