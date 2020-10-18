@@ -122,7 +122,17 @@
 							"outputs": [
 								{
 									"referenceName": "DelimitedText3",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Input_Dir": {
+											"value": "@pipeline().parameters.Input_Dir",
+											"type": "Expression"
+										},
+										"Container_Name": {
+											"value": "@pipeline().parameters.Container_Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
