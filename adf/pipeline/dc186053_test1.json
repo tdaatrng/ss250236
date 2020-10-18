@@ -218,6 +218,42 @@
 								"referenceName": "adb_ls",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "Delete from input",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "Notebook1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "DelimitedText3",
+									"type": "DatasetReference",
+									"parameters": {
+										"Input_Dir": "@pipeline().parameters.Input_Dir",
+										"Container_Name": "@pipeline().parameters.Container_Name"
+									}
+								},
+								"enableLogging": true,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFileName": "@{item().name}"
+								}
+							}
 						}
 					]
 				}
