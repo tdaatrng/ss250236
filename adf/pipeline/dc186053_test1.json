@@ -17,7 +17,17 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "DelimitedText2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Inbound_Dir": {
+								"value": "@pipeline().parameters.Inbound_Dir",
+								"type": "Expression"
+							},
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							}
+						}
 					},
 					"fieldList": [
 						"childItems"
