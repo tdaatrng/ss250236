@@ -16,7 +16,10 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": "inbound",
-				"fileSystem": "dc186053"
+				"fileSystem": {
+					"value": "@dataset().Inbound_Dir",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
