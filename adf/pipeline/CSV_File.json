@@ -78,7 +78,7 @@
 				}
 			},
 			{
-				"name": "Error_Email Notif",
+				"name": "Email_Fail_Notification",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
