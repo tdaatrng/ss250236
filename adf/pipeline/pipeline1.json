@@ -114,11 +114,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@pipeline().parameters.Current State",
+						"value": "@activity('Copy data1').output.value",
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@contains(pipeline().parameters.Current State)",
+						"value": "@startswith(string(item().pipeline().parameters.Current_State),'MH')",
 						"type": "Expression"
 					}
 				}
@@ -126,7 +126,7 @@
 		],
 		"parameters": {
 			"EmpID": {
-				"type": "int"
+				"type": "string"
 			},
 			"EmpName": {
 				"type": "string"
