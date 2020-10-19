@@ -111,15 +111,6 @@
 				"type": "string",
 				"defaultValue": "abc.csv.gz"
 			},
-			"Container_Name": {
-				"type": "string"
-			},
-			"Input_Directory": {
-				"type": "string"
-			},
-			"Inbound_Directory": {
-				"type": "string"
-			},
 			"EmailTo": {
 				"type": "string",
 				"defaultValue": "achall.saxena@teradata.com"
