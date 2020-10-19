@@ -14,12 +14,35 @@
 				"folderPath": "input",
 				"fileSystem": "mc186080"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": "NULL",
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
+				"name": "Flight#",
+				"type": "String"
+			},
+			{
+				"name": "Origin",
+				"type": "String"
+			},
+			{
+				"name": "Dest",
+				"type": "String"
+			},
+			{
+				"name": "FlightDate",
+				"type": "String"
+			},
+			{
+				"name": "NoSalesReason",
+				"type": "String"
+			},
+			{
+				"name": "TransmittingFlightAttd",
 				"type": "String"
 			}
 		]
