@@ -116,25 +116,15 @@
 					"items": {
 						"value": "@activity('Copy data1').output.value",
 						"type": "Expression"
-					},
-					"condition": {
-						"value": "@startswith(string(item().pipeline().parameters.Current_State),'MH')",
-						"type": "Expression"
 					}
 				}
 			}
 		],
 		"parameters": {
-			"EmpID": {
+			"Origin State": {
 				"type": "string"
 			},
-			"EmpName": {
-				"type": "string"
-			},
-			"Origin_State": {
-				"type": "string"
-			},
-			"Current_State": {
+			"Current State": {
 				"type": "string"
 			}
 		},
