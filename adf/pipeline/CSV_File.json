@@ -124,7 +124,8 @@
 				"defaultValue": "CTL File not received"
 			},
 			"Container_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "as186113"
 			}
 		},
 		"variables": {
