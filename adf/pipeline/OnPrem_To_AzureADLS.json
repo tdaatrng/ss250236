@@ -114,7 +114,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Src_Object": {
-											"value": "substring(item(), 1, IndexOf(item(),',')-1)/substring(item(), IndexOf(item(),',')+1)",
+											"value": "substring(@item(), IndexOf(@item(),',')+1)",
 											"type": "Expression"
 										},
 										"Src_Container": {
@@ -123,6 +123,10 @@
 										},
 										"Src_Dir": {
 											"value": "@pipeline().parameters.ppSrc_Dir",
+											"type": "Expression"
+										},
+										"Src_Staging_Dir": {
+											"value": "@item()",
 											"type": "Expression"
 										}
 									}
