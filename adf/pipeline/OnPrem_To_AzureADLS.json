@@ -120,6 +120,10 @@
 									"referenceName": "Source_Object",
 									"type": "DatasetReference",
 									"parameters": {
+										"Src_Object": {
+											"value": "substring(item(), 1, IndexOf(item(),',')-1)/substring(item(), IndexOf(item(),',')+1)",
+											"type": "Expression"
+										},
 										"Src_Container": {
 											"value": "@pipeline().parameters.ppSrc_Container",
 											"type": "Expression"
