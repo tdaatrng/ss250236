@@ -133,6 +133,14 @@
 									"referenceName": "Target_Object",
 									"type": "DatasetReference",
 									"parameters": {
+										"Tgt_Object": {
+											"value": "substring(item(), IndexOf(item(),',')+1)",
+											"type": "Expression"
+										},
+										"Tgt_Dir": {
+											"value": "@pipeline().parameters.ppTgt_Dir",
+											"type": "Expression"
+										},
 										"Tgt_Container": {
 											"value": "@pipeline().parameters.ppSrc_Container",
 											"type": "Expression"
