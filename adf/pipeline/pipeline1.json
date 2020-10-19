@@ -116,16 +116,16 @@
 		],
 		"parameters": {
 			"EmpID": {
-				"type": "string"
+				"type": "int"
 			},
 			"EmpName": {
-				"type": "string"
+				"type": "object"
 			},
 			"Origin State": {
-				"type": "string"
+				"type": "object"
 			},
 			"Current State": {
-				"type": "string"
+				"type": "object"
 			}
 		},
 		"annotations": []
