@@ -73,7 +73,7 @@
 							"typeProperties": {
 								"variableName": "test",
 								"value": {
-									"value": "@string(substring(substring(item(), 0, indexof(item(),',')), 0, indexof(substring(item(), 0, indexof(item(),',')),':')))",
+									"value": "@string(substring(substring(string(item()), 0, indexof(string(item()),',')), 0, indexof(substring(string(item()), 0, indexof(string(item()),',')),':')))",
 									"type": "Expression"
 								}
 							}
