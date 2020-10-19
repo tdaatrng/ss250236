@@ -39,7 +39,14 @@
 			{
 				"name": "GetParameterFromFIle",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "csvFileNm",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -71,7 +78,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Set variable2",
+						"activity": "vSrcDirectory",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -86,8 +93,30 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "Src_Json",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@variables('sourceContainer')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			},
 			{
 				"name": "vSrcContainer",
@@ -102,11 +131,15 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "sourceContainer",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.sourceContainer",
+						"type": "Expression"
+					}
 				}
 			},
 			{
-				"name": "Set variable2",
+				"name": "vSrcDirectory",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -118,11 +151,15 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "sourceDirectory",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('sourceDirectory')",
+						"type": "Expression"
+					}
 				}
 			},
 			{
-				"name": "Set variable3",
+				"name": "vSrcFileName",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -134,10 +171,57 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "sourceFileName",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('sourceFileName')",
+						"type": "Expression"
+					}
 				}
+			},
+			{
+				"name": "jsonFileNm",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "jsonFileNm",
+					"value": {
+						"value": "@substring(pipeline().parameters.sourceFileName,0,lastindexof(pipeline().parameters.sourceFileName,'.'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "csvFileNm",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "jsonFileNm",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
+		"variables": {
+			"sourceContainer": {
+				"type": "String"
+			},
+			"sourceDirectory": {
+				"type": "String"
+			},
+			"sourceFileName": {
+				"type": "String"
+			},
+			"jsonFileNm": {
+				"type": "String"
+			},
+			"csvFileNm": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Demo"
 		},
