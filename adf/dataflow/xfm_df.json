@@ -12,9 +12,21 @@
 					"name": "srcdf"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> srcdf"
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "mc186080_dataflow_derived_csv",
+						"type": "DatasetReference"
+					},
+					"name": "tgtdf"
+				}
+			],
+			"transformations": [
+				{
+					"name": "drvsrc"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tlimit: 100) ~> srcdf\nsrcdf derive(NoSalesReson = locate(NoSalesReason,'Other')) ~> drvsrc\ndrvsrc sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> tgtdf"
 		}
 	}
 }
