@@ -60,7 +60,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lkp_Source_Objects').output",
+						"value": "@activity('Lkp_Source_Objects').output.value",
 						"type": "Expression"
 					},
 					"activities": [
