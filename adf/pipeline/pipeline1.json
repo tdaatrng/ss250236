@@ -108,10 +108,10 @@
 			"EmpName": {
 				"type": "string"
 			},
-			"OriginState": {
+			"Origin State": {
 				"type": "string"
 			},
-			"CurrentState": {
+			"Current State": {
 				"type": "string"
 			}
 		},
