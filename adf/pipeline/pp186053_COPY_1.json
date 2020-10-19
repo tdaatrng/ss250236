@@ -207,15 +207,6 @@
 			"File_Name": {
 				"type": "string"
 			},
-			"Container_Name": {
-				"type": "string"
-			},
-			"Input_Directory": {
-				"type": "string"
-			},
-			"Inbound_Directory": {
-				"type": "string"
-			},
 			"Email_To": {
 				"type": "string",
 				"defaultValue": "prasanna.priyadarshi@teradata.com"
