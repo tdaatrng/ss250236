@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "as186113/input/Emp_info.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "as186113/output/Emp_info.json"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -28,11 +37,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": {
-								"value": "toUpper()",
-								"type": "Expression"
-							}
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings",
@@ -96,6 +101,14 @@
 				]
 			}
 		],
+		"parameters": {
+			"Emp_ID": {
+				"type": "string"
+			},
+			"Emp_Name": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
