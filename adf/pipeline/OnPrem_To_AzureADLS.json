@@ -57,7 +57,14 @@
 						]
 					}
 				],
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Src_Object"
+					},
+					{
+						"name": "Tgt_Object"
+					}
+				],
 				"typeProperties": {
 					"items": {
 						"value": "@activity('Lkp_Source_Objects').output",
@@ -111,7 +118,17 @@
 							"inputs": [
 								{
 									"referenceName": "Source_Object",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Src_Container": {
+											"value": "@pipeline().parameters.ppSrc_Container",
+											"type": "Expression"
+										},
+										"Src_Dir": {
+											"value": "@pipeline().parameters.ppSrc_Dir",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -137,6 +154,12 @@
 			"ppLkp_Src_File": {
 				"type": "string",
 				"defaultValue": "Source_Objects.csv"
+			},
+			"ppSrc_Object": {
+				"type": "string"
+			},
+			"pp_Tgt_Object": {
+				"type": "string"
 			}
 		},
 		"folder": {
