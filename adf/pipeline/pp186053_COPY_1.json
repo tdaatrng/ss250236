@@ -176,9 +176,9 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "dataflow1",
+						"activity": "Lookup1",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
@@ -201,12 +201,45 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "dataflow1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"fileListPath": "pp186053/output_error"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"parameters": {
-			"File_Name": {
-				"type": "string"
-			},
 			"Email_To": {
 				"type": "string",
 				"defaultValue": "prasanna.priyadarshi@teradata.com"
@@ -218,6 +251,10 @@
 			"ErrorMessage": {
 				"type": "string",
 				"defaultValue": "date formt is not correct"
+			},
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "error_pp186053.csv"
 			}
 		},
 		"annotations": []
