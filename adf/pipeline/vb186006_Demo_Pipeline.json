@@ -18,7 +18,14 @@
 			{
 				"name": "Extracting_CTL_FileName",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Extracting_CSV_FileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "CTL_File_Name",
@@ -27,6 +34,96 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Check CTL File if exists",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Extracting_CTL_FileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "CTL_File_Src",
+						"type": "DatasetReference",
+						"parameters": {
+							"CTL_File_Name": {
+								"value": "@variables('CTL_File_Name')",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "Notebook1",
+				"description": "Loading data in staging table",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Check CTL File if exists",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/vb186006/vb186006_PS_ASSET_stg"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Error mail notification",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Check CTL File if exists",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
 		"parameters": {
