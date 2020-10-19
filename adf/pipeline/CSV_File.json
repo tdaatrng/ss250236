@@ -102,7 +102,7 @@
 					"headers": {
 						"Content-type": "application/json"
 					},
-					"body": "@concat('(\n\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\"Subject\" : \"An error has occurred in the ',pipeline().parameters.Pipe_line_Name,'-pipeline for\n file-','pipeline().parameters.File_Name,'\",\n \"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n \"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\", \n \"Activity\" : \"',pipeline().parameters.Activity,'\",\n \"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n \"FileName\" : \"',pipeline().parameters.File_Name,'\"\n  )')"
+					"body": ""
 				}
 			}
 		],
@@ -120,7 +120,7 @@
 			"Inbound_Directory": {
 				"type": "string"
 			},
-			"Email_To": {
+			"EmailTo": {
 				"type": "string",
 				"defaultValue": "achall.saxena@teradata.com"
 			},
