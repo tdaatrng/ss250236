@@ -26,14 +26,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Origin State": {
-				"type": "string"
-			},
-			"Current State": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
