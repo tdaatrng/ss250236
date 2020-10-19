@@ -1,0 +1,41 @@
+{
+	"name": "CSV_File",
+	"properties": {
+		"activities": [
+			{
+				"name": "Extracting CSV file",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CSV_File_Name",
+					"value": {
+						"value": "@substring(pipeline().parameters.FILE_NAME,0,lastindexof(pipeline().parameters.FILE_NAME,'.'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"FILE_NAME": {
+				"type": "string",
+				"defaultValue": "abc.csv.gz"
+			},
+			"Container_Name": {
+				"type": "string"
+			},
+			"Input_Directory": {
+				"type": "string"
+			},
+			"Inbound_Directory": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"CSV_File_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
