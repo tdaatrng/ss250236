@@ -93,7 +93,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Copy data",
+						"activity": "Execute Pipeline1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -106,10 +106,26 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": []
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Copy data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
-				"linkedServiceName": {
-					"referenceName": "adb_ls",
-					"type": "LinkedServiceReference"
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "email",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
