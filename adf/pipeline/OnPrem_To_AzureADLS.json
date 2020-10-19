@@ -115,7 +115,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Src_Object": {
-											"value": "@substring(string(item()), 0, indexof(string(item()),','))",
+											"value": "@substring(substring(item(), 0, indexof(item(),',')), 0, indexof(substring(item(), 0, indexof(item(),',')),':'))",
 											"type": "Expression"
 										},
 										"Src_Container": {
