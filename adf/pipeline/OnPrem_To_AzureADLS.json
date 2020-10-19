@@ -47,10 +47,23 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach_Source",
 				"type": "ForEach",
-				"dependsOn": [],
-				"userProperties": []
+				"dependsOn": [
+					{
+						"activity": "Lkp_Source_Objects",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lkp_Source_Objects').output",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
