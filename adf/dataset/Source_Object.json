@@ -7,7 +7,7 @@
 		},
 		"parameters": {
 			"Src_Object": {
-				"type": "string"
+				"type": "object"
 			},
 			"Src_Container": {
 				"type": "string"
