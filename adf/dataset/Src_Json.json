@@ -1,0 +1,48 @@
+{
+	"name": "Src_Json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Demo"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "customer_2020-10-18.json",
+				"folderPath": "inbound",
+				"fileSystem": "ss250236"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Cust_ID": {
+					"type": "string"
+				},
+				"Cust_F_Nm": {
+					"type": "string"
+				},
+				"Cust_L_Nm": {
+					"type": "string"
+				},
+				"Cust_Loc": {
+					"type": "string"
+				},
+				"Cust_Strt_Dt": {
+					"type": "string"
+				},
+				"Cust_Lst_Dt": {
+					"type": "string"
+				},
+				"Cust_Status": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
