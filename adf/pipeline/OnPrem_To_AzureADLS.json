@@ -154,12 +154,6 @@
 			"ppLkp_Src_File": {
 				"type": "string",
 				"defaultValue": "Source_Objects.csv"
-			},
-			"ppSrc_Object": {
-				"type": "string"
-			},
-			"pp_Tgt_Object": {
-				"type": "string"
 			}
 		},
 		"folder": {
