@@ -116,7 +116,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DelimitedText1",
+									"referenceName": "Target_Object",
 									"type": "DatasetReference"
 								}
 							]
