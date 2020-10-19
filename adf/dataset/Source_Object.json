@@ -14,9 +14,6 @@
 			},
 			"Src_Dir": {
 				"type": "string"
-			},
-			"Src_Staging_Dir": {
-				"type": "string"
 			}
 		},
 		"annotations": [],
