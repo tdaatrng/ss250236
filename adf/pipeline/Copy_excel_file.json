@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "Copy_excel_file",
 	"properties": {
 		"activities": [
 			{
