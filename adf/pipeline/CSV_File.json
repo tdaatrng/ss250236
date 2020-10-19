@@ -122,6 +122,9 @@
 			"ErrorMessage": {
 				"type": "string",
 				"defaultValue": "CTL File not received"
+			},
+			"Container_Name": {
+				"type": "string"
 			}
 		},
 		"variables": {
