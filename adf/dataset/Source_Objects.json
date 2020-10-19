@@ -1,0 +1,59 @@
+{
+	"name": "Source_Objects",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Lkp_Src_File": {
+				"type": "string",
+				"defaultValue": "Source_Objects.csv"
+			},
+			"Lkp_Src_Container": {
+				"type": "string",
+				"defaultValue": "rp186048/"
+			},
+			"Lkp_Src_Folder": {
+				"type": "string",
+				"defaultValue": "Input/"
+			}
+		},
+		"folder": {
+			"name": "Demo"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Lkp_Src_File",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Lkp_Src_Folder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Lkp_Src_Container",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Schema_Name",
+				"type": "String"
+			},
+			{
+				"name": "Table_Name",
+				"type": "String"
+			}
+		]
+	}
+}
