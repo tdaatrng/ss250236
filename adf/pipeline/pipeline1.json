@@ -111,7 +111,17 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Current State",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@contains(pipeline().parameters.Current State)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -119,13 +129,13 @@
 				"type": "int"
 			},
 			"EmpName": {
-				"type": "object"
+				"type": "string"
 			},
-			"Origin State": {
-				"type": "object"
+			"Origin_State": {
+				"type": "string"
 			},
-			"Current State": {
-				"type": "object"
+			"Current_State": {
+				"type": "string"
 			}
 		},
 		"annotations": []
