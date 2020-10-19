@@ -114,7 +114,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Src_Object": {
-											"value": "substring(@item(), IndexOf(@item(),',')+1)",
+											"value": "@substring(item(), 0, indexof(item(),','))",
 											"type": "Expression"
 										},
 										"Src_Container": {
@@ -123,10 +123,6 @@
 										},
 										"Src_Dir": {
 											"value": "@pipeline().parameters.ppSrc_Dir",
-											"type": "Expression"
-										},
-										"Src_Staging_Dir": {
-											"value": "@item()",
 											"type": "Expression"
 										}
 									}
@@ -138,7 +134,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Tgt_Object": {
-											"value": "substring(item(), IndexOf(item(),',')+1)",
+											"value": "@substring(item(),indexof(item(),','),0)",
 											"type": "Expression"
 										},
 										"Tgt_Dir": {
