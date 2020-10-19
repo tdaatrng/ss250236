@@ -14,7 +14,7 @@
 				"folderPath": "output",
 				"fileSystem": "mc186080"
 			},
-			"columnDelimiter": "^",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"nullValue": "NULL",
 			"quoteChar": "\""
