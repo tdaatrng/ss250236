@@ -1,0 +1,47 @@
+{
+	"name": "MS186104_Excel_IMDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "IMDB Top 250.xlsx",
+				"folderPath": "Inbound",
+				"fileSystem": "ms186104"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Rank",
+				"type": "String"
+			},
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "Released in",
+				"type": "String"
+			},
+			{
+				"name": "IMDb Rating",
+				"type": "String"
+			},
+			{
+				"name": "Mayank Watched",
+				"type": "String"
+			},
+			{
+				"name": "Shiv Watched",
+				"type": "String"
+			}
+		]
+	}
+}
