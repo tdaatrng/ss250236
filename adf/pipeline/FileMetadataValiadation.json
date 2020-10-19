@@ -1,5 +1,5 @@
 {
-	"name": "GetParameterFromFIle",
+	"name": "FileMetadataValiadation",
 	"properties": {
 		"activities": [
 			{
@@ -134,7 +134,7 @@
 				]
 			},
 			{
-				"name": "Lookup1",
+				"name": "GetParameterFromFIle",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
