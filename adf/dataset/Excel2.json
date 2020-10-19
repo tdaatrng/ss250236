@@ -1,0 +1,39 @@
+{
+	"name": "Excel2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Emp_info_m",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Emp_info_m.xlsx",
+				"folderPath": "input",
+				"fileSystem": "as186113"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "EmpID",
+				"type": "String"
+			},
+			{
+				"name": "EmpName",
+				"type": "String"
+			},
+			{
+				"name": "Origin State",
+				"type": "String"
+			},
+			{
+				"name": "Current State",
+				"type": "String"
+			}
+		]
+	}
+}
