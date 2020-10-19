@@ -25,7 +25,8 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "MergeFiles"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -40,7 +41,7 @@
 							{
 								"source": {
 									"name": "Rank",
-									"type": "String",
+									"type": "Decimal",
 									"physicalType": "String"
 								},
 								"sink": {
@@ -64,7 +65,7 @@
 							{
 								"source": {
 									"name": "Released in",
-									"type": "String",
+									"type": "Decimal",
 									"physicalType": "String"
 								},
 								"sink": {
@@ -76,7 +77,7 @@
 							{
 								"source": {
 									"name": "IMDb Rating",
-									"type": "String",
+									"type": "Decimal",
 									"physicalType": "String"
 								},
 								"sink": {
