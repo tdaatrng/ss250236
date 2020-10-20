@@ -146,7 +146,7 @@
 								"type": "Expression"
 							},
 							"inputDirectory": {
-								"value": "@pipeline().parameters.sourceDirectory",
+								"value": "@pipeline().parameters.inputDirectory",
 								"type": "Expression"
 							},
 							"FileNm": {
