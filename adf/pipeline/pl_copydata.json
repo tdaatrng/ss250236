@@ -102,8 +102,7 @@
 									"path": "$['collection']['version']"
 								},
 								"sink": {
-									"name": "col_version",
-									"type": "String"
+									"name": "version"
 								}
 							},
 							{
@@ -111,8 +110,15 @@
 									"path": "$['collection']['href']"
 								},
 								"sink": {
-									"name": "col_href",
-									"type": "String"
+									"name": "href"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['links'][0]"
+								},
+								"sink": {
+									"name": "items"
 								}
 							},
 							{
@@ -120,8 +126,7 @@
 									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
-									"name": "items_href",
-									"type": "String"
+									"name": "href"
 								}
 							},
 							{
@@ -129,8 +134,7 @@
 									"path": "$['collection']['items'][0]['data'][0]['name']"
 								},
 								"sink": {
-									"name": "data_name",
-									"type": "String"
+									"name": "name"
 								}
 							},
 							{
@@ -138,8 +142,7 @@
 									"path": "$['collection']['items'][0]['data'][0]['value']"
 								},
 								"sink": {
-									"name": "data_value",
-									"type": "String"
+									"name": "value"
 								}
 							},
 							{
@@ -147,8 +150,7 @@
 									"path": "$['collection']['items'][0]['links'][0]['rel']"
 								},
 								"sink": {
-									"name": "links_rel",
-									"type": "String"
+									"name": "rel"
 								}
 							},
 							{
@@ -156,20 +158,27 @@
 									"path": "$['collection']['items'][0]['links'][0]['href']"
 								},
 								"sink": {
-									"name": "link_href",
-									"type": "String"
+									"name": "href"
 								}
 							},
 							{
 								"source": {
-									"path": "$['collection']['template']['data']"
+									"path": "$['collection']['queries'][0]"
 								},
 								"sink": {
-									"name": "template_data"
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['template']['data'][0]"
+								},
+								"sink": {
+									"name": "items"
 								}
 							}
 						],
-						"collectionReference": "$['collection']['links']",
+						"collectionReference": "",
 						"mapComplexValuesToString": false
 					}
 				},
