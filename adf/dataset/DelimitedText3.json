@@ -15,7 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "FilePart1_Final.csv",
+				"fileName": {
+					"value": "@dataset().Source_File_Name",
+					"type": "Expression"
+				},
 				"folderPath": "input",
 				"fileSystem": "nj186007"
 			},
