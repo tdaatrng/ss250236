@@ -45,7 +45,8 @@
 									"path": "$['LYLTY_ACCT_ID']"
 								},
 								"sink": {
-									"name": "LYLTY_ACCT_ID"
+									"name": "LYLTY_ACCT_ID",
+									"type": "String"
 								}
 							},
 							{
@@ -53,7 +54,8 @@
 									"path": "$['TIER_OFFER']"
 								},
 								"sink": {
-									"name": "TIER_OFFER"
+									"name": "TIER_OFFER",
+									"type": "String"
 								}
 							},
 							{
@@ -61,7 +63,8 @@
 									"path": "$['TEST_IND']"
 								},
 								"sink": {
-									"name": "TEST_IND"
+									"name": "TEST_IND",
+									"type": "String"
 								}
 							},
 							{
@@ -69,7 +72,8 @@
 									"path": "$['DISC_FACTOR']"
 								},
 								"sink": {
-									"name": "DISC_FACTOR"
+									"name": "DISC_FACTOR",
+									"type": "String"
 								}
 							},
 							{
@@ -77,7 +81,8 @@
 									"path": "$['CONV_PROB']"
 								},
 								"sink": {
-									"name": "CONV_PROB"
+									"name": "CONV_PROB",
+									"type": "String"
 								}
 							},
 							{
@@ -85,7 +90,8 @@
 									"path": "$['PROPENSITY']"
 								},
 								"sink": {
-									"name": "PROPENSITY"
+									"name": "PROPENSITY",
+									"type": "String"
 								}
 							},
 							{
@@ -93,7 +99,8 @@
 									"path": "$['PROPENSITY_BUNDLE']"
 								},
 								"sink": {
-									"name": "PROPENSITY_BUNDLE"
+									"name": "PROPENSITY_BUNDLE",
+									"type": "String"
 								}
 							},
 							{
@@ -101,7 +108,8 @@
 									"path": "$['PAY_BY_MILE_IND']"
 								},
 								"sink": {
-									"name": "PAY_BY_MILE_IND"
+									"name": "PAY_BY_MILE_IND",
+									"type": "String"
 								}
 							},
 							{
@@ -109,7 +117,8 @@
 									"path": "$['BUNDLE_IND']"
 								},
 								"sink": {
-									"name": "BUNDLE_IND"
+									"name": "BUNDLE_IND",
+									"type": "String"
 								}
 							}
 						],
