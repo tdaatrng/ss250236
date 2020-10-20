@@ -14,12 +14,25 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Extract_Control_file_Name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Ctl_File_Name",
+					"value": {
+						"value": "substirng(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
 			"File_Name": {
 				"type": "string",
-				"defaultValue": "FilePart1.csv.gz"
+				"defaultValue": "abc.csv.gz"
 			},
 			"Container_Name": {
 				"type": "string"
