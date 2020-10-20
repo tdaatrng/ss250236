@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"variableName": "Source_File_Name",
 					"value": {
-						"value": "substirng(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"value": "@ substirng(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
 						"type": "Expression"
 					}
 				}
