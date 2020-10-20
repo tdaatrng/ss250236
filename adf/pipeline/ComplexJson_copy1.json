@@ -1,0 +1,146 @@
+{
+	"name": "ComplexJson_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Cust_ID']"
+								},
+								"sink": {
+									"name": "Cust_ID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_F_Nm']"
+								},
+								"sink": {
+									"name": "Cust_F_Nm"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_L_Nm']"
+								},
+								"sink": {
+									"name": "Cust_L_Nm"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Loc']"
+								},
+								"sink": {
+									"name": "Cust_Loc"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Strt_Dt']"
+								},
+								"sink": {
+									"name": "Cust_Strt_Dt"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Lst_Dt']"
+								},
+								"sink": {
+									"name": "Cust_Lst_Dt"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Status']"
+								},
+								"sink": {
+									"name": "Cust_Status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Personal_Detl']['Gender']"
+								},
+								"sink": {
+									"name": "Gender"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Personal_Detl']['Marital_Status']"
+								},
+								"sink": {
+									"name": "Marital_Status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cust_Personal_Detl']['Ph_No']"
+								},
+								"sink": {
+									"name": "Ph_No"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SrcJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Output",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Demo/Practice"
+		},
+		"annotations": []
+	}
+}
