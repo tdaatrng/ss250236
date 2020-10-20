@@ -115,18 +115,10 @@
 							},
 							{
 								"source": {
-									"path": "$['collection']['links'][0]"
+									"path": "$['collection']['links']"
 								},
 								"sink": {
 									"name": "items"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['href']"
-								},
-								"sink": {
-									"name": "href"
 								}
 							},
 							{
@@ -151,30 +143,6 @@
 								},
 								"sink": {
 									"name": "rel"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['links'][0]['href']"
-								},
-								"sink": {
-									"name": "href"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['queries'][0]"
-								},
-								"sink": {
-									"name": "items"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['template']['data'][0]"
-								},
-								"sink": {
-									"name": "items"
 								}
 							}
 						],
