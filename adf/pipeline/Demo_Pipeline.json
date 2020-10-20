@@ -102,7 +102,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true
+							"fileListPath": "nj186007/input"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
