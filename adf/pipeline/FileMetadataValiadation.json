@@ -236,6 +236,22 @@
 									"EmailTo": {
 										"value": "@variables('EmailTo')",
 										"type": "Expression"
+									},
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@variables('Source_File_Name')",
+										"type": "Expression"
+									},
+									"Activity": {
+										"value": "@pipeline().parameters.Activity",
+										"type": "Expression"
+									},
+									"ErrorMessage": {
+										"value": "@variables('ErrorMessage')",
+										"type": "Expression"
 									}
 								}
 							}
