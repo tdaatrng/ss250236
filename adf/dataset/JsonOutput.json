@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "SourceDSOutput.json",
 				"folderPath": "input",
 				"fileSystem": "as186113"
 			}
