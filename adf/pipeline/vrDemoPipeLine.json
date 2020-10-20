@@ -58,6 +58,19 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"cases": [
+						{
+							"value": "Copy"
+						}
+					]
+				}
 			}
 		],
 		"annotations": []
