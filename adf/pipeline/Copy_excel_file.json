@@ -177,6 +177,10 @@
 			"File_Name": {
 				"type": "string",
 				"defaultValue": "Emp_info_m.xlsx"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "Lookup"
 			}
 		},
 		"annotations": []
