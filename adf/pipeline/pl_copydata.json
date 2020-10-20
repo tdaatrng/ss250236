@@ -93,7 +93,103 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['collection']['version']"
+								},
+								"sink": {
+									"name": "version",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['href']"
+								},
+								"sink": {
+									"name": "href",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['links']"
+								},
+								"sink": {
+									"name": "items",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['items'][0]['href']"
+								},
+								"sink": {
+									"name": "href",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['items'][0]['data'][0]['name']"
+								},
+								"sink": {
+									"name": "name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['items'][0]['data'][0]['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['items'][0]['links'][0]['rel']"
+								},
+								"sink": {
+									"name": "rel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['items'][0]['links'][0]['href']"
+								},
+								"sink": {
+									"name": "href",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['queries']"
+								},
+								"sink": {
+									"name": "items",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['template']['data']"
+								},
+								"sink": {
+									"name": "items",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
 				},
 				"inputs": [
 					{
