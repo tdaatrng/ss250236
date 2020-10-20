@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://conferenceapi.azurewebsites.net/",
+			"url": "https://www.statista.com/chart/22811/estimated-impact-of-the-covid-19-crisis-on-airport-revenue/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
