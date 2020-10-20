@@ -36,7 +36,10 @@
 					"headers": {
 						"Content-type": "application/json"
 					},
-					"body": "@concat('{\n\t\"EmailTo\": \"',pipeline().parameters.Email_To,'\",\n\t\"Subject\": \"An error has occured in the ',pipeline().Pipeline,'\",\n\t\"DataFactoryName\": \"',pipeline().DataFactory,'\",\n\t\"PipelineName\": \"',pipeline().Pipeline,'\"\n}')"
+					"body": {
+						"value": "{ \"EmailTo\" : \"deepak.choudhary@teradata.com\" }",
+						"type": "Expression"
+					}
 				}
 			}
 		],
