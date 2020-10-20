@@ -181,6 +181,10 @@
 			"Activity": {
 				"type": "string",
 				"defaultValue": "Lookup"
+			},
+			"ErrorMessage": {
+				"type": "string",
+				"defaultValue": "File is empty"
 			}
 		},
 		"annotations": []
