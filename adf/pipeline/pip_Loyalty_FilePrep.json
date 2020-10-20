@@ -233,6 +233,10 @@
 									"sourceFileName": {
 										"value": "@variables('sourceFileName')",
 										"type": "Expression"
+									},
+									"inputDirectory": {
+										"value": "@variables('inputDirectory')",
+										"type": "Expression"
 									}
 								}
 							}
