@@ -14,6 +14,75 @@
 				"folderPath": "output",
 				"fileSystem": "as186113"
 			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"collection": {
+					"type": "object",
+					"properties": {
+						"version": {
+							"type": "string"
+						},
+						"href": {
+							"type": "string"
+						},
+						"links": {
+							"type": "array"
+						},
+						"items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"href": {
+										"type": "string"
+									},
+									"data": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"value": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"links": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"rel": {
+													"type": "string"
+												},
+												"href": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"queries": {
+							"type": "array"
+						},
+						"template": {
+							"type": "object",
+							"properties": {
+								"data": {
+									"type": "array"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
