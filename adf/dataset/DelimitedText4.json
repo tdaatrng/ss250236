@@ -10,12 +10,13 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "OFRMergerFile.csv",
 				"folderPath": "work",
 				"fileSystem": "nj186007"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"quoteChar": "\""
+			"quoteChar": ""
 		},
 		"schema": []
 	}
