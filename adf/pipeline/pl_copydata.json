@@ -53,7 +53,7 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "JsonToCsv",
 				"type": "Copy",
 				"dependsOn": [
 					{
