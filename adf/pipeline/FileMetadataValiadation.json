@@ -117,7 +117,7 @@
 				"typeProperties": {
 					"variableName": "sourceDirectory",
 					"value": {
-						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('sourceDirectory')",
+						"value": "@activity('GetParameterFromFIle').output.firstRow.sourceDirectory",
 						"type": "Expression"
 					}
 				}
@@ -137,7 +137,7 @@
 				"typeProperties": {
 					"variableName": "sourceFileName",
 					"value": {
-						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('sourceFileName')",
+						"value": "@activity('GetParameterFromFIle').output.firstRow.sourceFileName",
 						"type": "Expression"
 					}
 				}
@@ -274,7 +274,7 @@
 				"typeProperties": {
 					"variableName": "EmailTo",
 					"value": {
-						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('EmailTo')",
+						"value": "@activity('GetParameterFromFIle').output.firstRow.EmailTo",
 						"type": "Expression"
 					}
 				}
@@ -294,7 +294,7 @@
 				"typeProperties": {
 					"variableName": "ErrorMessage",
 					"value": {
-						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('ErrorMessage')",
+						"value": "@activity('GetParameterFromFIle').output.firstRow.ErrorMessage",
 						"type": "Expression"
 					}
 				}
