@@ -225,7 +225,17 @@
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
-								"waitOnCompletion": true
+								"pipeline": {
+									"referenceName": "ErrEmailNotification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": {
+										"value": "@variables('EmailTo')",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
