@@ -185,9 +185,6 @@
 			},
 			"inputDirectory": {
 				"type": "string"
-			},
-			"inputFileName": {
-				"type": "string"
 			}
 		},
 		"folder": {
