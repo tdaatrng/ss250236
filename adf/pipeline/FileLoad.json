@@ -247,19 +247,24 @@
 		],
 		"parameters": {
 			"FileNm": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "propensity_2020-10-20.csv"
 			},
 			"sourceContainer": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "ss250236"
 			},
 			"sourceDirectory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "inbound"
 			},
 			"sourceFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "propensity_2020-10-20.json"
 			},
 			"inputDirectory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "input"
 			}
 		},
 		"folder": {
