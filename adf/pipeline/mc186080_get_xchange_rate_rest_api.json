@@ -1,5 +1,5 @@
 {
-	"name": "mc186080_read_xml_file",
+	"name": "mc186080_get_xchange_rate_rest_api",
 	"properties": {
 		"activities": [
 			{
