@@ -287,9 +287,6 @@
 		"parameters": {
 			"Activity": {
 				"type": "string"
-			},
-			"Pipe_line_Name": {
-				"type": "string"
 			}
 		},
 		"variables": {
