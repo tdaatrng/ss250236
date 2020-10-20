@@ -203,6 +203,21 @@
 						"value": "@equals(variables('fileSize'),'0')",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "CpInboundToInput_JsonToCsv",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "ComplexJson_copy1",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "ErrorEmailNotification",
@@ -237,7 +252,10 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": ""
+				}
 			},
 			{
 				"name": "vErrorMsg",
@@ -250,7 +268,10 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": ""
+				}
 			}
 		],
 		"parameters": {
