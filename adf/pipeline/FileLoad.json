@@ -185,6 +185,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"notebookPath": "/ss250236/Demo/SrcToStg",
 					"baseParameters": {
 						"FileNm": {
 							"value": "@pipeline().parameters.FileNm",
