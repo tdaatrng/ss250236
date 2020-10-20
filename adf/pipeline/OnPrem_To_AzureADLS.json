@@ -193,6 +193,14 @@
 								"secureInput": false
 							},
 							"userProperties": [],
+							"typeProperties": {
+								"baseParameters": {
+									"Input_Param": {
+										"value": "@variables('Output_Var')",
+										"type": "Expression"
+									}
+								}
+							},
 							"linkedServiceName": {
 								"referenceName": "adb_ls",
 								"type": "LinkedServiceReference"
