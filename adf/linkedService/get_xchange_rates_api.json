@@ -1,0 +1,12 @@
+{
+	"name": "get_xchange_rates_api",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://api.ratesapi.io/api/latest HTTP/2 ",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
