@@ -31,8 +31,33 @@
 					},
 					"firstRowOnly": true
 				}
+			},
+			{
+				"name": "vSrcDirectory",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceDirectory",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.variables('sourceDirectory')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"sourceDirectory": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Demo/Practice"
 		},
