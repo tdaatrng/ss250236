@@ -103,8 +103,14 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "input",
-							"wildcardFileName": "OFRFile_*.csv"
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.Input_Dir",
+								"type": "Expression"
+							},
+							"wildcardFileName": {
+								"value": "@concat(substring(variables('Source_File_Name'),0,lastindexof(variables('Source_File_Name'),'.')),'_*.csv')",
+								"type": "Expression"
+							}
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
