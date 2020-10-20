@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "get_xchange_rates",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,20 +16,16 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "mc186080_get_xchange_rates_api",
+						"referenceName": "get_xchange_rate_api",
 						"type": "DatasetReference"
 					}
 				]
