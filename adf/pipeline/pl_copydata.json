@@ -115,7 +115,7 @@
 							},
 							{
 								"source": {
-									"path": "['href']"
+									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
 									"name": "item_href"
@@ -123,7 +123,7 @@
 							},
 							{
 								"source": {
-									"path": "['data'][0]['name']"
+									"path": "$['collection']['items'][0]['data'][0]['name']"
 								},
 								"sink": {
 									"name": "data_name"
@@ -131,7 +131,7 @@
 							},
 							{
 								"source": {
-									"path": "['data'][0]['value']"
+									"path": "$['collection']['items'][0]['data'][0]['value']"
 								},
 								"sink": {
 									"name": "data_value"
@@ -139,7 +139,7 @@
 							},
 							{
 								"source": {
-									"path": "['links'][0]['rel']"
+									"path": "$['collection']['items'][0]['links'][0]['rel']"
 								},
 								"sink": {
 									"name": "link_rel"
@@ -147,7 +147,7 @@
 							},
 							{
 								"source": {
-									"path": "['links'][0]['href']"
+									"path": "$['collection']['items'][0]['links'][0]['href']"
 								},
 								"sink": {
 									"name": "link_href"
@@ -166,11 +166,11 @@
 									"path": "$['collection']['template']['data']"
 								},
 								"sink": {
-									"name": "items"
+									"name": "temp_date"
 								}
 							}
 						],
-						"collectionReference": "$['collection']['items']",
+						"collectionReference": "",
 						"mapComplexValuesToString": false
 					}
 				},
