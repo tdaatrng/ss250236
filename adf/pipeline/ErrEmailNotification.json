@@ -23,6 +23,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"EmailTo": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
