@@ -115,6 +115,14 @@
 							},
 							{
 								"source": {
+									"path": "$['collection']['links']"
+								},
+								"sink": {
+									"name": "col_links"
+								}
+							},
+							{
+								"source": {
 									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
