@@ -23,7 +23,7 @@
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings",
-							"skipLineCount": 1
+							"skipLineCount": 0
 						}
 					},
 					"dataset": {
