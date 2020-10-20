@@ -150,13 +150,14 @@
 		"parameters": {
 			"File_Name": {
 				"type": "string",
-				"defaultValue": "FilePart1_Final.csv.gz"
+				"defaultValue": "OFRFile.csv.gz"
 			},
 			"Container_Name": {
 				"type": "string"
 			},
 			"Input_Dir": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "nj186007/input"
 			},
 			"Inbound_Dir": {
 				"type": "string"
