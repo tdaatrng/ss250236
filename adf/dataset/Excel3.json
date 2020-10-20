@@ -1,0 +1,21 @@
+{
+	"name": "Excel3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Emp_info_m.xlsx",
+				"folderPath": "input",
+				"fileSystem": "as186113"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
