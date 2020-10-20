@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"variableName": "Source_File_Name",
 					"value": {
-						"value": "substirng(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"value": "@substring(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
 						"type": "Expression"
 					}
 				}
@@ -18,12 +18,19 @@
 			{
 				"name": "Extract_Control_file_Name",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Extract_file_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "Ctl_File_Name",
 					"value": {
-						"value": "concat(substirng(variables('Source_File_Name'),0,lastindexof(variables('Source_File_Name'),'.')).'ctl')",
+						"value": "@concat(substring(variables('Source_File_Name'),0,lastindexof(variables('Source_File_Name'),'.')),'.ctl')",
 						"type": "Expression"
 					}
 				}
