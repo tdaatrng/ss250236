@@ -5,51 +5,40 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sourceContainer": {
+				"type": "string"
+			},
+			"inputDirectory": {
+				"type": "string"
+			},
+			"FileNm": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "op.txt",
-				"folderPath": "op1",
-				"fileSystem": "ss250236"
+				"fileName": {
+					"value": "@dataset().FileNm",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().inputDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sourceContainer",
+					"type": "Expression"
+				}
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
 		},
-		"schema": [
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			},
-			{
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
