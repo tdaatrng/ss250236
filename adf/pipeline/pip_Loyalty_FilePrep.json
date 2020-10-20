@@ -316,6 +316,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "vInputDirectory",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "inputDirectory",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.inputDirectory",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -350,6 +370,9 @@
 				"type": "String"
 			},
 			"ErrorMessage": {
+				"type": "String"
+			},
+			"inputDirectory": {
 				"type": "String"
 			}
 		},
