@@ -40,7 +40,7 @@
 		"parameters": {
 			"Email_To": {
 				"type": "string",
-				"defaultValue": "deepak.choudary@teradata.com"
+				"defaultValue": "deepak.choudary@aa.com"
 			}
 		},
 		"annotations": []
