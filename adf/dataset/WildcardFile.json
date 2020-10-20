@@ -1,0 +1,209 @@
+{
+	"name": "WildcardFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "*.csv",
+				"folderPath": "input",
+				"fileSystem": "nj186007"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": [
+			{
+				"name": "RecordType",
+				"type": "String"
+			},
+			{
+				"name": "requestid",
+				"type": "String"
+			},
+			{
+				"name": "recordlocator",
+				"type": "String"
+			},
+			{
+				"name": "ServiceRfiscField",
+				"type": "String"
+			},
+			{
+				"name": "SeatMapIndex",
+				"type": "String"
+			},
+			{
+				"name": "PassengerId",
+				"type": "String"
+			},
+			{
+				"name": "ANCLRY_PROD_BRAND_ID",
+				"type": "String"
+			},
+			{
+				"name": "Bucket_Capacity",
+				"type": "String"
+			},
+			{
+				"name": "Bucket_Available",
+				"type": "String"
+			},
+			{
+				"name": "Bucket_AvailableAndBlocked",
+				"type": "String"
+			},
+			{
+				"name": "Bucket_Unavailable",
+				"type": "String"
+			},
+			{
+				"name": "Bucket_Svc_Cds",
+				"type": "String"
+			},
+			{
+				"name": "Bucket_Prices_Offered",
+				"type": "String"
+			},
+			{
+				"name": "ServicePortionIndex",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentFlight",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentDeparture",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentOrigin",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentDestination",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSliceOriginDestination",
+				"type": "String"
+			},
+			{
+				"name": "ServicePortionLengthOfHaul",
+				"type": "String"
+			},
+			{
+				"name": "RequestTimeAAFormat",
+				"type": "String"
+			},
+			{
+				"name": "channel",
+				"type": "String"
+			},
+			{
+				"name": "salescity",
+				"type": "String"
+			},
+			{
+				"name": "passengercount",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentUpgradeType",
+				"type": "String"
+			},
+			{
+				"name": "tierstatus",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentBookingCode",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentFareBasisCode",
+				"type": "String"
+			},
+			{
+				"name": "ServiceSegmentEquipmentType",
+				"type": "String"
+			},
+			{
+				"name": "LegNumber",
+				"type": "String"
+			},
+			{
+				"name": "LegOrigin",
+				"type": "String"
+			},
+			{
+				"name": "LegDestination",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_CabinToUpgradeTo",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_CapacityOfCabinToUpgradeTo",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_BookingCodeACount",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_BookingCodeCCount",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_AadvWaitListCount",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_PriorityListCount",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_CabinAuthLevel",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_SoldSeatCount",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_X",
+				"type": "String"
+			},
+			{
+				"name": "LfbuLeg_Y",
+				"type": "String"
+			},
+			{
+				"name": "TicketSet",
+				"type": "String"
+			},
+			{
+				"name": "merchandisingPOS",
+				"type": "String"
+			},
+			{
+				"name": "Transactable",
+				"type": "String"
+			},
+			{
+				"name": "clientMode",
+				"type": "String"
+			}
+		]
+	}
+}
