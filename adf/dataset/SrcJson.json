@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "customer_2020-10-18.json",
+				"fileName": "propensity_2020-10-20.json",
 				"folderPath": "inbound",
 				"fileSystem": "ss250236"
 			}
