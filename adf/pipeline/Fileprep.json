@@ -216,7 +216,13 @@
 									"referenceName": "FileLoad",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"FileNm": {
+										"value": "@variables('csvFileNm')",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					],
