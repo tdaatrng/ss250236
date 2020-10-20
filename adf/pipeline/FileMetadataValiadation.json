@@ -187,10 +187,49 @@
 				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "ZeroByteFileCheck",
 				"type": "IfCondition",
-				"dependsOn": [],
-				"userProperties": []
+				"dependsOn": [
+					{
+						"activity": "vSrcFileSize",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('fileSize'),'0')",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "ErrEmailNotificationForZeroByteFile",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "ErrEmailNotification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitOnCompletion": true
+							}
+						}
+					]
+				}
 			}
 		],
 		"variables": {
@@ -207,6 +246,21 @@
 				"type": "String"
 			},
 			"fileSize": {
+				"type": "String"
+			},
+			"EmailTo": {
+				"type": "String"
+			},
+			"Pipe_line_Name": {
+				"type": "String"
+			},
+			"Source_File_Name": {
+				"type": "String"
+			},
+			"Activity": {
+				"type": "String"
+			},
+			"ErrorMessage": {
 				"type": "String"
 			}
 		},
