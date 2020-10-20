@@ -173,6 +173,21 @@
 		"parameters": {
 			"FileNm": {
 				"type": "string"
+			},
+			"sourceContainer": {
+				"type": "string"
+			},
+			"sourceDirectory": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
+			},
+			"inputDirectory": {
+				"type": "string"
+			},
+			"inputFileName": {
+				"type": "string"
 			}
 		},
 		"folder": {
