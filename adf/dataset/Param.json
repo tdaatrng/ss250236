@@ -18,29 +18,40 @@
 		"schema": {
 			"type": "object",
 			"properties": {
-				"emailURL": {
+				"Cust_ID": {
 					"type": "string"
 				},
-				"EmailId": {
+				"Cust_F_Nm": {
 					"type": "string"
 				},
-				"sourceFileName": {
+				"Cust_L_Nm": {
 					"type": "string"
 				},
-				"sourceDirectory": {
+				"Cust_Loc": {
 					"type": "string"
 				},
-				"sourceContainer": {
+				"Cust_Strt_Dt": {
 					"type": "string"
 				},
-				"destFileName": {
+				"Cust_Lst_Dt": {
 					"type": "string"
 				},
-				"destDirectory": {
+				"Cust_Status": {
 					"type": "string"
 				},
-				"destContainer": {
-					"type": "string"
+				"Cust_Personal_Detl": {
+					"type": "object",
+					"properties": {
+						"Gender": {
+							"type": "string"
+						},
+						"Marital_Status": {
+							"type": "string"
+						},
+						"Ph_No": {
+							"type": "integer"
+						}
+					}
 				}
 			}
 		}
