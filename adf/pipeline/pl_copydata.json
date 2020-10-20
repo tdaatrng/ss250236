@@ -117,15 +117,6 @@
 							},
 							{
 								"source": {
-									"path": "$['collection']['links']"
-								},
-								"sink": {
-									"name": "col_links",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
@@ -171,15 +162,6 @@
 							},
 							{
 								"source": {
-									"path": "$['collection']['queries']"
-								},
-								"sink": {
-									"name": "queries",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['collection']['template']['data']"
 								},
 								"sink": {
@@ -187,7 +169,8 @@
 								}
 							}
 						],
-						"collectionReference": ""
+						"collectionReference": "",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
