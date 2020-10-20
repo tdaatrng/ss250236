@@ -165,7 +165,11 @@
 									]
 								}
 							],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Output_Var",
+								"value": ""
+							}
 						}
 					]
 				}
