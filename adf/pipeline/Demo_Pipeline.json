@@ -152,7 +152,7 @@
 		"parameters": {
 			"File_Name": {
 				"type": "string",
-				"defaultValue": "FilePart1.csv.gz"
+				"defaultValue": "FilePart1_Final.csv.gz"
 			},
 			"Container_Name": {
 				"type": "string"
