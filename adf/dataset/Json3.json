@@ -13,23 +13,6 @@
 				"folderPath": "output",
 				"fileSystem": "as186113"
 			}
-		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"Column_1": {
-					"type": "string"
-				},
-				"Column_2": {
-					"type": "string"
-				},
-				"Column_3": {
-					"type": "string"
-				},
-				"Column_4": {
-					"type": "string"
-				}
-			}
 		}
 	}
 }
