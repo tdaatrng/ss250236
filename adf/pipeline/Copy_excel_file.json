@@ -173,6 +173,10 @@
 			"EmailTo": {
 				"type": "string",
 				"defaultValue": "achal.saxena@teradata.com"
+			},
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "Emp_info_m.xlsx"
 			}
 		},
 		"annotations": []
