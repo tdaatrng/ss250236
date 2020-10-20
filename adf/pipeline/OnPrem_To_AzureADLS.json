@@ -194,7 +194,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/rp186048/rp186048_dome",
+								"notebookPath": "/rp186048/rp186048_demo",
 								"baseParameters": {
 									"Input_Row": {
 										"value": "@variables('Output_Var')",
