@@ -196,6 +196,51 @@
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "DelFilefromInboundDir",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "SrcToStg",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "SrcJson",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@pipeline().parameters.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
+					}
+				}
 			}
 		],
 		"parameters": {
