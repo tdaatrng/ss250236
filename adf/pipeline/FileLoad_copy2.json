@@ -1,0 +1,192 @@
+{
+	"name": "FileLoad_copy2",
+	"properties": {
+		"activities": [
+			{
+				"name": "JsonToCsv",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['LYLTY_ACCT_ID']"
+								},
+								"sink": {
+									"name": "LYLTY_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIER_OFFER']"
+								},
+								"sink": {
+									"name": "TIER_OFFER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TEST_IND']"
+								},
+								"sink": {
+									"name": "TEST_IND",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['DISC_FACTOR']"
+								},
+								"sink": {
+									"name": "DISC_FACTOR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CONV_PROB']"
+								},
+								"sink": {
+									"name": "CONV_PROB",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PROPENSITY']"
+								},
+								"sink": {
+									"name": "PROPENSITY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PROPENSITY_BUNDLE']"
+								},
+								"sink": {
+									"name": "PROPENSITY_BUNDLE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PAY_BY_MILE_IND']"
+								},
+								"sink": {
+									"name": "PAY_BY_MILE_IND",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['BUNDLE_IND']"
+								},
+								"sink": {
+									"name": "BUNDLE_IND",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SrcJson",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@pipeline().parameters.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Output",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"inputDirectory": {
+								"value": "@pipeline().parameters.inputDirectory",
+								"type": "Expression"
+							},
+							"FileNm": {
+								"value": "@pipeline().parameters.FileNm",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"FileNm": {
+				"type": "string"
+			},
+			"sourceContainer": {
+				"type": "string"
+			},
+			"sourceDirectory": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
+			},
+			"inputDirectory": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Demo/Practice"
+		},
+		"annotations": []
+	}
+}
