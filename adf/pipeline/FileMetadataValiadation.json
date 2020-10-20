@@ -203,21 +203,6 @@
 						"value": "@equals(variables('fileSize'),'0')",
 						"type": "Expression"
 					},
-					"ifFalseActivities": [
-						{
-							"name": "ErrEmailNotificationForZeroByteFile",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "ErrEmailNotification",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true
-							}
-						}
-					],
 					"ifTrueActivities": [
 						{
 							"name": "ErrorEmailNotification",
