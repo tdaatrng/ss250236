@@ -93,11 +93,7 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mapComplexValuesToString": false
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
@@ -107,7 +103,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "jsonTocsv",
+						"referenceName": "Json_to_csv",
 						"type": "DatasetReference"
 					}
 				]
