@@ -1,0 +1,44 @@
+{
+	"name": "Demo_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Extract_file_name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Source_File_Name",
+					"value": {
+						"value": "substirng(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "FilePart1.csv"
+			},
+			"Container_Name": {
+				"type": "string"
+			},
+			"Input_Dir": {
+				"type": "string"
+			},
+			"Inbound_Dir": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"Source_File_Name": {
+				"type": "String"
+			},
+			"Ctl_File_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
