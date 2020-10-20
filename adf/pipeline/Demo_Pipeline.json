@@ -108,7 +108,7 @@
 								"type": "Expression"
 							},
 							"wildcardFileName": {
-								"value": "@concat(variables('Source_File_Name'),'_*.csv')",
+								"value": "@concat(substring(variables('Source_File_Name'),0,lastindexof(variables('Source_File_Name'),'.')),'_*.csv')",
 								"type": "Expression"
 							}
 						},
@@ -141,13 +141,7 @@
 				"inputs": [
 					{
 						"referenceName": "DelimitedText3",
-						"type": "DatasetReference",
-						"parameters": {
-							"Source_File_Name": {
-								"value": "@variables('Source_File_Name')",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
