@@ -53,16 +53,9 @@
 				]
 			},
 			{
-				"name": "JsonToCsv",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "pl_copydata",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"name": "Jsontocsv_dataflow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -72,105 +65,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
+					"dataflow": {
+						"referenceName": "Jsontocsv_dataflow",
+						"type": "DataFlowReference"
 					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "$['collection']['version']"
-								},
-								"sink": {
-									"name": "col_version"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['href']"
-								},
-								"sink": {
-									"name": "col_href"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['href']"
-								},
-								"sink": {
-									"name": "item_href"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['data'][0]['name']"
-								},
-								"sink": {
-									"name": "data_name"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['data'][0]['value']"
-								},
-								"sink": {
-									"name": "data_value"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['links'][0]['rel']"
-								},
-								"sink": {
-									"name": "link_rel"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['items'][0]['links'][0]['href']"
-								},
-								"sink": {
-									"name": "link_href"
-								}
-							}
-						],
-						"collectionReference": "",
-						"mapComplexValuesToString": false
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
 					}
-				},
-				"inputs": [
-					{
-						"referenceName": "ds_datalakegen2",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Json_to_csv",
-						"type": "DatasetReference"
-					}
-				]
+				}
 			}
 		],
 		"parameters": {
