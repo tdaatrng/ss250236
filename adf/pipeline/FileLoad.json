@@ -147,7 +147,21 @@
 				"outputs": [
 					{
 						"referenceName": "Output",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"inputDirectory": {
+								"value": "@pipeline().parameters.sourceDirectory",
+								"type": "Expression"
+							},
+							"FileNm": {
+								"value": "@pipeline().parameters.FileNm",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
