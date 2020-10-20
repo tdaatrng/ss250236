@@ -1,0 +1,24 @@
+{
+	"name": "ds_restapi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_restapi",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"relativeurl": {
+				"type": "string",
+				"defaultValue": "/speakers"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().relativeurl",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
