@@ -18,7 +18,7 @@
 						"referenceName": "JsonOutput",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "Flattenoutputcsv"
 				}
 			],
 			"transformations": [
@@ -29,7 +29,7 @@
 					"name": "FlattenBatter"
 				}
 			],
-			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tname as string,\n\t\tppu as double,\n\t\tbatters as (batter as (id as string, type as string)[]),\n\t\ttopping as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> JsontoCsv\nJsontoCsv foldDown(unroll(topping),\n\tmapColumn(\n\t\tid,\n\t\tcake_type = type,\n\t\tcake_name = name,\n\t\tppu,\n\t\tbatters,\n\t\ttopping_id = topping.id,\n\t\ttopping_type = topping.type\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenTopping\nFlattenTopping foldDown(unroll(batters.batter),\n\tmapColumn(\n\t\tid,\n\t\tcake_type,\n\t\tcake_name,\n\t\tppu,\n\t\tbatter_id = batters.batter.id,\n\t\tbatter_type = batters.batter.type,\n\t\ttopping_id,\n\t\ttopping_type\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenBatter\nFlattenBatter sink(input(\n\t\tid as string,\n\t\ttype as string,\n\t\tname as string,\n\t\tppu as double,\n\t\tbatters as (batter as (id as string, type as string)[]),\n\t\ttopping as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tname as string,\n\t\tppu as double,\n\t\tbatters as (batter as (id as string, type as string)[]),\n\t\ttopping as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> JsontoCsv\nJsontoCsv foldDown(unroll(topping),\n\tmapColumn(\n\t\tid,\n\t\tcake_type = type,\n\t\tcake_name = name,\n\t\tppu,\n\t\tbatters,\n\t\ttopping_id = topping.id,\n\t\ttopping_type = topping.type\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenTopping\nFlattenTopping foldDown(unroll(batters.batter),\n\tmapColumn(\n\t\tid,\n\t\tcake_type,\n\t\tcake_name,\n\t\tppu,\n\t\tbatter_id = batters.batter.id,\n\t\tbatter_type = batters.batter.type,\n\t\ttopping_id,\n\t\ttopping_type\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenBatter\nFlattenBatter sink(input(\n\t\tid as string,\n\t\ttype as string,\n\t\tname as string,\n\t\tppu as double,\n\t\tbatters as (batter as (id as string, type as string)[]),\n\t\ttopping as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> Flattenoutputcsv"
 		}
 	}
 }
