@@ -18,21 +18,21 @@
 						"referenceName": "DS_Sink_InProgress",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "Sink_InProgress"
 				},
 				{
 					"dataset": {
 						"referenceName": "DS_Sink_Other",
 						"type": "DatasetReference"
 					},
-					"name": "sink2"
+					"name": "Sink_Others"
 				},
 				{
 					"dataset": {
 						"referenceName": "DS_Sink_Assigned",
 						"type": "DatasetReference"
 					},
-					"name": "sink3"
+					"name": "Sink_Assigned"
 				}
 			],
 			"transformations": [
@@ -43,7 +43,7 @@
 					"name": "ConditionalSplit1"
 				}
 			],
-			"script": "source(output(\n\t\tCOMPLAINT_Id as string,\n\t\tINCDNT_SRC_CD as string,\n\t\tCOMPLAINT_STATUS_CD as string,\n\t\tCOMPLAINT_SUBSTATUS_CD as string,\n\t\tCOMPLAINT_TXT as string,\n\t\tCOMPLAINT_DESC as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 filter(INCDNT_SRC_CD == 'PHONE') ~> Filter1\nFilter1 split(COMPLAINT_SUBSTATUS_CD == 'In Progress',\n\tCOMPLAINT_SUBSTATUS_CD == 'Assigned',\n\tdisjoint: false,\n\tpartitionBy('hash', 1)) ~> ConditionalSplit1@(ComplaintStatusInProgress, ComplaintStatusAssigned, ComplaintStatusOther)\nConditionalSplit1@ComplaintStatusInProgress sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1\nConditionalSplit1@ComplaintStatusOther sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink2\nConditionalSplit1@ComplaintStatusAssigned sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink3"
+			"script": "source(output(\n\t\tCOMPLAINT_Id as string,\n\t\tINCDNT_SRC_CD as string,\n\t\tCOMPLAINT_STATUS_CD as string,\n\t\tCOMPLAINT_SUBSTATUS_CD as string,\n\t\tCOMPLAINT_TXT as string,\n\t\tCOMPLAINT_DESC as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 filter(INCDNT_SRC_CD == 'PHONE') ~> Filter1\nFilter1 split(COMPLAINT_SUBSTATUS_CD == 'In Progress',\n\tCOMPLAINT_SUBSTATUS_CD == 'Assigned',\n\tdisjoint: false,\n\tpartitionBy('hash', 1)) ~> ConditionalSplit1@(ComplaintStatusInProgress, ComplaintStatusAssigned, ComplaintStatusOther)\nConditionalSplit1@ComplaintStatusInProgress sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Sink_InProgress\nConditionalSplit1@ComplaintStatusOther sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Sink_Others\nConditionalSplit1@ComplaintStatusAssigned sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Sink_Assigned"
 		}
 	}
 }
