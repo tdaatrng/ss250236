@@ -42,82 +42,74 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['Cust_ID']"
+									"path": "$['LYLTY_ACCT_ID']"
 								},
 								"sink": {
-									"name": "Cust_ID"
+									"name": "LYLTY_ACCT_ID"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_F_Nm']"
+									"path": "$['TIER_OFFER']"
 								},
 								"sink": {
-									"name": "Cust_F_Nm"
+									"name": "TIER_OFFER"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_L_Nm']"
+									"path": "$['TEST_IND']"
 								},
 								"sink": {
-									"name": "Cust_L_Nm"
+									"name": "TEST_IND"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_Loc']"
+									"path": "$['DISC_FACTOR']"
 								},
 								"sink": {
-									"name": "Cust_Loc"
+									"name": "DISC_FACTOR"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_Strt_Dt']"
+									"path": "$['CONV_PROB']"
 								},
 								"sink": {
-									"name": "Cust_Strt_Dt"
+									"name": "CONV_PROB"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_Lst_Dt']"
+									"path": "$['PROPENSITY']"
 								},
 								"sink": {
-									"name": "Cust_Lst_Dt"
+									"name": "PROPENSITY"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_Status']"
+									"path": "$['PROPENSITY_BUNDLE']"
 								},
 								"sink": {
-									"name": "Cust_Status"
+									"name": "PROPENSITY_BUNDLE"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_Personal_Detl']['Gender']"
+									"path": "$['PAY_BY_MILE_IND']"
 								},
 								"sink": {
-									"name": "Gender"
+									"name": "PAY_BY_MILE_IND"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Cust_Personal_Detl']['Marital_Status']"
+									"path": "$['BUNDLE_IND']"
 								},
 								"sink": {
-									"name": "Marital_Status"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Cust_Personal_Detl']['Ph_No']"
-								},
-								"sink": {
-									"name": "Ph_No"
+									"name": "BUNDLE_IND"
 								}
 							}
 						],
