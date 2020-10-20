@@ -23,7 +23,7 @@
 				"typeProperties": {
 					"variableName": "Ctl_File_Name",
 					"value": {
-						"value": "substirng(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"value": "concat(substirng(variables('Source_File_Name'),0,lastindexof(variables('Source_File_Name'),'.')).'ctl')",
 						"type": "Expression"
 					}
 				}
