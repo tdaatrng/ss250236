@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "data_608dfb1e-1dff-4d40-83e4-4c6ba918b1cf_8f2a1c12-f9d6-465e-b4a1-9ccaff87ebca.json",
 				"folderPath": "output",
 				"fileSystem": "as186113"
 			}
