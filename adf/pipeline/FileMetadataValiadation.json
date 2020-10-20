@@ -220,7 +220,7 @@
 					],
 					"ifTrueActivities": [
 						{
-							"name": "Execute Pipeline1",
+							"name": "ErrorEmailNotification",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
@@ -240,8 +240,42 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "vEmailTo",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
+			},
+			{
+				"name": "vErrorMsg",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
+		"parameters": {
+			"Activity": {
+				"type": "string"
+			},
+			"Pipe_line_Name": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"sourceContainer": {
 				"type": "String"
@@ -265,9 +299,6 @@
 				"type": "String"
 			},
 			"Source_File_Name": {
-				"type": "String"
-			},
-			"Activity": {
 				"type": "String"
 			},
 			"ErrorMessage": {
