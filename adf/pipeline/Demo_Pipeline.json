@@ -102,10 +102,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"fileListPath": {
-								"value": "@pipeline().parameters.Input_Dir",
-								"type": "Expression"
-							}
+							"recursive": true
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
@@ -135,7 +132,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText5",
+						"referenceName": "DelimitedText6",
 						"type": "DatasetReference"
 					}
 				],
