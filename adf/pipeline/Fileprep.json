@@ -213,7 +213,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "ComplexJson_copy1",
+									"referenceName": "FileLoad",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true

@@ -1,9 +1,9 @@
 {
-	"name": "ComplexJson_copy1",
+	"name": "FileLoad",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "JsonToCsv",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
