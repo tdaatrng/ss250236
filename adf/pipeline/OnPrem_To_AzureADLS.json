@@ -169,7 +169,7 @@
 							"typeProperties": {
 								"variableName": "Output_Var",
 								"value": {
-									"value": "@concat('pipeline().Pipeline','|','item().Schema_Name','|','item().Table_Name','|','activity(''Cpy_OnPrem_To_ADLS'').output.RecordsRead','|','activity(''Cpy_OnPrem_To_ADLS'').output.rowsCopied')",
+									"value": "@concat(pipeline().Pipeline,'|',item().Schema_Name,'|',item().Table_Name,'|',activity('Cpy_OnPrem_To_ADLS').output.RecordsRead,'|',activity('Cpy_OnPrem_To_ADLS').output.rowsCopied)",
 									"type": "Expression"
 								}
 							}
