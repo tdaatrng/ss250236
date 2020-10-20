@@ -1,6 +1,47 @@
 {
 	"name": "dc186053_mail_notification",
 	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+					"method": "POST"
+				}
+			}
+		],
+		"parameters": {
+			"Email_To": {
+				"type": "string",
+				"defaultValue": "deepak.choudary@teradata.com"
+			}
+		},
 		"annotations": []
 	}
 }
