@@ -31,14 +31,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+					"url": {
+						"value": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+						"type": "Expression"
+					},
 					"method": "POST",
 					"headers": {
 						"Content-type": "application/json"
 					},
-					"body": {
-						"EmailTo": "',pipeline().parameters.Email_To,'"
-					}
+					"body": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.Email_To,'\", \n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file-',pipeline().parameters.File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\t\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\", \n\t\"Activity\" : \"',pipeline().parameters.Activity,'\", \n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.File_Name,'\"\n\t}')"
 				}
 			}
 		],
@@ -46,6 +47,18 @@
 			"Email_To": {
 				"type": "string",
 				"defaultValue": "deepak.choudhary@teradata.com"
+			},
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "abc"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "lookup"
+			},
+			"ErrorMessage": {
+				"type": "string",
+				"defaultValue": "CTL file not received"
 			}
 		},
 		"annotations": []
