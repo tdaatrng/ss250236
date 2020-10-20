@@ -117,15 +117,6 @@
 							},
 							{
 								"source": {
-									"path": "$['collection']['links']"
-								},
-								"sink": {
-									"name": "items",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
