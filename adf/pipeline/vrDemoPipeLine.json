@@ -104,6 +104,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"Action": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
