@@ -7,7 +7,7 @@
 				"type": "GetMetadata",
 				"dependsOn": [
 					{
-						"activity": "Copy data2",
+						"activity": "vSrcDirectory",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -24,7 +24,21 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "Src_Json",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@variables('sourceContainer')",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@variables('sourceDirectory')",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@variables('sourceFileName')",
+								"type": "Expression"
+							}
+						}
 					},
 					"fieldList": [],
 					"storeSettings": {
@@ -65,51 +79,6 @@
 					},
 					"firstRowOnly": true
 				}
-			},
-			{
-				"name": "Copy data2",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "vSrcDirectory",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "Src_Json",
-						"type": "DatasetReference",
-						"parameters": {
-							"sourceContainer": {
-								"value": "@variables('sourceContainer')",
-								"type": "Expression"
-							}
-						}
-					}
-				]
 			},
 			{
 				"name": "vSrcContainer",
@@ -196,6 +165,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "vSrcFileSize",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "fileSize",
+					"value": {
+						"value": "@string(activity('Get Metadata').output.size)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
@@ -209,6 +198,9 @@
 				"type": "String"
 			},
 			"csvFileNm": {
+				"type": "String"
+			},
+			"fileSize": {
 				"type": "String"
 			}
 		},
