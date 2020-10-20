@@ -115,7 +115,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Src_Object": {
-											"value": "@item().Schema_Name/item().Table_Name",
+											"value": "@item().Table_Name",
 											"type": "Expression"
 										},
 										"Src_Container": {
@@ -124,6 +124,10 @@
 										},
 										"Src_Dir": {
 											"value": "@pipeline().parameters.ppSrc_Dir",
+											"type": "Expression"
+										},
+										"Src_Stg_Dir": {
+											"value": "@item().Schema_Name",
 											"type": "Expression"
 										}
 									}
