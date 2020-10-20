@@ -1,19 +1,16 @@
 {
-	"name": "DataSet_Cust_Complaint_Stage",
+	"name": "DS_Sink_Other",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "Demo"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Demo_Stage",
+				"folderPath": "Demo_Output",
 				"fileSystem": "ja186007"
 			},
 			"columnDelimiter": ",",
