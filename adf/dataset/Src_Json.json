@@ -61,6 +61,20 @@
 				},
 				"Cust_Status": {
 					"type": "string"
+				},
+				"Cust_Personal_Detl": {
+					"type": "object",
+					"properties": {
+						"Gender": {
+							"type": "string"
+						},
+						"Marital_Status": {
+							"type": "string"
+						},
+						"Ph_No": {
+							"type": "integer"
+						}
+					}
 				}
 			}
 		}
