@@ -3,11 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data",
+				"name": "xlsTocsv_copydata",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Lookup_xls_file",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -96,7 +96,7 @@
 				]
 			},
 			{
-				"name": "Lookup1",
+				"name": "Lookup_xls_file",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -126,7 +126,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Lookup_xls_file",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -150,6 +150,95 @@
 						"value": "@concat('{\n\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\"Subject\" : \"An error has occurred in the ',pipeline().Pipeline,'-pipeline for  file-',pipeline().parameters.File_Name,'\",\n \"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n \"PipelineName\" : \"',pipeline().Pipeline,'\", \n \"Activity\" : \"',pipeline().parameters.Activity,'\",\n \"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n \"FileName\" : \"',pipeline().parameters.File_Name,'\"\n  }')",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup_xmlFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "xsd",
+							"detectDataType": false,
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "Xml2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json5",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Lookup_xmlFile",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"dataset": {
+						"referenceName": "Xml1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
 				}
 			}
 		],
