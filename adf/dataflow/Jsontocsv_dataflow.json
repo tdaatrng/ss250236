@@ -18,7 +18,7 @@
 					"name": "FlattenTopping"
 				}
 			],
-			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tname as string,\n\t\tppu as double,\n\t\tbatters as (batter as (id as string, type as string)[]),\n\t\ttopping as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> JsontoCsv\nJsontoCsv foldDown(unroll(topping),\n\tmapColumn(\n\t\tid,\n\t\tcake_type = type,\n\t\tcake_name = name,\n\t\tppu,\n\t\tbatters,\n\t\tid = topping.id,\n\t\ttype = topping.type\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenTopping"
+			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tname as string,\n\t\tppu as double,\n\t\tbatters as (batter as (id as string, type as string)[]),\n\t\ttopping as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> JsontoCsv\nJsontoCsv foldDown(unroll(topping),\n\tmapColumn(\n\t\tid,\n\t\tcake_type = type,\n\t\tcake_name = name,\n\t\tppu,\n\t\tbatters,\n\t\ttopping_id = topping.id,\n\t\ttopping_type = topping.type\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenTopping"
 		}
 	}
 }
