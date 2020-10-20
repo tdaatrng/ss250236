@@ -132,8 +132,14 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "WildcardFile",
-						"type": "DatasetReference"
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference",
+						"parameters": {
+							"Source_File_Name": {
+								"value": "@variables('Source_File_Name')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
