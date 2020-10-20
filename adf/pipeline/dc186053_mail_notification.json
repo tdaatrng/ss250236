@@ -36,17 +36,14 @@
 					"headers": {
 						"Content-type": "application/json"
 					},
-					"body": {
-						"value": "{ \"EmailTo\" : \"deepak.choudhary@teradata.com\" }",
-						"type": "Expression"
-					}
+					"body": "{ \n\"EmailTo\"\"',pipeline().parameters.Email_To,'\"\n}"
 				}
 			}
 		],
 		"parameters": {
 			"Email_To": {
 				"type": "string",
-				"defaultValue": "deepak.choudary@teradata.com"
+				"defaultValue": "deepak.choudhary@teradata.com"
 			}
 		},
 		"annotations": []
