@@ -221,6 +221,18 @@
 									"FileNm": {
 										"value": "@variables('csvFileNm')",
 										"type": "Expression"
+									},
+									"sourceContainer": {
+										"value": "@variables('sourceContainer')",
+										"type": "Expression"
+									},
+									"sourceDirectory": {
+										"value": "@variables('sourceDirectory')",
+										"type": "Expression"
+									},
+									"sourceFileName": {
+										"value": "@variables('sourceFileName')",
+										"type": "Expression"
 									}
 								}
 							}
@@ -308,7 +320,8 @@
 		],
 		"parameters": {
 			"Activity": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "IF"
 			}
 		},
 		"variables": {
