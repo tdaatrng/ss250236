@@ -1,0 +1,52 @@
+{
+	"name": "DemoComplaintData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Demo"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Customer Complaints data.csv",
+				"folderPath": "Demo_Input",
+				"fileSystem": "ja186007"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COMPLAINT_Id",
+				"type": "String"
+			},
+			{
+				"name": "INCDNT_SRC_CD",
+				"type": "String"
+			},
+			{
+				"name": "COMPLAINT_STATUS_CD",
+				"type": "String"
+			},
+			{
+				"name": "COMPLAINT_SUBSTATUS_CD",
+				"type": "String"
+			},
+			{
+				"name": "COMPLAINT_TXT",
+				"type": "String"
+			},
+			{
+				"name": "COMPLAINT_DESC",
+				"type": "String"
+			}
+		]
+	}
+}
