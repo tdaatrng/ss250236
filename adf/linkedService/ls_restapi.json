@@ -1,0 +1,12 @@
+{
+	"name": "ls_restapi",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://conferenceapi.azurewebsites.net/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
