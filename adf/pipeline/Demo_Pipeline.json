@@ -102,7 +102,10 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"fileListPath": "nj186007/input"
+							"fileListPath": {
+								"value": "@pipeline().parameters.Input_Dir",
+								"type": "Expression"
+							}
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
@@ -132,14 +135,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText3",
-						"type": "DatasetReference",
-						"parameters": {
-							"Source_File_Name": {
-								"value": "@variables('Source_File_Name')",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "DelimitedText5",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
