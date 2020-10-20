@@ -102,7 +102,7 @@
 									"path": "$['collection']['version']"
 								},
 								"sink": {
-									"name": "version",
+									"name": "col_version",
 									"type": "String"
 								}
 							},
@@ -111,7 +111,16 @@
 									"path": "$['collection']['href']"
 								},
 								"sink": {
-									"name": "href",
+									"name": "col_href",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['collection']['links']"
+								},
+								"sink": {
+									"name": "col_links",
 									"type": "String"
 								}
 							},
@@ -120,7 +129,7 @@
 									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
-									"name": "href",
+									"name": "items_href",
 									"type": "String"
 								}
 							},
@@ -129,7 +138,7 @@
 									"path": "$['collection']['items'][0]['data'][0]['name']"
 								},
 								"sink": {
-									"name": "name",
+									"name": "data_name",
 									"type": "String"
 								}
 							},
@@ -138,7 +147,7 @@
 									"path": "$['collection']['items'][0]['data'][0]['value']"
 								},
 								"sink": {
-									"name": "value",
+									"name": "data_value",
 									"type": "String"
 								}
 							},
@@ -147,7 +156,7 @@
 									"path": "$['collection']['items'][0]['links'][0]['rel']"
 								},
 								"sink": {
-									"name": "rel",
+									"name": "links_rel",
 									"type": "String"
 								}
 							},
@@ -156,7 +165,7 @@
 									"path": "$['collection']['items'][0]['links'][0]['href']"
 								},
 								"sink": {
-									"name": "href",
+									"name": "link_href",
 									"type": "String"
 								}
 							},
@@ -165,7 +174,7 @@
 									"path": "$['collection']['queries']"
 								},
 								"sink": {
-									"name": "items",
+									"name": "queries",
 									"type": "String"
 								}
 							},
@@ -174,8 +183,7 @@
 									"path": "$['collection']['template']['data']"
 								},
 								"sink": {
-									"name": "items",
-									"type": "String"
+									"name": "template_data"
 								}
 							}
 						],
