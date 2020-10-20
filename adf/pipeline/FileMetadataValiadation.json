@@ -39,14 +39,7 @@
 			{
 				"name": "GetParameterFromFIle",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "csvFileNm",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -179,30 +172,30 @@
 				}
 			},
 			{
-				"name": "jsonFileNm",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "jsonFileNm",
-					"value": {
-						"value": "@substring(pipeline().parameters.sourceFileName,0,lastindexof(pipeline().parameters.sourceFileName,'.'))",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "csvFileNm",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "jsonFileNm",
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "vSrcFileName",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "csvFileNm",
+					"value": {
+						"value": "@replace(variables('sourceFileName'),'.json','.csv')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
@@ -213,9 +206,6 @@
 				"type": "String"
 			},
 			"sourceFileName": {
-				"type": "String"
-			},
-			"jsonFileNm": {
 				"type": "String"
 			},
 			"csvFileNm": {
