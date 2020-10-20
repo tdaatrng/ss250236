@@ -115,7 +115,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Src_Object": {
-											"value": "@substring(substring(item(), 0, indexof(item(),',')), 0, indexof(substring(item(), 0, indexof(item(),',')),':'))",
+											"value": "@item().Schema_Name/item().Table_Name",
 											"type": "Expression"
 										},
 										"Src_Container": {
@@ -135,7 +135,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Tgt_Object": {
-											"value": "@substring(string(item()),indexof(string(item()),','),0)",
+											"value": "@item().Table_Name",
 											"type": "Expression"
 										},
 										"Tgt_Dir": {
