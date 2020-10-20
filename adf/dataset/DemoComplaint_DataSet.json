@@ -1,5 +1,5 @@
 {
-	"name": "DemoComplaintData",
+	"name": "DemoComplaint_DataSet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
