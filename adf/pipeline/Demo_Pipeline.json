@@ -102,7 +102,12 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.Input_Dir",
+								"type": "Expression"
+							},
+							"wildcardFileName": "*.csv"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
