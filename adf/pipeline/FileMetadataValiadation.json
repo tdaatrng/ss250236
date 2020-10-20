@@ -254,7 +254,11 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "EmailTo",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('EmailTo')",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -270,7 +274,11 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "ErrorMessage",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRowvariables('ErrorMessage')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
