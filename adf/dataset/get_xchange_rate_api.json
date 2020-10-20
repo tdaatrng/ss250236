@@ -1,5 +1,5 @@
 {
-	"name": "RestResource1",
+	"name": "get_xchange_rate_api",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "get_xchange_rates_api",
