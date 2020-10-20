@@ -116,14 +116,6 @@
 							},
 							{
 								"source": {
-									"path": "$['collection']['links']"
-								},
-								"sink": {
-									"name": "col_links"
-								}
-							},
-							{
-								"source": {
 									"path": "$['collection']['items'][0]['href']"
 								},
 								"sink": {
@@ -160,22 +152,6 @@
 								},
 								"sink": {
 									"name": "link_href"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['queries']"
-								},
-								"sink": {
-									"name": "queries"
-								}
-							},
-							{
-								"source": {
-									"path": "$['collection']['template']['data']"
-								},
-								"sink": {
-									"name": "temp_date"
 								}
 							}
 						],
