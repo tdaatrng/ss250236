@@ -21,11 +21,26 @@
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "GET"
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "get_xchange_rate_api",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "get_xchange_rate_json_ds",
 						"type": "DatasetReference"
 					}
 				]
