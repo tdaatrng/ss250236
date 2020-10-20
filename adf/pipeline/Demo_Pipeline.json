@@ -170,6 +170,9 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/nj186007/FiletoTable"
+				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
