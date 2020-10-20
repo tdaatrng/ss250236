@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "flight_sales_campaign.csv",
 				"folderPath": "output",
 				"fileSystem": "mc186080"
 			},
