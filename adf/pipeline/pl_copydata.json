@@ -115,14 +115,6 @@
 							},
 							{
 								"source": {
-									"path": "$['collection']['links']"
-								},
-								"sink": {
-									"name": "items"
-								}
-							},
-							{
-								"source": {
 									"path": "$['collection']['items'][0]['data'][0]['name']"
 								},
 								"sink": {
