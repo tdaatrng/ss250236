@@ -138,7 +138,7 @@
 				]
 			},
 			{
-				"name": "Notebook1",
+				"name": "SrcToStg",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -155,9 +155,26 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"baseParameters": {
+						"FileNm": {
+							"value": "@pipeline().parameters.FileNm",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
+		"parameters": {
+			"FileNm": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Demo/Practice"
 		},
