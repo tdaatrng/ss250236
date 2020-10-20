@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "JsonTocsv.csv",
 				"folderPath": "input",
 				"fileSystem": "as186113"
 			}
