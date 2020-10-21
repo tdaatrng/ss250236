@@ -46,6 +46,14 @@
 			{
 				"name": "COMPLAINT_DESC",
 				"type": "String"
+			},
+			{
+				"name": "EMP_ID",
+				"type": "String"
+			},
+			{
+				"name": "AIRPORT_CD",
+				"type": "String"
 			}
 		]
 	}
