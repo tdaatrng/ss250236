@@ -1,0 +1,44 @@
+{
+	"name": "Airline_safety_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "input",
+				"fileSystem": "sa185056"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "AIRLINE",
+				"type": "String"
+			},
+			{
+				"name": "TIMELINE",
+				"type": "String"
+			},
+			{
+				"name": "INCIDENTS",
+				"type": "String"
+			},
+			{
+				"name": "FATAL_ACCIDENTS",
+				"type": "String"
+			},
+			{
+				"name": "FATALITIES",
+				"type": "String"
+			}
+		]
+	}
+}
