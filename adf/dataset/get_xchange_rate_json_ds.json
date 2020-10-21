@@ -33,7 +33,7 @@
 								"type": "string"
 							},
 							"val": {
-								"type": "number"
+								"type": "string"
 							}
 						}
 					}
