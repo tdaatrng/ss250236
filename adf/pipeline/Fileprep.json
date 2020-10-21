@@ -379,7 +379,7 @@
 						"Content-type": "application/json"
 					},
 					"body": {
-						"value": "@concat('{\n    \"EmailTo\" : \"',variables('EmailTo'),'\",\n     \"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file-',variables('Source_File_Name'),'\",\n    \"DataFactoryName\" : \"',pipeline().DataFactory,'\",   \n    \"PipelineName\" : \"',pipeline().Pipeline,'\",\n    \"Activity\" : \"',pipeline().parameters.Activity,'\",\n    \"ErrorMessage\" : \"',variables('ErrorMessage'),'\"                   \n        }')",
+						"value": "@concat('{\n    \"EmailTo\" : \"',variables('EmailTo'),'\",\n     \"Subject\" : \"An error has occured in this ',pipeline().Pipeline,'\",\n    \"DataFactoryName\" : \"',pipeline().DataFactory,'\",   \n    \"PipelineName\" : \"',pipeline().Pipeline,'\",\n    \"Activity\" : \"',pipeline().parameters.Activity1,'\",\n    \"ErrorMessage\" : \"',pipeline().parameters.ErrMsg,'\"                   \n        }')",
 						"type": "Expression"
 					}
 				}
@@ -388,7 +388,15 @@
 		"parameters": {
 			"Activity": {
 				"type": "string",
-				"defaultValue": "IF"
+				"defaultValue": "IF condition - file size is zero."
+			},
+			"ErrMsg": {
+				"type": "string",
+				"defaultValue": "File is missing or wrong source file name."
+			},
+			"Activity1": {
+				"type": "string",
+				"defaultValue": "File missing"
 			}
 		},
 		"variables": {
