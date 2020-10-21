@@ -378,22 +378,17 @@
 					"headers": {
 						"Content-type": "application/json"
 					},
-					"body": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\", \n\t\"Subject\" : \"An error has occured in the ',pipeline().parameters.Pipe_line_Name,'-pipeline for file-',pipeline().parameters.Source_File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\t\n\t\"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\", \n\t\"Activity\" : \"',pipeline().parameters.Activity1,'\", \n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\"\n\t}')"
+					"body": {
+						"value": "@concat('{\n    \"EmailTo\" : \"',variables('EmailTo'),'\",\n     \"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file-',variables('Source_File_Name'),'\",\n    \"DataFactoryName\" : \"',pipeline().DataFactory,'\",   \n    \"PipelineName\" : \"',pipeline().Pipeline,'\",\n    \"Activity\" : \"',pipeline().parameters.Activity,'\",\n    \"ErrorMessage\" : \"',variables('ErrorMessage'),'\"                   \n        }')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
 		"parameters": {
 			"Activity": {
 				"type": "string",
-				"defaultValue": "IF file size 0"
-			},
-			"ErrorMessage": {
-				"type": "string",
-				"defaultValue": "FIle is missing or Wrong FIle name present in inbound directory."
-			},
-			"Activity1": {
-				"type": "string",
-				"defaultValue": "Wrong File"
+				"defaultValue": "IF"
 			}
 		},
 		"variables": {
