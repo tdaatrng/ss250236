@@ -1,0 +1,31 @@
+{
+	"name": "SCD1",
+	"properties": {
+		"activities": [
+			{
+				"name": "SCD1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ss250236/Demo/SCD1"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "Demo/Practice"
+		},
+		"annotations": []
+	}
+}
