@@ -29,7 +29,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().Directory",
+					"value": "@dataset().Input_Dir",
 					"type": "Expression"
 				},
 				"fileSystem": {
