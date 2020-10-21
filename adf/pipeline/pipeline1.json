@@ -28,10 +28,7 @@
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings",
-							"filePattern": {
-								"value": "@{pipeline().RunId}",
-								"type": "Expression"
-							}
+							"filePattern": "setOfObjects"
 						}
 					},
 					"enableStaging": false

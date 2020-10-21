@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@utcnow()",
+					"value": "@pipeline().RunId",
 					"type": "Expression"
 				},
 				"folderPath": "ok186010",
