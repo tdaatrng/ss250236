@@ -33,13 +33,14 @@
 						}
 					},
 					"sink": {
-						"type": "JsonSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"filePattern": "arrayOfObjects"
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -93,7 +94,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Json3",
+						"referenceName": "Source_File_input",
 						"type": "DatasetReference"
 					}
 				]

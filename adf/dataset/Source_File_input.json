@@ -1,0 +1,36 @@
+{
+	"name": "Source_File_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "input",
+				"fileSystem": "as186113"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "DateTime",
+				"type": "String"
+			},
+			{
+				"name": "2019 7-day moving average",
+				"type": "String"
+			},
+			{
+				"name": "2019 Number of flights",
+				"type": "String"
+			}
+		]
+	}
+}
