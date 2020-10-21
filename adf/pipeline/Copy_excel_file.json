@@ -225,20 +225,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
-					{
-						"name": "File_Name"
-					},
-					{
-						"name": "Directory"
-					},
-					{
-						"name": "Container"
-					},
-					{
-						"name": "Column_Delimeter"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"notebookPath": "/as186113/testing/csv_file_test",
 					"baseParameters": {
