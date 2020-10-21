@@ -282,12 +282,15 @@
 				"type": "string",
 				"defaultValue": "as186113"
 			},
-			"Directory": {
+			"Input_Dir": {
 				"type": "string"
 			},
 			"Column_Delimeter": {
 				"type": "string",
 				"defaultValue": ","
+			},
+			"Inbound_Dir": {
+				"type": "string"
 			}
 		},
 		"variables": {
