@@ -20,7 +20,10 @@
 					"headers": {
 						"Content-type": "application/json"
 					},
-					"body": "@concat('{\n    \"EmailTo\" : \"',,'\",\n    \"Subject\" : \"An error has occured in the ',,'-pipeline for file-',,'\",\n    \"DataFactoryName\" : \"',,'\",  \n    \"PipelineName\" : \"',,'\",\n    \"Activity\" : \"',,'\",\n    \"ErrorMessage\" : \"',,'\",\n    \"FileName\" : \"',,'\"\n    }')"
+					"body": {
+						"value": "@concat('{\n    \"DataFactoryName\" : \"',pipeline().DataFactory,'\",  \n    }')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
