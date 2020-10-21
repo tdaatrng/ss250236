@@ -48,7 +48,14 @@
 			{
 				"name": "fetch_flight_sales_campaign_details",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "parameter_file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -219,7 +226,7 @@
 				}
 			},
 			{
-				"name": "Lookup1",
+				"name": "parameter_file",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -229,7 +236,23 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "mc186080_parameter_file_ds",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"annotations": []
