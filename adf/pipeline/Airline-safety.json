@@ -1,7 +1,7 @@
 {
 	"name": "Airline-safety",
 	"properties": {
-		"description": "This pipeline check if complete files is recevied. If not then sends error email else triggers ADB notebook",
+		"description": "This pipeline check if complete files is received. If not then sends error email else triggers ADB notebook",
 		"annotations": []
 	}
 }
