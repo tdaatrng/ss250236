@@ -18,74 +18,28 @@
 		"schema": {
 			"type": "object",
 			"properties": {
-				"sourceDataBase": {
+				"id": {
 					"type": "string"
 				},
-				"sourceTable": {
+				"type": {
 					"type": "string"
 				},
-				"targetDataBase": {
+				"date": {
 					"type": "string"
 				},
-				"targetTable": {
-					"type": "string"
-				},
-				"partitionCol": {
-					"type": "string"
-				},
-				"columns": {
-					"type": "string"
-				},
-				"emailURL": {
-					"type": "string"
-				},
-				"EmailId": {
-					"type": "string"
-				},
-				"sourceFileName": {
-					"type": "string"
-				},
-				"sourceDirectory": {
-					"type": "string"
-				},
-				"sourceContainer": {
-					"type": "string"
-				},
-				"destFileName": {
-					"type": "string"
-				},
-				"destDirectory": {
-					"type": "string"
-				},
-				"destContainer": {
-					"type": "string"
-				},
-				"TimeStamp": {
-					"type": "string"
-				},
-				"Value": {
-					"type": "string"
-				},
-				"Source": {
-					"type": "string"
-				},
-				"StartTime": {
-					"type": "string"
-				},
-				"EndTime": {
-					"type": "string"
-				},
-				"EpisodeId": {
-					"type": "integer"
-				},
-				"EventId": {
-					"type": "integer"
-				},
-				"State": {
-					"type": "string"
-				},
-				"EventType": {
-					"type": "string"
+				"conversions": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							}
+						}
+					}
 				}
 			}
 		}
