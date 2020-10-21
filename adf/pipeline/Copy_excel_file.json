@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "xlsTocsv_copydata",
+				"name": "CSV_INB_INP_Copydata",
 				"type": "Copy",
 				"dependsOn": [
 					{
