@@ -28,7 +28,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "CSVFileName",
+					"variableName": "CTLFileName",
 					"value": {
 						"value": "substring(@variables('CSVFileName'),0,@lastindexof(@variables('CSVFileName'),'.'))",
 						"type": "Expression"
@@ -53,6 +53,9 @@
 		},
 		"variables": {
 			"CSVFileName": {
+				"type": "String"
+			},
+			"CTLFileName": {
 				"type": "String"
 			}
 		},
