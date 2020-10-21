@@ -21,31 +21,31 @@
 		},
 		"schema": [
 			{
-				"name": "1000",
+				"name": "Flight#",
 				"type": "String"
 			},
 			{
-				"name": "ORD",
+				"name": "Origin",
 				"type": "String"
 			},
 			{
-				"name": "TUS",
+				"name": "Dest",
 				"type": "String"
 			},
 			{
-				"name": "27-06-2014",
+				"name": "FlightDate",
 				"type": "String"
 			},
 			{
-				"name": "Worked Premium Cabin",
+				"name": "CampaignDetails",
 				"type": "String"
 			},
 			{
-				"name": "12390,27631,30035,35780",
+				"name": "SalesAmt",
 				"type": "String"
 			},
 			{
-				"name": "0",
+				"name": "Currency",
 				"type": "String"
 			}
 		]
