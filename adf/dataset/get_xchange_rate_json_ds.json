@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Xchange_Rates",
+				"fileName": "toppings",
 				"folderPath": "output",
 				"fileSystem": "mc186080"
 			}
@@ -18,21 +18,46 @@
 		"schema": {
 			"type": "object",
 			"properties": {
-				"base": {
+				"id": {
 					"type": "string"
 				},
-				"date": {
+				"type": {
 					"type": "string"
 				},
-				"rates": {
+				"name": {
+					"type": "string"
+				},
+				"ppu": {
+					"type": "number"
+				},
+				"batters": {
+					"type": "object",
+					"properties": {
+						"batter": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"type": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"topping": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
-							"ref": {
+							"id": {
 								"type": "string"
 							},
-							"val": {
+							"type": {
 								"type": "string"
 							}
 						}
