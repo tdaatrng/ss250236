@@ -126,12 +126,15 @@
 						}
 					},
 					"sink": {
-						"type": "JsonSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings"
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false
@@ -144,7 +147,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "mc186080_toppings",
+						"referenceName": "csv_json_op_ds",
 						"type": "DatasetReference"
 					}
 				]
