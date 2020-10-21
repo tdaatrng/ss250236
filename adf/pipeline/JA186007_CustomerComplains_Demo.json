@@ -133,7 +133,8 @@
 				},
 				"userProperties": [
 					{
-						"name": "Delete Stage Files"
+						"name": "Delete Stage Files",
+						"value": "Deleted files from stage"
 					}
 				],
 				"typeProperties": {
