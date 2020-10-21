@@ -204,7 +204,7 @@
 				"type": "Delete",
 				"dependsOn": [
 					{
-						"activity": "SrcToStg",
+						"activity": "StgToLoad",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -242,6 +242,33 @@
 						"type": "AzureBlobFSReadSettings",
 						"recursive": true
 					}
+				}
+			},
+			{
+				"name": "StgToLoad",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "SrcToStg",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ss250236/Demo/StgToLoad"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
