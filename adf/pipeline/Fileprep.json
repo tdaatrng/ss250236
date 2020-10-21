@@ -350,6 +350,9 @@
 			},
 			"ErrorMessage": {
 				"type": "String"
+			},
+			"inputDirectory": {
+				"type": "String"
 			}
 		},
 		"folder": {
