@@ -1,21 +1,17 @@
 {
-	"name": "hg250013_flat_file_source_ds",
+	"name": "as186113_demo_file1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "nosales.txt",
-				"folderPath": "input",
-				"fileSystem": "hg250013"
+				"fileName": "RIM_V1.2_HistoryData.csv",
+				"fileSystem": "as186113"
 			},
 			"columnDelimiter": "^",
 			"escapeChar": "\\",

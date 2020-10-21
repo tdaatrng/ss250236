@@ -23,6 +23,11 @@
 				}
 			}
 		],
-		"annotations": []
-	}
+		"folder": {
+			"name": "ADB_Demo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-07-15T08:15:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

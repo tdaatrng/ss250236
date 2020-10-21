@@ -28,7 +28,8 @@
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
 						}
 					},
 					"enableStaging": false,
@@ -147,8 +148,7 @@
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -353,6 +353,11 @@
 				}
 			}
 		],
-		"annotations": []
-	}
+		"folder": {
+			"name": "ADF_Demo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-07-15T08:15:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

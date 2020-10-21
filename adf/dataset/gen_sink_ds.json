@@ -1,24 +1,30 @@
 {
-	"name": "hg250013_csv_partitioned_ds",
+	"name": "gen_sink_ds",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "adls_ls",
+			"referenceName": "blob_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sink_folder_name": {
+				"type": "string"
+			}
+		},
 		"folder": {
-			"name": "ADF_Demo_DS"
+			"name": "Audit Control Framework Dataset"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"folderPath": "output4",
-				"fileSystem": "hg250013"
+				"type": "AzureBlobStorageLocation",
+				"container": {
+					"value": "@dataset().sink_folder_name",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []
