@@ -1,0 +1,53 @@
+{
+	"name": "mc186080_csv_xchange_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "mc186080_csv_xchange_ds",
+				"folderPath": "output",
+				"fileSystem": "mc186080"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Flight#",
+				"type": "String"
+			},
+			{
+				"name": "Origin",
+				"type": "String"
+			},
+			{
+				"name": "Dest",
+				"type": "String"
+			},
+			{
+				"name": "FlightDate",
+				"type": "String"
+			},
+			{
+				"name": "CampaignDetails",
+				"type": "String"
+			},
+			{
+				"name": "SalesAmt",
+				"type": "String"
+			},
+			{
+				"name": "Currency",
+				"type": "String"
+			}
+		]
+	}
+}
