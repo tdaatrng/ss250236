@@ -1,0 +1,44 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Xchange_Rates",
+				"folderPath": "output",
+				"fileSystem": "mc186080"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"base": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"rates": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"ref": {
+								"type": "string"
+							},
+							"val": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
