@@ -3,10 +3,22 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MS186104_RIMHist_Src",
+						"type": "DatasetReference"
+					},
+					"name": "RIMHistSrc"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
-			"script": ""
+			"transformations": [
+				{
+					"name": "Filter1"
+				}
+			],
+			"script": "source(output(\n\t\t{Flight#} as integer,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as date 'dd-MM-yyyy',\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> RIMHistSrc\nRIMHistSrc filter(ERROR_FUNCTION('')) ~> Filter1"
 		}
 	}
 }
