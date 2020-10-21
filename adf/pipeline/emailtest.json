@@ -1,0 +1,32 @@
+{
+	"name": "emailtest",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-20.eastus.logic.azure.com:443/workflows/144ac395e1c34d1cb5fd524e6e239575/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=o-2Wx_7w9CoOX5RTkJEZhaLrC8e5IsKBx0pOdX-lWV8",
+					"method": "POST",
+					"headers": {
+						"Content-type": "application/json"
+					},
+					"body": "@concat('{\n    \"EmailTo\" : \"',,'\",\n    \"Subject\" : \"An error has occured in the ',,'-pipeline for file-',,'\",\n    \"DataFactoryName\" : \"',,'\",  \n    \"PipelineName\" : \"',,'\",\n    \"Activity\" : \"',,'\",\n    \"ErrorMessage\" : \"',,'\",\n    \"FileName\" : \"',,'\"\n    }')"
+				}
+			}
+		],
+		"folder": {
+			"name": "Demo/Practice"
+		},
+		"annotations": []
+	}
+}
