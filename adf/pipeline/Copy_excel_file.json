@@ -168,7 +168,7 @@
 								"value": "@pipeline().parameters.Column_Delimeter",
 								"type": "Expression"
 							},
-							"Directory": {
+							"Inbound_Dir": {
 								"value": "@pipeline().parameters.Inbound_Dir",
 								"type": "Expression"
 							}
