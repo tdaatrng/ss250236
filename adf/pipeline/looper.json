@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "False",
+						"value": "@bool(0)",
 						"type": "Expression"
 					},
 					"activities": [
