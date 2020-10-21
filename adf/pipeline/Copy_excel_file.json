@@ -262,7 +262,8 @@
 				"defaultValue": "achal.saxena@teradata.com"
 			},
 			"File_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "total-number-of-flights_2019.csv"
 			},
 			"Activity": {
 				"type": "string",
