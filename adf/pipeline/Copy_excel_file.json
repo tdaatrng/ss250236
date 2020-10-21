@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Lookup_xls_file",
+						"activity": "Lookup_csv_file",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -96,7 +96,7 @@
 				]
 			},
 			{
-				"name": "Lookup_xls_file",
+				"name": "Lookup_csv_file",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -109,14 +109,17 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ExcelSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"dataset": {
-						"referenceName": "Excel3",
+						"referenceName": "Source_CSV_File",
 						"type": "DatasetReference"
 					}
 				}
@@ -126,7 +129,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Lookup_xls_file",
+						"activity": "Lookup_csv_file",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -153,65 +156,8 @@
 				}
 			},
 			{
-				"name": "Copy data1",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Lookup_xmlFile",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "XmlSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "xsd",
-							"detectDataType": false,
-							"namespaces": true
-						}
-					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "Xml2",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Json5",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "Lookup_xmlFile",
-				"type": "Lookup",
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -220,26 +166,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "XmlSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"namespaces": true
-						}
-					},
-					"dataset": {
-						"referenceName": "Xml1",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": true
-				}
+				"userProperties": []
 			}
 		],
 		"parameters": {
@@ -249,7 +176,7 @@
 			},
 			"File_Name": {
 				"type": "string",
-				"defaultValue": "Emp_info_m.xlsx"
+				"defaultValue": "total-number-of-flights.csv"
 			},
 			"Activity": {
 				"type": "string",
