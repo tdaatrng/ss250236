@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CSVs_INP_Copydata",
+				"name": "CSVs_INB_INP_Copydata",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -220,7 +220,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "CSVs_INP_Copydata",
+						"activity": "CSVs_INB_INP_Copydata",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -240,7 +240,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "CSVs_INP_Copydata",
+						"activity": "CSVs_INB_INP_Copydata",
 						"dependencyConditions": [
 							"Completed"
 						]
