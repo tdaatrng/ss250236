@@ -9,10 +9,7 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "total-number-of-flights*.csv",
-				"folderPath": "input",
-				"fileSystem": "as186113"
+				"type": "AzureBlobFSLocation"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
