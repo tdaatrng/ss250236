@@ -24,9 +24,12 @@
 			"transformations": [
 				{
 					"name": "Flatten1"
+				},
+				{
+					"name": "Filter1"
 				}
 			],
-			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tdate as string,\n\t\tconversions as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getJson\ngetJson foldDown(unroll(conversions),\n\tmapColumn(\n\t\tcountry = conversions.id,\n\t\trate = conversions.type,\n\t\tid = id,\n\t\ttype = type,\n\t\tdate = date\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Flatten1\nFlatten1 sink(input(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tCampaignDetails as string,\n\t\tSalesAmt as string,\n\t\tCurrency as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> getcsv"
+			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tdate as string,\n\t\tconversions as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getJson\ngetJson foldDown(unroll(conversions),\n\tmapColumn(\n\t\tcountry = conversions.id,\n\t\trate = conversions.type,\n\t\tid = id,\n\t\ttype = type,\n\t\tdate = date\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Flatten1\nFlatten1 filter(!isNull(id)) ~> Filter1\nFilter1 sink(input(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tCampaignDetails as string,\n\t\tSalesAmt as string,\n\t\tCurrency as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> getcsv"
 		}
 	}
 }
