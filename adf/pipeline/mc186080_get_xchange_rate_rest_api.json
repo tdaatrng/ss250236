@@ -190,6 +190,33 @@
 						"computeType": "General"
 					}
 				}
+			},
+			{
+				"name": "load_data_delta_lake",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "join_xchange_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/mc186080/mc186080_notebook"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
