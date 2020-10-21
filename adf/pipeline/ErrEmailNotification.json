@@ -27,9 +27,16 @@
 				}
 			},
 			{
-				"name": "Delete1",
+				"name": "DelFilefromInboundDir",
 				"type": "Delete",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ErrorNotification",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -39,7 +46,29 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableLogging": true
+					"dataset": {
+						"referenceName": "SrcJson",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@pipeline().parameters.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
+					}
 				}
 			}
 		],
