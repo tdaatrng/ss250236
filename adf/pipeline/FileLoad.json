@@ -280,6 +280,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "SCD_Implementation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -303,6 +309,26 @@
 							"type": "Expression"
 						}
 					}
+				}
+			},
+			{
+				"name": "SCD_Implementation",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DelFilefromInboundDir",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SCD_Implementation",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
