@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Emp_info_m.xlsx",
+				"fileName": "total-number-of-flights.csv",
 				"folderPath": "input",
 				"fileSystem": "as186113"
 			},
