@@ -17,7 +17,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@Concat(dataset().finhub_fname,'_',utcnow('MM_dd_yyyy'),'.json')",
+					"value": "@Concat(dataset().finhub_fname,'_',utcnow('yyyymmdd-hhmmss'),'.json')",
 					"type": "Expression"
 				},
 				"folderPath": "ok186010",
