@@ -18,35 +18,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "Flight#",
-				"type": "String"
-			},
-			{
-				"name": "Origin",
-				"type": "String"
-			},
-			{
-				"name": "Dest",
-				"type": "String"
-			},
-			{
-				"name": "FlightDate",
-				"type": "String"
-			},
-			{
-				"name": "CampaignDetails",
-				"type": "String"
-			},
-			{
-				"name": "SalesAmt",
-				"type": "String"
-			},
-			{
-				"name": "Currency",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
