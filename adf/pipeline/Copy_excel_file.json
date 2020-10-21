@@ -177,13 +177,13 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Set variable_File_Name",
+						"activity": "Set_Variable_File_Name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "Set variable_Table_Name",
+						"activity": "Set_Variable_Table_Name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -216,7 +216,7 @@
 				}
 			},
 			{
-				"name": "Set variable_File_Name",
+				"name": "Set_Variable_File_Name",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -236,7 +236,7 @@
 				}
 			},
 			{
-				"name": "Set variable_Table_Name",
+				"name": "Set_Variable_Table_Name",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
