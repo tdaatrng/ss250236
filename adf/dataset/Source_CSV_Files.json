@@ -15,7 +15,7 @@
 			"Column_Delimeter": {
 				"type": "string"
 			},
-			"Directory": {
+			"Inbound_Dir": {
 				"type": "string"
 			}
 		},
