@@ -213,7 +213,7 @@
 			},
 			"ErrorMessage": {
 				"type": "string",
-				"defaultValue": "File is empty"
+				"defaultValue": "File is not present"
 			},
 			"Container": {
 				"type": "string",
@@ -226,9 +226,6 @@
 			"Column_Delimeter": {
 				"type": "string",
 				"defaultValue": ","
-			},
-			"Date": {
-				"type": "string"
 			}
 		},
 		"annotations": []
