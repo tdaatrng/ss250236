@@ -5,13 +5,19 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"finhub_fname": {
+				"type": "String",
+				"defaultValue": "finhub_finame"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@pipeline().RunId",
+					"value": "@Concat(dataset().finhub_fname,utcnow('yyyy/MM/dd'))",
 					"type": "Expression"
 				},
 				"folderPath": "ok186010",
