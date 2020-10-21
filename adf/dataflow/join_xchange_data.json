@@ -14,7 +14,7 @@
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(output(\n\t\tsourceDataBase as string,\n\t\tsourceTable as string,\n\t\ttargetDataBase as string,\n\t\ttargetTable as string,\n\t\tpartitionCol as string,\n\t\tcolumns as string,\n\t\temailURL as string,\n\t\tEmailId as string,\n\t\tsourceFileName as string,\n\t\tsourceDirectory as string,\n\t\tsourceContainer as string,\n\t\tdestFileName as string,\n\t\tdestDirectory as string,\n\t\tdestContainer as string,\n\t\tTimeStamp as string,\n\t\tValue as string,\n\t\tSource as string,\n\t\tStartTime as string,\n\t\tEndTime as string,\n\t\tEpisodeId as string,\n\t\tEventId as string,\n\t\tState as string,\n\t\tEventType as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getJson"
+			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tdate as string,\n\t\tconversions as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getJson"
 		}
 	}
 }
