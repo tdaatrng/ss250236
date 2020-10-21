@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "toppings",
+				"fileName": "Xchange_Rates",
 				"folderPath": "output",
 				"fileSystem": "mc186080"
 			}
