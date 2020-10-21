@@ -200,7 +200,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "CSVs_INP_Copydata",
+						"activity": "Set variable1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -228,11 +228,37 @@
 					}
 				],
 				"typeProperties": {
-					"notebookPath": "/as186113/testing/csv_file_test"
+					"notebookPath": "/as186113/testing/csv_file_test",
+					"baseParameters": {
+						"File_Name": {
+							"value": "@variables('File_Name')",
+							"type": "Expression"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "CSVs_INP_Copydata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "File_Name",
+					"value": {
+						"value": "@pipeline().parameters.File_Name",
+						"type": "Expression"
+					}
 				}
 			}
 		],
@@ -262,6 +288,11 @@
 			"Column_Delimeter": {
 				"type": "string",
 				"defaultValue": ","
+			}
+		},
+		"variables": {
+			"File_Name": {
+				"type": "String"
 			}
 		},
 		"annotations": []
