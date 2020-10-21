@@ -1,6 +1,27 @@
 {
 	"name": "SuccessEmail",
 	"properties": {
+		"activities": [
+			{
+				"name": "SuccessEmailNotification",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-33.eastus.logic.azure.com:443/workflows/42efd8cd5ece47b189f701dbbcd92f05/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sH7Y_BKWriojC25z39Uo9578G0LDk4HyOIam5ItFk3U",
+					"headers": {
+						"Content-type": "application/json"
+					}
+				}
+			}
+		],
 		"folder": {
 			"name": "Demo"
 		},
