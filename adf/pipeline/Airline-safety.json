@@ -48,9 +48,149 @@
 				"typeProperties": {
 					"variableName": "Record_count_of_file",
 					"value": {
-						"value": "string(@activity('Lookup1').output.count)",
+						"value": "@string(activity('Lookup1').output.count)",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "If_for_row_count",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(int(variables('Record_count_of_file')),50)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "AIRLINE",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "AIRLINE",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TIMELINE",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "TIMELINE",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "INCIDENTS",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "INCIDENTS",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "FATAL_ACCIDENTS",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "FATAL_ACCIDENTS",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "FATALITIES",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "FATALITIES",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Airline_safety_ds",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Move_file_from_Input_to_work",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
 				}
 			}
 		],
