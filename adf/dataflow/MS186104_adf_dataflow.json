@@ -26,7 +26,7 @@
 					"name": "FilterReason"
 				}
 			],
-			"script": "source(output(\n\t\t{Flight#} as integer,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as date 'dd-MM-yyyy',\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> RIMHistSrc\nRIMHistSrc filter(NoSalesReason=='Other') ~> FilterReason\nFilterReason sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:[''],\n\ttruncate: true,\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Target"
+			"script": "source(output(\n\t\t{Flight#} as integer,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as date 'dd-MM-yyyy',\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> RIMHistSrc\nRIMHistSrc filter(NoSalesReason=='Other') ~> FilterReason\nFilterReason sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['MS186104_RIMHist_Tgt'],\n\ttruncate: true,\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Target"
 		}
 	}
 }
