@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "output_@utcnow()",
+					"value": "concat('output_',@utcnow())",
 					"type": "Expression"
 				},
 				"folderPath": "ok186010",
