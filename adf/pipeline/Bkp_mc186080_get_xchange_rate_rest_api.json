@@ -99,13 +99,41 @@
 				"inputs": [
 					{
 						"referenceName": "get_flight_sales_campaign",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@activity('parameter_file').output.firstrow.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@activity('parameter_file').output.firstrow.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@activity('parameter_file').output.firstrow.sourceFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "mc186080_op_sales_ds",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"destContainer": {
+								"value": "@activity('parameter_file').output.firstrow.destContainer",
+								"type": "Expression"
+							},
+							"destDirectory": {
+								"value": "@activity('parameter_file').output.firstrow.destDirectory",
+								"type": "Expression"
+							},
+							"destFileName": {
+								"value": "@activity('parameter_file').output.firstrow.destFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
