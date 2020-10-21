@@ -354,7 +354,7 @@
 				}
 			},
 			{
-				"name": "WrongFIleInfo",
+				"name": "ErrEmailMissingFile",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
