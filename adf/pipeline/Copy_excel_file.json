@@ -89,7 +89,25 @@
 				"inputs": [
 					{
 						"referenceName": "SourceFile",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							},
+							"Container": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"Column_Delimeter": {
+								"value": "@pipeline().parameters.Column_Delimeter",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -124,7 +142,25 @@
 					},
 					"dataset": {
 						"referenceName": "Source_CSV_Files",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							},
+							"Contianer": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"Column_Delimeter": {
+								"value": "@pipeline().parameters.Column_Delimeter",
+								"type": "Expression"
+							},
+							"Directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							}
+						}
 					}
 				}
 			},
@@ -221,8 +257,7 @@
 				"defaultValue": "as186113"
 			},
 			"Directory": {
-				"type": "string",
-				"defaultValue": "input"
+				"type": "string"
 			},
 			"Column_Delimeter": {
 				"type": "string",
