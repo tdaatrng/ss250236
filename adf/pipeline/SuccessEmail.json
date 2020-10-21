@@ -1,0 +1,9 @@
+{
+	"name": "SuccessEmail",
+	"properties": {
+		"folder": {
+			"name": "Demo"
+		},
+		"annotations": []
+	}
+}
