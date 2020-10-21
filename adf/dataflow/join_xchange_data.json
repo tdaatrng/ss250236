@@ -13,7 +13,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "mc186080_op_sales_df_ds",
+						"referenceName": "mc186080_op_sales_ds",
 						"type": "DatasetReference"
 					},
 					"name": "getSalesCampaign"
