@@ -43,42 +43,7 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "DateTime",
-									"type": "String"
-								},
-								"sink": {
-									"name": "DateTime",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "2019 7-day moving average",
-									"type": "String"
-								},
-								"sink": {
-									"name": "2019 7-day moving average",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "2019 Number of flights",
-									"type": "String"
-								},
-								"sink": {
-									"name": "2019 Number of flights",
-									"type": "String"
-								}
-							}
-						]
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
