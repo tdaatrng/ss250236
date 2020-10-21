@@ -152,7 +152,7 @@
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"recursive": true,
-						"wildcardFileName": "csv"
+						"wildcardFileName": "*.csv"
 					}
 				}
 			}
