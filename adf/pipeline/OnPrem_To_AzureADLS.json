@@ -64,6 +64,7 @@
 						"value": "@activity('Lkp_Source_Objects').output.value",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Cpy_OnPrem_To_ADLS",
