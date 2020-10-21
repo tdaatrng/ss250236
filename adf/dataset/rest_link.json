@@ -1,0 +1,12 @@
+{
+	"name": "rest_link",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "finhub",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
