@@ -21,6 +21,26 @@
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "SCD2",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ss250236/Demo/SCD2"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"folder": {
