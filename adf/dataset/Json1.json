@@ -10,7 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "output.json",
+				"fileName": {
+					"value": "output_@utcnow()",
+					"type": "Expression"
+				},
 				"folderPath": "ok186010",
 				"fileSystem": "ok186010"
 			}
