@@ -93,7 +93,7 @@
 								"value": "@pipeline().parameters.Container",
 								"type": "Expression"
 							},
-							"Directory": {
+							"Inbound_Dir": {
 								"value": "@pipeline().parameters.Inbound_Dir",
 								"type": "Expression"
 							},
@@ -117,7 +117,7 @@
 								"value": "@pipeline().parameters.Container",
 								"type": "Expression"
 							},
-							"Directory": {
+							"Input_Dir": {
 								"value": "@pipeline().parameters.Input_Dir",
 								"type": "Expression"
 							},
