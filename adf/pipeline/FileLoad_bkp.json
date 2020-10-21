@@ -1,0 +1,302 @@
+{
+	"name": "FileLoad_bkp",
+	"properties": {
+		"activities": [
+			{
+				"name": "JsonToCsv",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['LYLTY_ACCT_ID']"
+								},
+								"sink": {
+									"name": "LYLTY_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TIER_OFFER']"
+								},
+								"sink": {
+									"name": "TIER_OFFER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TEST_IND']"
+								},
+								"sink": {
+									"name": "TEST_IND",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['DISC_FACTOR']"
+								},
+								"sink": {
+									"name": "DISC_FACTOR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CONV_PROB']"
+								},
+								"sink": {
+									"name": "CONV_PROB",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PROPENSITY']"
+								},
+								"sink": {
+									"name": "PROPENSITY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PROPENSITY_BUNDLE']"
+								},
+								"sink": {
+									"name": "PROPENSITY_BUNDLE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PAY_BY_MILE_IND']"
+								},
+								"sink": {
+									"name": "PAY_BY_MILE_IND",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['BUNDLE_IND']"
+								},
+								"sink": {
+									"name": "BUNDLE_IND",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SrcJson",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@pipeline().parameters.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Output",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"inputDirectory": {
+								"value": "@pipeline().parameters.inputDirectory",
+								"type": "Expression"
+							},
+							"FileNm": {
+								"value": "@pipeline().parameters.FileNm",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "SrcToStg",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "JsonToCsv",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ss250236/Demo/SrcToStg",
+					"baseParameters": {
+						"FileNm": {
+							"value": "@pipeline().parameters.FileNm",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "DelFilefromInboundDir",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "StgToLoad",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "SrcJson",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@pipeline().parameters.sourceContainer",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@pipeline().parameters.sourceDirectory",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
+					}
+				}
+			},
+			{
+				"name": "StgToLoad",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "SrcToStg",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ss250236/Demo/StgToLoad"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"FileNm": {
+				"type": "string",
+				"defaultValue": "propensity_2020-10-20.csv"
+			},
+			"sourceContainer": {
+				"type": "string",
+				"defaultValue": "ss250236"
+			},
+			"sourceDirectory": {
+				"type": "string",
+				"defaultValue": "inbound"
+			},
+			"sourceFileName": {
+				"type": "string",
+				"defaultValue": "propensity_2020-10-20.json"
+			},
+			"inputDirectory": {
+				"type": "string",
+				"defaultValue": "input"
+			}
+		},
+		"folder": {
+			"name": "Demo/Practice"
+		},
+		"annotations": []
+	}
+}
