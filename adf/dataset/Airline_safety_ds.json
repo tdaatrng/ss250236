@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "ML_airline-safety_2020_V1.1.csv",
 				"folderPath": "input",
 				"fileSystem": "sa185056"
 			},
