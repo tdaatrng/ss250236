@@ -1,0 +1,24 @@
+{
+	"name": "repeat_60s",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "rest_request",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2020-10-21T19:48:00.000Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
