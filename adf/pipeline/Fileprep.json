@@ -356,7 +356,8 @@
 		],
 		"parameters": {
 			"Activity": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "IF"
 			}
 		},
 		"variables": {
