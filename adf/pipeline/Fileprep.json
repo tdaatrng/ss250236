@@ -233,6 +233,10 @@
 									"sourceFileName": {
 										"value": "@variables('sourceFileName')",
 										"type": "Expression"
+									},
+									"inputDirectory": {
+										"value": "@variables('inputDirectory')",
+										"type": "Expression"
 									}
 								}
 							}
@@ -313,6 +317,26 @@
 					"variableName": "ErrorMessage",
 					"value": {
 						"value": "@activity('GetParameterFromFIle').output.firstRow.ErrorMessage",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "vInputDirectory",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "inputDirectory",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.inputDirectory",
 						"type": "Expression"
 					}
 				}
