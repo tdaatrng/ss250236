@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "part-00000-tid-4790501361895567798-3d236487-222a-4bd1-88c5-13071db849dd-212-1-c000.csv",
 				"folderPath": "output",
 				"fileSystem": "mc186080"
 			},
