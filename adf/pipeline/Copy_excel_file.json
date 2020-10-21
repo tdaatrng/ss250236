@@ -290,6 +290,9 @@
 			},
 			"Inbound_Dir": {
 				"type": "string"
+			},
+			"Table_Name": {
+				"type": "string"
 			}
 		},
 		"variables": {
