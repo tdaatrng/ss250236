@@ -192,7 +192,8 @@
 				"defaultValue": "achal.saxena@teradata.com"
 			},
 			"File_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "total-number-of-flights_*.csv"
 			},
 			"Activity": {
 				"type": "string",
@@ -203,13 +204,16 @@
 				"defaultValue": "File is empty"
 			},
 			"Container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "as186113"
 			},
 			"Directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "input"
 			},
 			"Column_Delimeter": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": ","
 			}
 		},
 		"annotations": []
