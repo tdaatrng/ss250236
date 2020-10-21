@@ -88,6 +88,15 @@
 			},
 			"ErrorMessage": {
 				"type": "string"
+			},
+			"sourceContainer": {
+				"type": "string"
+			},
+			"sourceDirectory": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
 			}
 		},
 		"annotations": []
