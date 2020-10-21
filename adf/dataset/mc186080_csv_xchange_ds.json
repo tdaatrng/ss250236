@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "mc186080_xchange_csv",
-				"folderPath": "output",
+				"folderPath": "work",
 				"fileSystem": "mc186080"
 			},
 			"columnDelimiter": ",",
