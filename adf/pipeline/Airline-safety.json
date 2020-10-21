@@ -4,44 +4,9 @@
 		"description": "This pipeline check if complete files is received. If not then sends error email else triggers ADB notebook",
 		"activities": [
 			{
-				"name": "Airline_safety_Meta",
-				"type": "GetMetadata",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Airline_safety_ds",
-						"type": "DatasetReference"
-					},
-					"fieldList": [
-						"columnCount"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
-				}
-			},
-			{
 				"name": "Lookup1",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "Airline_safety_Meta",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -67,10 +32,30 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Record_count_of_file",
+					"value": {
+						"value": "string(@activity('Lookup1').output.count)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
-			"Airline-safety": {
+			"Record_count_of_file": {
 				"type": "String"
 			}
 		},
