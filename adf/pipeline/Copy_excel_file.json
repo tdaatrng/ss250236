@@ -298,6 +298,9 @@
 		"variables": {
 			"File_Name": {
 				"type": "String"
+			},
+			"Table_Name": {
+				"type": "String"
 			}
 		},
 		"annotations": []
