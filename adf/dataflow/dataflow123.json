@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "dataflow123",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -12,9 +12,17 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'excel',\n\tcontainer: 'vr250017',\n\tfileName: 'PARENT_VNDR_MSTR.csv',\n\tsheetName: '',\n\tfirstRowAsHeader: false) ~> source1"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'excel',\n\tcontainer: 'vr250017',\n\tfileName: 'PARENT_VNDR_MSTR.csv',\n\tsheetName: '',\n\tfirstRowAsHeader: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
