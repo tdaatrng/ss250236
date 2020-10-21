@@ -14,6 +14,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "ExtractCTLFileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ExtractFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CSVFileName",
+					"value": {
+						"value": "substring(@variables('CSVFileName'),0,@lastindexof(@variables('CSVFileName')))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
