@@ -237,6 +237,14 @@
 									"inputDirectory": {
 										"value": "@variables('inputDirectory')",
 										"type": "Expression"
+									},
+									"EmailTo": {
+										"value": "@variables('EmailTo')",
+										"type": "Expression"
+									},
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
 									}
 								}
 							}
