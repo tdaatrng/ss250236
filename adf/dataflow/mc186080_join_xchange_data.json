@@ -12,13 +12,21 @@
 					"name": "getXchangeJson"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "Flatten1"
 				}
 			],
-			"script": "source(output(\n\t\tbase as string,\n\t\tdate as string,\n\t\trates as (ref as string, val as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getXchangeJson\ngetXchangeJson foldDown(unroll(rates),\n\tmapColumn(\n\t\tbase,\n\t\tdate,\n\t\tref = rates.ref,\n\t\tval = rates.val\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1"
+			"script": "source(output(\n\t\tbase as string,\n\t\tdate as string,\n\t\trates as (ref as string, val as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getXchangeJson\ngetXchangeJson foldDown(unroll(rates),\n\tmapColumn(\n\t\tbase,\n\t\tdate,\n\t\tref = rates.ref,\n\t\tval = rates.val\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1\nFlatten1 sink(input(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
