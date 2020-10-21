@@ -277,14 +277,16 @@
 				"defaultValue": "as186113"
 			},
 			"Input_Dir": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "input"
 			},
 			"Column_Delimeter": {
 				"type": "string",
 				"defaultValue": ","
 			},
 			"Inbound_Dir": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "inbound"
 			},
 			"Table_Name": {
 				"type": "string"
