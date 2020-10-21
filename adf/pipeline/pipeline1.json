@@ -64,22 +64,6 @@
 				"typeProperties": {
 					"waitTimeInSeconds": 30
 				}
-			},
-			{
-				"name": "rerun",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "wait_for_30",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitOnCompletion": true
-				}
 			}
 		],
 		"folder": {
