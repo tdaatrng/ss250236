@@ -21,9 +21,18 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "flight_sales_campaign.csv",
-				"folderPath": "output",
-				"fileSystem": "mc186080"
+				"fileName": {
+					"value": "@dataset().destFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().destDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().destContainer",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
