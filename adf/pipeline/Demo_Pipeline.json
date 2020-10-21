@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"variableName": "CSVFileName",
 					"value": {
-						"value": "substring(pipeline().parameters.FileName,0,@lastindexof(pipeline().parameters.FileName,'.'))",
+						"value": "@substring(pipeline().parameters.FileName,0,lastindexof(pipeline().parameters.FileName,'.'))",
 						"type": "Expression"
 					}
 				}
