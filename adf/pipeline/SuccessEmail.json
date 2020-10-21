@@ -16,12 +16,28 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://prod-33.eastus.logic.azure.com:443/workflows/42efd8cd5ece47b189f701dbbcd92f05/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sH7Y_BKWriojC25z39Uo9578G0LDk4HyOIam5ItFk3U",
+					"method": "POST",
 					"headers": {
 						"Content-type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\", \n\t\"Subject\" : \"Successful execution of ',pipeline().parameters.Pipe_line_Name,'-pipeline for file-',pipeline().parameters.Source_File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\",\n\t\"FileName\" : \"',pipeline().parameters.Source_File_Name,\t'\"\n\t}')\n",
+						"type": "Expression"
 					}
 				}
 			}
 		],
+		"parameters": {
+			"EmailTo": {
+				"type": "string"
+			},
+			"Pipe_line_Name": {
+				"type": "string"
+			},
+			"Source_File_Name": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Demo"
 		},
