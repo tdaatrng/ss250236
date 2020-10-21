@@ -27,7 +27,11 @@
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings"
+							"type": "JsonWriteSettings",
+							"filePattern": {
+								"value": "@{pipeline().RunId}",
+								"type": "Expression"
+							}
 						}
 					},
 					"enableStaging": false
