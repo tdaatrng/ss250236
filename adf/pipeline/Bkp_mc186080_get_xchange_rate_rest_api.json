@@ -244,6 +244,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [],
 				"typeProperties": {
 					"notebookPath": "/mc186080/mc186080_notebook"
 				},
