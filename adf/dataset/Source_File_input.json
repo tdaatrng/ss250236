@@ -5,15 +5,42 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"File_Name": {
+				"type": "string"
+			},
+			"Container": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
+			},
+			"Column_Delimeter": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "input",
-				"fileSystem": "as186113"
+				"fileName": {
+					"value": "@dataset().File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Directory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Container",
+					"type": "Expression"
+				}
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": {
+				"value": "@dataset().Column_Delimeter",
+				"type": "Expression"
+			},
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
