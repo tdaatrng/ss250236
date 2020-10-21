@@ -15,10 +15,10 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "xplodeJson"
+					"name": "Flatten1"
 				}
 			],
-			"script": "source(output(\n\t\tbase as string,\n\t\trates as (GBP as double, HKD as double, IDR as double, ILS as double, DKK as double, INR as double, CHF as double, MXN as double, CZK as double, SGD as double, THB as double, HRK as double, EUR as double, MYR as double, NOK as double, CNY as double, BGN as double, PHP as double, PLN as double, ZAR as double, CAD as double, ISK as double, BRL as double, RON as double, NZD as double, TRY as double, JPY as double, RUB as double, KRW as double, USD as double, AUD as double, HUF as double, SEK as double),\n\t\tdate as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getXchangeJson\ngetXchangeJson foldDown(mapColumn(\n\t\tbase,\n\t\trates,\n\t\tdate\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> xplodeJson"
+			"script": "source(output(\n\t\tbase as string,\n\t\tdate as string,\n\t\trates as (ref as string, val as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getXchangeJson\ngetXchangeJson foldDown(unroll(rates),\n\tmapColumn(\n\t\tbase,\n\t\tdate,\n\t\tref = rates.ref,\n\t\tval = rates.val\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1"
 		}
 	}
 }
