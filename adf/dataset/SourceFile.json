@@ -23,9 +23,24 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Directory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Container",
+					"type": "Expression"
+				}
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": {
+				"value": "@dataset().Column_Delimeter",
+				"type": "Expression"
+			},
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
