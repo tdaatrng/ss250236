@@ -251,7 +251,10 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFileName": "@{item().name}"
+									"wildcardFileName": {
+										"value": "@{item().name}",
+										"type": "Expression"
+									}
 								}
 							}
 						}
@@ -262,7 +265,7 @@
 		"parameters": {
 			"Inbound_Dir": {
 				"type": "string",
-				"defaultValue": "inbound"
+				"defaultValue": "demo/inbound"
 			},
 			"Container_Name": {
 				"type": "string",
@@ -270,7 +273,7 @@
 			},
 			"Input_Dir": {
 				"type": "string",
-				"defaultValue": "input1"
+				"defaultValue": "demo/input"
 			}
 		},
 		"annotations": []
