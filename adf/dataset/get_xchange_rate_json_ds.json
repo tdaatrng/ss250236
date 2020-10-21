@@ -18,50 +18,115 @@
 		"schema": {
 			"type": "object",
 			"properties": {
-				"id": {
+				"base": {
 					"type": "string"
 				},
-				"type": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"ppu": {
-					"type": "number"
-				},
-				"batters": {
+				"rates": {
 					"type": "object",
 					"properties": {
-						"batter": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"id": {
-										"type": "string"
-									},
-									"type": {
-										"type": "string"
-									}
-								}
-							}
+						"GBP": {
+							"type": "number"
+						},
+						"HKD": {
+							"type": "number"
+						},
+						"IDR": {
+							"type": "number"
+						},
+						"ILS": {
+							"type": "number"
+						},
+						"DKK": {
+							"type": "number"
+						},
+						"INR": {
+							"type": "number"
+						},
+						"CHF": {
+							"type": "number"
+						},
+						"MXN": {
+							"type": "number"
+						},
+						"CZK": {
+							"type": "number"
+						},
+						"SGD": {
+							"type": "number"
+						},
+						"THB": {
+							"type": "number"
+						},
+						"HRK": {
+							"type": "number"
+						},
+						"EUR": {
+							"type": "number"
+						},
+						"MYR": {
+							"type": "number"
+						},
+						"NOK": {
+							"type": "number"
+						},
+						"CNY": {
+							"type": "number"
+						},
+						"BGN": {
+							"type": "number"
+						},
+						"PHP": {
+							"type": "number"
+						},
+						"PLN": {
+							"type": "number"
+						},
+						"ZAR": {
+							"type": "number"
+						},
+						"CAD": {
+							"type": "number"
+						},
+						"ISK": {
+							"type": "number"
+						},
+						"BRL": {
+							"type": "number"
+						},
+						"RON": {
+							"type": "number"
+						},
+						"NZD": {
+							"type": "number"
+						},
+						"TRY": {
+							"type": "number"
+						},
+						"JPY": {
+							"type": "number"
+						},
+						"RUB": {
+							"type": "number"
+						},
+						"KRW": {
+							"type": "number"
+						},
+						"USD": {
+							"type": "number"
+						},
+						"AUD": {
+							"type": "number"
+						},
+						"HUF": {
+							"type": "number"
+						},
+						"SEK": {
+							"type": "number"
 						}
 					}
 				},
-				"topping": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "string"
-							},
-							"type": {
-								"type": "string"
-							}
-						}
-					}
+				"date": {
+					"type": "string"
 				}
 			}
 		}
