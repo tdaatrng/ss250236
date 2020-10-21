@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "toppings",
+				"fileName": "Xchange_Rates",
 				"folderPath": "output",
 				"fileSystem": "mc186080"
 			}
@@ -21,112 +21,22 @@
 				"base": {
 					"type": "string"
 				},
-				"rates": {
-					"type": "object",
-					"properties": {
-						"GBP": {
-							"type": "number"
-						},
-						"HKD": {
-							"type": "number"
-						},
-						"IDR": {
-							"type": "number"
-						},
-						"ILS": {
-							"type": "number"
-						},
-						"DKK": {
-							"type": "number"
-						},
-						"INR": {
-							"type": "number"
-						},
-						"CHF": {
-							"type": "number"
-						},
-						"MXN": {
-							"type": "number"
-						},
-						"CZK": {
-							"type": "number"
-						},
-						"SGD": {
-							"type": "number"
-						},
-						"THB": {
-							"type": "number"
-						},
-						"HRK": {
-							"type": "number"
-						},
-						"EUR": {
-							"type": "number"
-						},
-						"MYR": {
-							"type": "number"
-						},
-						"NOK": {
-							"type": "number"
-						},
-						"CNY": {
-							"type": "number"
-						},
-						"BGN": {
-							"type": "number"
-						},
-						"PHP": {
-							"type": "number"
-						},
-						"PLN": {
-							"type": "number"
-						},
-						"ZAR": {
-							"type": "number"
-						},
-						"CAD": {
-							"type": "number"
-						},
-						"ISK": {
-							"type": "number"
-						},
-						"BRL": {
-							"type": "number"
-						},
-						"RON": {
-							"type": "number"
-						},
-						"NZD": {
-							"type": "number"
-						},
-						"TRY": {
-							"type": "number"
-						},
-						"JPY": {
-							"type": "number"
-						},
-						"RUB": {
-							"type": "number"
-						},
-						"KRW": {
-							"type": "number"
-						},
-						"USD": {
-							"type": "number"
-						},
-						"AUD": {
-							"type": "number"
-						},
-						"HUF": {
-							"type": "number"
-						},
-						"SEK": {
-							"type": "number"
-						}
-					}
-				},
 				"date": {
 					"type": "string"
+				},
+				"rates": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"ref": {
+								"type": "string"
+							},
+							"val": {
+								"type": "string"
+							}
+						}
+					}
 				}
 			}
 		}
