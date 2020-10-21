@@ -31,9 +31,15 @@
 			"transformations": [
 				{
 					"name": "Flatten1"
+				},
+				{
+					"name": "Join1"
+				},
+				{
+					"name": "getUsAmt"
 				}
 			],
-			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tdate as string,\n\t\tconversions as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getJson\nsource(output(\n\t\t{1000} as string,\n\t\tORD as string,\n\t\tTUS as string,\n\t\t{27-06-2014} as string,\n\t\t{Worked Premium Cabin} as string,\n\t\t{12390,27631,30035,35780} as string,\n\t\t{0} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getSalesCampaign\ngetJson foldDown(unroll(conversions),\n\tmapColumn(\n\t\tid = id,\n\t\ttype = type\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Flatten1\nFlatten1 sink(input(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tCampaignDetails as string,\n\t\tSalesAmt as string,\n\t\tCurrency as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['mc186080_xchange_csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> getcsv"
+			"script": "source(output(\n\t\tid as string,\n\t\ttype as string,\n\t\tdate as string,\n\t\tconversions as (id as string, type as string)[]\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getJson\nsource(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tCampaignDetails as string,\n\t\tSalesAmt as string,\n\t\tCurrency as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> getSalesCampaign\ngetJson foldDown(unroll(conversions),\n\tmapColumn(\n\t\tid = id,\n\t\ttype = type\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Flatten1\ngetSalesCampaign, Flatten1 join(Currency == id,\n\tjoinType:'left',\n\tbroadcast: 'auto')~> Join1\nJoin1 derive(UsSalesAmt = toDouble(SalesAmt)*toDouble(type)) ~> getUsAmt\ngetUsAmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['mc186080_xchange_csv'],\n\tmapColumn(\n\t\t{Flight#},\n\t\tOrigin,\n\t\tDest,\n\t\tFlightDate,\n\t\tCampaignDetails,\n\t\tSalesAmt,\n\t\tCurrency,\n\t\tUsSalesAmt\n\t),\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> getcsv"
 		}
 	}
 }
