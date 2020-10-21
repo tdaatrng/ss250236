@@ -1,0 +1,44 @@
+{
+	"name": "Demo_Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ExtractFileName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CSVFileName",
+					"value": {
+						"value": "substring(pipeline().parameters.FileName,0,@lastindexof(pipeline().parameters.FileName))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"FileName": {
+				"type": "string",
+				"defaultValue": "ABC.dat.gz"
+			},
+			"ContainerName": {
+				"type": "string"
+			},
+			"InputDir": {
+				"type": "string"
+			},
+			"InboundDir": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"CSVFileName": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Take2"
+		},
+		"annotations": []
+	}
+}
