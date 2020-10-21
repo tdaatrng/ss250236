@@ -134,7 +134,53 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ppu']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['batters']['batter'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['batters']['batter'][0]['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['topping'][0]['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['topping'][0]['type']"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
 				},
 				"inputs": [
 					{
@@ -144,7 +190,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Json2",
+						"referenceName": "mc186080_toppings",
 						"type": "DatasetReference"
 					}
 				]
