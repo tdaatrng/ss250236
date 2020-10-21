@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "get_finhub_data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -42,9 +42,44 @@
 				"outputs": [
 					{
 						"referenceName": "Json1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"finhub_fname": "finhub_finame"
+						}
 					}
 				]
+			},
+			{
+				"name": "wait_for_30",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "get_finhub_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 30
+				}
+			},
+			{
+				"name": "rerun",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_for_30",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
