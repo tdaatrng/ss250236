@@ -212,7 +212,13 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "Set variable_File_Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set variable_Table_Name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -232,6 +238,10 @@
 						"File_Name": {
 							"value": "@variables('File_Name')",
 							"type": "Expression"
+						},
+						"Table_Name": {
+							"value": "@variables('Table_Name')",
+							"type": "Expression"
 						}
 					}
 				},
@@ -241,7 +251,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "Set variable_File_Name",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -256,6 +266,26 @@
 					"variableName": "File_Name",
 					"value": {
 						"value": "@pipeline().parameters.File_Name",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable_Table_Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "CSVs_INP_Copydata",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Table_Name",
+					"value": {
+						"value": "@pipeline().parameters.Table_Name",
 						"type": "Expression"
 					}
 				}
