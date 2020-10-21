@@ -1,0 +1,400 @@
+{
+	"name": "Fileprep_mod",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "vSrcDirectory",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Src_Json",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceContainer": {
+								"value": "@variables('sourceContainer')",
+								"type": "Expression"
+							},
+							"sourceDirectory": {
+								"value": "@variables('sourceDirectory')",
+								"type": "Expression"
+							},
+							"sourceFileName": {
+								"value": "@variables('sourceFileName')",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"size"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
+					},
+					"formatSettings": {
+						"type": "JsonReadSettings"
+					}
+				}
+			},
+			{
+				"name": "GetParameterFromFIle",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Param",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "vSrcContainer",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceContainer",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.sourceContainer",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "vSrcDirectory",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceDirectory",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.sourceDirectory",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "vSrcFileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceFileName",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.sourceFileName",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "csvFileNm",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "vSrcFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "csvFileNm",
+					"value": {
+						"value": "@replace(variables('sourceFileName'),'.json','.csv')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "vSrcFileSize",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "fileSize",
+					"value": {
+						"value": "@string(activity('Get Metadata').output.size)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ZeroByteFileCheck",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "vSrcFileSize",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('fileSize'),'0')",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "CpInboundToInput_JsonToCsv",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "FileLoad",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"FileNm": {
+										"value": "@variables('csvFileNm')",
+										"type": "Expression"
+									},
+									"sourceContainer": {
+										"value": "@variables('sourceContainer')",
+										"type": "Expression"
+									},
+									"sourceDirectory": {
+										"value": "@variables('sourceDirectory')",
+										"type": "Expression"
+									},
+									"sourceFileName": {
+										"value": "@variables('sourceFileName')",
+										"type": "Expression"
+									},
+									"inputDirectory": {
+										"value": "@variables('inputDirectory')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "ErrorEmailNotification",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "ErrEmailNotification",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"EmailTo": {
+										"value": "@variables('EmailTo')",
+										"type": "Expression"
+									},
+									"Pipe_line_Name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"Source_File_Name": {
+										"value": "@variables('Source_File_Name')",
+										"type": "Expression"
+									},
+									"Activity": {
+										"value": "@pipeline().parameters.Activity",
+										"type": "Expression"
+									},
+									"ErrorMessage": {
+										"value": "@variables('ErrorMessage')",
+										"type": "Expression"
+									},
+									"sourceContainer": {
+										"value": "@variables('sourceContainer')",
+										"type": "Expression"
+									},
+									"sourceDirectory": {
+										"value": "@variables('sourceDirectory')",
+										"type": "Expression"
+									},
+									"sourceFileName": {
+										"value": "@variables('sourceFileName')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "vEmailTo",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "EmailTo",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.EmailTo",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "vErrorMsg",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ErrorMessage",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.ErrorMessage",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "vInputDirectory",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetParameterFromFIle",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "inputDirectory",
+					"value": {
+						"value": "@activity('GetParameterFromFIle').output.firstRow.inputDirectory",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Activity": {
+				"type": "string",
+				"defaultValue": "IF"
+			}
+		},
+		"variables": {
+			"sourceContainer": {
+				"type": "String"
+			},
+			"sourceDirectory": {
+				"type": "String"
+			},
+			"sourceFileName": {
+				"type": "String"
+			},
+			"csvFileNm": {
+				"type": "String"
+			},
+			"fileSize": {
+				"type": "String"
+			},
+			"EmailTo": {
+				"type": "String"
+			},
+			"Pipe_line_Name": {
+				"type": "String"
+			},
+			"Source_File_Name": {
+				"type": "String"
+			},
+			"ErrorMessage": {
+				"type": "String"
+			},
+			"inputDirectory": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Demo"
+		},
+		"annotations": []
+	}
+}
