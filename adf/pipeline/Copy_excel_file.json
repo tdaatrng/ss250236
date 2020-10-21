@@ -122,7 +122,7 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "Source_CSV_File",
+						"referenceName": "Source_CSV_Files",
 						"type": "DatasetReference"
 					}
 				}
