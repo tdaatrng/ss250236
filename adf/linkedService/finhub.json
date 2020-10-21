@@ -1,0 +1,12 @@
+{
+	"name": "finhub",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://finnhub.io/api/v1/quote?symbol=TDC&token=bu7q67n48v6oeb0k8qh0",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
