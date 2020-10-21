@@ -323,6 +323,9 @@
 			},
 			"Table_Name": {
 				"type": "string"
+			},
+			"Directory": {
+				"type": "string"
 			}
 		},
 		"variables": {
