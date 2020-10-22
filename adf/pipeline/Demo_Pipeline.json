@@ -103,7 +103,7 @@
 						"Content-type": "application/jason"
 					},
 					"body": {
-						"value": "@concat('{\n\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\"FileName\" : \"',pipeline().parameters.FileName,'\",\n}')\n",
+						"value": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.FileName,'\",\n\t}')",
 						"type": "Expression"
 					}
 				}
