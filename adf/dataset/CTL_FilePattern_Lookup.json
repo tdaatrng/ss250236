@@ -18,14 +18,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().CTLPattern",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@apps/inbound/abc/dataset().InboundDirName",
-					"type": "Expression"
-				},
+				"folderPath": "apps/inbound/abc",
 				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
