@@ -1,0 +1,19 @@
+{
+	"name": "Xml1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MSG_PAYLOAD001_0GO.xml",
+				"folderPath": "demo_inbound",
+				"fileSystem": "mk186012"
+			}
+		}
+	}
+}
