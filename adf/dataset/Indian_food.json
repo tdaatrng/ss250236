@@ -13,6 +13,9 @@
 				"fileName": "indian_food.json",
 				"folderPath": "inbound",
 				"fileSystem": "sp186080"
+			},
+			"compression": {
+				"type": "gzip"
 			}
 		},
 		"schema": {
