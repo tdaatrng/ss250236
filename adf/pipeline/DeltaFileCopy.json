@@ -69,10 +69,6 @@
 						"referenceName": "CTL_FilePattern_Lookup",
 						"type": "DatasetReference",
 						"parameters": {
-							"InboundDirName": {
-								"value": "@pipeline().parameters.SubjectAreaName",
-								"type": "Expression"
-							},
 							"CTLPattern": {
 								"value": "@variables('CTLFilePattern')",
 								"type": "Expression"
@@ -102,7 +98,7 @@
 				"type": "string",
 				"defaultValue": "TEST_FILE"
 			},
-			"SubjectAreaName": {
+			"ProcName": {
 				"type": "string",
 				"defaultValue": "abc"
 			}
