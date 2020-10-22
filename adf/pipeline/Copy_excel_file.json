@@ -254,6 +254,19 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Notebook1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"parameters": {
@@ -295,6 +308,10 @@
 			"Directory": {
 				"type": "string",
 				"defaultValue": "input"
+			},
+			"SuccessMessage": {
+				"type": "string",
+				"defaultValue": "Pipeline compled successfully."
 			}
 		},
 		"variables": {
