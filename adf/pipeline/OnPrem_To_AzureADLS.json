@@ -178,7 +178,7 @@
 								"notebookPath": "/rp186048/Demo_Notebook",
 								"baseParameters": {
 									"Input_Row": {
-										"value": "@concat(pipeline().Pipeline,',',item().Schema_Name,',',item().Table_Name,',',activity('Cpy_OnPrem_To_ADLS').output.rowsRead,',',activity('Cpy_OnPrem_To_ADLS').output.rowsCopied,',',activity('Cpy_OnPrem_To_ADLS').output.throughput,',',activity('Cpy_OnPrem_To_ADLS').output.copyDuration,',',activity('Cpy_OnPrem_To_ADLS').output.errors)",
+										"value": "@concat(pipeline().Pipeline,',',item().Schema_Name,',',item().Table_Name,',',activity('Cpy_OnPrem_To_ADLS').output.dataRead,',',activity('Cpy_OnPrem_To_ADLS').output.dataWritten,',',activity('Cpy_OnPrem_To_ADLS').output.throughput,',',activity('Cpy_OnPrem_To_ADLS').output.copyDuration,',',activity('Cpy_OnPrem_To_ADLS').output.errors)",
 										"type": "Expression"
 									}
 								}
