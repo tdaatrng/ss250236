@@ -1,0 +1,310 @@
+{
+	"name": "Copy_excel_file_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "CSVs_INB_INP_Copydata",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup_csv_file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceFile",
+						"type": "DatasetReference",
+						"parameters": {
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							},
+							"Container": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"Inbound_Dir": {
+								"value": "@pipeline().parameters.Inbound_Dir",
+								"type": "Expression"
+							},
+							"Column_Delimeter": {
+								"value": "@pipeline().parameters.Column_Delimeter",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Source_File_input",
+						"type": "DatasetReference",
+						"parameters": {
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							},
+							"Container": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"Input_Dir": {
+								"value": "@pipeline().parameters.Input_Dir",
+								"type": "Expression"
+							},
+							"Column_Delimeter": {
+								"value": "@pipeline().parameters.Column_Delimeter",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Lookup_csv_file",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Source_CSV_Files",
+						"type": "DatasetReference",
+						"parameters": {
+							"File_Name": {
+								"value": "@pipeline().parameters.File_Name",
+								"type": "Expression"
+							},
+							"Contianer": {
+								"value": "@pipeline().parameters.Container",
+								"type": "Expression"
+							},
+							"Column_Delimeter": {
+								"value": "@pipeline().parameters.Column_Delimeter",
+								"type": "Expression"
+							},
+							"Inbound_Dir": {
+								"value": "@pipeline().parameters.Inbound_Dir",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "Email_Fail_Notification",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Lookup_csv_file",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-91.eastus.logic.azure.com:443/workflows/5c6ee5f98803419c94d3c4830be37908/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vzyfUibJvi1cjqLbDl97OzhTB1QPK1uHouk_eKTrZ10",
+					"method": "POST",
+					"headers": {
+						"Content-type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{\n\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\"Subject\" : \"An error has occurred in the ',pipeline().Pipeline,'-pipeline for  file-',pipeline().parameters.File_Name,'\",\n \"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n \"PipelineName\" : \"',pipeline().Pipeline,'\", \n \"Activity\" : \"',pipeline().parameters.Activity,'\",\n \"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n \"FileName\" : \"',pipeline().parameters.File_Name,'\"\n  }')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Set_Variable_File_Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set_Variable_Table_Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/as186113/testing/csv_file_test",
+					"baseParameters": {
+						"File_Name": {
+							"value": "@variables('File_Name')",
+							"type": "Expression"
+						},
+						"Table_Name": {
+							"value": "@variables('Table_Name')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Set_Variable_File_Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "CSVs_INB_INP_Copydata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "File_Name",
+					"value": {
+						"value": "@pipeline().parameters.File_Name",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set_Variable_Table_Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "CSVs_INB_INP_Copydata",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Table_Name",
+					"value": {
+						"value": "@pipeline().parameters.Table_Name",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"EmailTo": {
+				"type": "string",
+				"defaultValue": "achal.saxena@teradata.com"
+			},
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "total-number-of-flights_2019.csv"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "Lookup"
+			},
+			"ErrorMessage": {
+				"type": "string",
+				"defaultValue": "File is not present"
+			},
+			"Container": {
+				"type": "string",
+				"defaultValue": "as186113"
+			},
+			"Input_Dir": {
+				"type": "string",
+				"defaultValue": "input"
+			},
+			"Column_Delimeter": {
+				"type": "string",
+				"defaultValue": ","
+			},
+			"Inbound_Dir": {
+				"type": "string",
+				"defaultValue": "inbound"
+			},
+			"Table_Name": {
+				"type": "string"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "input"
+			}
+		},
+		"variables": {
+			"File_Name": {
+				"type": "String"
+			},
+			"Table_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
