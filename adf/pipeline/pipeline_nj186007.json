@@ -204,6 +204,33 @@
 									"type": "DatasetReference"
 								}
 							]
+						},
+						{
+							"name": "Load Into Table_copy1",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "Funnel data",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/nj186007/FiletoTable"
+							},
+							"linkedServiceName": {
+								"referenceName": "adb_ls",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
@@ -234,33 +261,6 @@
 						"Content-Type": "application/Json"
 					},
 					"body": "@concat('{\n\"EmailTo\":\"',pipeline().parameters.EmailTo,'\",\n\"Subject\":\"An error has occure in pipeline - ',pipeline().Pipeline,' for file-',pipeline().parameters.File_Name,'\",\n\"DataFactoryName\":\"',pipeline().DataFactory,'\",\n\"PipelineName\":\"',pipeline().Pipeline,'\",\n\"Activity\":\"',pipeline().parameters.Activity,'\",\n\"ErrorMessage\":\"',pipeline().parameters.ErrorMessage,'\",\n\"FileName\":\"',pipeline().parameters.File_Name,'\"\n}')"
-				}
-			},
-			{
-				"name": "Load Into Table",
-				"type": "DatabricksNotebook",
-				"dependsOn": [
-					{
-						"activity": "Check if File is not Empty",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebookPath": "/nj186007/FiletoTable"
-				},
-				"linkedServiceName": {
-					"referenceName": "adb_ls",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
