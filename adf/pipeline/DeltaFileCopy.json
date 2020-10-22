@@ -18,7 +18,14 @@
 			{
 				"name": "Set CTL File Pattern",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set DATA File Pattern",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "CTLFilePattern",
@@ -34,12 +41,6 @@
 				"dependsOn": [
 					{
 						"activity": "Set CTL File Pattern",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Set DATA File Pattern",
 						"dependencyConditions": [
 							"Succeeded"
 						]
