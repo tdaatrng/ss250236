@@ -14,21 +14,36 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set Data File Pattern",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataFilePattern",
+					"value": {
+						"value": "@concat(pipeline().parameters.FilePattern,'*.dat.gz')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
-		"variables": {
+		"parameters": {
 			"EmailTo": {
-				"type": "String",
-				"defaultValue": "Jayadeep.Patil@teradata.com"
+				"type": "string",
+				"defaultValue": "Jayadeep.Patil@Teradata.com"
 			},
 			"FilePattern": {
-				"type": "String",
+				"type": "string",
 				"defaultValue": "TEST_FILE"
 			},
 			"SubjectAreaName": {
-				"type": "String",
+				"type": "string",
 				"defaultValue": "abc"
-			},
+			}
+		},
+		"variables": {
 			"CTLFileName": {
 				"type": "String"
 			},
@@ -36,6 +51,12 @@
 				"type": "String"
 			},
 			"RunTimeStamp": {
+				"type": "String"
+			},
+			"DataFilePattern": {
+				"type": "String"
+			},
+			"CTLFilePattern": {
 				"type": "String"
 			}
 		},
