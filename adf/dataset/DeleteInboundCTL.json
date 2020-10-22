@@ -1,0 +1,23 @@
+{
+	"name": "DeleteInboundCTL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cleanupCTLFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "inbound",
+				"fileSystem": "jp186004"
+			}
+		}
+	}
+}
