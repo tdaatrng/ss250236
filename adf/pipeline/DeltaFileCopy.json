@@ -316,13 +316,7 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "InboundCleanUP",
-									"type": "DatasetReference",
-									"parameters": {
-										"DeleteFilePattern": {
-											"value": "@concat(substring(variables('DataFileName'),0,lastindexof(variables('DataFileName'),'.')),'*')",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								},
 								"logStorageSettings": {
 									"linkedServiceName": {
@@ -334,7 +328,11 @@
 								"enableLogging": true,
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
-									"recursive": true
+									"recursive": true,
+									"wildcardFileName": {
+										"value": "@{concat(substring(variables('DataFileName'),0,lastindexof(variables('DataFileName'),'.')),'*')}",
+										"type": "Expression"
+									}
 								}
 							}
 						}
