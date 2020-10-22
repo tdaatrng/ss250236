@@ -10,10 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@concat('Aircraft_Flown_Inp_',formatDateTime(utcnow(),'yyyymmdd'))",
-					"type": "Expression"
-				},
 				"folderPath": "Input",
 				"fileSystem": "ms186104"
 			},
