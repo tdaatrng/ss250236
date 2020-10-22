@@ -7,7 +7,14 @@
 				"name": "Get File Details",
 				"description": "Read the File Details from the Inbound Directory",
 				"type": "GetMetadata",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup_For_Source_File_Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -421,6 +428,20 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Lookup_For_Source_File_Name",
+				"description": "This Activity will look for the required Source File into Inbound Directory and if available then only move further.",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
 		"parameters": {
