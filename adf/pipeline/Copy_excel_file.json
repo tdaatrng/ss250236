@@ -292,7 +292,18 @@
 						"referenceName": "success_mail_notification_pipeline",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": "achal.saxena@teradata.com",
+						"Pipe_line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": {
+							"value": "@pipeline().parameters.File_Name",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
@@ -339,6 +350,10 @@
 			"SuccessMessage": {
 				"type": "string",
 				"defaultValue": "Pipeline compled successfully."
+			},
+			"Pipe_line_Name": {
+				"type": "string",
+				"defaultValue": "Copy_excel_file"
 			}
 		},
 		"variables": {
