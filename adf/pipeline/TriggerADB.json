@@ -107,6 +107,9 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/jp186004/jp186004_loadVerifyFixedWidth"
+				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
