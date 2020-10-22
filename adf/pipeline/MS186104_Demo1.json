@@ -111,7 +111,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Flown_Data_Inp",
+						"referenceName": "Aircraft_Flown_Data_Inp",
 						"type": "DatasetReference"
 					}
 				]
