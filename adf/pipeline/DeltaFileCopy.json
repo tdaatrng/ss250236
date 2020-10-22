@@ -89,7 +89,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "DataFilePattern",
-					"value": "@concat(pipeline().parameters.FilePattern,'*.dat.gz')"
+					"value": "@concat(pipeline().parameters.FilePattern,'*.dat')"
 				}
 			}
 		],
