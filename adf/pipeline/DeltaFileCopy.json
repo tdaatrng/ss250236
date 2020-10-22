@@ -113,10 +113,106 @@
 							"typeProperties": {
 								"variableName": "CTLFileName",
 								"value": {
-									"value": "@item()",
+									"value": "@item().name",
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "SetDataFileName",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "setCTLFileName",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "DataFileName",
+								"value": {
+									"value": "@concat(substring(variables('CTLFileName'),0,lastindexof(variables('CTLFileName'),'.')),'.dat')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "CopyDataFile",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "SetDataFileName",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DataFileCopy",
+									"type": "DatasetReference",
+									"parameters": {
+										"paramDataFile": {
+											"value": "@variables('DataFileName')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "InputFile",
+									"type": "DatasetReference",
+									"parameters": {
+										"tgtFileName": {
+											"value": "@concat(substring(variables('CTLFileName'),0,lastindexof(variables('CTLFileName'),'.')),'.dat')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
