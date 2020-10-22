@@ -5,20 +5,11 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"DeleteFilePattern": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().DeleteFilePattern",
-					"type": "Expression"
-				},
 				"folderPath": "inbound",
 				"fileSystem": "jp186004"
 			}
