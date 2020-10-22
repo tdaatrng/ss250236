@@ -11,12 +11,13 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "apps/inbound/pipeline().CTLFilePattern",
+					"value": "apps/inbound/pipeline().parameters.SubjectAreaName",
 					"type": "Expression"
 				},
 				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
+			"compressionCodec": "gzip",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
