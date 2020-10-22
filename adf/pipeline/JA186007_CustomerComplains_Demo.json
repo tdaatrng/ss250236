@@ -155,8 +155,43 @@
 						"wildcardFileName": "*.csv"
 					}
 				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Delete1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
+		"parameters": {
+			"Email_To": {
+				"type": "string",
+				"defaultValue": "jitendra.ambre@teradata.com"
+			},
+			"Activity": {
+				"type": "string"
+			},
+			"ErrorMessage": {
+				"type": "string"
+			},
+			"File_Name": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Demo"
 		},
