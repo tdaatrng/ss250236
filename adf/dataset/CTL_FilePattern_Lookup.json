@@ -19,8 +19,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "@dataset().CTLPattern",
-				"folderPath": "@dataset().InboundDirName",
-				"fileSystem": "jp186004/apps/inbound"
+				"folderPath": "@/apps/inbound/dataset().InboundDirName",
+				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
