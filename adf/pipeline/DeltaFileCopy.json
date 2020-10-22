@@ -10,7 +10,7 @@
 				"typeProperties": {
 					"variableName": "RunTimeStamp",
 					"value": {
-						"value": "@pipeline().TriggerTime",
+						"value": "@formatDateTime('pipeline().TriggerTime', 'yyyyMMddHHmmss')",
 						"type": "Expression"
 					}
 				}
