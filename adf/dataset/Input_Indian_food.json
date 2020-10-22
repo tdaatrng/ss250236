@@ -1,0 +1,53 @@
+{
+	"name": "Input_Indian_food",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('Indian_food_',utcnow())",
+					"type": "Expression"
+				},
+				"folderPath": "input",
+				"fileSystem": "sp186080"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"users": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"userId": {
+								"type": "integer"
+							},
+							"firstName": {
+								"type": "string"
+							},
+							"lastName": {
+								"type": "string"
+							},
+							"phoneNumber": {
+								"type": "string"
+							},
+							"doj": {
+								"type": "string"
+							},
+							"emailAddress": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

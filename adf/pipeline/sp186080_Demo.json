@@ -1,5 +1,5 @@
 {
-	"name": "sp186080_Demo_Food",
+	"name": "sp186080_Demo",
 	"properties": {
 		"activities": [
 			{
@@ -22,8 +22,39 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "Indian_food",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Input_Indian_food",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
 				"name": "ParamSetup",

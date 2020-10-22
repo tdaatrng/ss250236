@@ -1,0 +1,51 @@
+{
+	"name": "Indian_food",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "indian_food.json",
+				"folderPath": "inbound",
+				"fileSystem": "sp186080"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"ingredients": {
+					"type": "string"
+				},
+				"diet": {
+					"type": "string"
+				},
+				"prep_time": {
+					"type": "integer"
+				},
+				"cook_time": {
+					"type": "integer"
+				},
+				"flavor_profile": {
+					"type": "string"
+				},
+				"course": {
+					"type": "string"
+				},
+				"state": {
+					"type": "null"
+				},
+				"region": {
+					"type": "null"
+				}
+			}
+		}
+	}
+}
