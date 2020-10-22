@@ -79,7 +79,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Funnel Data",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -156,7 +156,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "Funnel Data",
 						"dependencyConditions": [
 							"Succeeded"
 						]
