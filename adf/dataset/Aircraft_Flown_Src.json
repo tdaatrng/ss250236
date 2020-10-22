@@ -1,0 +1,44 @@
+{
+	"name": "Aircraft_Flown_Src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Inbound",
+				"fileSystem": "ms186104"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"AIRCFT_NBR": {
+					"type": "string"
+				},
+				"ACTL_ARVL_STN": {
+					"type": "string"
+				},
+				"ACTL_DEPTR_STN": {
+					"type": "string"
+				},
+				"FLIGHT_DT": {
+					"type": "string"
+				},
+				"AIRCFT_FLWN_MIN": {
+					"type": "integer"
+				},
+				"AIRCFT_FLWN_CYC": {
+					"type": "integer"
+				},
+				"ACTL_OUT_TM": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
