@@ -41,7 +41,57 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ingredients']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['diet']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['prep_time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cook_time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['flavor_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['course']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['state']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['region']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
