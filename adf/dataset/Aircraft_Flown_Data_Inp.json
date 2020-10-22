@@ -1,5 +1,5 @@
 {
-	"name": "Flown_Data_Inp",
+	"name": "Aircraft_Flown_Data_Inp",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
