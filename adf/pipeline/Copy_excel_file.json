@@ -341,7 +341,8 @@
 				"defaultValue": "inbound"
 			},
 			"Table_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "TotalFlights2019"
 			},
 			"Directory": {
 				"type": "string",
