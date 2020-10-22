@@ -87,8 +87,8 @@
 				}
 			},
 			{
-				"name": "SetCTLFileName",
-				"type": "SetVariable",
+				"name": "ForEachFile",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "GetCTLFileName",
@@ -99,31 +99,26 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "CTLFileName",
-					"value": {
-						"value": "@activity('GetCTLFileName').output",
+					"items": {
+						"value": "@activity('GetCTLFileName').output.childItems",
 						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "SetDataFileName",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "SetCTLFileName",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "DataFileName",
-					"value": {
-						"value": "@concat(substring(variables('CTLFileName'),0,lastindexof(variables('CTLFileName'),'.')),'.dat')",
-						"type": "Expression"
-					}
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "setCTLFileName",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CTLFileName",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
