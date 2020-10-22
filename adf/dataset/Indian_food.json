@@ -10,12 +10,12 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "indian_food.json",
+				"fileName": "indian_food.zip",
 				"folderPath": "inbound",
 				"fileSystem": "sp186080"
 			},
 			"compression": {
-				"type": "gzip"
+				"type": "ZipDeflate"
 			}
 		},
 		"schema": {
