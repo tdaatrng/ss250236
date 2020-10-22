@@ -48,7 +48,14 @@
 			{
 				"name": "GetCTLFileName",
 				"type": "GetMetadata",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set CTL File Pattern",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -76,6 +83,46 @@
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "SetCTLFileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetCTLFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CTLFileName",
+					"value": {
+						"value": "@activity('GetCTLFileName').output",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "SetDataFileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "SetCTLFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataFileName",
+					"value": {
+						"value": "@concat(substring(variables('CTLFileName'),0,lastindexof(variables('CTLFileName'),'.')),'.dat')",
+						"type": "Expression"
 					}
 				}
 			}
