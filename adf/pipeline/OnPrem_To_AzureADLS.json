@@ -116,7 +116,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Src_Object": {
-											"value": "@concat(toUpper(item().Table_name),'.csv')",
+											"value": "@concat(item().Table_name,'.csv')",
 											"type": "Expression"
 										},
 										"Src_Container": {
