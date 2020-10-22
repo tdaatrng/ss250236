@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat('Indian_Food_',utcnow())",
+					"value": "@concat('Indian_food_', formatDateTime(utcnow(), 'yyyyMMddHHmmss'))",
 					"type": "Expression"
 				},
 				"folderPath": "input",
