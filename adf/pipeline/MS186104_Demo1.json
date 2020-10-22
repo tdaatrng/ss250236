@@ -97,7 +97,7 @@
 								},
 								"sink": {
 									"name": "ACTL_OUT_TM",
-									"type": "DateTime"
+									"type": "String"
 								}
 							}
 						]
