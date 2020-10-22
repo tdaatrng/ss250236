@@ -472,6 +472,43 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Valid_File_Not_Available",
+				"description": "It will trigger the Pipeline if Valid File not available in Inbound Directory",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Lookup_For_Source_File_Name",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Email_Notification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": {
+							"value": "@pipeline().globalParameters.EmailTo",
+							"type": "Expression"
+						},
+						"Pipe_Line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": {
+							"value": "@pipeline().parameters.Source_File_Name",
+							"type": "Expression"
+						},
+						"Activity": "Lookup Activity",
+						"Error_Message": "Valid Source File Not Available in Inbound Directory"
+					}
+				}
 			}
 		],
 		"parameters": {
