@@ -263,6 +263,10 @@
 			"Activity": {
 				"type": "string",
 				"defaultValue": "LookUp"
+			},
+			"ErrorMessage1": {
+				"type": "string",
+				"defaultValue": "File Not received"
 			}
 		},
 		"variables": {
