@@ -36,16 +36,19 @@
 				}
 			},
 			{
-				"name": "ControlFileLookup",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "Set CTL File Pattern",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"name": "Set DATA File Pattern",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataFilePattern",
+					"value": "@concat(pipeline().parameters.FilePattern,'*.dat')"
+				}
+			},
+			{
+				"name": "GetCTLFileName",
+				"type": "GetMetadata",
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -55,16 +58,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
 					"dataset": {
 						"referenceName": "CTL_FilePattern_Lookup",
 						"type": "DatasetReference",
@@ -75,17 +68,15 @@
 							}
 						}
 					},
-					"firstRowOnly": false
-				}
-			},
-			{
-				"name": "Set DATA File Pattern",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "DataFilePattern",
-					"value": "@concat(pipeline().parameters.FilePattern,'*.dat')"
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings"
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
 				}
 			}
 		],
