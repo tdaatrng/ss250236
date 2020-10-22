@@ -89,7 +89,7 @@
 				}
 			},
 			{
-				"name": "LoadFixedFile",
+				"name": "LoadFixedFileStg",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -108,7 +108,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/jp186004/jp186004_loadVerifyFixedWidth"
+					"notebookPath": "/jp186004/jp186004_loadVerifyFixedWidthSTG"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
