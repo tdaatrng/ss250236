@@ -15,6 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().CleanupFileName",
+					"type": "Expression"
+				},
 				"folderPath": "inbound",
 				"fileSystem": "jp186004"
 			}
