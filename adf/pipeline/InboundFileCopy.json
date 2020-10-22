@@ -381,6 +381,22 @@
 									"recursive": true
 								}
 							}
+						},
+						{
+							"name": "WaitBeforeNextRun",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "DeleteInboundCTLFile",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 10
+							}
 						}
 					]
 				}
