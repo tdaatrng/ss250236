@@ -12,6 +12,10 @@
 				"type": "AzureBlobFSLocation",
 				"folderPath": "Inbound",
 				"fileSystem": "ms186104"
+			},
+			"compression": {
+				"type": "gzip",
+				"level": "Optimal"
 			}
 		},
 		"schema": {
