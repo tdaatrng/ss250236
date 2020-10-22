@@ -455,7 +455,21 @@
 					},
 					"dataset": {
 						"referenceName": "Source_File_Name",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Container_Name": {
+								"value": "@pipeline().parameters.Container_Name",
+								"type": "Expression"
+							},
+							"Folder_Name": {
+								"value": "@pipeline().parameters.Inbound_Folder",
+								"type": "Expression"
+							},
+							"File_Name": {
+								"value": "@pipeline().parameters.Source_File_Name",
+								"type": "Expression"
+							}
+						}
 					}
 				}
 			}
