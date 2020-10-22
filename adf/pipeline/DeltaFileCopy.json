@@ -295,7 +295,7 @@
 							}
 						},
 						{
-							"name": "DeleteInbound",
+							"name": "DeleteInboundDataFile",
 							"type": "Delete",
 							"dependsOn": [
 								{
@@ -316,7 +316,13 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "InboundCleanUP",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"CleanupFileName": {
+											"value": "@variables('DataFileName')",
+											"type": "Expression"
+										}
+									}
 								},
 								"logStorageSettings": {
 									"linkedServiceName": {
@@ -328,11 +334,51 @@
 								"enableLogging": true,
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
-									"wildcardFileName": {
-										"value": "@{concat(substring(variables('DataFileName'),0,lastindexof(variables('DataFileName'),'.')),'*')}",
-										"type": "Expression"
+									"recursive": true
+								}
+							}
+						},
+						{
+							"name": "DeleteInboundCTLFile",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "DeleteInboundDataFile",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "DeleteInboundCTL",
+									"type": "DatasetReference",
+									"parameters": {
+										"cleanupCTLFileName": {
+											"value": "@variables('CTLFileName')",
+											"type": "Expression"
+										}
 									}
+								},
+								"logStorageSettings": {
+									"linkedServiceName": {
+										"referenceName": "adls_ls",
+										"type": "LinkedServiceReference"
+									},
+									"path": "jp186004/log"
+								},
+								"enableLogging": true,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
 								}
 							}
 						}
