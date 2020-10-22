@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "MSG_PAYLOAD001_0GO.xml",
 				"folderPath": "demo_inbound",
 				"fileSystem": "mk186012"
 			}
