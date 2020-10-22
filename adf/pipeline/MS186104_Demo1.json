@@ -72,7 +72,7 @@
 								},
 								"sink": {
 									"name": "FLIGHT_DT",
-									"type": "DateTime"
+									"type": "String"
 								}
 							},
 							{
