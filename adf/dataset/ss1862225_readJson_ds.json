@@ -5,11 +5,27 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"json_path": {
+				"type": "string"
+			},
+			"json_name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().json_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().json_path",
+					"type": "Expression"
+				},
 				"fileSystem": "ss186225"
 			}
 		}
