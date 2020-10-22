@@ -56,7 +56,7 @@
 						"referenceName": "CTL_FilePattern_Lookup",
 						"type": "DatasetReference",
 						"parameters": {
-							"CTLPattern": {
+							"CTLFilePattern": {
 								"value": "@variables('CTLFilePattern')",
 								"type": "Expression"
 							}
