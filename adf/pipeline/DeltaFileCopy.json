@@ -16,16 +16,79 @@
 				}
 			},
 			{
-				"name": "Set Data File Pattern",
+				"name": "Set CTL File Pattern",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CTLFilePattern",
+					"value": {
+						"value": "@concat(pipeline().parameters.FilePattern,'*.ctl')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ControlFileLookup",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Set CTL File Pattern",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set DATA File Pattern",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "CTL_FilePattern_Lookup",
+						"type": "DatasetReference",
+						"parameters": {
+							"InboundDirName": {
+								"value": "@pipeline().parameters.SubjectAreaName",
+								"type": "Expression"
+							},
+							"CTLPattern": {
+								"value": "@variables('CTLFilePattern')",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Set DATA File Pattern",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "DataFilePattern",
-					"value": {
-						"value": "@concat(pipeline().parameters.FilePattern,'*.dat.gz')",
-						"type": "Expression"
-					}
+					"value": "@concat(pipeline().parameters.FilePattern,'*.dat.gz')"
 				}
 			}
 		],
