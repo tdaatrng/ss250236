@@ -209,7 +209,7 @@
 							"type": "Expression"
 						},
 						"message": {
-							"value": "@activity('Notebook1).output.runOutput\n",
+							"value": "\n",
 							"type": "Expression"
 						}
 					}
