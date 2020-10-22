@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"CTLFileName": {
+			"DataFileName": {
 				"type": "string"
 			}
 		},
@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().CTLFileName",
+					"value": "@dataset().DataFileName",
 					"type": "Expression"
 				},
 				"folderPath": "inbound",
