@@ -6,9 +6,6 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"InboundDirName": {
-				"type": "string"
-			},
 			"CTLPattern": {
 				"type": "string"
 			}
@@ -18,8 +15,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "@dataset().InboundDirName/@dataset().CTLPattern",
-				"folderPath": "/apps/inbound/",
+				"fileName": {
+					"value": "@dataset().CTLPattern",
+					"type": "Expression"
+				},
+				"folderPath": "inbound",
 				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
