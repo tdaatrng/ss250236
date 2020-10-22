@@ -425,38 +425,6 @@
 									}
 								}
 							}
-						},
-						{
-							"name": "If Zero Byte Check True_copy1",
-							"description": "If Zero Byte Validation True Then Execute",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "ETLControl_Start_2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"Source_File_Name": {
-										"value": "@pipeline().parameters.Source_File_Name",
-										"type": "Expression"
-									},
-									"Inbound_Folder": {
-										"value": "@pipeline().parameters.Inbound_Folder",
-										"type": "Expression"
-									},
-									"Container_Name": {
-										"value": "@pipeline().parameters.Container_Name",
-										"type": "Expression"
-									},
-									"Reject_Folder": {
-										"value": "@pipeline().parameters.Reject_Folder",
-										"type": "Expression"
-									}
-								}
-							}
 						}
 					]
 				}
