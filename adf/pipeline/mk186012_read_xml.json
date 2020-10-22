@@ -19,7 +19,9 @@
 						"type": "XmlSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true
+							"recursive": true,
+							"wildcardFolderPath": "demo_inbound",
+							"wildcardFileName": ".xml"
 						},
 						"formatSettings": {
 							"type": "XmlReadSettings",
