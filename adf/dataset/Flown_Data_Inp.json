@@ -13,7 +13,7 @@
 				"folderPath": "Input",
 				"fileSystem": "ms186104"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "^",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
