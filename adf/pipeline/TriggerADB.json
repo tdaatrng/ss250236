@@ -10,28 +10,22 @@
 				"typeProperties": {
 					"variableName": "DataFileName",
 					"value": {
-						"value": "@substring(pipeline().parameters.FileName,0,lastindexof(pipeline().parameters.FileName,'.'))",
+						"value": "@concat(pipeline().parameters.FileName,'.dat')",
 						"type": "Expression"
 					}
 				}
 			},
 			{
-				"name": "ExtractCTLFileName",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "CTLFileName",
-					"value": {
-						"value": "@concat(substring(variables('CSVFileName'),0,lastindexof(variables('CSVFileName'),'.')),'.ctl')",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "CTL file Lookup",
+				"name": "Data file Lookup",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ExtractFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -52,11 +46,11 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "DemoCTL_File",
+						"referenceName": "ADB_DataFileLookup",
 						"type": "DatasetReference",
 						"parameters": {
-							"DataFileName": {
-								"value": "@variables('CTLFileName')",
+							"DataFile": {
+								"value": "@variables('DataFileName')",
 								"type": "Expression"
 							}
 						}
