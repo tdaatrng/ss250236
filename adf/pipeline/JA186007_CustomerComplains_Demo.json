@@ -189,7 +189,7 @@
 			},
 			"Activity": {
 				"type": "string",
-				"defaultValue": "Delete Activity"
+				"defaultValue": "None"
 			},
 			"Message": {
 				"type": "string",
@@ -197,7 +197,7 @@
 			},
 			"File_Name": {
 				"type": "string",
-				"defaultValue": "*csv"
+				"defaultValue": "Cust Complaints"
 			}
 		},
 		"folder": {
