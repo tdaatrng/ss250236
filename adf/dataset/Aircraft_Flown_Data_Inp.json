@@ -14,8 +14,6 @@
 				"fileSystem": "ms186104"
 			},
 			"columnDelimiter": "^",
-			"compressionCodec": "gzip",
-			"compressionLevel": "Optimal",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
