@@ -22,7 +22,10 @@
 							"recursive": true
 						},
 						"formatSettings": {
-							"type": "JsonReadSettings"
+							"type": "JsonReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
 						}
 					},
 					"sink": {
