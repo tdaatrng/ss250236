@@ -1,0 +1,33 @@
+{
+	"name": "ss186625_fileCheck",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"File_Path": {
+				"type": "string"
+			},
+			"File_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().File_Path",
+					"type": "Expression"
+				},
+				"fileSystem": "ss186225"
+			}
+		}
+	}
+}
