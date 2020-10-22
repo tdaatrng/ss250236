@@ -289,7 +289,7 @@
 									"Content-type": "application/json"
 								},
 								"body": {
-									"value": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.FileName,'\"\n\t}')",
+									"value": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FilePattern,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.FilePattern,'\"\n\t}')",
 									"type": "Expression"
 								}
 							}
@@ -310,6 +310,14 @@
 			"ProcName": {
 				"type": "string",
 				"defaultValue": "abc"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "Lookup"
+			},
+			"ErrorMessage": {
+				"type": "string",
+				"defaultValue": "File Not Arrived"
 			}
 		},
 		"variables": {
