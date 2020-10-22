@@ -27,11 +27,91 @@
 							"type": "JsonReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['AIRCFT_NBR']"
+								},
+								"sink": {
+									"name": "AIRCFT_NBR"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACTL_ARVL_STN']"
+								},
+								"sink": {
+									"name": "ACTL_ARVL_STN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACTL_DEPTR_STN']"
+								},
+								"sink": {
+									"name": "ACTL_DEPTR_STN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FLIGHT_DT']"
+								},
+								"sink": {
+									"name": "FLIGHT_DT",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AIRCFT_FLWN_MIN']"
+								},
+								"sink": {
+									"name": "AIRCFT_FLWN_MIN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['AIRCFT_FLWN_CYC']"
+								},
+								"sink": {
+									"name": "AIRCFT_FLWN_CYC"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACTL_OUT_TM']"
+								},
+								"sink": {
+									"name": "ACTL_OUT_TM",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "Aircraft_Flown_Src",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Flown_Data_Inp",
 						"type": "DatasetReference"
 					}
 				]
