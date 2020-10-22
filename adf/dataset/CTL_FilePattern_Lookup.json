@@ -18,8 +18,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "abc.dat.gz",
-				"folderPath": "apps/inbound/abc",
+				"fileName": "@dataset().CTLPattern",
+				"folderPath": "apps/inbound/@dataset().InboundDirName",
 				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
