@@ -39,7 +39,1204 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['STL_Header.Notif']['Operation']"
+								},
+								"sink": {
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['STL_Header.Notif']['Parameters'][0]['@Name']"
+								},
+								"sink": {
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['STL_Header.Notif']['Parameters'][0]['_value_']"
+								},
+								"sink": {
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['STL_Header.Notif']['@timeStamp']"
+								},
+								"sink": {
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['POS']['Actual']"
+								},
+								"sink": {
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['POS']['Home']"
+								},
+								"sink": {
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['POS']['Sine']"
+								},
+								"sink": {
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['POS']['DutyCode']"
+								},
+								"sink": {
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['POS']['Lniata']"
+								},
+								"sink": {
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:TicketingProvider']['@number']"
+								},
+								"sink": {
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:TicketingProvider']['@checkDigit']"
+								},
+								"sink": {
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:TicketingProvider']['_value_']"
+								},
+								"sink": {
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:StationLocation']"
+								},
+								"sink": {
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:StationLocationNumber']"
+								},
+								"sink": {
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:WorkLocation']"
+								},
+								"sink": {
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:HomeLocation']"
+								},
+								"sink": {
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:Lniata']"
+								},
+								"sink": {
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:IsoCountryCode']"
+								},
+								"sink": {
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['ns2:CompanyName']"
+								},
+								"sink": {
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['@duty']"
+								},
+								"sink": {
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:Agent']['@sine']"
+								},
+								"sink": {
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:TransactionInfo']['ns2:TCN']"
+								},
+								"sink": {
+									"ordinal": 22
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:TransactionInfo']['ns2:LocalDateTime']"
+								},
+								"sink": {
+									"ordinal": 23
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:TransactionInfo']['ns2:SystemDateTime']"
+								},
+								"sink": {
+									"ordinal": 24
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:TransactionInfo']['ns2:SystemProvider']"
+								},
+								"sink": {
+									"ordinal": 25
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:TransactionInfo']['ns2:Type']"
+								},
+								"sink": {
+									"ordinal": 26
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Indicators']['@commisionable']"
+								},
+								"sink": {
+									"ordinal": 27
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Indicators']['@electronic']"
+								},
+								"sink": {
+									"ordinal": 28
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Indicators']['@interlineable']"
+								},
+								"sink": {
+									"ordinal": 29
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Indicators']['@refundable']"
+								},
+								"sink": {
+									"ordinal": 30
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:Reservation']['ns2:Sabre']['@provider']"
+								},
+								"sink": {
+									"ordinal": 31
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:Reservation']['ns2:Sabre']['@createDate']"
+								},
+								"sink": {
+									"ordinal": 32
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:Reservation']['ns2:Sabre']['_value_']"
+								},
+								"sink": {
+									"ordinal": 33
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:SystemCreateDateTime']"
+								},
+								"sink": {
+									"ordinal": 34
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:LocalIssueDateTime']"
+								},
+								"sink": {
+									"ordinal": 35
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:LastUpdate']"
+								},
+								"sink": {
+									"ordinal": 36
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:ValidatingProvider']['@number']"
+								},
+								"sink": {
+									"ordinal": 37
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:ValidatingProvider']['@checkDigit']"
+								},
+								"sink": {
+									"ordinal": 38
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:ValidatingProvider']['_value_']"
+								},
+								"sink": {
+									"ordinal": 39
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:ElectronicMiscType']"
+								},
+								"sink": {
+									"ordinal": 40
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:FareCalculationMode']"
+								},
+								"sink": {
+									"ordinal": 41
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Details']['ns2:ReasonForIssue']"
+								},
+								"sink": {
+									"ordinal": 42
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Traveler']['ns2:Name']"
+								},
+								"sink": {
+									"ordinal": 43
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Traveler']['ns2:FirstName']"
+								},
+								"sink": {
+									"ordinal": 44
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Traveler']['ns2:LastName']"
+								},
+								"sink": {
+									"ordinal": 45
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Traveler']['ns2:PassengerType']"
+								},
+								"sink": {
+									"ordinal": 46
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Purchaser']['ns2:Name']"
+								},
+								"sink": {
+									"ordinal": 47
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Purchaser']['ns2:FirstName']"
+								},
+								"sink": {
+									"ordinal": 48
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Customer']['ns2:Purchaser']['ns2:LastName']"
+								},
+								"sink": {
+									"ordinal": 49
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Base']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 50
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Base']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 51
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Base']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 52
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Base']['ns2:Text']"
+								},
+								"sink": {
+									"ordinal": 53
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:TotalTax']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 54
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:TotalTax']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 55
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:TotalTax']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 56
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:TotalTax']['ns2:Text']"
+								},
+								"sink": {
+									"ordinal": 57
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Total']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 58
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Total']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 59
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Total']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 60
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['ns2:Total']['ns2:Text']"
+								},
+								"sink": {
+									"ordinal": 61
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['@description']"
+								},
+								"sink": {
+									"ordinal": 62
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['@quantity']"
+								},
+								"sink": {
+									"ordinal": 63
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:Fee']['@coupon']"
+								},
+								"sink": {
+									"ordinal": 64
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:FeeProvider']"
+								},
+								"sink": {
+									"ordinal": 65
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:Indicators']['@feeOverride']"
+								},
+								"sink": {
+									"ordinal": 66
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:Indicators']['@consumed']"
+								},
+								"sink": {
+									"ordinal": 67
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:Indicators']['@taxExempt']"
+								},
+								"sink": {
+									"ordinal": 68
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:ExcessBaggage']['ns2:Rate']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 69
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:ExcessBaggage']['ns2:Rate']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 70
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:ExcessBaggage']['ns2:Rate']['_value_']"
+								},
+								"sink": {
+									"ordinal": 71
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['ns2:ExcessBaggage']['ns2:Pieces']"
+								},
+								"sink": {
+									"ordinal": 72
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['@group']"
+								},
+								"sink": {
+									"ordinal": 73
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['@reason']"
+								},
+								"sink": {
+									"ordinal": 74
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['@filingSource']"
+								},
+								"sink": {
+									"ordinal": 75
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:OptionalService']['@journeyType']"
+								},
+								"sink": {
+									"ordinal": 76
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:MarketingProvider']"
+								},
+								"sink": {
+									"ordinal": 77
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:MarketingFlightNumber']"
+								},
+								"sink": {
+									"ordinal": 78
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:OperatingProvider']"
+								},
+								"sink": {
+									"ordinal": 79
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:ClassOfService']"
+								},
+								"sink": {
+									"ordinal": 80
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:StartLocation']"
+								},
+								"sink": {
+									"ordinal": 81
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:StartDateTime']"
+								},
+								"sink": {
+									"ordinal": 82
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:EndLocation']"
+								},
+								"sink": {
+									"ordinal": 83
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:CurrentStatus']"
+								},
+								"sink": {
+									"ordinal": 84
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:PreviousStatus']"
+								},
+								"sink": {
+									"ordinal": 85
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['ns2:AssociatedFareBasis']"
+								},
+								"sink": {
+									"ordinal": 86
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:ServiceCoupon']['@coupon']"
+								},
+								"sink": {
+									"ordinal": 87
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:AssociatedTicketNumber']['@associationType']"
+								},
+								"sink": {
+									"ordinal": 88
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:AssociatedTicketNumber']['@couponNumber']"
+								},
+								"sink": {
+									"ordinal": 89
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:AssociatedTicketNumber']['@checkDigit']"
+								},
+								"sink": {
+									"ordinal": 90
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Miscellaneous'][0]['ns2:AssociatedTicketNumber']['_value_']"
+								},
+								"sink": {
+									"ordinal": 91
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Base']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 92
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Base']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 93
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Base']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 94
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Base']['ns2:Text']"
+								},
+								"sink": {
+									"ordinal": 95
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Base']['ns2:ApplyCreditInd']"
+								},
+								"sink": {
+									"ordinal": 96
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Total']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 97
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Total']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 98
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Total']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 99
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Total']['ns2:Text']"
+								},
+								"sink": {
+									"ordinal": 100
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Amounts']['ns2:New']['ns2:Total']['ns2:ApplyCreditInd']"
+								},
+								"sink": {
+									"ordinal": 101
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:ValueCalculation']['ns2:New']"
+								},
+								"sink": {
+									"ordinal": 102
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:RelatedDocument']['ns2:Miscellaneous']['ns2:Number']"
+								},
+								"sink": {
+									"ordinal": 103
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:RelatedDocument']['ns2:Miscellaneous']['ns2:CheckDigit']"
+								},
+								"sink": {
+									"ordinal": 104
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:RelatedDocument']['ns2:Miscellaneous']['@sequence']"
+								},
+								"sink": {
+									"ordinal": 105
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Base']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 106
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Base']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 107
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Base']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 108
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Base']['ns2:ApplyCreditInd']"
+								},
+								"sink": {
+									"ordinal": 109
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Total']['ns2:Amount']['@currencyCode']"
+								},
+								"sink": {
+									"ordinal": 110
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Total']['ns2:Amount']['@decimalPlace']"
+								},
+								"sink": {
+									"ordinal": 111
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Total']['ns2:Amount']['_value_']"
+								},
+								"sink": {
+									"ordinal": 112
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Total']['ns2:ApplyCreditInd']"
+								},
+								"sink": {
+									"ordinal": 113
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Remarks']"
+								},
+								"sink": {
+									"ordinal": 114
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Card']['ns2:MaskedCardNumber']"
+								},
+								"sink": {
+									"ordinal": 115
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Card']['ns2:ExpireDate']"
+								},
+								"sink": {
+									"ordinal": 116
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Card']['ns2:ApprovalCode']"
+								},
+								"sink": {
+									"ordinal": 117
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Card']['ns2:CardBinNumber']"
+								},
+								"sink": {
+									"ordinal": 118
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Card']['ns2:TransactionId']"
+								},
+								"sink": {
+									"ordinal": 119
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['ns2:Card']['@cardType']"
+								},
+								"sink": {
+									"ordinal": 120
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['@type']"
+								},
+								"sink": {
+									"ordinal": 121
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:Payment']['@sequence']"
+								},
+								"sink": {
+									"ordinal": 122
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Agent']['ns2:TicketingProvider']"
+								},
+								"sink": {
+									"ordinal": 123
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Agent']['ns2:WorkLocation']"
+								},
+								"sink": {
+									"ordinal": 124
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Agent']['ns2:HomeLocation']"
+								},
+								"sink": {
+									"ordinal": 125
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Agent']['ns2:Lniata']"
+								},
+								"sink": {
+									"ordinal": 126
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Agent']['@duty']"
+								},
+								"sink": {
+									"ordinal": 127
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Agent']['@sine']"
+								},
+								"sink": {
+									"ordinal": 128
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:TransactionInfo']['ns2:LocalDateTime']"
+								},
+								"sink": {
+									"ordinal": 129
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:TransactionInfo']['ns2:SystemDateTime']"
+								},
+								"sink": {
+									"ordinal": 130
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:TransactionInfo']['ns2:SystemProvider']"
+								},
+								"sink": {
+									"ordinal": 131
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:TransactionInfo']['ns2:InputMessage']"
+								},
+								"sink": {
+									"ordinal": 132
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Details']['ns2:SupportingDocument']"
+								},
+								"sink": {
+									"ordinal": 133
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Details']['ns2:OldReservation']"
+								},
+								"sink": {
+									"ordinal": 134
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:Details']['ns2:AffectedCoupons']"
+								},
+								"sink": {
+									"ordinal": 135
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:ServiceCouponHistory']['ns2:CurrentStatus']"
+								},
+								"sink": {
+									"ordinal": 136
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:ServiceCouponHistory']['ns2:PreviousStatus']"
+								},
+								"sink": {
+									"ordinal": 137
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:ServiceCouponHistory']['@sequence']"
+								},
+								"sink": {
+									"ordinal": 138
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['ns2:ServiceCouponHistory']['@coupon']"
+								},
+								"sink": {
+									"ordinal": 139
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['@sequence']"
+								},
+								"sink": {
+									"ordinal": 140
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['@number']"
+								},
+								"sink": {
+									"ordinal": 141
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['ns2:History'][0]['@code']"
+								},
+								"sink": {
+									"ordinal": 142
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['@type']"
+								},
+								"sink": {
+									"ordinal": 143
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['@number']"
+								},
+								"sink": {
+									"ordinal": 144
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['@accountingCode']"
+								},
+								"sink": {
+									"ordinal": 145
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['@formNumber']"
+								},
+								"sink": {
+									"ordinal": 146
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['@serialNumber']"
+								},
+								"sink": {
+									"ordinal": 147
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['ns2:Ticketing']['ns2:ElectronicMiscDocument']['@checkDigit']"
+								},
+								"sink": {
+									"ordinal": 148
+								}
+							},
+							{
+								"source": {
+									"path": "$['ns2:TicketingDocument.Notification']['@Version']"
+								},
+								"sink": {
+									"ordinal": 149
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
