@@ -3,19 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SetRunTimestamp",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "RunTimeStamp",
-					"value": {
-						"value": "@utcnow('yyyyMMddHHmmss')",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Set CTL File Pattern",
 				"type": "SetVariable",
 				"dependsOn": [
