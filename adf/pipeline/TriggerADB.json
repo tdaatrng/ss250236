@@ -60,7 +60,14 @@
 			{
 				"name": "ErrorMailNotify",
 				"type": "WebActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Data file Lookup",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -80,12 +87,48 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "LoadFixedFile",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Data file Lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
 			"FileName": {
 				"type": "string",
 				"defaultValue": "TKTREV"
+			},
+			"EmailTo": {
+				"type": "string",
+				"defaultValue": "Jayadeep.Patil@teradata.com"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "Load File"
+			},
+			"ErrorMessage": {
+				"type": "string",
+				"defaultValue": "File Not Found"
 			}
 		},
 		"variables": {
