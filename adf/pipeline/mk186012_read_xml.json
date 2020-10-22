@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": "demo_inbound",
-							"wildcardFileName": ".xml"
+							"wildcardFileName": "*.xml"
 						},
 						"formatSettings": {
 							"type": "XmlReadSettings",
