@@ -10,8 +10,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "@dataset().CTLFilePattern",
 				"folderPath": {
-					"value": "apps/inbound/pipeline().parameters.SubjectAreaName",
+					"value": "apps/inbound/@dataset().SubjectAreaName",
 					"type": "Expression"
 				},
 				"fileSystem": "jp186004"
