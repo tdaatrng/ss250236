@@ -183,13 +183,16 @@
 				"defaultValue": "jitendra.ambre@teradata.com"
 			},
 			"Activity": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Delete Activity"
 			},
 			"ErrorMessage": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Pipeline completed successfully and intermediate files were deleted"
 			},
 			"File_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "*csv"
 			}
 		},
 		"folder": {
