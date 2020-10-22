@@ -1,12 +1,12 @@
 {
-	"name": "CTL_FilePattern_Lookup",
+	"name": "Data_FilePattern_Lookup",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"CTLPattern": {
+			"DataFilePattern": {
 				"type": "string"
 			}
 		},
@@ -16,10 +16,10 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().CTLPattern",
+					"value": "@dataset().DataFilePattern",
 					"type": "Expression"
 				},
-				"folderPath": "inbound",
+				"folderPath": "input/xyz",
 				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
