@@ -10,6 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('Indian_Food_',utcnow())",
+					"type": "Expression"
+				},
 				"folderPath": "input",
 				"fileSystem": "sp186080"
 			}
