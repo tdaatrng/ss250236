@@ -207,10 +207,6 @@
 						"Table_Name": {
 							"value": "@variables('Table_Name')",
 							"type": "Expression"
-						},
-						"message": {
-							"value": "\n",
-							"type": "Expression"
 						}
 					}
 				},
@@ -260,7 +256,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "Set variable_Message",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -272,7 +268,11 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": ""
+					"variableName": "message",
+					"value": {
+						"value": "activity('Notebook1').output.runOutput",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -280,7 +280,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "Set variable_Message",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -346,6 +346,9 @@
 				"type": "String"
 			},
 			"Table_Name": {
+				"type": "String"
+			},
+			"message": {
 				"type": "String"
 			}
 		},
