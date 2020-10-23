@@ -177,7 +177,8 @@
 								"method": "POST",
 								"headers": {
 									"Content-type": "application/json"
-								}
+								},
+								"body": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"Revenue value in Table doesnot match with Trailer record\",\n\t\"FileName\" : \"',pipeline().parameters.FileName,'\"\n\t}')"
 							}
 						}
 					]
