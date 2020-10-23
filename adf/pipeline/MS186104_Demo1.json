@@ -145,6 +145,26 @@
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "File_Archive",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "RunNotebook",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "MS186104_Demo1_File_Archive",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
