@@ -123,7 +123,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "GetRevCompareStatus",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -143,17 +143,45 @@
 				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "ADBReturnValue",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "GetRevCompareStatus",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('ADBValueCheck'),'0')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "NotifyValueNotMatching",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+								"method": "POST",
+								"headers": {
+									"Content-type": "application/json"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
