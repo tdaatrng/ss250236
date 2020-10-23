@@ -119,7 +119,7 @@
 						}
 					},
 					"fieldList": [
-						"childItems"
+						"itemName"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings"
