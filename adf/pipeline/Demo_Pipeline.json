@@ -69,7 +69,7 @@
 						"referenceName": "DemoCTL_File",
 						"type": "DatasetReference",
 						"parameters": {
-							"CTLFileName": {
+							"DataFileName": {
 								"value": "@variables('CTLFileName')",
 								"type": "Expression"
 							}
