@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ExtractFileName",
+				"name": "SetFilePattern",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
@@ -18,14 +18,7 @@
 			{
 				"name": "Data file Lookup",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "ExtractFileName",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -120,6 +113,45 @@
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "SetFilePattern",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "GetDataFileName",
+						"type": "DatasetReference",
+						"parameters": {
+							"DatafilePattern": {
+								"value": "@variables('DataFileName')",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings"
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
 				}
 			}
 		],
