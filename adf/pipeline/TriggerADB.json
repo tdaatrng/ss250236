@@ -3,24 +3,24 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SetFilePattern",
+				"name": "SetFileName",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "DataFileName",
 					"value": {
-						"value": "@concat(pipeline().parameters.FileName,'*.dat')",
+						"value": "@pipeline().parameters.FileName",
 						"type": "Expression"
 					}
 				}
 			},
 			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
+				"name": "FileCheck",
+				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "SetFilePattern",
+						"activity": "SetFileName",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -35,24 +35,25 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
 					"dataset": {
-						"referenceName": "GetDataFileName",
+						"referenceName": "Lkp_File",
 						"type": "DatasetReference",
 						"parameters": {
-							"DatafilePattern": {
+							"File_Name": {
 								"value": "@variables('DataFileName')",
 								"type": "Expression"
 							}
 						}
-					},
-					"fieldList": [
-						"itemName"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
 					}
 				}
 			}
@@ -60,7 +61,7 @@
 		"parameters": {
 			"FileName": {
 				"type": "string",
-				"defaultValue": "TKTREV"
+				"defaultValue": "TKTREV_20201022.dat"
 			},
 			"EmailTo": {
 				"type": "string",
