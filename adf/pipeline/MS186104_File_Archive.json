@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetFileList",
-				"type": "GetMetadata",
+				"name": "CopyInboundFile",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -13,147 +13,184 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Inbound",
+							"wildcardFileName": "Aircraft_Flown*.zip"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".json"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
 					{
-						"name": "",
-						"value": ""
+						"referenceName": "Aircraft_Flown_Data_Inb",
+						"type": "DatasetReference"
 					}
 				],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Aircraft_Flown_Data_Inp",
+				"outputs": [
+					{
+						"referenceName": "Aircraft_Data_Flwn_Archive",
 						"type": "DatasetReference"
-					},
-					"fieldList": [],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
 					}
-				}
+				]
 			},
 			{
-				"name": "If Condition1",
-				"type": "IfCondition",
+				"name": "DeleteInboundFile",
+				"type": "Delete",
 				"dependsOn": [
 					{
-						"activity": "GetFileList",
+						"activity": "CopyInboundFile",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"ifTrueActivities": [
-						{
-							"name": "CopyDataToArc",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "JsonSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"wildcardFolderPath": "Inbound",
-										"wildcardFileName": {
-											"value": "@activity('GetFileList').output*.zip",
-											"type": "Expression"
-										}
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings",
-										"compressionProperties": {
-											"type": "ZipDeflateReadSettings"
-										}
-									}
-								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "Aircraft_Flown_Src",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Aircraft_Flown_Data_Inb",
-									"type": "DatasetReference"
-								}
-							]
+					"dataset": {
+						"referenceName": "Aircraft_Flown_Data_Inb",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "adls_ls",
+							"type": "LinkedServiceReference"
 						},
-						{
-							"name": "DeleteDataFromInb",
-							"type": "Delete",
-							"dependsOn": [
-								{
-									"activity": "CopyDataToArc",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"dataset": {
-									"referenceName": "Aircraft_Flown_Data_Inb",
-									"type": "DatasetReference"
-								},
-								"logStorageSettings": {
-									"linkedServiceName": {
-										"referenceName": "adls_ls",
-										"type": "LinkedServiceReference"
-									},
-									"path": "ms186104/Archive"
-								},
-								"enableLogging": true,
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
-									"wildcardFileName": {
-										"value": "@{activity('GetFileList').output*.zip}",
-										"type": "Expression"
-									}
-								}
-							}
+						"path": "ms186104/Archive/Logs"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"wildcardFileName": "Aircraft_Flown*.zip"
+					}
+				}
+			},
+			{
+				"name": "CopyInputFile",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "Input",
+							"wildcardFileName": "Aircraft_Flown*.csv"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
 						}
-					]
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Aircraft_Flown_Data_Inp",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Aircraft_Data_Flwn_Archive",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DeleteInputFile",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "CopyInputFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Aircraft_Flown_Data_Inp",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "adls_ls",
+							"type": "LinkedServiceReference"
+						},
+						"path": "ms186104/Archive/Logs"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"wildcardFileName": "Aircraft_Flown*.csv"
+					}
 				}
 			}
 		],
-		"parameters": {
-			"FilesList": {
-				"type": "string",
-				"defaultValue": "Aircraft_Flown"
-			}
-		},
 		"folder": {
 			"name": "MS186104"
 		},
