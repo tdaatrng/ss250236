@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": "Inbound",
-							"wildcardFileName": "Aircraft_Flown*.zip"
+							"wildcardFileName": "Aircraft_Flown_Data*.zip"
 						},
 						"formatSettings": {
 							"type": "JsonReadSettings",
