@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "FilesList",
+				"name": "GetFileList",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -13,6 +13,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [
+					{
+						"name": "",
+						"value": ""
+					}
+				],
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "Aircraft_Flown_Data_Inp",
@@ -32,7 +38,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "FilesList",
+						"activity": "GetFileList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -42,7 +48,7 @@
 				"typeProperties": {
 					"ifTrueActivities": [
 						{
-							"name": "ArchiveData",
+							"name": "CopyDataToArc",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -60,7 +66,10 @@
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFolderPath": "Inbound",
-										"wildcardFileName": "Aircraft_Flown_Data*.zip"
+										"wildcardFileName": {
+											"value": "@activity('GetFileList').output*.zip",
+											"type": "Expression"
+										}
 									},
 									"formatSettings": {
 										"type": "JsonReadSettings",
@@ -92,11 +101,52 @@
 									"type": "DatasetReference"
 								}
 							]
+						},
+						{
+							"name": "DeleteDataFromInb",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "CopyDataToArc",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "Aircraft_Flown_Data_Inb",
+									"type": "DatasetReference"
+								},
+								"enableLogging": true,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFileName": {
+										"value": "@{activity('GetFileList').output*.zip}",
+										"type": "Expression"
+									}
+								}
+							}
 						}
 					]
 				}
 			}
 		],
+		"parameters": {
+			"FilesList": {
+				"type": "string",
+				"defaultValue": "Aircraft_Flown"
+			}
+		},
 		"folder": {
 			"name": "MS186104"
 		},
