@@ -14,7 +14,7 @@
 				"fileSystem": "ms186104"
 			},
 			"compression": {
-				"type": "deflate",
+				"type": "gzip",
 				"level": "Optimal"
 			}
 		}
