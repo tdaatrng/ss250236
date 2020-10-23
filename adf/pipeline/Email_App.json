@@ -18,7 +18,7 @@
 					"url": "https://prod-57.eastus.logic.azure.com:443/workflows/6b15a7bfda3044eb93ac17e634bf86dd/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=G7FcnletLdJAsagAKYz4TlpmDLZB7A7GrKyg3XjwWaY",
 					"method": "POST",
 					"body": {
-						"value": "{  \"Subject\": \"@{pipeline().parameters.Subject}\",\n   \"Message\": \"@{pipeline().parameters.Message}\",\n   \"EmailTo\": \"@{pipeline().parameters.EmailTo}\"}",
+						"value": "{\"DataFactoryName\": \"pipeline().DataFactory\",\n   \"PipelineName\": \"pipeline().Pipeline\",\n   \"Subject\": \"pipeline().parameters.Subject\",\n   \"Message\": \"pipeline().parameters.Message\",\n   \"EmailTo\": \"pipeline().parameters.EmailTo\"}",
 						"type": "Expression"
 					}
 				}
