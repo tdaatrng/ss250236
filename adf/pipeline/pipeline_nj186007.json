@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"variableName": "Source_File_Name",
 					"value": {
-						"value": "@activity('Lookup_parameter').output.sourceFileName",
+						"value": "@activity('LookUp_Parameter').output.firstRow.sourceFileName",
 						"type": "Expression"
 					}
 				}
@@ -299,7 +299,7 @@
 				"typeProperties": {
 					"variableName": "EmailTo",
 					"value": {
-						"value": "@activity('Lookup_parameter').output.EmailId",
+						"value": "@activity('LookUp_Parameter').output.firstRow.EmailId",
 						"type": "Expression"
 					}
 				}
