@@ -75,7 +75,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Aircraft_Flown_Data_Inb",
+						"referenceName": "Aircraft_Flown_Src",
 						"type": "DatasetReference"
 					},
 					"logStorageSettings": {
