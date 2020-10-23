@@ -1,0 +1,219 @@
+{
+	"name": "TriggerADB_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ExtractFileName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataFileName",
+					"value": {
+						"value": "@concat(pipeline().parameters.FileName,'.dat')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Data file Lookup",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "ExtractFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ADB_DataFileLookup",
+						"type": "DatasetReference",
+						"parameters": {
+							"DataFile": {
+								"value": "@variables('DataFileName')",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "ErrorMailNotify",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Data file Lookup",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+					"method": "POST",
+					"headers": {
+						"Content-type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.FileName,'\"\n\t}')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "LoadFixedFileStg",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Data file Lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/jp186004/jp186004_loadVerifyFixedWidthSTG",
+					"baseParameters": {
+						"FileName": {
+							"value": "@variables('DataFileName')",
+							"type": "Expression"
+						},
+						"SubjectArea": "xyz"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "GetRevCompareStatus",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LoadFixedFileStg",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ADBValueCheck",
+					"value": {
+						"value": "@activity('LoadFixedFileStg').output.runOutput",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ADBReturnValue",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "GetRevCompareStatus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('ADBValueCheck'),'0')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "NotifyValueNotMatching",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+								"method": "POST",
+								"headers": {
+									"Content-type": "application/json"
+								},
+								"body": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"Revenue value in Table doesnot match with Trailer record\",\n\t\"FileName\" : \"',pipeline().parameters.FileName,'\"\n\t}')"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"FileName": {
+				"type": "string",
+				"defaultValue": "TKTREV"
+			},
+			"EmailTo": {
+				"type": "string",
+				"defaultValue": "Jayadeep.Patil@teradata.com"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "Load File"
+			},
+			"ErrorMessage": {
+				"type": "string",
+				"defaultValue": "File Not Found"
+			}
+		},
+		"variables": {
+			"DataFileName": {
+				"type": "String"
+			},
+			"ADBValueCheck": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Take2"
+		},
+		"annotations": []
+	}
+}
