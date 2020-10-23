@@ -12,6 +12,10 @@
 				"type": "AzureBlobFSLocation",
 				"folderPath": "Archive",
 				"fileSystem": "ms186104"
+			},
+			"compression": {
+				"type": "deflate",
+				"level": "Optimal"
 			}
 		}
 	}
