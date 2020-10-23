@@ -24,6 +24,26 @@
 				}
 			}
 		],
+		"parameters": {
+			"EmailTo": {
+				"type": "string"
+			},
+			"Subject": {
+				"type": "string"
+			},
+			"DataFactoryName": {
+				"type": "string"
+			},
+			"PipelineName": {
+				"type": "string"
+			},
+			"Message": {
+				"type": "string"
+			},
+			"notification_app_lnk": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
