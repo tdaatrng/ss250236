@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyData",
+				"name": "CopyDataToInput",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -120,11 +120,11 @@
 				]
 			},
 			{
-				"name": "RunNotebook",
+				"name": "RunNotebookTo_LoadData",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "CopyData",
+						"activity": "CopyDataToInput",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -151,7 +151,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "RunNotebook",
+						"activity": "RunNotebookTo_LoadData",
 						"dependencyConditions": [
 							"Succeeded"
 						]
