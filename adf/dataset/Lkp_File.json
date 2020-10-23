@@ -18,7 +18,9 @@
 				"fileName": {
 					"value": "@dataset().File_Name",
 					"type": "Expression"
-				}
+				},
+				"folderPath": "input/xyz",
+				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
