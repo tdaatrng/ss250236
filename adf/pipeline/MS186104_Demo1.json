@@ -139,7 +139,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/ms186104/MS186104_Demo1"
+					"notebookPath": "/ms186104/1_Demo/2_MS186104_Demo1"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
