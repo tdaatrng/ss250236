@@ -12,10 +12,6 @@
 				"type": "AzureBlobFSLocation",
 				"folderPath": "Archive",
 				"fileSystem": "ms186104"
-			},
-			"compression": {
-				"type": "gzip",
-				"level": "Optimal"
 			}
 		}
 	}
