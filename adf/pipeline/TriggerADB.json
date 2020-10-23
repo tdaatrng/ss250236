@@ -112,7 +112,17 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/jp186004/jp186004_loadVerifyFixedWidthSTG"
+					"notebookPath": "/jp186004/jp186004_loadVerifyFixedWidthSTG",
+					"baseParameters": {
+						"FileName": {
+							"value": "@variables('DataFileName')",
+							"type": "Expression"
+						},
+						"SubjectArea": {
+							"value": "@pipeline().parameters.SubjectAreaName",
+							"type": "Expression"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
