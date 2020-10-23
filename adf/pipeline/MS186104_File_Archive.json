@@ -126,6 +126,13 @@
 									"referenceName": "Aircraft_Flown_Data_Inb",
 									"type": "DatasetReference"
 								},
+								"logStorageSettings": {
+									"linkedServiceName": {
+										"referenceName": "adls_ls",
+										"type": "LinkedServiceReference"
+									},
+									"path": "ms186104/Archive"
+								},
 								"enableLogging": true,
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
