@@ -116,7 +116,7 @@
 				}
 			},
 			{
-				"name": "Execute Pipeline1",
+				"name": "Failure_Mail",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
