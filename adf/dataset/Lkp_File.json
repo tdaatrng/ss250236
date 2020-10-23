@@ -22,7 +22,10 @@
 					"value": "@dataset().File_Name",
 					"type": "Expression"
 				},
-				"folderPath": "input/xyz",
+				"folderPath": {
+					"value": "@input/dataset().SubjectAreaName",
+					"type": "Expression"
+				},
 				"fileSystem": "jp186004"
 			},
 			"columnDelimiter": ",",
