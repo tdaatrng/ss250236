@@ -93,7 +93,7 @@
 				}
 			},
 			{
-				"name": "LoadFixedWidth",
+				"name": "ADBLoadFixedWidth",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -127,6 +127,26 @@
 				"linkedServiceName": {
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "GetRevCompareStatus",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ADBLoadFixedWidth",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ADBValueCheck",
+					"value": {
+						"value": "@activity('ADBLoadFixedWidth').output.runOutput",
+						"type": "Expression"
+					}
 				}
 			}
 		],
