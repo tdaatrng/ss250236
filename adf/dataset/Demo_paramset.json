@@ -1,0 +1,42 @@
+{
+	"name": "Demo_paramset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Demo_param.json",
+				"folderPath": "config",
+				"fileSystem": "sp186080"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"adf_paramfile": {
+					"type": "string"
+				},
+				"adls_storage_account": {
+					"type": "string"
+				},
+				"adls_path": {
+					"type": "string"
+				},
+				"notification_app_lnk": {
+					"type": "string"
+				},
+				"year_filter": {
+					"type": "string"
+				},
+				"email_dl": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
