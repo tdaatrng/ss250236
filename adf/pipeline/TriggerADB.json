@@ -144,7 +144,7 @@
 				"typeProperties": {
 					"variableName": "ADBValueCheck",
 					"value": {
-						"value": "@activity('ADBLoadFixedWidth').output.runOutput",
+						"value": "string(@activity('ADBLoadFixedWidth').output.runOutput)",
 						"type": "Expression"
 					}
 				}
