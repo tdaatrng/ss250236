@@ -23,7 +23,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@input/dataset().SubjectAreaName",
+					"value": "input/@dataset().SubjectAreaName",
 					"type": "Expression"
 				},
 				"fileSystem": "jp186004"
