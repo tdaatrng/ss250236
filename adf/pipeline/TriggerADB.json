@@ -56,6 +56,37 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "ErrorMailNotify",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "FileCheck",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-03.eastus.logic.azure.com:443/workflows/a7b63c7c6bc8404e988f8e59f85eec3b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=U-sh46Sz2oePKsX8FuGSRUhD9Q_cs5AXvS2JfrSNBfc",
+					"method": "POST",
+					"headers": {
+						"Content-type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{\n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\",\n\t\"Subject\" : \"An error has occured in the ',pipeline().Pipeline,'-pipeline for file -',pipeline().parameters.FileName,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().Pipeline,'\",\n\t\"Activity\" : \"',pipeline().parameters.Activity,'\",\n\t\"ErrorMessage\" : \"File Not Present\",\n\t\"FileName\" : \"',pipeline().parameters.FileName,'\"\n\t}')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
