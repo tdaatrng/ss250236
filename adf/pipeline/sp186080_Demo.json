@@ -146,7 +146,6 @@
 						]
 					}
 				],
-				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "Email_App",
