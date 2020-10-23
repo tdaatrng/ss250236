@@ -132,7 +132,7 @@
 				}
 			},
 			{
-				"name": "Execute Pipeline2",
+				"name": "Success_Mail",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
