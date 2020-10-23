@@ -5,12 +5,19 @@
 			{
 				"name": "Extract_file_name",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup_parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "Source_File_Name",
 					"value": {
-						"value": "@substring(pipeline().parameters.File_Name,0,lastindexof(pipeline().parameters.File_Name,'.'))",
+						"value": "@activity('Lookup_parameter').output.sourceFileName",
 						"type": "Expression"
 					}
 				}
@@ -113,7 +120,10 @@
 								"headers": {
 									"Content-Type": "application/Json"
 								},
-								"body": "@concat('{\n\"EmailTo\":\"',pipeline().parameters.EmailTo,'\",\n\"Subject\":\"An error has occure in pipeline - ',pipeline().Pipeline,' for file-',pipeline().parameters.File_Name,'\",\n\"DataFactoryName\":\"',pipeline().DataFactory,'\",\n\"PipelineName\":\"',pipeline().Pipeline,'\",\n\"Activity\":\"',pipeline().parameters.Activity,'\",\n\"ErrorMessage\":\"',pipeline().parameters.ErrorMessage,'\",\n\"FileName\":\"',pipeline().parameters.File_Name,'\"\n}')"
+								"body": {
+									"value": "@concat('{\n\"EmailTo\":\"',pipeline().parameters.EmailTo,'\",\n\"Subject\":\"An error has occure in pipeline - ',pipeline().Pipeline,' for file-',pipeline().parameters.File_Name,'\",\n\"DataFactoryName\":\"',pipeline().DataFactory,'\",\n\"PipelineName\":\"',pipeline().Pipeline,'\",\n\"Activity\":\"',pipeline().parameters.Activity,'\",\n\"ErrorMessage\":\"',pipeline().parameters.ErrorMessage,'\",\n\"FileName\":\"',pipeline().parameters.File_Name,'\"\n}')",
+									"type": "Expression"
+								}
 							}
 						}
 					],
@@ -240,7 +250,56 @@
 						"Content-Type": "application/Json"
 					},
 					"body": {
-						"value": "@concat('{\n\"EmailTo\":\"',pipeline().parameters.EmailTo,'\",\n\"Subject\":\"An error has occure in pipeline - ',pipeline().Pipeline,' for file-',pipeline().parameters.File_Name,'\",\n\"DataFactoryName\":\"',pipeline().DataFactory,'\",\n\"PipelineName\":\"',pipeline().Pipeline,'\",\n\"Activity\":\"',pipeline().parameters.Activity,'\",\n\"ErrorMessage\":\"',pipeline().parameters.ErrorMessage1,'\",\n\"FileName\":\"',pipeline().parameters.File_Name,'\"\n}')",
+						"value": "@concat('{\n\"EmailTo\":\"',variables('EmailTo'),'\",\n\"Subject\":\"An error has occure in pipeline - ',pipeline().Pipeline,' for file-',pipeline().parameters.File_Name,'\",\n\"DataFactoryName\":\"',pipeline().DataFactory,'\",\n\"PipelineName\":\"',pipeline().Pipeline,'\",\n\"Activity\":\"',pipeline().parameters.Activity,'\",\n\"ErrorMessage\":\"',pipeline().parameters.ErrorMessage1,'\",\n\"FileName\":\"',pipeline().parameters.File_Name,'\"\n}')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Lookup_parameter",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "nj186007_json",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Extract Email",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup_parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "EmailTo",
+					"value": {
+						"value": "@activity('Lookup_parameter').output.EmailId",
 						"type": "Expression"
 					}
 				}
@@ -277,6 +336,9 @@
 				"type": "String"
 			},
 			"Ctl_File_name": {
+				"type": "String"
+			},
+			"EmailTo": {
 				"type": "String"
 			}
 		},
