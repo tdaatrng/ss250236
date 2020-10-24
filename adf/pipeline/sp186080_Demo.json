@@ -152,7 +152,33 @@
 						"referenceName": "Email_App",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": {
+							"value": "@activity('Demo_Param').output.firstRow.email_dl",
+							"type": "Expression"
+						},
+						"Subject": {
+							"value": "@concat(pipeline().Pipeline,' - Success ')",
+							"type": "Expression"
+						},
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@activity('Demo_Param').output.firstRow.success_email",
+							"type": "Expression"
+						},
+						"notification_app_lnk": {
+							"value": "@activity('Demo_Param').output.firstRow.notification_app_lnk",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
