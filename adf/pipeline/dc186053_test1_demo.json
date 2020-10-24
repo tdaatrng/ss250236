@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get List of files in inbound",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DelimitedText2",
+						"referenceName": "dc186053_inbound_files",
 						"type": "DatasetReference",
 						"parameters": {
 							"Inbound_Dir": {
@@ -42,11 +42,11 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "Loop for each file in inbound directory",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Get List of files in inbound",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -55,13 +55,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Get List of files in inbound').output.childItems",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
 					"activities": [
 						{
-							"name": "Copy to input",
+							"name": "Copy file from inbound to input",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -110,7 +110,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DelimitedText2",
+									"referenceName": "dc186053_inbound_files",
 									"type": "DatasetReference",
 									"parameters": {
 										"Inbound_Dir": {
@@ -126,14 +126,14 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DelimitedText3",
+									"referenceName": "dc186053_input_files",
 									"type": "DatasetReference",
 									"parameters": {
 										"Input_Dir": {
 											"value": "@pipeline().parameters.Input_Dir",
 											"type": "Expression"
 										},
-										"Container_Name": {
+										"Conatiner_Name": {
 											"value": "@pipeline().parameters.Container_Name",
 											"type": "Expression"
 										}
@@ -146,7 +146,7 @@
 							"type": "Delete",
 							"dependsOn": [
 								{
-									"activity": "Copy to input",
+									"activity": "Copy file from inbound to input",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -191,7 +191,7 @@
 							"type": "DatabricksNotebook",
 							"dependsOn": [
 								{
-									"activity": "Copy to input",
+									"activity": "Copy file from inbound to input",
 									"dependencyConditions": [
 										"Succeeded"
 									]
