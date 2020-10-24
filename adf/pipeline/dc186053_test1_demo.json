@@ -58,7 +58,7 @@
 						"value": "@activity('Get List of files in inbound').output.childItems",
 						"type": "Expression"
 					},
-					"isSequential": false,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Copy file from inbound to input",
