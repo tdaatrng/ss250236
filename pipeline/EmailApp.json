@@ -29,13 +29,16 @@
 		],
 		"parameters": {
 			"Subject": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "test"
 			},
 			"Message": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "test message"
 			},
 			"EmailTo": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "shekhar.patil@teradata.com"
 			}
 		},
 		"annotations": []
