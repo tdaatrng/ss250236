@@ -216,7 +216,11 @@
 							"type": "Expression"
 						},
 						"Message": "Success. Notebook execution is completed successfully.",
-						"EmailTo": "@activity('Demo_Paramset').output.firstRow.email_dl"
+						"EmailTo": "@activity('Demo_Paramset').output.firstRow.email_dl",
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						}
 					}
 				}
 			},
