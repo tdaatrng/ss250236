@@ -245,7 +245,11 @@
 					"parameters": {
 						"Subject": "@concat(pipeline().Pipeline,' - Failed !!')",
 						"Message": "Failed. Notebook execution has encountered an error.",
-						"EmailTo": "@activity('Demo_Paramset').output.firstRow.email_dl"
+						"EmailTo": "@activity('Demo_Paramset').output.firstRow.email_dl",
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						}
 					}
 				}
 			}
