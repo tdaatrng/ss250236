@@ -73,7 +73,84 @@
 							"type": "JsonWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['name']"
+								},
+								"sink": {
+									"path": "$['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ingredients']"
+								},
+								"sink": {
+									"path": "$['ingredients']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['diet']"
+								},
+								"sink": {
+									"path": "$['diet']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['prep_time']"
+								},
+								"sink": {
+									"path": "$['prep_time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cook_time']"
+								},
+								"sink": {
+									"path": "$['cook_time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['flavor_profile']"
+								},
+								"sink": {
+									"path": "$['flavor_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['course']"
+								},
+								"sink": {
+									"path": "$['course']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['state']"
+								},
+								"sink": {
+									"path": "$['state']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['region']"
+								},
+								"sink": {
+									"path": "$['region']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
@@ -89,7 +166,7 @@
 				]
 			},
 			{
-				"name": "Notebook1",
+				"name": "DemoNotebook",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -106,14 +183,21 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/sp186080/sp186080_demo"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
 			},
 			{
 				"name": "Execute Pipeline1",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Notebook1",
+						"activity": "DemoNotebook",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -129,7 +213,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Notebook1",
+						"activity": "DemoNotebook",
 						"dependencyConditions": [
 							"Failed"
 						]
