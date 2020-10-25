@@ -39,6 +39,9 @@
 			"EmailTo": {
 				"type": "string",
 				"defaultValue": "shekhar.patil@teradata.com"
+			},
+			"PipelineName": {
+				"type": "string"
 			}
 		},
 		"annotations": []
