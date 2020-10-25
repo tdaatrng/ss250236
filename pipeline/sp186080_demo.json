@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "Demo_Paramset",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -20,7 +20,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Demo_Paramset",
 						"dependencyConditions": [
 							"Succeeded"
 						]
