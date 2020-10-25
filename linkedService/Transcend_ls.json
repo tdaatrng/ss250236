@@ -1,0 +1,24 @@
+{
+	"name": "Transcend_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Teradata",
+		"typeProperties": {
+			"connectionString": "DbcName=tdprd2.td.teradata.com;UseIntegratedSecurity=1",
+			"username": "td\\pt186024",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "key_vault_ls",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "transend"
+			}
+		},
+		"connectVia": {
+			"referenceName": "gdc-aa-ir-transcend-vantage",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

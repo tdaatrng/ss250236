@@ -1,0 +1,21 @@
+{
+	"name": "Transcend",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Transcend",
+		"annotations": [],
+		"type": "Teradata",
+		"typeProperties": {
+			"connectionString": "DbcName=tdprd2.td.teradata.com;UseIntegratedSecurity=1",
+			"username": "td\\pt186024",
+			"password": {
+				"type": "SecureString",
+				"value": "**********"
+			}
+		},
+		"connectVia": {
+			"referenceName": "gdc-aa-ir-transcend-vantage",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

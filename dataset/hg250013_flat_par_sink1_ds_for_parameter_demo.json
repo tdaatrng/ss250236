@@ -1,0 +1,70 @@
+{
+	"name": "hg250013_flat_par_sink1_ds_for_parameter_demo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"destContainer": {
+				"type": "string"
+			},
+			"destDirectory": {
+				"type": "string"
+			},
+			"destFileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ADF_Demo_DS"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().destFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().destDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().destContainer",
+					"type": "Expression"
+				}
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "FlightNo",
+				"type": "UTF8"
+			},
+			{
+				"name": "Origin",
+				"type": "UTF8"
+			},
+			{
+				"name": "Dest",
+				"type": "UTF8"
+			},
+			{
+				"name": "FlightDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "NoSalesReason",
+				"type": "UTF8"
+			},
+			{
+				"name": "TransmittingFlightAttd",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
