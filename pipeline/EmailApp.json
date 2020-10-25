@@ -21,7 +21,7 @@
 						"Content-type": "application/json"
 					},
 					"body": {
-						"value": "@concat('\n{\"DataFactoryName\": \"',pipeline().DataFactory,'\",\n   \"PipelineName\": \"',pipeline().Pipeline,'\",\n   \"Subject\": \"',pipeline().parameters.Subject,'\",\n   \"Message\": \"',pipeline().parameters.Message,'\",\n   \"EmailTo\": \"',pipeline().parameters.EmailTo,'\"\n\t}')",
+						"value": "@concat('\n{\"DataFactoryName\": \"',pipeline().DataFactory,'\",\n   \"PipelineName\": \"',pipeline().parameters.PipelineName,'\",\n   \"Subject\": \"',pipeline().parameters.Subject,'\",\n   \"Message\": \"',pipeline().parameters.Message,'\",\n   \"EmailTo\": \"',pipeline().parameters.EmailTo,'\"\n\t}')",
 						"type": "Expression"
 					}
 				}
