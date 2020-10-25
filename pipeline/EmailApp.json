@@ -27,6 +27,17 @@
 				}
 			}
 		],
+		"parameters": {
+			"Subject": {
+				"type": "string"
+			},
+			"Message": {
+				"type": "string"
+			},
+			"EmailTo": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
