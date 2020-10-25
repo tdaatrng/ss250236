@@ -32,7 +32,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Inbound_Input",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -51,15 +51,34 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "IndianFood_inbound",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
 				"name": "Notebook1",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "Inbound_Input",
 						"dependencyConditions": [
 							"Succeeded"
 						]
