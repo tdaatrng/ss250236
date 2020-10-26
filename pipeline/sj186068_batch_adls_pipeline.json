@@ -1,0 +1,39 @@
+{
+	"name": "sj186068_batch_adls_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Load to volvo",
+				"type": "Custom",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": "cmd /c tbuild_load.bat",
+					"resourceLinkedService": {
+						"referenceName": "batch_adls_ls",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "sj186068/files",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adf_batch_ls",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

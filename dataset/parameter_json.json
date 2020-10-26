@@ -1,0 +1,39 @@
+{
+	"name": "parameter_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blob_ls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Audit Control Framework Dataset"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "adf_paramset.json",
+				"container": "parameter"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"DatabaseServer": {
+					"type": "string"
+				},
+				"UserName": {
+					"type": "string"
+				},
+				"Password": {
+					"type": "string"
+				},
+				"EmailTo": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

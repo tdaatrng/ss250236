@@ -1,0 +1,12 @@
+{
+	"name": "td-aa-trng-adf",
+	"properties": {
+		"globalParameters": {
+			"EmailTo": {
+				"type": "string",
+				"value": "sudipta.sarkar@teradata.com,sumit.jain@teradata.com"
+			}
+		}
+	},
+	"location": "eastus"
+}

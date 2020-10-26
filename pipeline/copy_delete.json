@@ -1,0 +1,138 @@
+{
+	"name": "copy_delete",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy file to sink container",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ""
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "gen_src_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": {
+								"value": "@pipeline().parameters.file_name",
+								"type": "Expression"
+							},
+							"folder_name": {
+								"value": "@pipeline().parameters.folder_name",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "gen_sink_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"sink_folder_name": {
+								"value": "@pipeline().parameters.output_folder_name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Delete file Source Files",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Copy file to sink container",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "gen_src_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": {
+								"value": "@pipeline().parameters.file_name",
+								"type": "Expression"
+							},
+							"folder_name": {
+								"value": "@pipeline().parameters.folder_name",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true
+					}
+				}
+			}
+		],
+		"parameters": {
+			"file_name": {
+				"type": "string"
+			},
+			"folder_name": {
+				"type": "string"
+			},
+			"output_folder_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Audit Control Framework Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

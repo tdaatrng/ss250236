@@ -1,0 +1,498 @@
+{
+	"name": "etlcontrol_batch_script",
+	"properties": {
+		"activities": [
+			{
+				"name": "File Name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FileName",
+					"value": {
+						"value": "@pipeline().parameters.fileName",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Date from file name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "File Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Date",
+					"value": {
+						"value": "@substring(variables('FileName'),add(lastindexof(variables('FileName'),'_'),1),8)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Batch Script Execution on VM",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "Formatted Date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get Database Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get DB User Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get DB Password",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get Email",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": {
+						"value": "@concat('cmd /c audit_control_batch.bat',' ',variables('DatabaseServer'),' ',variables('UserName'),' ',variables('Password'),' ',variables('Format_Date'),' ',variables('TFileName'))",
+						"type": "Expression"
+					},
+					"resourceLinkedService": {
+						"referenceName": "blob_ls",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "files",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adf_batch_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Only File Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "File Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TFileName",
+					"value": {
+						"value": "@substring(variables('FileName'),0,lastindexof(variables('FileName'),'_'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Formatted Date",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Date from file name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Only File Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Format_Date",
+					"value": {
+						"value": "@concat(substring(variables('Date'),0,4),'-',substring(variables('Date'),4,2),'-',substring(variables('Date'),6,2))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Send email on failure",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Batch Script Execution on VM",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "error_mail_notification_pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": {
+							"value": "@variables('EmailTo')",
+							"type": "Expression"
+						},
+						"Activity": "Custom Activity",
+						"ErrorMessage": "Custom activity failed because of error. Please check log file for more details.",
+						"Pipe_line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": {
+							"value": "@variables('TFileName')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "get parameter",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "parameter_json",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "get Database Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DatabaseServer",
+					"value": {
+						"value": "@activity('get parameter').output.firstRow.DatabaseServer",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get DB User Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "UserName",
+					"value": {
+						"value": "@activity('get parameter').output.firstRow.UserName",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get DB Password",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Password",
+					"value": {
+						"value": "@activity('get parameter').output.firstRow.Password",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Send mail on success",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Batch Script Execution on VM",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "success_mail_notification_pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"EmailTo": {
+							"value": "@variables('EmailTo')",
+							"type": "Expression"
+						},
+						"Pipe_line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": {
+							"value": "@variables('TFileName')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "get Email",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "EmailTo",
+					"value": {
+						"value": "@activity('get parameter').output.firstRow.EmailTo",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "source data file copy to input and delete",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Send mail on success",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "copy_delete",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"file_name": {
+							"value": "@pipeline().parameters.fileName",
+							"type": "Expression"
+						},
+						"folder_name": {
+							"value": "@pipeline().parameters.folderPath",
+							"type": "Expression"
+						},
+						"output_folder_name": "input"
+					}
+				}
+			},
+			{
+				"name": "source data file copy to reject and delete",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Send email on failure",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "copy_delete",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"file_name": {
+							"value": "@pipeline().parameters.fileName",
+							"type": "Expression"
+						},
+						"folder_name": {
+							"value": "@pipeline().parameters.folderPath",
+							"type": "Expression"
+						},
+						"output_folder_name": "reject"
+					}
+				}
+			},
+			{
+				"name": "source ctl file copy to input and delete",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Send mail on success",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "copy_delete",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"file_name": {
+							"value": "@pipeline().parameters.ctlFileName",
+							"type": "Expression"
+						},
+						"folder_name": {
+							"value": "@pipeline().parameters.folderPath",
+							"type": "Expression"
+						},
+						"output_folder_name": "input"
+					}
+				}
+			},
+			{
+				"name": "source ctl file copy to reject and delete",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Send email on failure",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "copy_delete",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"file_name": {
+							"value": "@pipeline().parameters.ctlFileName",
+							"type": "Expression"
+						},
+						"folder_name": {
+							"value": "@pipeline().parameters.folderPath",
+							"type": "Expression"
+						},
+						"output_folder_name": "reject"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			},
+			"folderPath": {
+				"type": "string"
+			},
+			"ctlFileName": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"FileName": {
+				"type": "String"
+			},
+			"Date": {
+				"type": "String"
+			},
+			"TFileName": {
+				"type": "String"
+			},
+			"TFolderName": {
+				"type": "String"
+			},
+			"Format_Date": {
+				"type": "String"
+			},
+			"DatabaseServer": {
+				"type": "String"
+			},
+			"UserName": {
+				"type": "String"
+			},
+			"Password": {
+				"type": "String"
+			},
+			"EmailTo": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Audit Control Framework Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
