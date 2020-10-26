@@ -184,6 +184,10 @@
 									"referenceName": "DeleteInputonSuccess",
 									"type": "DatasetReference",
 									"parameters": {
+										"FileToRemove": {
+											"value": "@variables('DataFileName')",
+											"type": "Expression"
+										},
 										"SubjectAreaName": {
 											"value": "@pipeline().parameters.SubjectAreaName",
 											"type": "Expression"
