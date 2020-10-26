@@ -1,0 +1,27 @@
+{
+	"name": "DeleteInputonSuccess",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileToRemove": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileToRemove",
+					"type": "Expression"
+				},
+				"folderPath": "input/xyz",
+				"fileSystem": "jp186004"
+			}
+		}
+	}
+}
