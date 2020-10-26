@@ -166,6 +166,38 @@
 						"value": "@equals(variables('ADBValueCheck'),'0')",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "CleanupOnSuccess",
+							"type": "Delete",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "DeleteInputonSuccess",
+									"type": "DatasetReference",
+									"parameters": {
+										"SubjectAreaName": {
+											"value": "@pipeline().parameters.SubjectAreaName",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableLogging": true,
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								}
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "ErMailNotify_RevenueCheck",
