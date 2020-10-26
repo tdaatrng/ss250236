@@ -1,0 +1,44 @@
+{
+	"name": "source_ctl_count",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blob_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ctl_file_name": {
+				"type": "string"
+			},
+			"ctl_folder_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Audit Control Framework Dataset"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().ctl_file_name",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().ctl_folder_name",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

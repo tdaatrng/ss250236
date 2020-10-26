@@ -1,0 +1,25 @@
+{
+	"name": "IndianFood_inbound",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "indian_food.zip",
+				"folderPath": "inbound",
+				"fileSystem": "sp186080"
+			},
+			"compression": {
+				"type": "ZipDeflate",
+				"level": "Optimal"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

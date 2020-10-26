@@ -1,0 +1,48 @@
+{
+	"name": "success_mail_notification_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Send email on success",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-20.eastus.logic.azure.com:443/workflows/144ac395e1c34d1cb5fd524e6e239575/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=o-2Wx_7w9CoOX5RTkJEZhaLrC8e5IsKBx0pOdX-lWV8",
+					"method": "POST",
+					"headers": {
+						"Content-type": "application/json"
+					},
+					"body": {
+						"value": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\", \n\t\"Subject\" : \"Successful execution of ',pipeline().parameters.Pipe_line_Name,'-pipeline for file-',pipeline().parameters.Source_File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\",\n\t\"FileName\" : \"',pipeline().parameters.Source_File_Name,\t'\"\n\t}')\n",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"EmailTo": {
+				"type": "string"
+			},
+			"Pipe_line_Name": {
+				"type": "string"
+			},
+			"Source_File_Name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Audit Control Framework Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

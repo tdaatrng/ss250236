@@ -1,0 +1,13 @@
+{
+	"name": "hg250013_Rest_api_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rest_api_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
