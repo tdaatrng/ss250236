@@ -194,6 +194,13 @@
 										}
 									}
 								},
+								"logStorageSettings": {
+									"linkedServiceName": {
+										"referenceName": "adls_ls",
+										"type": "LinkedServiceReference"
+									},
+									"path": "jp186004/log"
+								},
 								"enableLogging": true,
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
