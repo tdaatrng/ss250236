@@ -336,6 +336,8 @@
 		"folder": {
 			"name": "Audit Control Framework Pipelines"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

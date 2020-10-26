@@ -1,20 +1,22 @@
 {
-	"name": "hg250013_json_file_sink3_ds",
+	"name": "IndianFood_inbound",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output3",
-				"fileSystem": "hg250013"
+				"fileName": "indian_food.zip",
+				"folderPath": "inbound",
+				"fileSystem": "sp186080"
+			},
+			"compression": {
+				"type": "ZipDeflate",
+				"level": "Optimal"
 			}
 		},
 		"schema": {}

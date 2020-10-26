@@ -1,20 +1,21 @@
 {
-	"name": "hg250013_json_file_sink3_ds",
+	"name": "IndianFood_Input",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output3",
-				"fileSystem": "hg250013"
+				"fileName": {
+					"value": "@concat('IndianFood_',formatDateTime(utcnow(), 'yyyyMMdd'),'.json')",
+					"type": "Expression"
+				},
+				"folderPath": "input",
+				"fileSystem": "sp186080"
 			}
 		},
 		"schema": {}

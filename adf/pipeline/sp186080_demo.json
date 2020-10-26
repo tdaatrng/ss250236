@@ -1,0 +1,270 @@
+{
+	"name": "sp186080_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "Demo_Paramset",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Demo_param",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Inbound_Input",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Demo_Paramset",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['name']"
+								},
+								"sink": {
+									"path": "$['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ingredients']"
+								},
+								"sink": {
+									"path": "$['ingredients']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['diet']"
+								},
+								"sink": {
+									"path": "$['diet']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['prep_time']"
+								},
+								"sink": {
+									"path": "$['prep_time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cook_time']"
+								},
+								"sink": {
+									"path": "$['cook_time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['flavor_profile']"
+								},
+								"sink": {
+									"path": "$['flavor_profile']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['course']"
+								},
+								"sink": {
+									"path": "$['course']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['state']"
+								},
+								"sink": {
+									"path": "$['state']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['region']"
+								},
+								"sink": {
+									"path": "$['region']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "IndianFood_inbound",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "IndianFood_Input",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DemoNotebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Inbound_Input",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/sp186080/sp186080_demo"
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Success Email",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DemoNotebook",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailApp",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Subject": {
+							"value": "@concat(pipeline().Pipeline,' - Success !!')",
+							"type": "Expression"
+						},
+						"Message": "Success. Notebook execution is completed successfully.",
+						"EmailTo": {
+							"value": "@activity('Demo_Paramset').output.firstRow.email_dl",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Failure email",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DemoNotebook",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailApp",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Subject": {
+							"value": "@concat(pipeline().Pipeline,' - Failed !!')",
+							"type": "Expression"
+						},
+						"Message": "Failed. Notebook execution has encountered an error.",
+						"EmailTo": {
+							"value": "@activity('Demo_Paramset').output.firstRow.email_dl",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -13,6 +13,8 @@
 				"folderPath": "raw",
 				"fileSystem": "hg250013"
 			}
-		}
-	}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

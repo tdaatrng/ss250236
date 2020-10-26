@@ -1,42 +1,42 @@
 {
-	"name": "hg250013_parameter_ds",
+	"name": "Demo_param",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "ADF_Demo_DS"
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ADF_parameters_2.json",
+				"fileName": "Demo_param.json",
 				"folderPath": "config",
-				"fileSystem": "hg250013"
+				"fileSystem": "sp186080"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
-				"sourceDataBase": {
+				"adf_paramfile": {
 					"type": "string"
 				},
-				"sourceTable": {
+				"adls_storage_account": {
 					"type": "string"
 				},
-				"targetDataBase": {
+				"adls_path": {
 					"type": "string"
 				},
-				"targetTable": {
+				"notification_app_lnk": {
 					"type": "string"
 				},
-				"partitionCol": {
+				"email_dl": {
 					"type": "string"
 				},
-				"columns": {
+				"success_email": {
+					"type": "string"
+				},
+				"failure_email": {
 					"type": "string"
 				}
 			}
