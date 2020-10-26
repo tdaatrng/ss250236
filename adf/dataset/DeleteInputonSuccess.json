@@ -8,6 +8,9 @@
 		"parameters": {
 			"FileToRemove": {
 				"type": "string"
+			},
+			"SubjectAreaName": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -19,8 +22,11 @@
 					"value": "@dataset().FileToRemove",
 					"type": "Expression"
 				},
-				"folderPath": "input/xyz",
-				"fileSystem": "jp186004"
+				"folderPath": {
+					"value": "@dataset().SubjectAreaName",
+					"type": "Expression"
+				},
+				"fileSystem": "jp186004/input"
 			}
 		}
 	}
