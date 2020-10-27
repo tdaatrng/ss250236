@@ -13,7 +13,6 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -39,6 +38,80 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Flight#",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Flight#",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Origin",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Origin",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Dest",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Dest",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FlightDate",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NoSalesReason",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NoSalesReason",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TransmittingFlightAttd",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TransmittingFlightAttd",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -58,19 +131,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "hg250013_adf_td_training_demo",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "hg250013_adf_td_training_demo",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
 			}
 		],
 		"annotations": []
