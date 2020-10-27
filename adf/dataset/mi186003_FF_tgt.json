@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "ff_tgt",
 				"folderPath": "output",
 				"fileSystem": "mi186003"
 			},
