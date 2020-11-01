@@ -28,7 +28,8 @@
 					"dataset": {
 						"referenceName": "LookUpDataSet",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
