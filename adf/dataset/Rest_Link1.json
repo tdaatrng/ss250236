@@ -1,0 +1,11 @@
+{
+	"name": "Rest_Link1",
+	"properties": {
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "https://finhub.io/api/vl/quote?symbol=TDC&token=bu7q67n48v6oeb0k8qh0"
+		},
+		"schema": []
+	}
+}
