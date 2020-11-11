@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVault_ADX",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://td-aa-trng-kv.vault.azure.net/"
+		}
+	}
+}
