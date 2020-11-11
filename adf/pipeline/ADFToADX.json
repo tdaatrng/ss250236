@@ -43,33 +43,36 @@
 							{
 								"source": {
 									"path": "$['statusCode']"
-								},
-								"sink": {
-									"path": "$['statusCode']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['message']"
-								},
-								"sink": {
 									"path": "$['message']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['totalPages']"
-								},
-								"sink": {
-									"path": "$['totalPages']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['currentPage']"
-								},
-								"sink": {
-									"path": "$['currentPage']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quotes'][0]['_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quotes'][0]['quoteText']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quotes'][0]['quoteAuthor']"
 								}
 							}
 						],
