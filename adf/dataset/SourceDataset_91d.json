@@ -2,7 +2,7 @@
 	"name": "SourceDataset_91d",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_restapi",
+			"referenceName": "rest_api_ls",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
