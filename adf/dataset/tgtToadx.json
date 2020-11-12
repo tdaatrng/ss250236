@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "totalnoOfFlights2019.csv",
 				"folderPath": "output2",
 				"fileSystem": "as186113"
 			},
