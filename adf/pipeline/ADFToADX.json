@@ -15,12 +15,8 @@
 				},
 				"userProperties": [
 					{
-						"name": "Source",
-						"value": "as186113/input/total-number-of-flights_2019.csv"
-					},
-					{
 						"name": "Destination",
-						"value": "as186113/output2/totalnoOfFlights2019.csv"
+						"value": "as186113/output1/ADF_EH_ADX"
 					}
 				],
 				"typeProperties": {
@@ -28,7 +24,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": false
+							"recursive": true
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
@@ -56,18 +52,18 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "DateTime",
-									"type": "String"
+									"type": "String",
+									"ordinal": 1
 								}
 							},
 							{
 								"source": {
-									"name": "Number_of_flights_2019",
+									"name": "Number_of_flights_2020",
 									"type": "String"
 								},
 								"sink": {
-									"name": "Number_of_flights_2019",
-									"type": "String"
+									"type": "String",
+									"ordinal": 2
 								}
 							}
 						]
@@ -75,13 +71,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Srctoadx",
+						"referenceName": "sampleinput",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "tgtToadx",
+						"referenceName": "sampleoutput",
 						"type": "DatasetReference"
 					}
 				]

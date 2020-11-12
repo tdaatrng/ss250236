@@ -1,0 +1,33 @@
+{
+	"name": "sampleinput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "total-number-of-flights_2020.csv",
+				"folderPath": "input",
+				"fileSystem": "as186113"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "DateTime",
+				"type": "String"
+			},
+			{
+				"name": "Number_of_flights_2020",
+				"type": "String"
+			}
+		]
+	}
+}
