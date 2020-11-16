@@ -11,18 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
-		"Odbc_Vantage_Ls_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Odbc_Vantage_Ls'"
-		},
-		"Transcend_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Transcend'"
-		},
-		"Transend_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Transend'"
-		},
 		"adf_batch_ls_accessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'adf_batch_ls'"
@@ -38,34 +26,6 @@
 		"blob_ls_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_ls'"
-		},
-		"Odbc_Vantage_Ls_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "pt186024"
-		},
-		"Transcend_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "tdprd2.td.teradata.com"
-		},
-		"Transcend_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "td\\pt186024"
-		},
-		"Transcend_ls_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "tdprd2.td.teradata.com"
-		},
-		"Transcend_ls_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "td\\pt186024"
-		},
-		"Transend_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "tdprd2.td.teradata.com"
-		},
-		"Transend_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "td\\pt186024"
 		},
 		"adf_batch_ls_properties_typeProperties_accountName": {
 			"type": "string",
@@ -201,38 +161,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Odbc_Vantage_Ls_connectionString": {
-						"value": "[parameters('Odbc_Vantage_Ls_connectionString')]"
-					},
-					"Transcend_password": {
-						"value": "[parameters('Transcend_password')]"
-					},
-					"Transend_password": {
-						"value": "[parameters('Transend_password')]"
-					},
 					"adf_batch_ls_accessKey": {
 						"value": "[parameters('adf_batch_ls_accessKey')]"
-					},
-					"Odbc_Vantage_Ls_properties_typeProperties_userName": {
-						"value": "[parameters('Odbc_Vantage_Ls_properties_typeProperties_userName')]"
-					},
-					"Transcend_properties_typeProperties_server": {
-						"value": "[parameters('Transcend_properties_typeProperties_server')]"
-					},
-					"Transcend_properties_typeProperties_username": {
-						"value": "[parameters('Transcend_properties_typeProperties_username')]"
-					},
-					"Transcend_ls_properties_typeProperties_server": {
-						"value": "[parameters('Transcend_ls_properties_typeProperties_server')]"
-					},
-					"Transcend_ls_properties_typeProperties_username": {
-						"value": "[parameters('Transcend_ls_properties_typeProperties_username')]"
-					},
-					"Transend_properties_typeProperties_server": {
-						"value": "[parameters('Transend_properties_typeProperties_server')]"
-					},
-					"Transend_properties_typeProperties_username": {
-						"value": "[parameters('Transend_properties_typeProperties_username')]"
 					},
 					"adf_batch_ls_properties_typeProperties_accountName": {
 						"value": "[parameters('adf_batch_ls_properties_typeProperties_accountName')]"
@@ -242,26 +172,6 @@
 					},
 					"adf_batch_ls_properties_typeProperties_poolName": {
 						"value": "[parameters('adf_batch_ls_properties_typeProperties_poolName')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_1')]"
-			]
-		},
-		{
-			"name": "td-aa-trng-adf_ArmTemplate_3",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
 					},
 					"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
 						"value": "[parameters('blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name')]"
@@ -284,7 +194,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_2')]"
+				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_1')]"
 			]
 		}
 	]

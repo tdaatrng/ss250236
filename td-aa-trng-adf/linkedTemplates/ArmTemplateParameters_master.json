@@ -8,15 +8,6 @@
 		"AzureBlobStorage_connectionString": {
 			"value": ""
 		},
-		"Odbc_Vantage_Ls_connectionString": {
-			"value": ""
-		},
-		"Transcend_password": {
-			"value": ""
-		},
-		"Transend_password": {
-			"value": ""
-		},
 		"adf_batch_ls_accessKey": {
 			"value": ""
 		},
@@ -28,27 +19,6 @@
 		},
 		"blob_ls_connectionString": {
 			"value": ""
-		},
-		"Odbc_Vantage_Ls_properties_typeProperties_userName": {
-			"value": "pt186024"
-		},
-		"Transcend_properties_typeProperties_server": {
-			"value": "tdprd2.td.teradata.com"
-		},
-		"Transcend_properties_typeProperties_username": {
-			"value": "td\\pt186024"
-		},
-		"Transcend_ls_properties_typeProperties_server": {
-			"value": "tdprd2.td.teradata.com"
-		},
-		"Transcend_ls_properties_typeProperties_username": {
-			"value": "td\\pt186024"
-		},
-		"Transend_properties_typeProperties_server": {
-			"value": "tdprd2.td.teradata.com"
-		},
-		"Transend_properties_typeProperties_username": {
-			"value": "td\\pt186024"
 		},
 		"adf_batch_ls_properties_typeProperties_accountName": {
 			"value": "tdaabapoc"

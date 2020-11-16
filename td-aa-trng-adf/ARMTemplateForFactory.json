@@ -11,18 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
-		"Odbc_Vantage_Ls_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Odbc_Vantage_Ls'"
-		},
-		"Transcend_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Transcend'"
-		},
-		"Transend_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Transend'"
-		},
 		"adf_batch_ls_accessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'adf_batch_ls'"
@@ -38,34 +26,6 @@
 		"blob_ls_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_ls'"
-		},
-		"Odbc_Vantage_Ls_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "pt186024"
-		},
-		"Transcend_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "tdprd2.td.teradata.com"
-		},
-		"Transcend_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "td\\pt186024"
-		},
-		"Transcend_ls_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "tdprd2.td.teradata.com"
-		},
-		"Transcend_ls_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "td\\pt186024"
-		},
-		"Transend_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "tdprd2.td.teradata.com"
-		},
-		"Transend_properties_typeProperties_username": {
-			"type": "string",
-			"defaultValue": "td\\pt186024"
 		},
 		"adf_batch_ls_properties_typeProperties_accountName": {
 			"type": "string",
@@ -127,7 +87,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "SrcToTgt",
+						"name": "SrcToTgt1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -4792,121 +4752,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Odbc_Vantage_Ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Odbc",
-				"typeProperties": {
-					"connectionString": {
-						"type": "SecureString",
-						"value": "[parameters('Odbc_Vantage_Ls_connectionString')]"
-					},
-					"authenticationType": "Basic",
-					"userName": "[parameters('Odbc_Vantage_Ls_properties_typeProperties_userName')]",
-					"password": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "key_vault_ls",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "transend"
-					}
-				},
-				"connectVia": {
-					"referenceName": "gdc-aa-ir-transcend-vantage",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/gdc-aa-ir-transcend-vantage')]",
-				"[concat(variables('factoryId'), '/linkedServices/key_vault_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Transcend')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Transcend",
-				"annotations": [],
-				"type": "Teradata",
-				"typeProperties": {
-					"server": "[parameters('Transcend_properties_typeProperties_server')]",
-					"authenticationType": "Windows",
-					"username": "[parameters('Transcend_properties_typeProperties_username')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Transcend_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "gdc-aa-ir-transcend-vantage",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/gdc-aa-ir-transcend-vantage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Transcend_ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Teradata",
-				"typeProperties": {
-					"server": "[parameters('Transcend_ls_properties_typeProperties_server')]",
-					"authenticationType": "Windows",
-					"username": "[parameters('Transcend_ls_properties_typeProperties_username')]",
-					"password": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "key_vault_ls",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "transend"
-					}
-				},
-				"connectVia": {
-					"referenceName": "gdc-aa-ir-transcend-vantage",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/gdc-aa-ir-transcend-vantage')]",
-				"[concat(variables('factoryId'), '/linkedServices/key_vault_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Transend')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Transend",
-				"annotations": [],
-				"type": "Teradata",
-				"typeProperties": {
-					"server": "[parameters('Transend_properties_typeProperties_server')]",
-					"authenticationType": "Windows",
-					"username": "[parameters('Transend_properties_typeProperties_username')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Transend_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "gdc-aa-ir-transcend-vantage",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/gdc-aa-ir-transcend-vantage')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/adb_ls')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -5104,47 +4949,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/Etl_Control_Framework_Start')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gdc-aa-ir-transcend-vantage')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gdc-aa-ir-transcend')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gdc-aa-poc-IR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"description": "Connected through volvo account",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/integrationRunti')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hg250013_makeDataPartitioned')]",
