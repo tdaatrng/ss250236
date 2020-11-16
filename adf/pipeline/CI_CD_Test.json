@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data",
+				"name": "SourceToTarget",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -110,6 +110,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "CI-CD"
+		},
 		"annotations": []
 	}
 }
