@@ -94,6 +94,9 @@
 				"defaultValue": "RIM"
 			}
 		},
+		"folder": {
+			"name": "Test"
+		},
 		"annotations": []
 	}
 }

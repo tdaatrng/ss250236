@@ -151,6 +151,9 @@
 				"defaultValue": "false"
 			}
 		},
+		"folder": {
+			"name": "Test"
+		},
 		"annotations": []
 	}
 }

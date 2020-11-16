@@ -145,6 +145,9 @@
 				"defaultValue": "RIM_V1.2_HistoryData.csv"
 			}
 		},
+		"folder": {
+			"name": "Test"
+		},
 		"annotations": []
 	}
 }

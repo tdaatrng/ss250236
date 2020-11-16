@@ -148,8 +148,7 @@
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -350,12 +349,13 @@
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
-					}
+					},
+					"traceLevel": "Fine"
 				}
 			}
 		],
 		"folder": {
-			"name": "ADF_Demo"
+			"name": "ADF_Demo-ss250236"
 		},
 		"annotations": []
 	}
