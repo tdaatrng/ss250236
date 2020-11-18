@@ -213,7 +213,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "SrcToTgt",
+						"name": "SrcToTgt_18",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
