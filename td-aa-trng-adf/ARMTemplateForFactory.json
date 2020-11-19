@@ -207,13 +207,13 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CI_CD_Test_copy1')]",
+			"name": "[concat(parameters('factoryName'), '/CI_CD_SrcToTgt')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Src To Tgt777",
+						"name": "SrcToTgt",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
