@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Src To Tgt",
+				"name": "SrcToTgt19112020",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
