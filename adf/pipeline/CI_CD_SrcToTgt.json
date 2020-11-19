@@ -1,5 +1,5 @@
 {
-	"name": "CI_CD_Test_copy2",
+	"name": "CI_CD_SrcToTgt",
 	"properties": {
 		"activities": [
 			{
