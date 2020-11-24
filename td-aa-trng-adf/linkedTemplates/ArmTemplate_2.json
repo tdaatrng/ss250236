@@ -939,7 +939,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sj186068_FileEvent')]",
+			"name": "[concat(parameters('factoryName'), '/sj186068_FileEvent_Json')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
