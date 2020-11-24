@@ -570,9 +570,6 @@
 					"referenceName": "adls_ls",
 					"type": "LinkedServiceReference"
 				},
-				"folder": {
-					"name": "CI-CD_Dataset"
-				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -589,19 +586,15 @@
 				},
 				"schema": [
 					{
-						"name": "BUSINESS_UNIT",
 						"type": "String"
 					},
 					{
-						"name": "ASSET_ID",
 						"type": "String"
 					},
 					{
-						"name": "EFFDT",
 						"type": "String"
 					},
 					{
-						"name": "OWNING_BUS_UNIT7",
 						"type": "String"
 					}
 				]
@@ -618,9 +611,6 @@
 				"linkedServiceName": {
 					"referenceName": "adls_ls",
 					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "CI-CD_Dataset"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
