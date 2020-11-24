@@ -16,6 +16,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "sj186068"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
