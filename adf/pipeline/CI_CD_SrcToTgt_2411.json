@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SrcToTgt2411",
+				"name": "CI_CD_SrcToTgt2411",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
