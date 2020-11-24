@@ -5,6 +5,9 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "pt186024"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
