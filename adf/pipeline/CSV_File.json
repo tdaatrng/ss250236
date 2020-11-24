@@ -139,6 +139,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "as186113_cicd"
+		},
 		"annotations": []
 	}
 }
