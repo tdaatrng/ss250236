@@ -1,0 +1,1845 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "td-aa-trng-adf"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Etl_Control_Framework_Start')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get Source Metadata",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "gen_src_ds",
+								"type": "DatasetReference",
+								"parameters": {
+									"file_name": {
+										"value": "@pipeline().parameters.file_name",
+										"type": "Expression"
+									},
+									"folder_name": {
+										"value": "@pipeline().parameters.folder_name",
+										"type": "Expression"
+									}
+								}
+							},
+							"fieldList": [
+								"size"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "FileSize",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Get Source Metadata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "file_size",
+							"value": {
+								"value": "@string(activity('Get Source Metadata').output.size)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ZeroByteFileValidation",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "FileSize",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(variables('file_size'),'0')",
+								"type": "Expression"
+							},
+							"ifFalseActivities": [
+								{
+									"name": "parent_pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "parent_pipeline",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"fileName": {
+												"value": "@pipeline().parameters.file_name",
+												"type": "Expression"
+											},
+											"folderPath": {
+												"value": "@pipeline().parameters.folder_name",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							],
+							"ifTrueActivities": [
+								{
+									"name": "error_mail_notification_pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().globalParameters.EmailTo",
+												"type": "Expression"
+											},
+											"Activity": "if activity",
+											"ErrorMessage": "zero byte data file received",
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@pipeline().parameters.file_name",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "copy delete data file",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "error_mail_notification_pipeline",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "copy_delete",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"file_name": {
+												"value": "@pipeline().parameters.file_name",
+												"type": "Expression"
+											},
+											"folder_name": {
+												"value": "@pipeline().parameters.folder_name",
+												"type": "Expression"
+											},
+											"output_folder_name": "reject"
+										}
+									}
+								},
+								{
+									"name": "Create CTL file name",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "error_mail_notification_pipeline",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "ctl_file_name",
+										"value": {
+											"value": "@concat(substring(pipeline().parameters.file_name,0,lastindexof(pipeline().parameters.file_name,'.')),'.ctl')",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "copy delete CTL file",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Read record count from CTL file",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "copy_delete",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"file_name": {
+												"value": "@variables('ctl_file_name')",
+												"type": "Expression"
+											},
+											"folder_name": {
+												"value": "@pipeline().parameters.folder_name",
+												"type": "Expression"
+											},
+											"output_folder_name": "reject"
+										}
+									}
+								},
+								{
+									"name": "Read record count from CTL file",
+									"type": "Lookup",
+									"dependsOn": [
+										{
+											"activity": "Create CTL file name",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"dataset": {
+											"referenceName": "source_ctl_count",
+											"type": "DatasetReference",
+											"parameters": {
+												"ctl_file_name": {
+													"value": "@variables('ctl_file_name')",
+													"type": "Expression"
+												},
+												"ctl_folder_name": {
+													"value": "@pipeline().parameters.folder_name",
+													"type": "Expression"
+												}
+											}
+										},
+										"firstRowOnly": true
+									}
+								},
+								{
+									"name": "Error mail notification for CTL file",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Read record count from CTL file",
+											"dependencyConditions": [
+												"Failed"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().globalParameters.EmailTo",
+												"type": "Expression"
+											},
+											"Activity": "Lookup Activity",
+											"ErrorMessage": "CTL file is not received",
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@variables('ctl_file_name')",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"parameters": {
+					"file_name": {
+						"type": "string"
+					},
+					"folder_name": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"db_server": {
+						"type": "String"
+					},
+					"db_user": {
+						"type": "String"
+					},
+					"db_password": {
+						"type": "String"
+					},
+					"count": {
+						"type": "String"
+					},
+					"ctl_count": {
+						"type": "String"
+					},
+					"file_size": {
+						"type": "String"
+					},
+					"ctl_file_name": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Pipelines"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/gen_src_ds')]",
+				"[concat(variables('factoryId'), '/pipelines/parent_pipeline')]",
+				"[concat(variables('factoryId'), '/pipelines/error_mail_notification_pipeline')]",
+				"[concat(variables('factoryId'), '/pipelines/copy_delete')]",
+				"[concat(variables('factoryId'), '/datasets/source_ctl_count')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/copy_delete')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy file to sink container",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ""
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "gen_src_ds",
+								"type": "DatasetReference",
+								"parameters": {
+									"file_name": {
+										"value": "@pipeline().parameters.file_name",
+										"type": "Expression"
+									},
+									"folder_name": {
+										"value": "@pipeline().parameters.folder_name",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "gen_sink_ds",
+								"type": "DatasetReference",
+								"parameters": {
+									"sink_folder_name": {
+										"value": "@pipeline().parameters.output_folder_name",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Delete file Source Files",
+						"type": "Delete",
+						"dependsOn": [
+							{
+								"activity": "Copy file to sink container",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "gen_src_ds",
+								"type": "DatasetReference",
+								"parameters": {
+									"file_name": {
+										"value": "@pipeline().parameters.file_name",
+										"type": "Expression"
+									},
+									"folder_name": {
+										"value": "@pipeline().parameters.folder_name",
+										"type": "Expression"
+									}
+								}
+							},
+							"enableLogging": false,
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true
+							}
+						}
+					}
+				],
+				"parameters": {
+					"file_name": {
+						"type": "string"
+					},
+					"folder_name": {
+						"type": "string"
+					},
+					"output_folder_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Pipelines"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/gen_src_ds')]",
+				"[concat(variables('factoryId'), '/datasets/gen_sink_ds')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/error_mail_notification_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Send email on failure",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-48.eastus.logic.azure.com:443/workflows/27b0503ec47a4951aa8d0a747c7ccd25/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=b2-jmvnjIJK5gSU40VFp8FnBJs5Qh8VOg1fWGj43G7Y",
+							"method": "POST",
+							"headers": {
+								"Content-type": "application/json"
+							},
+							"body": {
+								"value": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\", \n\t\"Subject\" : \"An error has occured in the ',pipeline().parameters.Pipe_line_Name,'-pipeline for file-',pipeline().parameters.Source_File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\t\n\t\"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\", \n\t\"Activity\" : \"',pipeline().parameters.Activity,'\", \n\t\"ErrorMessage\" : \"',pipeline().parameters.ErrorMessage,'\",\n\t\"FileName\" : \"',pipeline().parameters.Source_File_Name,'\"\n\t}') ",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"EmailTo": {
+						"type": "string"
+					},
+					"Activity": {
+						"type": "string"
+					},
+					"ErrorMessage": {
+						"type": "string"
+					},
+					"Pipe_line_Name": {
+						"type": "string"
+					},
+					"Source_File_Name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Pipelines"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/etlcontrol_batch_script')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "File Name",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "FileName",
+							"value": {
+								"value": "@pipeline().parameters.fileName",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Date from file name",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "File Name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Date",
+							"value": {
+								"value": "@substring(variables('FileName'),add(lastindexof(variables('FileName'),'_'),1),8)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Batch Script Execution on VM",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "Formatted Date",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get Database Name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get DB User Name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get DB Password",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "get Email",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "@concat('cmd /c audit_control_batch.bat',' ',variables('DatabaseServer'),' ',variables('UserName'),' ',variables('Password'),' ',variables('Format_Date'),' ',variables('TFileName'))",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "blob_ls",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "files",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "adf_batch_ls",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Only File Name",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "File Name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "TFileName",
+							"value": {
+								"value": "@substring(variables('FileName'),0,lastindexof(variables('FileName'),'_'))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Formatted Date",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Date from file name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Only File Name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Format_Date",
+							"value": {
+								"value": "@concat(substring(variables('Date'),0,4),'-',substring(variables('Date'),4,2),'-',substring(variables('Date'),6,2))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Send email on failure",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Batch Script Execution on VM",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "error_mail_notification_pipeline",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"EmailTo": {
+									"value": "@variables('EmailTo')",
+									"type": "Expression"
+								},
+								"Activity": "Custom Activity",
+								"ErrorMessage": "Custom activity failed because of error. Please check log file for more details.",
+								"Pipe_line_Name": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Source_File_Name": {
+									"value": "@variables('TFileName')",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "get parameter",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "parameter_json",
+								"type": "DatasetReference"
+							}
+						}
+					},
+					{
+						"name": "get Database Name",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get parameter",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "DatabaseServer",
+							"value": {
+								"value": "@activity('get parameter').output.firstRow.DatabaseServer",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "get DB User Name",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get parameter",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "UserName",
+							"value": {
+								"value": "@activity('get parameter').output.firstRow.UserName",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "get DB Password",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get parameter",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Password",
+							"value": {
+								"value": "@activity('get parameter').output.firstRow.Password",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Send mail on success",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Batch Script Execution on VM",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "success_mail_notification_pipeline",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"EmailTo": {
+									"value": "@variables('EmailTo')",
+									"type": "Expression"
+								},
+								"Pipe_line_Name": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Source_File_Name": {
+									"value": "@variables('TFileName')",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "get Email",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get parameter",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "EmailTo",
+							"value": {
+								"value": "@activity('get parameter').output.firstRow.EmailTo",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "source data file copy to input and delete",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Send mail on success",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "copy_delete",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"file_name": {
+									"value": "@pipeline().parameters.fileName",
+									"type": "Expression"
+								},
+								"folder_name": {
+									"value": "@pipeline().parameters.folderPath",
+									"type": "Expression"
+								},
+								"output_folder_name": "input"
+							}
+						}
+					},
+					{
+						"name": "source data file copy to reject and delete",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Send email on failure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "copy_delete",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"file_name": {
+									"value": "@pipeline().parameters.fileName",
+									"type": "Expression"
+								},
+								"folder_name": {
+									"value": "@pipeline().parameters.folderPath",
+									"type": "Expression"
+								},
+								"output_folder_name": "reject"
+							}
+						}
+					},
+					{
+						"name": "source ctl file copy to input and delete",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Send mail on success",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "copy_delete",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"file_name": {
+									"value": "@pipeline().parameters.ctlFileName",
+									"type": "Expression"
+								},
+								"folder_name": {
+									"value": "@pipeline().parameters.folderPath",
+									"type": "Expression"
+								},
+								"output_folder_name": "input"
+							}
+						}
+					},
+					{
+						"name": "source ctl file copy to reject and delete",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Send email on failure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "copy_delete",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"file_name": {
+									"value": "@pipeline().parameters.ctlFileName",
+									"type": "Expression"
+								},
+								"folder_name": {
+									"value": "@pipeline().parameters.folderPath",
+									"type": "Expression"
+								},
+								"output_folder_name": "reject"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"fileName": {
+						"type": "string"
+					},
+					"folderPath": {
+						"type": "string"
+					},
+					"ctlFileName": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"FileName": {
+						"type": "String"
+					},
+					"Date": {
+						"type": "String"
+					},
+					"TFileName": {
+						"type": "String"
+					},
+					"TFolderName": {
+						"type": "String"
+					},
+					"Format_Date": {
+						"type": "String"
+					},
+					"DatabaseServer": {
+						"type": "String"
+					},
+					"UserName": {
+						"type": "String"
+					},
+					"Password": {
+						"type": "String"
+					},
+					"EmailTo": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Pipelines"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adf_batch_ls')]",
+				"[concat(variables('factoryId'), '/pipelines/error_mail_notification_pipeline')]",
+				"[concat(variables('factoryId'), '/datasets/parameter_json')]",
+				"[concat(variables('factoryId'), '/pipelines/success_mail_notification_pipeline')]",
+				"[concat(variables('factoryId'), '/pipelines/copy_delete')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/parent_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get record count from data file",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "source_count_validation_ds",
+								"type": "DatasetReference",
+								"parameters": {
+									"data_file_name": {
+										"value": "@pipeline().parameters.fileName",
+										"type": "Expression"
+									},
+									"data_file_folder": {
+										"value": "@pipeline().parameters.folderPath",
+										"type": "Expression"
+									}
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "Set data count variable",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Get record count from data file",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "data_count",
+							"value": {
+								"value": "@string(activity('Get record count from data file').output.count)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Read record count from CTL file",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Create CTL file name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "source_ctl_count",
+								"type": "DatasetReference",
+								"parameters": {
+									"ctl_file_name": {
+										"value": "@variables('ctl_file_name')",
+										"type": "Expression"
+									},
+									"ctl_folder_name": {
+										"value": "@pipeline().parameters.folderPath",
+										"type": "Expression"
+									}
+								}
+							},
+							"firstRowOnly": true
+						}
+					},
+					{
+						"name": "Set CTL count variable",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Read record count from CTL file",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "ctl_count",
+							"value": {
+								"value": "@string(activity('Read record count from CTL file').output.firstrow.Prop_0)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Check data and ctl file count",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Set data count variable",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Set CTL count variable",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(variables('data_count'),variables('ctl_count'))",
+								"type": "Expression"
+							},
+							"ifFalseActivities": [
+								{
+									"name": "error_mail_notification_pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Only File Name",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().globalParameters.EmailTo",
+												"type": "Expression"
+											},
+											"Activity": "if activity",
+											"ErrorMessage": {
+												"value": "@concat('Count mismatch in control file : ',variables('ctl_file_name'),' and data file: ',pipeline().parameters.fileName,' in container: ',pipeline().parameters.folderPath)",
+												"type": "Expression"
+											},
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@variables('only_file_name')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "ctl files copy to reject and delete",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "error_mail_notification_pipeline",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "copy_delete",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"file_name": {
+												"value": "@variables('ctl_file_name')",
+												"type": "Expression"
+											},
+											"folder_name": {
+												"value": "@pipeline().parameters.folderPath",
+												"type": "Expression"
+											},
+											"output_folder_name": "reject"
+										}
+									}
+								},
+								{
+									"name": "data files copy to reject and delete",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "error_mail_notification_pipeline",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "copy_delete",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"file_name": {
+												"value": "@pipeline().parameters.fileName",
+												"type": "Expression"
+											},
+											"folder_name": {
+												"value": "@pipeline().parameters.folderPath",
+												"type": "Expression"
+											},
+											"output_folder_name": "reject"
+										}
+									}
+								},
+								{
+									"name": "Only File Name",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "only_file_name",
+										"value": {
+											"value": "@substring(pipeline().parameters.fileName,0,lastindexof(pipeline().parameters.fileName,'_'))",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"ifTrueActivities": [
+								{
+									"name": "etlcontrol batch script",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "etlcontrol_batch_script",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"fileName": {
+												"value": "@pipeline().parameters.fileName",
+												"type": "Expression"
+											},
+											"folderPath": {
+												"value": "@pipeline().parameters.folderPath",
+												"type": "Expression"
+											},
+											"ctlFileName": {
+												"value": "@variables('ctl_file_name')",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Create CTL file name",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "ctl_file_name",
+							"value": {
+								"value": "@concat(substring(pipeline().parameters.fileName,0,lastindexof(pipeline().parameters.fileName,'.')),'.ctl')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Error mail notification for CTL file",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Read record count from CTL file",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "error_mail_notification_pipeline",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"EmailTo": {
+									"value": "@pipeline().globalParameters.EmailTo",
+									"type": "Expression"
+								},
+								"Activity": "Lookup Activity",
+								"ErrorMessage": "CTL file is not received",
+								"Pipe_line_Name": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Source_File_Name": {
+									"value": "@variables('ctl_file_name')",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "data file copy to reject container and delete",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Error mail notification for CTL file",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "copy_delete",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"file_name": {
+									"value": "@pipeline().parameters.fileName",
+									"type": "Expression"
+								},
+								"folder_name": {
+									"value": "@pipeline().parameters.folderPath",
+									"type": "Expression"
+								},
+								"output_folder_name": "reject"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"fileName": {
+						"type": "string"
+					},
+					"folderPath": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"data_count": {
+						"type": "String"
+					},
+					"ctl_count": {
+						"type": "String"
+					},
+					"ctl_file_name": {
+						"type": "String"
+					},
+					"file_name1": {
+						"type": "String"
+					},
+					"only_file_name": {
+						"type": "String"
+					},
+					"file_size": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Pipelines"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/source_count_validation_ds')]",
+				"[concat(variables('factoryId'), '/datasets/source_ctl_count')]",
+				"[concat(variables('factoryId'), '/pipelines/error_mail_notification_pipeline')]",
+				"[concat(variables('factoryId'), '/pipelines/copy_delete')]",
+				"[concat(variables('factoryId'), '/pipelines/etlcontrol_batch_script')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/success_mail_notification_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Send email on success",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-20.eastus.logic.azure.com:443/workflows/144ac395e1c34d1cb5fd524e6e239575/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=o-2Wx_7w9CoOX5RTkJEZhaLrC8e5IsKBx0pOdX-lWV8",
+							"method": "POST",
+							"headers": {
+								"Content-type": "application/json"
+							},
+							"body": {
+								"value": "@concat('{ \n\t\"EmailTo\" : \"',pipeline().parameters.EmailTo,'\", \n\t\"Subject\" : \"Successful execution of ',pipeline().parameters.Pipe_line_Name,'-pipeline for file-',pipeline().parameters.Source_File_Name,'\",\n\t\"DataFactoryName\" : \"',pipeline().DataFactory,'\",\n\t\"PipelineName\" : \"',pipeline().parameters.Pipe_line_Name,'\",\n\t\"FileName\" : \"',pipeline().parameters.Source_File_Name,\t'\"\n\t}')\n",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"EmailTo": {
+						"type": "string"
+					},
+					"Pipe_line_Name": {
+						"type": "string"
+					},
+					"Source_File_Name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Pipelines"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gen_sink_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"sink_folder_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": {
+							"value": "@dataset().sink_folder_name",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gen_src_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"file_name": {
+						"type": "string"
+					},
+					"folder_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().folder_name",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/parameter_json')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "adf_paramset.json",
+						"container": "parameter"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"DatabaseServer": {
+							"type": "string"
+						},
+						"UserName": {
+							"type": "string"
+						},
+						"Password": {
+							"type": "string"
+						},
+						"EmailTo": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/source_count_validation_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"data_file_name": {
+						"type": "string"
+					},
+					"data_file_folder": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().data_file_name",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().data_file_folder",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/source_ctl_count')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ctl_file_name": {
+						"type": "string"
+					},
+					"ctl_folder_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().ctl_file_name",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().ctl_folder_name",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adf_batch_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"accountName": "tdaapocbatch",
+					"accessKey": {
+						"type": "SecureString",
+						"value": "**********"
+					},
+					"batchUri": "https://tdaapocbatch.eastus.batch.azure.com",
+					"poolName": "td-aa-poc-pool-id",
+					"linkedServiceName": {
+						"referenceName": "blob_ls",
+						"type": "LinkedServiceReference"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/blob_employee_trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Trigger will work from file name as Employee*.csv in source container.",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Etl_Control_Framework_Start",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"file_name": "@trigger().outputs.body.fileName",
+							"folder_name": "@trigger().outputs.body.folderPath"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/source/blobs/Employee",
+					"blobPathEndsWith": ".csv",
+					"ignoreEmptyBlobs": false,
+					"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgpoc",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Etl_Control_Framework_Start')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/blob_insurance_trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Trigger will work from file name as Insurance*.csv in source container.",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Etl_Control_Framework_Start",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"file_name": "@trigger().outputs.body.fileName",
+							"folder_name": "@trigger().outputs.body.folderPath"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/source/blobs/Insurance",
+					"blobPathEndsWith": ".csv",
+					"ignoreEmptyBlobs": false,
+					"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgpoc",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Etl_Control_Framework_Start')]"
+			]
+		}
+	]
+}

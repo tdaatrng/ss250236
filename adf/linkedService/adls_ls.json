@@ -1,5 +1,6 @@
 {
 	"name": "adls_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobFS",

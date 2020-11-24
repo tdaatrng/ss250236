@@ -1,0 +1,52 @@
+{
+	"name": "Hg250013_Parameter_json_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ADF_Demo_DS"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ADF_parameters_2.json",
+				"folderPath": "config",
+				"fileSystem": "hg250013"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"emailURL": {
+					"type": "string"
+				},
+				"EmailId": {
+					"type": "string"
+				},
+				"sourceFileName": {
+					"type": "string"
+				},
+				"sourceDirectory": {
+					"type": "string"
+				},
+				"sourceContainer": {
+					"type": "string"
+				},
+				"destFileName": {
+					"type": "string"
+				},
+				"destDirectory": {
+					"type": "string"
+				},
+				"destContainer": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

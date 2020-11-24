@@ -1,5 +1,6 @@
 {
 	"name": "adb_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureDatabricks",

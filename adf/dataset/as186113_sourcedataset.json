@@ -1,0 +1,70 @@
+{
+	"name": "as186113_sourcedataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourceContainer": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
+			},
+			"sourceDirectory": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sourceFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sourceDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sourceContainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": "^",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Flight#",
+				"type": "String"
+			},
+			{
+				"name": "Origin",
+				"type": "String"
+			},
+			{
+				"name": "Dest",
+				"type": "String"
+			},
+			{
+				"name": "FlightDate",
+				"type": "String"
+			},
+			{
+				"name": "NoSalesReason",
+				"type": "String"
+			},
+			{
+				"name": "TransmittingFlightAttd",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

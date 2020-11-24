@@ -1,0 +1,13 @@
+{
+	"name": "rest_api_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=20000",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

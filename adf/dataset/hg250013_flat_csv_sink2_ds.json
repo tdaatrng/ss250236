@@ -5,6 +5,9 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "ADF_Demo_DS"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
@@ -44,5 +47,6 @@
 				"type": "String"
 			}
 		]
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

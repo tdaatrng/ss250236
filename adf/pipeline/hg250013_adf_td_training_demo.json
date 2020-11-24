@@ -148,8 +148,7 @@
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -354,6 +353,11 @@
 				}
 			}
 		],
-		"annotations": []
-	}
+		"folder": {
+			"name": "ADF_Demo"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-10-25T23:05:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

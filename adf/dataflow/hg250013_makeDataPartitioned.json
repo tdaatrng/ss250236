@@ -1,6 +1,9 @@
 {
 	"name": "hg250013_makeDataPartitioned",
 	"properties": {
+		"folder": {
+			"name": "ADF_Demo_DF"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
@@ -22,7 +25,7 @@
 				}
 			],
 			"transformations": [],
-			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\twildcardPaths:['input/*']) ~> FlatSource\nFlatSource sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionBy('key',\n\t\t0,\n\t\tFlightDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink4"
+			"script": "source(output(\n\t\t{Flight#} as string,\n\t\tOrigin as string,\n\t\tDest as string,\n\t\tFlightDate as string,\n\t\tNoSalesReason as string,\n\t\tTransmittingFlightAttd as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\twildcardPaths:['input/*']) ~> FlatSource\nFlatSource sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionBy('key',\n\t\t0,\n\t\tFlightDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink4"
 		}
 	}
 }
