@@ -965,6 +965,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "sj186068-ci-cd"
+		},
 		"annotations": []
 	}
 }
