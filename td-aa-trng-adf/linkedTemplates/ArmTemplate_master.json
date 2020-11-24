@@ -172,6 +172,26 @@
 					},
 					"adf_batch_ls_properties_typeProperties_poolName": {
 						"value": "[parameters('adf_batch_ls_properties_typeProperties_poolName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "td-aa-trng-adf_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
 						"value": "[parameters('blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name')]"
@@ -194,7 +214,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'td-aa-trng-adf_ArmTemplate_2')]"
 			]
 		}
 	]

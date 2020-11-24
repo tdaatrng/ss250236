@@ -22,36 +22,262 @@
 		"adf_batch_ls_properties_typeProperties_poolName": {
 			"type": "string",
 			"defaultValue": "tdaapid"
-		},
-		"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.fileName"
-		},
-		"blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.folderPath"
-		},
-		"blob_employee_trigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgpoc"
-		},
-		"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_file_name": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.fileName"
-		},
-		"blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.folderPath"
-		},
-		"blob_insurance_trigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgpoc"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/hg250013_parameter_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "ADF_Demo_DS"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "ADF_parameters_2.json",
+						"folderPath": "config",
+						"fileSystem": "hg250013"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"sourceDataBase": {
+							"type": "string"
+						},
+						"sourceTable": {
+							"type": "string"
+						},
+						"targetDataBase": {
+							"type": "string"
+						},
+						"targetTable": {
+							"type": "string"
+						},
+						"partitionCol": {
+							"type": "string"
+						},
+						"columns": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hg250013_parameter_sink_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"destFileName": {
+						"type": "string"
+					},
+					"destDirectory": {
+						"type": "string"
+					},
+					"destContainer": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "ADF_Demo_DS"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().destFileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().destDirectory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().destContainer",
+							"type": "Expression"
+						}
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hg250013_raw_json_rest_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "raw",
+						"fileSystem": "hg250013"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/parameter_json')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "adf_paramset.json",
+						"container": "parameter"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"DatabaseServer": {
+							"type": "string"
+						},
+						"UserName": {
+							"type": "string"
+						},
+						"Password": {
+							"type": "string"
+						},
+						"EmailTo": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/source_count_validation_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"data_file_name": {
+						"type": "string"
+					},
+					"data_file_folder": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().data_file_name",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().data_file_folder",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/source_ctl_count')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "blob_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ctl_file_name": {
+						"type": "string"
+					},
+					"ctl_folder_name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Audit Control Framework Dataset"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().ctl_file_name",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().ctl_folder_name",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/adb_ls')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -392,6 +618,7 @@
 				"lastPublishTime": "2020-10-25T23:05:36Z"
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/hg250013_raw_json_rest_ds')]",
 				"[concat(variables('factoryId'), '/linkedServices/adb_ls')]"
 			]
 		},
@@ -602,7 +829,9 @@
 				"annotations": [],
 				"lastPublishTime": "2020-10-25T23:05:36Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/hg250013_parameter_ds')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/sj186068_Abd_Adf_Test_Pipeline')]",
@@ -704,6 +933,984 @@
 				],
 				"annotations": [],
 				"lastPublishTime": "2020-10-25T23:05:36Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adb_ls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sj186068_FileEvent')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Create JSON file name",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "JSON_File_Name",
+							"value": {
+								"value": "@substring(pipeline().parameters.Source_File_Name,0,lastindexof(pipeline().parameters.Source_File_Name,'.'))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Create CTL file name",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Create JSON file name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "CTL_File_Name",
+							"value": {
+								"value": "@concat(substring(variables('JSON_File_Name'),0,lastindexof(variables('JSON_File_Name'),'.')),'.ctl')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Check if control file is present",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Create CTL file name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "CTL_File",
+								"type": "DatasetReference",
+								"parameters": {
+									"Container_Name": {
+										"value": "@pipeline().parameters.Container_Name",
+										"type": "Expression"
+									},
+									"Ctl_File_Name": {
+										"value": "@variables('CTL_File_Name')",
+										"type": "Expression"
+									},
+									"Ctl_Directory_Name": {
+										"value": "@pipeline().parameters.Inbound_Directory",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					},
+					{
+						"name": "error_mail_notification_pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Check if control file is present",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "error_mail_notification_pipeline1",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"EmailTo": {
+									"value": "@pipeline().parameters.Email_To",
+									"type": "Expression"
+								},
+								"Activity": "Lookup Activity",
+								"ErrorMessage": {
+									"value": "@concat('Control File -',variables('CTL_File_Name'),' not received.')",
+									"type": "Expression"
+								},
+								"Pipe_line_Name": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Source_File_Name": {
+									"value": "@pipeline().parameters.Source_File_Name",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Get record count from data file",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Create csv file name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ZippedJsonSrc",
+								"type": "DatasetReference",
+								"parameters": {
+									"Container_Name": {
+										"value": "@pipeline().parameters.Container_Name",
+										"type": "Expression"
+									},
+									"Inbound_Directory": {
+										"value": "@pipeline().parameters.Inbound_Directory",
+										"type": "Expression"
+									},
+									"JSON_File_Name": {
+										"value": "@pipeline().parameters.Source_File_Name",
+										"type": "Expression"
+									}
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "Set data count variable",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Get record count from data file",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Data_Count",
+							"value": {
+								"value": "@string(activity('Get record count from data file').output.count)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set CTL count variable",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Check if control file is present",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Ctl_Count",
+							"value": {
+								"value": "@string(activity('Check if control file is present').output.firstrow.Prop_0)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Count Match between CTL and Data File",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Set CTL count variable",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Set data count variable",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(variables('data_count'),variables('ctl_count'))",
+								"type": "Expression"
+							},
+							"ifFalseActivities": [
+								{
+									"name": "mail notification for count mismatch",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().parameters.Email_To",
+												"type": "Expression"
+											},
+											"Activity": "If Activity",
+											"ErrorMessage": "Count mismatch between Data and Ctl file",
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@pipeline().parameters.Source_File_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							],
+							"ifTrueActivities": [
+								{
+									"name": "Copy file from inbound to input",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "JsonSource",
+											"storeSettings": {
+												"type": "AzureBlobFSReadSettings",
+												"recursive": true
+											},
+											"formatSettings": {
+												"type": "JsonReadSettings"
+											}
+										},
+										"sink": {
+											"type": "DelimitedTextSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "DelimitedTextWriteSettings",
+												"quoteAllText": true,
+												"fileExtension": ".txt"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"path": "$['transaction']['transaction_id']"
+													},
+													"sink": {
+														"name": "transaction_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['transaction_type']"
+													},
+													"sink": {
+														"name": "transaction_type",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['transaction_timestamp']"
+													},
+													"sink": {
+														"name": "transaction_timestamp",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['cancellation_timestamp']"
+													},
+													"sink": {
+														"name": "cancellation_timestamp",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['aadvantage_num']"
+													},
+													"sink": {
+														"name": "aadvantage_num",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['offer_id']"
+													},
+													"sink": {
+														"name": "offer_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['purchase_emp_id']"
+													},
+													"sink": {
+														"name": "purchase_emp_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['cancellation_emp_id']"
+													},
+													"sink": {
+														"name": "cancellation_emp_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['tax']['gst']"
+													},
+													"sink": {
+														"name": "gst",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['tax']['us1']"
+													},
+													"sink": {
+														"name": "us1",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['payment_method']"
+													},
+													"sink": {
+														"name": "payment_method",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['total_price']"
+													},
+													"sink": {
+														"name": "total_price",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['total_price_in_miles']"
+													},
+													"sink": {
+														"name": "total_price_in_miles",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['sales_receipt_num']"
+													},
+													"sink": {
+														"name": "sales_receipt_num",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['transaction']['credit_card_info']['credit_card_type']"
+													},
+													"sink": {
+														"name": "credit_card_type",
+														"type": "String"
+													}
+												}
+											]
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ZippedJsonSrc",
+											"type": "DatasetReference",
+											"parameters": {
+												"Container_Name": {
+													"value": "@pipeline().parameters.Container_Name",
+													"type": "Expression"
+												},
+												"Inbound_Directory": {
+													"value": "@pipeline().parameters.Inbound_Directory",
+													"type": "Expression"
+												},
+												"JSON_File_Name": {
+													"value": "@pipeline().parameters.Source_File_Name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Unzipped_Input",
+											"type": "DatasetReference",
+											"parameters": {
+												"Container_Name": {
+													"value": "@pipeline().parameters.Container_Name",
+													"type": "Expression"
+												},
+												"Input_Directory": {
+													"value": "@pipeline().parameters.Input_Directory",
+													"type": "Expression"
+												},
+												"File_Name": {
+													"value": "@variables('CSV_File_Name')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Delete zipped data file from inbound",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Insert Update in target table",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Zipped_Source",
+											"type": "DatasetReference",
+											"parameters": {
+												"Container_name": {
+													"value": "@pipeline().parameters.Container_Name",
+													"type": "Expression"
+												},
+												"Inbound_Directory": {
+													"value": "@pipeline().parameters.Inbound_Directory",
+													"type": "Expression"
+												},
+												"File_Name": {
+													"value": "@pipeline().parameters.Source_File_Name",
+													"type": "Expression"
+												}
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobFSReadSettings",
+											"recursive": true
+										}
+									}
+								},
+								{
+									"name": "Delete ctl file from inbound",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Insert Update in target table",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Zipped_Source",
+											"type": "DatasetReference",
+											"parameters": {
+												"Container_name": {
+													"value": "@pipeline().parameters.Container_Name",
+													"type": "Expression"
+												},
+												"Inbound_Directory": {
+													"value": "@pipeline().parameters.Inbound_Directory",
+													"type": "Expression"
+												},
+												"File_Name": {
+													"value": "@variables('CTL_File_Name')",
+													"type": "Expression"
+												}
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobFSReadSettings",
+											"recursive": true
+										}
+									}
+								},
+								{
+									"name": "File name and date check of previously loaded",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Copy file from inbound to input",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/sj186068/UseCase/FileNameCheck",
+										"baseParameters": {
+											"FileName": {
+												"value": "@variables('CSV_File_Name')",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "adb_ls",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "error mail notification pipeline for etlcontrol",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "File name and date check of previously loaded",
+											"dependencyConditions": [
+												"Failed"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().parameters.Email_To",
+												"type": "Expression"
+											},
+											"Activity": "Etlcontrol source's databricks notebook",
+											"ErrorMessage": "Databricks notebook failed with error",
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@pipeline().parameters.Source_File_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "loading source in staging table",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "File name and date check of previously loaded",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/sj186068/UseCase/ld_source_stg",
+										"baseParameters": {
+											"CVS_File_Name": {
+												"value": "@variables('CSV_File_Name')",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "adb_ls",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "error mail notification pipeline for staging table",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "loading source in staging table",
+											"dependencyConditions": [
+												"Failed"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().parameters.Email_To",
+												"type": "Expression"
+											},
+											"Activity": "Staging's databricks notebook",
+											"ErrorMessage": "Databricks notebook failed with error",
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@pipeline().parameters.Source_File_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Insert Update in target table",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "loading source in staging table",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/sj186068/UseCase/stg_to_tgt"
+									},
+									"linkedServiceName": {
+										"referenceName": "adb_ls",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "error mail notification pipeline for target table",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Insert Update in target table",
+											"dependencyConditions": [
+												"Failed"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "error_mail_notification_pipeline1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().parameters.Email_To",
+												"type": "Expression"
+											},
+											"Activity": "Target's databricks notebook",
+											"ErrorMessage": "Databricks notebook failed with error",
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@pipeline().parameters.Source_File_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "success_mail_notification_pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Insert Update in target table",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "success_mail_notification_pipeline1",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"EmailTo": {
+												"value": "@pipeline().parameters.Email_To",
+												"type": "Expression"
+											},
+											"Pipe_line_Name": {
+												"value": "@pipeline().Pipeline",
+												"type": "Expression"
+											},
+											"Source_File_Name": {
+												"value": "@pipeline().parameters.Source_File_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Delete csv file generated in input",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Insert Update in target table",
+											"dependencyConditions": [
+												"Completed"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Unzipped_Input",
+											"type": "DatasetReference",
+											"parameters": {
+												"Container_Name": {
+													"value": "@pipeline().parameters.Container_Name",
+													"type": "Expression"
+												},
+												"Input_Directory": {
+													"value": "@pipeline().parameters.Input_Directory",
+													"type": "Expression"
+												},
+												"File_Name": {
+													"value": "@variables('CSV_File_Name')",
+													"type": "Expression"
+												}
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobFSReadSettings",
+											"recursive": true
+										}
+									}
+								},
+								{
+									"name": "Delete csv file generated in input -copy",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "error mail notification pipeline for etlcontrol",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Unzipped_Input",
+											"type": "DatasetReference",
+											"parameters": {
+												"Container_Name": {
+													"value": "@pipeline().parameters.Container_Name",
+													"type": "Expression"
+												},
+												"Input_Directory": {
+													"value": "@pipeline().parameters.Input_Directory",
+													"type": "Expression"
+												},
+												"File_Name": {
+													"value": "@variables('CSV_File_Name')",
+													"type": "Expression"
+												}
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobFSReadSettings",
+											"recursive": true
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Create csv file name",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Create JSON file name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "CSV_File_Name",
+							"value": {
+								"value": "@replace(variables('JSON_File_Name'),'.json','.csv')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"Source_File_Name": {
+						"type": "string",
+						"defaultValue": "transaction_20201015.json.gz"
+					},
+					"Inbound_Directory": {
+						"type": "string",
+						"defaultValue": "inbound"
+					},
+					"Input_Directory": {
+						"type": "string",
+						"defaultValue": "input"
+					},
+					"Container_Name": {
+						"type": "string",
+						"defaultValue": "sj186068"
+					},
+					"Email_To": {
+						"type": "string",
+						"defaultValue": "sumit.jain@teradata.com"
+					}
+				},
+				"variables": {
+					"CSV_File_Name": {
+						"type": "String"
+					},
+					"CTL_File_Name": {
+						"type": "String"
+					},
+					"Data_Count": {
+						"type": "String"
+					},
+					"Ctl_Count": {
+						"type": "String"
+					},
+					"JSON_File_Name": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "sj186068"
+				},
+				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/adb_ls')]"
@@ -1564,6 +2771,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/adf_batch_ls')]",
+				"[concat(variables('factoryId'), '/datasets/parameter_json')]",
 				"[concat(variables('factoryId'), '/pipelines/copy_delete')]"
 			]
 		},
@@ -1945,1281 +3153,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/hg250013_makeDataPartitioned')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/hg250013_adf_td_training_demo_Run_par')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "FullParquetCopy",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Flight#",
-											"type": "String"
-										},
-										"sink": {
-											"name": "FlightNo",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Origin",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Origin",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "Dest",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Dest",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "FlightDate",
-											"type": "String"
-										},
-										"sink": {
-											"name": "FlightDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "NoSalesReason",
-											"type": "String"
-										},
-										"sink": {
-											"name": "NoSalesReason",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "TransmittingFlightAttd",
-											"type": "String"
-										},
-										"sink": {
-											"name": "TransmittingFlightAttd",
-											"type": "String"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "hg250013_flat_par_sink1_ds",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "partialflatfile",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "If Condition1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Flight#",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Flight"
-										}
-									},
-									{
-										"source": {
-											"name": "Origin",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Origin"
-										}
-									},
-									{
-										"source": {
-											"name": "Dest",
-											"type": "String"
-										},
-										"sink": {
-											"name": "Dest"
-										}
-									},
-									{
-										"source": {
-											"name": "FlightDate",
-											"type": "String"
-										},
-										"sink": {
-											"name": "FlightDate"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "hg250013_flat_file_source_ds",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "hg250013_flat_csv_sink2_ds",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "makeDataPartitioned",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "hg250013_makeDataPartitioned",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"FlatSource": {},
-									"sink4": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "Set variable FullParCopy",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "FullParquetCopy",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "FullParCopy",
-							"value": true
-						}
-					},
-					{
-						"name": "Set variable partialflatFile check",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "makeDataPartitioned",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "PartialFlatFile",
-							"value": true
-						}
-					},
-					{
-						"name": "If Condition1",
-						"type": "IfCondition",
-						"dependsOn": [
-							{
-								"activity": "Set variable FullParCopy",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Set variable partialflatFile check",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"expression": {
-								"value": "@and(equals(variables('FullParCopy'),true),equals(variables('PartialFlatFile'),true))",
-								"type": "Expression"
-							},
-							"ifTrueActivities": [
-								{
-									"name": "flatToJsonCopy3",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "DelimitedTextSource",
-											"storeSettings": {
-												"type": "AzureBlobFSReadSettings",
-												"recursive": true
-											},
-											"formatSettings": {
-												"type": "DelimitedTextReadSettings"
-											}
-										},
-										"sink": {
-											"type": "JsonSink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
-											},
-											"formatSettings": {
-												"type": "JsonWriteSettings"
-											}
-										},
-										"enableStaging": false,
-										"translator": {
-											"type": "TabularTranslator",
-											"mappings": [
-												{
-													"source": {
-														"name": "Flight#",
-														"type": "String"
-													},
-													"sink": {
-														"path": "$['FlightNo']"
-													}
-												},
-												{
-													"source": {
-														"name": "Origin",
-														"type": "String"
-													},
-													"sink": {
-														"path": "$['Origin']"
-													}
-												},
-												{
-													"source": {
-														"name": "Dest",
-														"type": "String"
-													},
-													"sink": {
-														"path": "$['Dest']"
-													}
-												},
-												{
-													"source": {
-														"name": "FlightDate",
-														"type": "String"
-													},
-													"sink": {
-														"path": "$['FlightDate']"
-													}
-												},
-												{
-													"source": {
-														"name": "NoSalesReason",
-														"type": "String"
-													},
-													"sink": {
-														"path": "$['noSalesReason']"
-													}
-												},
-												{
-													"source": {
-														"name": "TransmittingFlightAttd",
-														"type": "String"
-													},
-													"sink": {
-														"path": "$['TransmittingFlightAttd']"
-													}
-												}
-											]
-										}
-									},
-									"inputs": [
-										{
-											"referenceName": "hg250013_flat_file_source_ds",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "hg250013_json_file_sink3_ds",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"variables": {
-					"FullParCopy": {
-						"type": "Boolean"
-					},
-					"PartialFlatFile": {
-						"type": "Boolean"
-					}
-				},
-				"folder": {
-					"name": "ADF_Demo"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-25T23:05:37Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/hg250013_makeDataPartitioned')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parent_pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Get record count from data file",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "source_count_validation_ds",
-								"type": "DatasetReference",
-								"parameters": {
-									"data_file_name": {
-										"value": "@pipeline().parameters.fileName",
-										"type": "Expression"
-									},
-									"data_file_folder": {
-										"value": "@pipeline().parameters.folderPath",
-										"type": "Expression"
-									}
-								}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "Set data count variable",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Get record count from data file",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "data_count",
-							"value": {
-								"value": "@string(activity('Get record count from data file').output.count)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Read record count from CTL file",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "Create CTL file name",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "source_ctl_count",
-								"type": "DatasetReference",
-								"parameters": {
-									"ctl_file_name": {
-										"value": "@variables('ctl_file_name')",
-										"type": "Expression"
-									},
-									"ctl_folder_name": {
-										"value": "@pipeline().parameters.folderPath",
-										"type": "Expression"
-									}
-								}
-							},
-							"firstRowOnly": true
-						}
-					},
-					{
-						"name": "Set CTL count variable",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Read record count from CTL file",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ctl_count",
-							"value": {
-								"value": "@string(activity('Read record count from CTL file').output.firstrow.Prop_0)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Check data and ctl file count",
-						"type": "IfCondition",
-						"dependsOn": [
-							{
-								"activity": "Set data count variable",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Set CTL count variable",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"expression": {
-								"value": "@equals(variables('data_count'),variables('ctl_count'))",
-								"type": "Expression"
-							},
-							"ifFalseActivities": [
-								{
-									"name": "error_mail_notification_pipeline",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "Only File Name",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "error_mail_notification_pipeline",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"EmailTo": {
-												"value": "@pipeline().globalParameters.EmailTo",
-												"type": "Expression"
-											},
-											"Activity": "if activity",
-											"ErrorMessage": {
-												"value": "@concat('Count mismatch in control file : ',variables('ctl_file_name'),' and data file: ',pipeline().parameters.fileName,' in container: ',pipeline().parameters.folderPath)",
-												"type": "Expression"
-											},
-											"Pipe_line_Name": {
-												"value": "@pipeline().Pipeline",
-												"type": "Expression"
-											},
-											"Source_File_Name": {
-												"value": "@variables('only_file_name')",
-												"type": "Expression"
-											}
-										}
-									}
-								},
-								{
-									"name": "ctl files copy to reject and delete",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "error_mail_notification_pipeline",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "copy_delete",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"file_name": {
-												"value": "@variables('ctl_file_name')",
-												"type": "Expression"
-											},
-											"folder_name": {
-												"value": "@pipeline().parameters.folderPath",
-												"type": "Expression"
-											},
-											"output_folder_name": "reject"
-										}
-									}
-								},
-								{
-									"name": "data files copy to reject and delete",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "error_mail_notification_pipeline",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "copy_delete",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"file_name": {
-												"value": "@pipeline().parameters.fileName",
-												"type": "Expression"
-											},
-											"folder_name": {
-												"value": "@pipeline().parameters.folderPath",
-												"type": "Expression"
-											},
-											"output_folder_name": "reject"
-										}
-									}
-								},
-								{
-									"name": "Only File Name",
-									"type": "SetVariable",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "only_file_name",
-										"value": {
-											"value": "@substring(pipeline().parameters.fileName,0,lastindexof(pipeline().parameters.fileName,'_'))",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"ifTrueActivities": [
-								{
-									"name": "etlcontrol batch script",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "etlcontrol_batch_script",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"fileName": {
-												"value": "@pipeline().parameters.fileName",
-												"type": "Expression"
-											},
-											"folderPath": {
-												"value": "@pipeline().parameters.folderPath",
-												"type": "Expression"
-											},
-											"ctlFileName": {
-												"value": "@variables('ctl_file_name')",
-												"type": "Expression"
-											}
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Create CTL file name",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ctl_file_name",
-							"value": {
-								"value": "@concat(substring(pipeline().parameters.fileName,0,lastindexof(pipeline().parameters.fileName,'.')),'.ctl')",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Error mail notification for CTL file",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Read record count from CTL file",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "error_mail_notification_pipeline",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"EmailTo": {
-									"value": "@pipeline().globalParameters.EmailTo",
-									"type": "Expression"
-								},
-								"Activity": "Lookup Activity",
-								"ErrorMessage": "CTL file is not received",
-								"Pipe_line_Name": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Source_File_Name": {
-									"value": "@variables('ctl_file_name')",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "data file copy to reject container and delete",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Error mail notification for CTL file",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "copy_delete",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"file_name": {
-									"value": "@pipeline().parameters.fileName",
-									"type": "Expression"
-								},
-								"folder_name": {
-									"value": "@pipeline().parameters.folderPath",
-									"type": "Expression"
-								},
-								"output_folder_name": "reject"
-							}
-						}
-					}
-				],
-				"parameters": {
-					"fileName": {
-						"type": "string"
-					},
-					"folderPath": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"data_count": {
-						"type": "String"
-					},
-					"ctl_count": {
-						"type": "String"
-					},
-					"ctl_file_name": {
-						"type": "String"
-					},
-					"file_name1": {
-						"type": "String"
-					},
-					"only_file_name": {
-						"type": "String"
-					},
-					"file_size": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "Audit Control Framework Pipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-25T23:05:37Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/copy_delete')]",
-				"[concat(variables('factoryId'), '/pipelines/etlcontrol_batch_script')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Etl_Control_Framework_Start')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Get Source Metadata",
-						"type": "GetMetadata",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "gen_src_ds",
-								"type": "DatasetReference",
-								"parameters": {
-									"file_name": {
-										"value": "@pipeline().parameters.file_name",
-										"type": "Expression"
-									},
-									"folder_name": {
-										"value": "@pipeline().parameters.folder_name",
-										"type": "Expression"
-									}
-								}
-							},
-							"fieldList": [
-								"size"
-							],
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true
-							},
-							"formatSettings": {
-								"type": "DelimitedTextReadSettings"
-							}
-						}
-					},
-					{
-						"name": "FileSize",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Source Metadata",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "file_size",
-							"value": {
-								"value": "@string(activity('Get Source Metadata').output.size)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "ZeroByteFileValidation",
-						"type": "IfCondition",
-						"dependsOn": [
-							{
-								"activity": "FileSize",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"expression": {
-								"value": "@equals(variables('file_size'),'0')",
-								"type": "Expression"
-							},
-							"ifFalseActivities": [
-								{
-									"name": "parent_pipeline",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "parent_pipeline",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"fileName": {
-												"value": "@pipeline().parameters.file_name",
-												"type": "Expression"
-											},
-											"folderPath": {
-												"value": "@pipeline().parameters.folder_name",
-												"type": "Expression"
-											}
-										}
-									}
-								}
-							],
-							"ifTrueActivities": [
-								{
-									"name": "error_mail_notification_pipeline",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "error_mail_notification_pipeline",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"EmailTo": {
-												"value": "@pipeline().globalParameters.EmailTo",
-												"type": "Expression"
-											},
-											"Activity": "if activity",
-											"ErrorMessage": "zero byte data file received",
-											"Pipe_line_Name": {
-												"value": "@pipeline().Pipeline",
-												"type": "Expression"
-											},
-											"Source_File_Name": {
-												"value": "@pipeline().parameters.file_name",
-												"type": "Expression"
-											}
-										}
-									}
-								},
-								{
-									"name": "copy delete data file",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "error_mail_notification_pipeline",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "copy_delete",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"file_name": {
-												"value": "@pipeline().parameters.file_name",
-												"type": "Expression"
-											},
-											"folder_name": {
-												"value": "@pipeline().parameters.folder_name",
-												"type": "Expression"
-											},
-											"output_folder_name": "reject"
-										}
-									}
-								},
-								{
-									"name": "Create CTL file name",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "error_mail_notification_pipeline",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "ctl_file_name",
-										"value": {
-											"value": "@concat(substring(pipeline().parameters.file_name,0,lastindexof(pipeline().parameters.file_name,'.')),'.ctl')",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "copy delete CTL file",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "Read record count from CTL file",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "copy_delete",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"file_name": {
-												"value": "@variables('ctl_file_name')",
-												"type": "Expression"
-											},
-											"folder_name": {
-												"value": "@pipeline().parameters.folder_name",
-												"type": "Expression"
-											},
-											"output_folder_name": "reject"
-										}
-									}
-								},
-								{
-									"name": "Read record count from CTL file",
-									"type": "Lookup",
-									"dependsOn": [
-										{
-											"activity": "Create CTL file name",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "DelimitedTextSource",
-											"storeSettings": {
-												"type": "AzureBlobStorageReadSettings",
-												"recursive": true
-											},
-											"formatSettings": {
-												"type": "DelimitedTextReadSettings"
-											}
-										},
-										"dataset": {
-											"referenceName": "source_ctl_count",
-											"type": "DatasetReference",
-											"parameters": {
-												"ctl_file_name": {
-													"value": "@variables('ctl_file_name')",
-													"type": "Expression"
-												},
-												"ctl_folder_name": {
-													"value": "@pipeline().parameters.folder_name",
-													"type": "Expression"
-												}
-											}
-										},
-										"firstRowOnly": true
-									}
-								},
-								{
-									"name": "Error mail notification for CTL file",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "Read record count from CTL file",
-											"dependencyConditions": [
-												"Failed"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "error_mail_notification_pipeline",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"EmailTo": {
-												"value": "@pipeline().globalParameters.EmailTo",
-												"type": "Expression"
-											},
-											"Activity": "Lookup Activity",
-											"ErrorMessage": "CTL file is not received",
-											"Pipe_line_Name": {
-												"value": "@pipeline().Pipeline",
-												"type": "Expression"
-											},
-											"Source_File_Name": {
-												"value": "@variables('ctl_file_name')",
-												"type": "Expression"
-											}
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"parameters": {
-					"file_name": {
-						"type": "string"
-					},
-					"folder_name": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"db_server": {
-						"type": "String"
-					},
-					"db_user": {
-						"type": "String"
-					},
-					"db_password": {
-						"type": "String"
-					},
-					"count": {
-						"type": "String"
-					},
-					"ctl_count": {
-						"type": "String"
-					},
-					"file_size": {
-						"type": "String"
-					},
-					"ctl_file_name": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "Audit Control Framework Pipelines"
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-10-25T23:05:38Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/parent_pipeline')]",
-				"[concat(variables('factoryId'), '/pipelines/copy_delete')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/blob_employee_trigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Trigger will work from file name as Employee*.csv in source container.",
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Etl_Control_Framework_Start",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"file_name": "[parameters('blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_file_name')]",
-							"folder_name": "[parameters('blob_employee_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name')]"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/Employee",
-					"blobPathEndsWith": ".csv",
-					"ignoreEmptyBlobs": false,
-					"scope": "[parameters('blob_employee_trigger_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Etl_Control_Framework_Start')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/blob_insurance_trigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Trigger will work from file name as Insurance*.csv in source container.",
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Etl_Control_Framework_Start",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"file_name": "[parameters('blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_file_name')]",
-							"folder_name": "[parameters('blob_insurance_trigger_properties_Etl_Control_Framework_Start_parameters_folder_name')]"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/Insurance",
-					"blobPathEndsWith": ".csv",
-					"ignoreEmptyBlobs": false,
-					"scope": "[parameters('blob_insurance_trigger_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Etl_Control_Framework_Start')]"
 			]
 		}
 	]

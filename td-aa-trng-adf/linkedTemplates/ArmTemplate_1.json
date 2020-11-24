@@ -13,6 +13,313 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SrcData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "PS_ASSET_OWN_TBL7_20201013.csv",
+						"folderPath": "IN",
+						"fileSystem": "ss250236"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TgtData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "OUT",
+						"fileSystem": "ss250236"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Unzipped_Input')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Container_Name": {
+						"type": "string"
+					},
+					"Input_Directory": {
+						"type": "string"
+					},
+					"File_Name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "sj186068"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().File_Name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().Input_Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().Container_Name",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ZippedJsonSrc')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Container_Name": {
+						"type": "string"
+					},
+					"Inbound_Directory": {
+						"type": "string"
+					},
+					"JSON_File_Name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "sj186068"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().JSON_File_Name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().Inbound_Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().Container_Name",
+							"type": "Expression"
+						}
+					},
+					"compression": {
+						"type": "gzip"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"transaction": {
+							"type": "object",
+							"properties": {
+								"transaction_id": {
+									"type": "string"
+								},
+								"transaction_type": {
+									"type": "string"
+								},
+								"transaction_timestamp": {
+									"type": "string"
+								},
+								"cancellation_timestamp": {
+									"type": "null"
+								},
+								"aadvantage_num": {
+									"type": "string"
+								},
+								"offer_id": {
+									"type": "string"
+								},
+								"purchase_emp_id": {
+									"type": "string"
+								},
+								"cancellation_emp_id": {
+									"type": "null"
+								},
+								"tax": {
+									"type": "object",
+									"properties": {
+										"gst": {
+											"type": "string"
+										},
+										"us1": {
+											"type": "string"
+										}
+									}
+								},
+								"payment_method": {
+									"type": "string"
+								},
+								"total_price": {
+									"type": "string"
+								},
+								"total_price_in_miles": {
+									"type": "null"
+								},
+								"sales_receipt_num": {
+									"type": "string"
+								},
+								"credit_card_info": {
+									"type": "object",
+									"properties": {
+										"credit_card_type": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Zipped_Source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Container_name": {
+						"type": "string"
+					},
+					"Inbound_Directory": {
+						"type": "string"
+					},
+					"File_Name": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "sj186068"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().File_Name",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().Inbound_Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().Container_name",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"compressionCodec": "gzip",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/as186113_demo_copy2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "RimOutputFile",
+						"folderPath": "output",
+						"fileSystem": "as186113"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/as186113_demo_file')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -655,256 +962,6 @@
 					}
 				},
 				"schema": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/hg250013_parameter_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_ls",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "ADF_Demo_DS"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "ADF_parameters_2.json",
-						"folderPath": "config",
-						"fileSystem": "hg250013"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"sourceDataBase": {
-							"type": "string"
-						},
-						"sourceTable": {
-							"type": "string"
-						},
-						"targetDataBase": {
-							"type": "string"
-						},
-						"targetTable": {
-							"type": "string"
-						},
-						"partitionCol": {
-							"type": "string"
-						},
-						"columns": {
-							"type": "string"
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/hg250013_parameter_sink_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_ls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"destFileName": {
-						"type": "string"
-					},
-					"destDirectory": {
-						"type": "string"
-					},
-					"destContainer": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "ADF_Demo_DS"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().destFileName",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().destDirectory",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().destContainer",
-							"type": "Expression"
-						}
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/hg250013_raw_json_rest_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_ls",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "raw",
-						"fileSystem": "hg250013"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parameter_json')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "blob_ls",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Audit Control Framework Dataset"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "adf_paramset.json",
-						"container": "parameter"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"DatabaseServer": {
-							"type": "string"
-						},
-						"UserName": {
-							"type": "string"
-						},
-						"Password": {
-							"type": "string"
-						},
-						"EmailTo": {
-							"type": "string"
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/source_count_validation_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "blob_ls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"data_file_name": {
-						"type": "string"
-					},
-					"data_file_folder": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Audit Control Framework Dataset"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().data_file_name",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().data_file_folder",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/source_ctl_count')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "blob_ls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"ctl_file_name": {
-						"type": "string"
-					},
-					"ctl_folder_name": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Audit Control Framework Dataset"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().ctl_file_name",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().ctl_folder_name",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		}
