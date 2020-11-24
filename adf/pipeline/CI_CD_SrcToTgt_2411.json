@@ -1,9 +1,9 @@
 {
-	"name": "CI_CD_SrcToTgt",
+	"name": "CI_CD_SrcToTgt_2411",
 	"properties": {
 		"activities": [
 			{
-				"name": "SrcToTgt19112020",
+				"name": "SrcToTgt24112020",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
