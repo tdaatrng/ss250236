@@ -1,0 +1,107 @@
+{
+	"name": "ZippedJsonSrc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Container_Name": {
+				"type": "string"
+			},
+			"Inbound_Directory": {
+				"type": "string"
+			},
+			"JSON_File_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().JSON_File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Inbound_Directory",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Container_Name",
+					"type": "Expression"
+				}
+			},
+			"compression": {
+				"type": "gzip"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"transaction": {
+					"type": "object",
+					"properties": {
+						"transaction_id": {
+							"type": "string"
+						},
+						"transaction_type": {
+							"type": "string"
+						},
+						"transaction_timestamp": {
+							"type": "string"
+						},
+						"cancellation_timestamp": {
+							"type": "null"
+						},
+						"aadvantage_num": {
+							"type": "string"
+						},
+						"offer_id": {
+							"type": "string"
+						},
+						"purchase_emp_id": {
+							"type": "string"
+						},
+						"cancellation_emp_id": {
+							"type": "null"
+						},
+						"tax": {
+							"type": "object",
+							"properties": {
+								"gst": {
+									"type": "string"
+								},
+								"us1": {
+									"type": "string"
+								}
+							}
+						},
+						"payment_method": {
+							"type": "string"
+						},
+						"total_price": {
+							"type": "string"
+						},
+						"total_price_in_miles": {
+							"type": "null"
+						},
+						"sales_receipt_num": {
+							"type": "string"
+						},
+						"credit_card_info": {
+							"type": "object",
+							"properties": {
+								"credit_card_type": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
