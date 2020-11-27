@@ -1,0 +1,619 @@
+{
+	"name": "nj186007_copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "RecordType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "requestid",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "recordlocator",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceRfiscField",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "SeatMapIndex",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "PassengerId",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "ANCLRY_PROD_BRAND_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"name": "Bucket_Capacity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"name": "Bucket_Available",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"name": "Bucket_AvailableAndBlocked",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"name": "Bucket_Unavailable",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"name": "Bucket_Svc_Cds",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"name": "Bucket_Prices_Offered",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"name": "ServicePortionIndex",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentFlight",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentDeparture",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentOrigin",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentDestination",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSliceOriginDestination",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"name": "ServicePortionLengthOfHaul",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"name": "RequestTimeAAFormat",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"name": "channel",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 22
+								}
+							},
+							{
+								"source": {
+									"name": "salescity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 23
+								}
+							},
+							{
+								"source": {
+									"name": "passengercount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 24
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentUpgradeType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 25
+								}
+							},
+							{
+								"source": {
+									"name": "tierstatus",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 26
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentBookingCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 27
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentFareBasisCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 28
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceSegmentEquipmentType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 29
+								}
+							},
+							{
+								"source": {
+									"name": "LegNumber",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 30
+								}
+							},
+							{
+								"source": {
+									"name": "LegOrigin",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 31
+								}
+							},
+							{
+								"source": {
+									"name": "LegDestination",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 32
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_CabinToUpgradeTo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 33
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_CapacityOfCabinToUpgradeTo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 34
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_BookingCodeACount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 35
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_BookingCodeCCount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 36
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_AadvWaitListCount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 37
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_PriorityListCount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 38
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_CabinAuthLevel",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 39
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_SoldSeatCount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 40
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_X",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 41
+								}
+							},
+							{
+								"source": {
+									"name": "LfbuLeg_Y",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 42
+								}
+							},
+							{
+								"source": {
+									"name": "TicketSet",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 43
+								}
+							},
+							{
+								"source": {
+									"name": "merchandisingPOS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 44
+								}
+							},
+							{
+								"source": {
+									"name": "Transactable",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 45
+								}
+							},
+							{
+								"source": {
+									"name": "clientMode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 46
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "nj186007_DS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "nj186007_OUT",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
