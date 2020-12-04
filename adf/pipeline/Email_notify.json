@@ -1,0 +1,32 @@
+{
+	"name": "Email_notify",
+	"properties": {
+		"activities": [
+			{
+				"name": "Email_Services",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-57.eastus.logic.azure.com:443/workflows/6b15a7bfda3044eb93ac17e634bf86dd/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=G7FcnletLdJAsagAKYz4TlpmDLZB7A7GrKyg3XjwWaY",
+					"method": "POST",
+					"body": {
+						"DataFactoryName": "pipeline().DataFactory",
+						"PipelineName": "pipeline().Pipeline",
+						"Subject": "pipeline().parameters.Subject",
+						"Message": "pipeline().parameters.Message",
+						"EmailTo": "pipeline().parameters.EmailTo"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
