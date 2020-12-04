@@ -31,7 +31,7 @@
 				}
 			},
 			{
-				"name": "Execute Pipeline2",
+				"name": "Execute_failure",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -43,7 +43,33 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitOnCompletion": true
+					"pipeline": {
+						"referenceName": "Email_notify",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"Subject": {
+							"value": "@concat(pipeline().Pipeline,' - Success')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('lookup1').output.firstRow.email_dl",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@activity('lookup1').output.firstRow.success_email",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -92,7 +118,29 @@
 						"referenceName": "Email_notify",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"Subject": {
+							"value": "@concat(pipeline().Pipeline,' - Success')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('lookup1').output.firstRow.email_dl",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@activity('lookup1').output.firstRow.success_email",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
