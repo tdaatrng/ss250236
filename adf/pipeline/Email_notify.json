@@ -30,6 +30,23 @@
 				}
 			}
 		],
+		"parameters": {
+			"DataFactoryName": {
+				"type": "String"
+			},
+			"Subject": {
+				"type": "String"
+			},
+			"EmailTo": {
+				"type": "String"
+			},
+			"PipelineName": {
+				"type": "String"
+			},
+			"Message": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
