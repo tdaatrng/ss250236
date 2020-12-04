@@ -22,6 +22,42 @@
 					"referenceName": "adb_ls",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Execute Success",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Demo Notebook",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Email_notify",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Pipeline2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Demo Notebook",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"annotations": []
