@@ -24,11 +24,8 @@
 						}
 					},
 					"body": {
-						"DataFactoryName": "pipeline().DataFactory",
-						"PipelineName": "pipeline().Pipeline",
-						"Subject": "pipeline().parameters.Subject",
-						"Message": "pipeline().parameters.Message",
-						"EmailTo": "pipeline().parameters.EmailTo"
+						"value": "{\"DataFactoryName\": \"pipeline().DataFactory\",\n   \"PipelineName\": \"pipeline().Pipeline\",\n   \"Subject\": \"pipeline().parameters.Subject\",\n   \"Message\": \"pipeline().parameters.Message\",\n   \"EmailTo\": \"pipeline().parameters.EmailTo\"}",
+						"type": "Expression"
 					}
 				}
 			}
