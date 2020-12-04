@@ -13,6 +13,65 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/IndianFood_inbound')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "indian_food.zip",
+						"folderPath": "inbound",
+						"fileSystem": "sp186080"
+					},
+					"compression": {
+						"type": "ZipDeflate",
+						"level": "Optimal"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RIMFileOutput')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "RIMFileOutput",
+						"folderPath": "output",
+						"fileSystem": "as186113"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Flight#^Origin^Dest^FlightDate^NoSalesReason^TransmittingFlightAttd",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/RimFileOp1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -842,130 +901,6 @@
 					{
 						"name": "TransmittingFlightAttd",
 						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/hg250013_flat_par_sink1_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_ls",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "ADF_Demo_DS"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "testfilename",
-						"folderPath": "output1",
-						"fileSystem": "hg250013"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "FlightNo",
-						"type": "UTF8"
-					},
-					{
-						"name": "Origin",
-						"type": "UTF8"
-					},
-					{
-						"name": "Dest",
-						"type": "UTF8"
-					},
-					{
-						"name": "FlightDate",
-						"type": "UTF8"
-					},
-					{
-						"name": "NoSalesReason",
-						"type": "UTF8"
-					},
-					{
-						"name": "TransmittingFlightAttd",
-						"type": "UTF8"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/hg250013_flat_par_sink1_ds_for_parameter_demo')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_ls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"destContainer": {
-						"type": "string"
-					},
-					"destDirectory": {
-						"type": "string"
-					},
-					"destFileName": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "ADF_Demo_DS"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().destFileName",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().destDirectory",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().destContainer",
-							"type": "Expression"
-						}
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "FlightNo",
-						"type": "UTF8"
-					},
-					{
-						"name": "Origin",
-						"type": "UTF8"
-					},
-					{
-						"name": "Dest",
-						"type": "UTF8"
-					},
-					{
-						"name": "FlightDate",
-						"type": "UTF8"
-					},
-					{
-						"name": "NoSalesReason",
-						"type": "UTF8"
-					},
-					{
-						"name": "TransmittingFlightAttd",
-						"type": "UTF8"
 					}
 				]
 			},
