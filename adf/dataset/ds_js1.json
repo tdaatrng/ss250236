@@ -1,0 +1,20 @@
+{
+	"name": "ds_js1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "pglist.json",
+				"folderPath": "output",
+				"fileSystem": "sp186004"
+			}
+		},
+		"schema": {}
+	}
+}
