@@ -1,0 +1,29 @@
+{
+	"name": "pg_ds1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "processor_groups.txt",
+				"folderPath": "input",
+				"fileSystem": "sp186004"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "#    Name              Id                                     Running   Stopped   Disabled   Invalid",
+				"type": "String"
+			}
+		]
+	}
+}
