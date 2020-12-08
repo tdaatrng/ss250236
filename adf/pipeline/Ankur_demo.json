@@ -145,7 +145,7 @@
 							"type": "Expression"
 						},
 						"notification_app_lnk": {
-							"value": "@activity('lookup1').output.firstRow.notification_app_lnk",
+							"value": "@activity('Lookup1').output.firstRow.notification_app_lnk",
 							"type": "Expression"
 						}
 					}
