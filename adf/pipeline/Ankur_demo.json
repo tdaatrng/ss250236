@@ -129,11 +129,11 @@
 							"type": "Expression"
 						},
 						"Subject": {
-							"value": "@concat(pipeline().Pipeline,' - Success')",
+							"value": "Demo pipeline Success",
 							"type": "Expression"
 						},
 						"EmailTo": {
-							"value": "@activity('lookup1').output.firstRow.email_dl",
+							"value": "ankur.malhotra@teradata.com",
 							"type": "Expression"
 						},
 						"PipelineName": {
@@ -141,7 +141,7 @@
 							"type": "Expression"
 						},
 						"Message": {
-							"value": "@activity('lookup1').output.firstRow.success_email",
+							"value": "Demo pipeline completed successfully.",
 							"type": "Expression"
 						},
 						"notification_app_lnk": {
