@@ -1,0 +1,49 @@
+{
+	"name": "Nifi_Processorgroup_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "processor_groups.csv",
+				"folderPath": "input",
+				"fileSystem": "sp186004"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Parent_Processor_Group",
+				"type": "String"
+			},
+			{
+				"name": "Running",
+				"type": "String"
+			},
+			{
+				"name": "Stopped",
+				"type": "String"
+			},
+			{
+				"name": "Disabled",
+				"type": "String"
+			},
+			{
+				"name": "Invalid",
+				"type": "String"
+			}
+		]
+	}
+}
