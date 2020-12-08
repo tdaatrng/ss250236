@@ -1,5 +1,5 @@
 {
-	"name": "Binary1",
+	"name": "cluster_summary",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adls_ls",
