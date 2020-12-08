@@ -68,6 +68,10 @@
 						"Message": {
 							"value": "@activity('lookup1').output.firstRow.success_email",
 							"type": "Expression"
+						},
+						"notification_app_lnk": {
+							"value": "@activity('lookup1').output.firstRow.notification_app_lnk",
+							"type": "Expression"
 						}
 					}
 				}
@@ -138,6 +142,10 @@
 						},
 						"Message": {
 							"value": "@activity('lookup1').output.firstRow.success_email",
+							"type": "Expression"
+						},
+						"notification_app_lnk": {
+							"value": "@activity('lookup1').output.firstRow.notification_app_lnk",
 							"type": "Expression"
 						}
 					}
