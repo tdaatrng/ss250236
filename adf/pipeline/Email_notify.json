@@ -45,6 +45,9 @@
 			},
 			"Message": {
 				"type": "String"
+			},
+			"notification_app_lnk": {
+				"type": "String"
 			}
 		},
 		"annotations": []
