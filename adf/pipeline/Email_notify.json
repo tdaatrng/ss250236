@@ -27,7 +27,7 @@
 						}
 					},
 					"body": {
-						"value": "{\"DataFactoryName\": \"pipeline().DataFactory\",\n   \"PipelineName\": \"pipeline().Pipeline\",\n   \"Subject\": \"pipeline().parameters.Subject\",\n   \"Message\": \"pipeline().parameters.Message\",\n   \"EmailTo\": \"pipeline().parameters.EmailTo\"}",
+						"value": "@concat('{\"DataFactoryName\": \"pipeline().DataFactory\",\n   \"PipelineName\": \"pipeline().Pipeline\",\n   \"Subject\": \"pipeline().parameters.Subject\",\n   \"Message\": \"pipeline().parameters.Message\",\n   \"EmailTo\": \"pipeline().parameters.EmailTo\"}')",
 						"type": "Expression"
 					}
 				}
