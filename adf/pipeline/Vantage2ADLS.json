@@ -1,0 +1,101 @@
+{
+	"name": "Vantage2ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Vantage2ADLS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "TeradataSource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "OdbcSink",
+						"writeBatchSize": 0
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BUSINESS_UNIT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BUSINESS_UNIT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ASSET_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ASSET_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EFFDT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "EFFDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OWNING_BUS_UNIT7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OWNING_BUS_UNIT7",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TD_Src",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Odbc_Vantage",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "VANTAGE"
+		},
+		"annotations": []
+	}
+}
