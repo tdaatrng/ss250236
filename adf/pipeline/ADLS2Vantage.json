@@ -32,6 +32,52 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BUSINESS_UNIT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BUSINESS_UNIT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ASSET_ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ASSET_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EFFDT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "EFFDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OWNING_BUS_UNIT7",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OWNING_BUS_UNIT7",
+									"type": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
