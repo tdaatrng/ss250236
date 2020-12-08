@@ -1,0 +1,12 @@
+{
+	"name": "Odbc_Vantage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Odbc_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": []
+	}
+}
