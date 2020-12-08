@@ -1,5 +1,5 @@
 {
-	"name": "TeradataTable1",
+	"name": "TD_Src",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Teradata_Src_ls",
