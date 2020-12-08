@@ -1,0 +1,9 @@
+{
+	"name": "NifiProc_demo_pipeline",
+	"properties": {
+		"folder": {
+			"name": "Demo"
+		},
+		"annotations": []
+	}
+}
