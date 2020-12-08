@@ -1,0 +1,29 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MA186006_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "output",
+				"container": "ma186006"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"min(quater)": {
+					"type": "string"
+				},
+				"min(chanl)": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
