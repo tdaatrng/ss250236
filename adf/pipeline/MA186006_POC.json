@@ -31,7 +31,7 @@
 						"referenceName": "Json1",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -56,8 +56,14 @@
 				"typeProperties": {
 					"notebookPath": "/ma186006/ReadQtrMnth",
 					"baseParameters": {
-						"mn_qtr": "activity('ReadingJson').output.firstRow.mn_qtr",
-						"mn_chnl": "activity('ReadingJson').output.firstRow.mn_chnl"
+						"mn_qtr": {
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"type": "Expression"
+						},
+						"mn_chnl": {
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
