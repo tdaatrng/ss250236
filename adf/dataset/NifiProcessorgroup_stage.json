@@ -18,6 +18,31 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Parent_Processor_Group",
+				"type": "String"
+			},
+			{
+				"name": "Running",
+				"type": "String"
+			},
+			{
+				"name": "Stopped",
+				"type": "String"
+			},
+			{
+				"name": "Disabled",
+				"type": "String"
+			},
+			{
+				"name": "Invalid",
+				"type": "String"
+			}
+		]
 	}
 }
