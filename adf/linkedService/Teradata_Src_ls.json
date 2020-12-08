@@ -1,0 +1,17 @@
+{
+	"name": "Teradata_Src_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Teradata_Src_ls",
+		"annotations": [],
+		"type": "Teradata",
+		"typeProperties": {
+			"connectionString": "dbcname=104.211.63.56;uid=ss250236",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MjJmMWQyNi1lNDNjLTQ3NjctOGE1YS1hZTBhZjYwZWIwYWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "td-aa-trng-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
