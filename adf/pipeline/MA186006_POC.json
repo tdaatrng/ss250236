@@ -19,7 +19,7 @@
 						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
+							"recursive": false
 						},
 						"formatSettings": {
 							"type": "JsonReadSettings"
@@ -28,7 +28,8 @@
 					"dataset": {
 						"referenceName": "Json1",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
