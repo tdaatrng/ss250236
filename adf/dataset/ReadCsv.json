@@ -1,0 +1,41 @@
+{
+	"name": "ReadCsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "PS_ASSET_OWN_TBL7_20201013.csv",
+				"folderPath": "IN",
+				"fileSystem": "ss250236"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "BUSINESS_UNIT",
+				"type": "String"
+			},
+			{
+				"name": "ASSET_ID",
+				"type": "String"
+			},
+			{
+				"name": "EFFDT",
+				"type": "String"
+			},
+			{
+				"name": "OWNING_BUS_UNIT7",
+				"type": "String"
+			}
+		]
+	}
+}
