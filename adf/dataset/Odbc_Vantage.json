@@ -10,6 +10,9 @@
 		},
 		"annotations": [],
 		"type": "OdbcTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"ss250236\".\"PS_ASSET_OWN_TBL\""
+		}
 	}
 }
