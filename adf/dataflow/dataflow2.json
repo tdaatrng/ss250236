@@ -1,0 +1,24 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "NifiProcessorgroup_stage",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Filter1"
+				}
+			],
+			"script": "source(output(\n\t\tName as string,\n\t\tParent_Processor_Group as string,\n\t\tRunning as string,\n\t\tStopped as string,\n\t\tDisabled as string,\n\t\tInvalid as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 filter(Parent_Processor_Group == 'Appdataingest') ~> Filter1"
+		}
+	}
+}
