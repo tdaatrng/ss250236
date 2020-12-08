@@ -5,6 +5,9 @@
 			"referenceName": "Odbc_ls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Vantage"
+		},
 		"annotations": [],
 		"type": "OdbcTable",
 		"schema": []
