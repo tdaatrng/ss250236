@@ -26,6 +26,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_RunningProcessors",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
 				}
 			],
 			"transformations": [
@@ -36,7 +43,7 @@
 					"name": "ConditionalSplit1"
 				}
 			],
-			"script": "source(output(\n\t\tName as string,\n\t\tParent_Processor_Group as string,\n\t\tRunning as integer,\n\t\tStopped as integer,\n\t\tDisabled as integer,\n\t\tInvalid as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 filter(Parent_Processor_Group == 'Appdataingest') ~> Filter1\nFilter1 split(Stopped > 0,\n\tDisabled > 0,\n\tRunning > 0,\n\tdisjoint: false) ~> ConditionalSplit1@(Stopped_Processors, Disabled_Processors, Running Processors, Disables_Processors)\nConditionalSplit1@Stopped_Processors sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1\nConditionalSplit1@Disabled_Processors sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink2"
+			"script": "source(output(\n\t\tName as string,\n\t\tParent_Processor_Group as string,\n\t\tRunning as integer,\n\t\tStopped as integer,\n\t\tDisabled as integer,\n\t\tInvalid as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 filter(Parent_Processor_Group == 'Appdataingest') ~> Filter1\nFilter1 split(Stopped > 0,\n\tDisabled > 0,\n\tRunning > 0,\n\tdisjoint: false) ~> ConditionalSplit1@(Stopped_Processors, Disabled_Processors, Running Processors)\nConditionalSplit1@Stopped_Processors sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1\nConditionalSplit1@Disabled_Processors sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink2\nConditionalSplit1@Running Processors sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink3"
 		}
 	}
 }
