@@ -46,6 +46,7 @@
 							"value": "ankur.malhotra@teradata.com",
 							"type": "Expression"
 						},
+						"Error_Message": "Error found",
 						"Subject": {
 							"value": "Demo PipeLine Status",
 							"type": "Expression"
