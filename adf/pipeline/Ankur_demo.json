@@ -119,41 +119,19 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Email_notify",
+						"referenceName": "EMAIL_NOTIFICATION",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"DataFactoryName": {
-							"value": "@pipeline().DataFactory",
-							"type": "Expression"
-						},
-						"Subject": {
-							"value": "Demo pipeline Success",
-							"type": "Expression"
-						},
+						"Activity": "Email Success",
 						"EmailTo": {
 							"value": "ankur.malhotra@teradata.com",
 							"type": "Expression"
 						},
-						"PipelineName": {
-							"value": "Demo pipeline",
-							"type": "Expression"
-						},
-						"Message": {
-							"value": "Demo pipeline completed successfully.",
-							"type": "Expression"
-						},
-						"notification_app_lnk": {
-							"value": "@activity('Lookup1').output.firstRow.notification_app_lnk",
-							"type": "Expression"
-						},
-						"FileName": "abc",
-						"ErrorMessage": "No error found",
+						"Error_Message": "No error found",
 						"Pipe_Line_Name": "Demo pipeline",
-						"Source_File_Name": "abc",
-						"Activity": "Email Success",
-						"Error_Message": "No error found"
+						"Source_File_Name": "FIle not required"
 					}
 				}
 			}
