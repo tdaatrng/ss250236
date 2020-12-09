@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "processor_groups_stage.csv",
 				"folderPath": "stage",
 				"fileSystem": "sp186004"
 			},
