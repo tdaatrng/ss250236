@@ -37,33 +37,17 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "Email_notify",
+						"referenceName": "EMAIL_NOTIFICATION",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"DataFactoryName": {
-							"value": "@pipeline().DataFactory",
-							"type": "Expression"
-						},
-						"Subject": {
-							"value": "Demo PipeLine Status",
-							"type": "Expression"
-						},
 						"EmailTo": {
 							"value": "ankur.malhotra@teradata.com",
 							"type": "Expression"
 						},
-						"PipelineName": {
-							"value": "@pipeline().Pipeline",
-							"type": "Expression"
-						},
-						"Message": {
-							"value": "Demo PipeLine executed successfully",
-							"type": "Expression"
-						},
-						"notification_app_lnk": {
-							"value": "@activity('lookup1').output.firstRow.notification_app_lnk",
+						"Subject": {
+							"value": "Demo PipeLine Status",
 							"type": "Expression"
 						}
 					}
