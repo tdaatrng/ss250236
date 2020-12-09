@@ -67,7 +67,7 @@
 							{
 								"source": {
 									"name": "Running",
-									"type": "String",
+									"type": "Int16",
 									"physicalType": "String"
 								},
 								"sink": {
