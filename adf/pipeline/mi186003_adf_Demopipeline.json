@@ -1,0 +1,38 @@
+{
+	"name": "mi186003_adf_Demopipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Extracting CSV File Name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CSV_File_Name",
+					"value": ""
+				}
+			}
+		],
+		"parameters": {
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "abc.csv.gz"
+			},
+			"Container_Name": {
+				"type": "string"
+			},
+			"Input_Directory": {
+				"type": "string"
+			},
+			"Inbound_Directory": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"CSV_File_Name": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
