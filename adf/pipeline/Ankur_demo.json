@@ -50,7 +50,7 @@
 						"Pipe_Line_Name": "Demo pipeline",
 						"Source_File_Name": "File not required",
 						"Subject": {
-							"value": "Demo PipeLine Status",
+							"value": "Demo pipeline failed.",
 							"type": "Expression"
 						}
 					}
