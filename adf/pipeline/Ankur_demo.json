@@ -95,7 +95,8 @@
 						},
 						"Error_Message": "No error found",
 						"Pipe_Line_Name": "Demo pipeline",
-						"Source_File_Name": "FIle not required"
+						"Source_File_Name": "FIle not required",
+						"Subject": "Demo pipeline executed successfully."
 					}
 				}
 			}
