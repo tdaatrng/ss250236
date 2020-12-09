@@ -13,7 +13,7 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/ma186006/blobs/output_adf_vantage/*json",
+			"blobPathBeginsWith": "/ma186006/blobs/",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/1f037183-21d0-4c33-8356-296f23107c7c/resourceGroups/td-aa-trng-rg/providers/Microsoft.Storage/storageAccounts/tdaastrgdls",
 			"events": [
