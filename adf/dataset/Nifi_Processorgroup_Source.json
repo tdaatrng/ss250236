@@ -30,19 +30,19 @@
 			},
 			{
 				"name": "Running",
-				"type": "String"
+				"type": "Int16"
 			},
 			{
 				"name": "Stopped",
-				"type": "String"
+				"type": "Int16"
 			},
 			{
 				"name": "Disabled",
-				"type": "String"
+				"type": "Int16"
 			},
 			{
 				"name": "Invalid",
-				"type": "String"
+				"type": "Int16"
 			}
 		]
 	}
