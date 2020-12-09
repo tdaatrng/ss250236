@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "EMAIL_NOTIFICATION",
 	"properties": {
 		"activities": [
 			{
-				"name": "Email",
+				"name": "EMAIL",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
