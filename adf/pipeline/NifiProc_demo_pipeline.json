@@ -79,7 +79,7 @@
 							{
 								"source": {
 									"name": "Stopped",
-									"type": "String",
+									"type": "Int16",
 									"physicalType": "String"
 								},
 								"sink": {
@@ -91,7 +91,7 @@
 							{
 								"source": {
 									"name": "Disabled",
-									"type": "String",
+									"type": "Int16",
 									"physicalType": "String"
 								},
 								"sink": {
@@ -103,7 +103,7 @@
 							{
 								"source": {
 									"name": "Invalid",
-									"type": "String",
+									"type": "Int16",
 									"physicalType": "String"
 								},
 								"sink": {
