@@ -137,7 +137,7 @@
 							"type": "Expression"
 						},
 						"PipelineName": {
-							"value": "@pipeline().Pipeline",
+							"value": "Demo pipeline",
 							"type": "Expression"
 						},
 						"Message": {
@@ -147,7 +147,13 @@
 						"notification_app_lnk": {
 							"value": "@activity('Lookup1').output.firstRow.notification_app_lnk",
 							"type": "Expression"
-						}
+						},
+						"FileName": "abc",
+						"ErrorMessage": "No error found",
+						"Pipe_Line_Name": "Demo pipeline",
+						"Source_File_Name": "abc",
+						"Activity": "Email Success",
+						"Error_Message": "No error found"
 					}
 				}
 			}
