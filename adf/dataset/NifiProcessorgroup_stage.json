@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "processor_groups_stage.csv",
 				"folderPath": "stage",
 				"fileSystem": "sp186004"
 			},
@@ -19,31 +18,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "Name",
-				"type": "String"
-			},
-			{
-				"name": "Parent_Processor_Group",
-				"type": "String"
-			},
-			{
-				"name": "Running",
-				"type": "String"
-			},
-			{
-				"name": "Stopped",
-				"type": "String"
-			},
-			{
-				"name": "Disabled",
-				"type": "String"
-			},
-			{
-				"name": "Invalid",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
