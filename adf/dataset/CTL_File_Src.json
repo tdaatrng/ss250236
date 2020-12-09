@@ -5,11 +5,20 @@
 			"referenceName": "adls_ls",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"CTL_File_Name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().CTL_File_Name",
+					"type": "Expression"
+				},
 				"folderPath": "inbound",
 				"fileSystem": "mi186003"
 			},
