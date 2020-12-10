@@ -5,6 +5,9 @@
 			"referenceName": "Teradata_Src_ls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Vantage"
+		},
 		"annotations": [],
 		"type": "TeradataTable",
 		"schema": [],
