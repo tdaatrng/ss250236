@@ -20,8 +20,15 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "OdbcSink",
-						"writeBatchSize": 0
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false,
 					"translator": {
@@ -30,45 +37,45 @@
 							{
 								"source": {
 									"name": "BUSINESS_UNIT",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "BUSINESS_UNIT",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "ASSET_ID",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "ASSET_ID",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "EFFDT",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "EFFDT",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "OWNING_BUS_UNIT7",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "OWNING_BUS_UNIT7",
-									"type": "String"
+									"type": "String",
+									"physicalType": "String"
 								}
 							}
 						],
@@ -87,7 +94,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Odbc_Vantage",
+						"referenceName": "TgtCsv",
 						"type": "DatasetReference"
 					}
 				]
