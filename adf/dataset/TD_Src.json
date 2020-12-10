@@ -7,6 +7,10 @@
 		},
 		"annotations": [],
 		"type": "TeradataTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"database": "ss250236",
+			"table": "PS_ASSET_OWN_TBL"
+		}
 	}
 }
