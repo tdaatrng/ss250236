@@ -72,7 +72,7 @@
 				}
 			},
 			{
-				"name": "UpdateFlags",
+				"name": "RecursiveCheck",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
