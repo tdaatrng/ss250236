@@ -1,0 +1,32 @@
+{
+	"name": "SRC_Blob_Emp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blob_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Employee.csv",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "EmpNo",
+				"type": "String"
+			},
+			{
+				"name": "EmpName",
+				"type": "String"
+			}
+		]
+	}
+}
