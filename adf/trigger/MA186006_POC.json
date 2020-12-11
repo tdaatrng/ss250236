@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "MA186006_POC",
+					"referenceName": "002_MA186006_FLOW",
 					"type": "PipelineReference"
 				}
 			}

@@ -1,5 +1,5 @@
 {
-	"name": "MA186006_POC_timebased",
+	"name": "001_MA186006_TimeBased",
 	"properties": {
 		"activities": [
 			{
@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/ma186006/Vantage Connect"
+					"notebookPath": "/ma186006/Connect_Vantage"
 				},
 				"linkedServiceName": {
 					"referenceName": "adb_ls",

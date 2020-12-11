@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "MA186006_POC_timebased",
+					"referenceName": "001_MA186006_TimeBased",
 					"type": "PipelineReference"
 				}
 			}

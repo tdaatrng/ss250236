@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"folderPath": "output",
-				"container": "ma186006"
+				"container": "ma186006trigpoc"
 			}
 		},
 		"schema": {

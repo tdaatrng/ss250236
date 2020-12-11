@@ -1,5 +1,5 @@
 {
-	"name": "MA186006_POC",
+	"name": "002_MA186006_FLOW",
 	"properties": {
 		"activities": [
 			{
@@ -91,7 +91,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/ma186006/Vantage Connect",
+					"notebookPath": "/ma186006/Connect_Vantage",
 					"baseParameters": {
 						"mn_qtr": {
 							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
