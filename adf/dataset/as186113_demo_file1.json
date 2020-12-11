@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "RIM_V1.2_HistoryData.csv",
+				"fileName": "total-number-of-flights_2019.csv",
+				"folderPath": "input",
 				"fileSystem": "as186113"
 			},
 			"columnDelimiter": "^",
