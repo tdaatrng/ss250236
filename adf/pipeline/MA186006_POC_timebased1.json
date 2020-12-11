@@ -1,0 +1,114 @@
+{
+	"name": "MA186006_POC_timebased1",
+	"properties": {
+		"activities": [
+			{
+				"name": "ReadingJson",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"wildcardFolderPath": "output/",
+							"wildcardFileName": "*.json"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "Read_Qtr",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "ReadingJson",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ma186006/ReadQtrMnth",
+					"baseParameters": {
+						"mn_qtr": {
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"type": "Expression"
+						},
+						"mn_chnl": {
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Trigger_Qtr",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Read_Qtr",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ma186006/Vantage Connect",
+					"baseParameters": {
+						"mn_qtr": {
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"type": "Expression"
+						},
+						"mn_chnl": {
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_ls",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
