@@ -59,7 +59,7 @@
 							"type": "Expression"
 						},
 						"Subject": {
-							"value": "@(pipeline().Pipeline Executed Successfully)",
+							"value": "Pipeline Executed Successfully",
 							"type": "Expression"
 						}
 					}
