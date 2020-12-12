@@ -61,7 +61,7 @@
 							"type": "Expression"
 						},
 						"mn_chnl": {
-							"value": "@string(activity('ReadingJson').output.firstRow.mn_qtr)",
+							"value": "@string(activity('ReadingJson').output.firstRow.mn_chnl)",
 							"type": "Expression"
 						}
 					}
