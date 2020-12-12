@@ -93,7 +93,7 @@
 							"type": "Expression"
 						},
 						"Error_Message": {
-							"value": "\"@pipeline().Pipeline.Failed\"",
+							"value": "Pipeline Failed",
 							"type": "Expression"
 						},
 						"Pipe_Line_Name": {
@@ -102,7 +102,7 @@
 						},
 						"Source_File_Name": "N/A",
 						"Subject": {
-							"value": "\"@pipeline().Pipeline.Failed\"",
+							"value": "Pipeline Failed",
 							"type": "Expression"
 						}
 					}
