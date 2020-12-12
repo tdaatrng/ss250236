@@ -66,7 +66,7 @@
 				}
 			},
 			{
-				"name": "Execute Pipeline2",
+				"name": "Failure",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -78,7 +78,34 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitOnCompletion": true
+					"pipeline": {
+						"referenceName": "ah186033_email",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Activity": {
+							"value": "Email Failure",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "abdul.hakimuddin@teradata.com",
+							"type": "Expression"
+						},
+						"Error_Message": {
+							"value": "\"@pipeline().Pipeline.Failed\"",
+							"type": "Expression"
+						},
+						"Pipe_Line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Source_File_Name": "N/A",
+						"Subject": {
+							"value": "\"@pipeline().Pipeline.Failed\"",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
