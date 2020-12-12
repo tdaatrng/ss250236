@@ -47,7 +47,10 @@
 							"type": "Expression"
 						},
 						"Error_Message": "Error found",
-						"Pipe_Line_Name": "Demo pipeline",
+						"Pipe_Line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
 						"Source_File_Name": "File not required",
 						"Subject": {
 							"value": "Demo pipeline failed.",
@@ -81,7 +84,10 @@
 							"type": "Expression"
 						},
 						"Error_Message": "No error found",
-						"Pipe_Line_Name": "Demo pipeline",
+						"Pipe_Line_Name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
 						"Source_File_Name": "FIle not required",
 						"Subject": "Demo pipeline executed successfully."
 					}
