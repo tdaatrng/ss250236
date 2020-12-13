@@ -10,7 +10,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "@{https://jobs.github.com/positions.json?&description=linkedService().description}",
+			"url": "https://jobs.github.com/positions.json?description=linkedService().description",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
