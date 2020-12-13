@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://jobs.github.com/positions.json?description=python&location=new+york",
+			"url": "https://opensky-network.org/api/states/all",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
