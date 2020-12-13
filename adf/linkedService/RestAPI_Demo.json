@@ -1,10 +1,16 @@
 {
 	"name": "RestAPI_Demo",
 	"properties": {
+		"parameters": {
+			"description": {
+				"type": "string",
+				"defaultValue": "azure"
+			}
+		},
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://opensky-network.org/api/states/all",
+			"url": "@{https://jobs.github.com/positions.json?&description=linkedService().description}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
