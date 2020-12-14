@@ -9,7 +9,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://jobs.github.com/positions.json?page=linkedService().PageNumber&search=code",
+			"url": "https://jobs.github.com/positions.json?description=linkedService().PageNumber",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
