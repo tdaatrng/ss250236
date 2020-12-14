@@ -39,7 +39,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"pagenumber": {
-								"value": "1",
+								"value": "@range(1,50)",
 								"type": "Expression"
 							}
 						}
