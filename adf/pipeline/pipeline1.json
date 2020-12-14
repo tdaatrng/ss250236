@@ -36,13 +36,7 @@
 				"inputs": [
 					{
 						"referenceName": "DS_RESTAPI",
-						"type": "DatasetReference",
-						"parameters": {
-							"pagenumber": {
-								"value": "@range(1,50)",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
