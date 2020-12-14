@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://jobs.github.com/positions.json?page=1&search=code",
+			"url": "https://randomuser.me/api/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
