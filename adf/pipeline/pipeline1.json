@@ -67,8 +67,7 @@
 				"typeProperties": {
 					"variableName": "Pagenumber",
 					"value": [
-						"python",
-						"ruby"
+						"python"
 					]
 				}
 			}
