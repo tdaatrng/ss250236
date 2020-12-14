@@ -67,7 +67,7 @@
 				"typeProperties": {
 					"variableName": "Pagenumber",
 					"value": {
-						"value": "('Ruby','Python','Java')",
+						"value": "('ruby','python','java')",
 						"type": "Expression"
 					}
 				}
