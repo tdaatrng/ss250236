@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://randomuser.me/api/",
+			"url": "https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json&page=1",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
