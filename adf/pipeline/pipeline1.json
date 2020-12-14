@@ -6,14 +6,7 @@
 				"name": "Copy_RAPI_ADLS",
 				"description": "copy data from Rest Api to ADLS",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -58,19 +51,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "Pagenumber",
-					"value": {
-						"value": "('ruby','python','java')",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"variables": {
