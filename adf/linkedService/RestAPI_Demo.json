@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json&page=1",
+			"url": "http://dummy.restapiexample.com/api/v1/employees",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
