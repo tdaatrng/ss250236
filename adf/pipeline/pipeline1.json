@@ -47,6 +47,12 @@
 				]
 			}
 		],
+		"variables": {
+			"Pagenumber": {
+				"type": "String",
+				"defaultValue": "1"
+			}
+		},
 		"annotations": []
 	}
 }
