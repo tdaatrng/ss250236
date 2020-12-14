@@ -18,7 +18,7 @@
 					"name": "Flatten1"
 				}
 			],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'xml',\n\tfileSystem: 'mi186003',\n\tfolderPath: 'work',\n\tfileName: 'Orders.xml',\n\tvalidationMode: 'none',\n\tnamespaces: true,\n\tnamespacePrefixes: ['http://www.adventure-works.com'->'aw']) ~> ReadXML\nReadXML foldDown(skipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'xml',\n\tfileSystem: 'mi186003',\n\tfolderPath: 'work',\n\tfileName: 'CustOrdns.xml',\n\tvalidationMode: 'none',\n\tnamespaces: true,\n\tnamespacePrefixes: ['http://www.adventure-works.com'->'aw']) ~> ReadXML\nReadXML foldDown(skipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1"
 		}
 	}
 }
