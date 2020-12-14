@@ -1,0 +1,20 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "adls_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "xmlRead"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'xml',\n\tfileSystem: 'mi186003',\n\tfolderPath: 'work',\n\tfileName: 'CustOrdns.xml',\n\tvalidationMode: 'none',\n\tnamespaces: true,\n\tnamespacePrefixes: ['http://www.adventure-works.com'->'aw']) ~> xmlRead"
+		}
+	}
+}
