@@ -75,8 +75,7 @@
 		],
 		"variables": {
 			"Pagenumber": {
-				"type": "Array",
-				"defaultValue": "1"
+				"type": "Array"
 			}
 		},
 		"annotations": []
