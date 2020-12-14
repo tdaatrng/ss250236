@@ -55,7 +55,7 @@
 		],
 		"variables": {
 			"Pagenumber": {
-				"type": "String",
+				"type": "Array",
 				"defaultValue": "1"
 			}
 		},
