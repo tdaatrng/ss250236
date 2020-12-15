@@ -47,7 +47,7 @@
 				]
 			},
 			{
-				"name": "Notebook1",
+				"name": "ADLS_TO_VANTAGE",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -78,7 +78,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Notebook1",
+						"activity": "ADLS_TO_VANTAGE",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -121,7 +121,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Notebook1",
+						"activity": "ADLS_TO_VANTAGE",
 						"dependencyConditions": [
 							"Failed"
 						]
