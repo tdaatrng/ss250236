@@ -3,7 +3,18 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "RestAPI_Demo",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Pagenumber": {
+					"value": "@dataset().pagenumber",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"pagenumber": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "RestResource",
