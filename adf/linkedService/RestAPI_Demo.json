@@ -1,15 +1,10 @@
 {
 	"name": "RestAPI_Demo",
 	"properties": {
-		"parameters": {
-			"Pagenumber": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "http://dummy.restapiexample.com/api/v1/employees.linkedService().Pagenumber",
+			"url": "http://dummy.restapiexample.com/api/v1/employees",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
