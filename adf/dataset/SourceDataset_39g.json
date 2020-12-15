@@ -1,0 +1,22 @@
+{
+	"name": "SourceDataset_39g",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Financial Sample.xlsx",
+				"folderPath": "input",
+				"container": "rw255009"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
