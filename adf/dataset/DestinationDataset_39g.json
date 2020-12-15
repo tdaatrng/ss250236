@@ -9,7 +9,7 @@
 		"type": "OdbcTable",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "\"ss250236\".\"finsample\""
+			"tableName": "\"RW255009\".\"finsample\""
 		}
 	}
 }
