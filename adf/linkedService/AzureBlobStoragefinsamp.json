@@ -1,0 +1,11 @@
+{
+	"name": "AzureBlobStoragefinsamp",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://tdaastrgdls.blob.core.windows.net",
+			"accountKind": "StorageV2"
+		}
+	}
+}
