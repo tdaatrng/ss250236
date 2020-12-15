@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "RestAPI_To_Vantage_Demo",
 	"properties": {
 		"activities": [
 			{
