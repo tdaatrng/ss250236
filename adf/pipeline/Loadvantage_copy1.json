@@ -37,7 +37,172 @@
 						"writeBatchSize": 0
 					},
 					"enableStaging": false,
-					"validateDataConsistency": false
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Segment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Segment1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Country",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Country",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Product",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Product1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Discount Band",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Discount_Band",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Units Sold",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Units_Sold",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Manufacturing Price",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Manufacturing_Price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Sale Price",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Sale_Price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross Sales",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Gross_Sales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Discounts",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Discounts",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": " Sales",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Sales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "COGS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COGS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Profit",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Profit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Date_1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Month Number",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Month_Number",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Month Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Month_Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Year",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Year1",
+									"type": "String"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
