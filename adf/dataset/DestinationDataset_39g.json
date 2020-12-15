@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_39g",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Odbc_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"RW255009\".\"finsample\""
+		}
+	}
+}
