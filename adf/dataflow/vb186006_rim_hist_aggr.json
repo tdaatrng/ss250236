@@ -1,0 +1,12 @@
+{
+	"name": "vb186006_rim_hist_aggr",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"script": ""
+		}
+	}
+}
