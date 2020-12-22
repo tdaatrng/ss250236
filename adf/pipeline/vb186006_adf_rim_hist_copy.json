@@ -1,6 +1,161 @@
 {
 	"name": "vb186006_adf_rim_hist_copy",
 	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"sink": {
+									"path": "$['status']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['data'][0]['id']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['data'][0]['employee_name']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['data'][0]['employee_salary']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['data'][0]['employee_age']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['data'][0]['profile_image']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['sourceDataBase']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['sourceTable']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['targetDataBase']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['targetTable']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['partitionCol']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['columns']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['emailURL']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['EmailId']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['sourceFileName']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['sourceDirectory']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['sourceContainer']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['destFileName']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['destDirectory']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['destContainer']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "vb186006_rim_hist_ds",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vb186006_rim_hist_json_output",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }
