@@ -193,11 +193,14 @@
 									"type": "DelimitedTextSource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
-										"fileListPath": "vb186006/output",
+										"recursive": true,
+										"wildcardFolderPath": "output",
+										"wildcardFileName": "vb186006_RIM_Output*",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
+										"type": "DelimitedTextReadSettings",
+										"skipLineCount": 1
 									}
 								},
 								"sink": {
