@@ -69,7 +69,7 @@
 							{
 								"source": {
 									"name": "FlightDate",
-									"type": "DateTime"
+									"type": "DateTimeOffset"
 								},
 								"sink": {
 									"path": "$['FlightDate']"
