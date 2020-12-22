@@ -45,7 +45,7 @@
 									"type": "Int16"
 								},
 								"sink": {
-									"path": "$['status']"
+									"path": "$['Flight#']"
 								}
 							},
 							{
@@ -54,7 +54,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['data'][0]['id']"
+									"path": "$['Origin']"
 								}
 							},
 							{
@@ -63,7 +63,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['data'][0]['employee_name']"
+									"path": "$['Dest']"
 								}
 							},
 							{
@@ -72,7 +72,7 @@
 									"type": "DateTime"
 								},
 								"sink": {
-									"path": "$['data'][0]['employee_salary']"
+									"path": "$['FlightDate']"
 								}
 							},
 							{
@@ -81,7 +81,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"path": "$['data'][0]['employee_age']"
+									"path": "$['Reason']"
 								}
 							}
 						]
