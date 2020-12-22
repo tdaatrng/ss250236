@@ -40,103 +40,48 @@
 						"type": "TabularTranslator",
 						"mappings": [
 							{
+								"source": {
+									"name": "Flight#",
+									"type": "Int16"
+								},
 								"sink": {
 									"path": "$['status']"
 								}
 							},
 							{
+								"source": {
+									"name": "Origin",
+									"type": "String"
+								},
 								"sink": {
 									"path": "$['data'][0]['id']"
 								}
 							},
 							{
+								"source": {
+									"name": "Dest",
+									"type": "String"
+								},
 								"sink": {
 									"path": "$['data'][0]['employee_name']"
 								}
 							},
 							{
+								"source": {
+									"name": "FlightDate",
+									"type": "DateTime"
+								},
 								"sink": {
 									"path": "$['data'][0]['employee_salary']"
 								}
 							},
 							{
+								"source": {
+									"name": "NoSalesReason",
+									"type": "String"
+								},
 								"sink": {
 									"path": "$['data'][0]['employee_age']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['data'][0]['profile_image']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['sourceDataBase']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['sourceTable']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['targetDataBase']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['targetTable']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['partitionCol']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['columns']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['emailURL']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['EmailId']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['sourceFileName']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['sourceDirectory']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['sourceContainer']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['destFileName']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['destDirectory']"
-								}
-							},
-							{
-								"sink": {
-									"path": "$['destContainer']"
 								}
 							}
 						]
