@@ -1,6 +1,129 @@
 {
 	"name": "vb186006_adf_parameter_pipeline",
 	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_parameter",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "vb186006_parameter_json_ds",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup_parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "vb186006_parameter_src_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@activity('Lookup_parameter').output.firstRow.sourceContainer",
+								"type": "Expression"
+							},
+							"directoryName": {
+								"value": "@activity('Lookup_parameter').output.firstRow.sourceDirectory",
+								"type": "Expression"
+							},
+							"fileName": {
+								"value": "@activity('Lookup_parameter').output.FirstRow.sourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vb186006_parameter_trg_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"destContainer": {
+								"value": "@activity('Lookup_parameter').output.firstrow.destContainer",
+								"type": "Expression"
+							},
+							"destDirectory": {
+								"value": "@activity('Lookup_parameter').output.firstRow.destDirectory",
+								"type": "Expression"
+							},
+							"destFilename": {
+								"value": "@activity('Lookup_parameter').output.firstRow.destFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }
