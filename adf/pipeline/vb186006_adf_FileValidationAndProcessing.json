@@ -1,6 +1,29 @@
 {
 	"name": "vb186006_adf_FileValidationAndProcessing",
 	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
+		"parameters": {
+			"File_Name": {
+				"type": "string",
+				"defaultValue": "abc.csv.gz"
+			},
+			"Container_Name": {
+				"type": "string"
+			},
+			"Input_Directory": {
+				"type": "string"
+			},
+			"Inbound_Directory": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
